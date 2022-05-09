@@ -1,15 +1,20 @@
 package terminal;
 
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Usuario {
+public class Usuario implements Serializable {
 
     private int cc;
     private String uNombre;
     private String email;
     private int movil;
     private int cartera;
-    private ArrayList<Usuario> historicoViajes;
+    private ArrayList<Viaje> historicoViajes;
+    private static ArrayList<Usuario> usuarios;
+    static {
+        usuarios = new ArrayList<Usuario>();
+    }
 
     @Override
     public String toString() {
@@ -30,6 +35,7 @@ public class Usuario {
         this.movil = movil;
         this.cartera = 0;
         this.historicoViajes = new ArrayList<>();
+        Usuario.usuarios.add(this);
     }
 
     public int consultarSaldo(){
@@ -42,6 +48,10 @@ public class Usuario {
         }else{
             System.out.println("El dinero a agregar debe ser en numeros positivos");
         }
+    }
+
+    public static ArrayList<Usuario> getUsuarios(){
+        return usuarios;
     }
 
 }

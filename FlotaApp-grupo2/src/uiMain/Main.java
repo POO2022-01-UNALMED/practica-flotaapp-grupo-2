@@ -2,9 +2,12 @@ package uiMain;
 
 import  terminal.*;
 
+import baseDatos.*;
+
 
 public class Main {
     public static void main(String[] args) {
+        Deserializador.deserializarTodo();
         Usuario u1 = new Usuario();
         System.out.println(u1);
         u1.registrarse(1, "Mateo E", "example@email.com", 1234567890);
@@ -24,5 +27,7 @@ public class Main {
         System.out.println(u1.consultarSaldo());
         u1.agregarSaldo(-1000);
         System.out.println(u1.consultarSaldo());
+
+        Serializador.serializarTodo();
     }
 }
