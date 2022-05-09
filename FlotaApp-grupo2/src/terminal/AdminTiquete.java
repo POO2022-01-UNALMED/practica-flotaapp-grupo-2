@@ -5,5 +5,5 @@ public class AdminTiquete {
     private int Tiquete;
     private Usuario usuario;
     private Viaje viaje;
-    private Date  fechaCompra;
+    private Date fechaCompra;
 }

@@ -8,5 +8,5 @@ public class Viaje {
     private AdminTiquete tiquete;
     private Date fechaViaje;
     private Vehiculo vehiculo;
-    private Boolean escala;
+    private boolean escala;
 }
