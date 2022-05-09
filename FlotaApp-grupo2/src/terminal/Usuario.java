@@ -11,6 +11,27 @@ public class Usuario {
     private int cartera;
     private ArrayList<Usuario> historicoViajes;
 
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "cc=" + cc +
+                ", uNombre='" + uNombre + '\'' +
+                ", email='" + email + '\'' +
+                ", movil=" + movil +
+                ", cartera=" + cartera +
+                ", historicoViajes=" + historicoViajes +
+                '}';
+    }
+
+    public void registrarse(int cc, String uNombre, String email, int movil){
+        this.cc = cc;
+        this.uNombre = uNombre;
+        this.email = email;
+        this.movil = movil;
+        this.cartera = 0;
+        this.historicoViajes = new ArrayList<>();
+    }
+
     public int consultarSaldo(){
         return this.cartera;
     }
