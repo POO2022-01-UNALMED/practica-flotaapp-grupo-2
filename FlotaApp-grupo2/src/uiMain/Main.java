@@ -18,7 +18,7 @@ public class Main {
         u2.registrarse(2, "Pablo", "example2@email.com", 2087654321);
         //System.out.println(u2);
         System.out.println(Usuario.getUsuarios());
-        Usuario.eliminarUsuario(u2.toString());
+        u2.darseDeBaja();
 
         //Test Metodos Silla
         Silla s1 = new Silla();

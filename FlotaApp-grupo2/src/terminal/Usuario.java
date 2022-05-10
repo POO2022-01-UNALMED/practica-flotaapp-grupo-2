@@ -32,23 +32,12 @@ public class Usuario implements Serializable {
             Usuario.usuarios.add(this.toString());
             Serializador.serializarTodo();
         }
-
-
-    }
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "cc=" + cc +
-                ", uNombre='" + uNombre + '\'' +
-                ", email='" + email + '\'' +
-                ", movil=" + movil +
-                ", cartera=" + cartera +
-                ", historicoViajes=" + historicoViajes +
-                '}';
     }
 
-    public static void eliminarUsuario(String usuario){
-        Usuario.usuarios.remove(usuario);
+
+
+    public void darseDeBaja(){
+        Usuario.usuarios.remove(this.toString());
         System.out.println(Usuario.getUsuarios());
         Serializador.serializarTodo();
     }
@@ -68,5 +57,18 @@ public class Usuario implements Serializable {
     public static ArrayList<String> getUsuarios(){
         return usuarios;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "cc=" + cc +
+                ", uNombre='" + uNombre + '\'' +
+                ", email='" + email + '\'' +
+                ", movil=" + movil +
+                ", cartera=" + cartera +
+                ", historicoViajes=" + historicoViajes +
+                '}';
+    }
+
 
 }
