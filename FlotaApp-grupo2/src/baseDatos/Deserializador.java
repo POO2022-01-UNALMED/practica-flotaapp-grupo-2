@@ -45,7 +45,7 @@ public class Deserializador {
             e.printStackTrace();
         } catch (IOException e) {
             // TODO Auto-generated catch block
-            System.out.println("Esta vacio");
+            System.out.println("Aun sin registros");
         } catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
