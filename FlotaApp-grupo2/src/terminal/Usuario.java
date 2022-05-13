@@ -3,7 +3,12 @@ package terminal;
 import baseDatos.Serializador;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.LinkedHashMap;
 
 public class Usuario implements Serializable {
 
@@ -35,6 +40,7 @@ public class Usuario implements Serializable {
         this.cartera = cartera;
         this.historicoViajes = historicoViajes;
     }
+
 
     public void registrarse(){
         ArrayList<String> emails = new ArrayList<String>();
@@ -82,10 +88,41 @@ public class Usuario implements Serializable {
         return this.consultarSaldo();
     }
 
+
+    /*public ArrayList<Tiquete> historicoViaje(Date fechaInicial, Date fechaFinal){
+        ArrayList<Tiquete> viajes = new ArrayList<Tiquete>();
+        for(tiquete : Tiquete.getTiquete()){
+            Date d = tiquete.viaje.getFechaViaje();
+            if (d.after(fechaInicial) && d.before(fechaFinal)){
+                viajes.add(tiquete);
+            }
+        }
+        return viajes;
+    }*/
+
+    /*public int historicoViaje(Ciudad ciudad){
+        int cantidad = 0;
+        for(tiquete : Tiquete.getTiquete()){
+            if (tiquete.viaje.getCiudad() == ciudad){
+                cantidad += 1;
+            }
+        }
+        return cantidad;
+    }*/
+
+    /*public ArrayList<Ciudad> recomendacion(){
+        Map<Ciudad, Integer> masVisitados = Ciudad.getCiudades().entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+        return masVisitados[:5];
+    }*/
+
+
+
+    //Metodos Staticos
     public static ArrayList<Usuario> getUsuarios(){
         return usuarios;
     }
 
+    //Metodos Auxiliares
     @Override
     public String toString() {
         return "Usuario{" +
