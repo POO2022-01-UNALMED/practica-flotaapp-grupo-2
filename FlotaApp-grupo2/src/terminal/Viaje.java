@@ -1,12 +1,15 @@
 package terminal;
 import java.util.Date;
-//Se crea nueva rama 
+import java.util.ArrayList;
+
 public class Viaje {
+	
+	private Ciudad origen;
     private int id;
-    private Ciudad origen;
-    private Ciudad destino;
+    private static  ArrayList<Ciudad> destino = new ArrayList<>();
     private AdminTiquete tiquete;
     private Date fechaViaje;
     private Vehiculo vehiculo; 
     private boolean escala;
+    private boolean disponibilidad;
 }
