@@ -5,135 +5,48 @@ import baseDatos.Serializador;
 import java.util.ArrayList;
 import java.util.Date;
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.LinkedHashMap;
+
 
 public class Usuario implements Serializable {
 
-    private int cc;
-    private String uNombre;
-    private String email;
-    private long movil;
-    private int cartera;
-    private ArrayList<Viaje> historicoViajes;
-    private static ArrayList<Usuario> usuarios;
-    static {
-        usuarios = new ArrayList<Usuario>();
-    }
+    public int cc;
+    public String uNombre;
+    public String email;
+    public long movil;
+    public int billetera;
 
-    public void Usuario(int cc, String uNombre, String email, long movil){
+    public Usuario(int cc, String uNombre, String email, long movil) {
         this.cc = cc;
         this.uNombre = uNombre;
         this.email = email;
         this.movil = movil;
-        this.cartera = 0;
-        this.historicoViajes = new ArrayList<>();
+        this.billetera = 0;
     }
 
-    public void Usuario(int cc, String uNombre, String email, long movil, int cartera, ArrayList<Viaje> historicoViajes){
+    public Usuario(int cc, String uNombre, String email, long movil, int billetera) {
         this.cc = cc;
         this.uNombre = uNombre;
         this.email = email;
         this.movil = movil;
-        this.cartera = cartera;
-        this.historicoViajes = historicoViajes;
+        this.billetera = billetera;
     }
 
+    public void registrarse(){}
+    public void  modificarInformacion(){}
 
-    public void registrarse(){
-        ArrayList<String> emails = new ArrayList<String>();
-        ArrayList<Integer> ccs = new ArrayList<Integer>();
-        ArrayList<Long> movils = new ArrayList<Long>();
-
-        for(Usuario usuario : Usuario.getUsuarios()){
-            emails.add(usuario.email);
-            ccs.add(usuario.cc);
-            movils.add(usuario.movil);
-        }
-        if (emails.contains(this.email) || ccs.contains(this.cc) || movils.contains(this.movil) )
-        {
-            System.out.println("Este Usuario ya esta registrado");
-        }else{
-            System.out.println("Usuario-" + this.cc + " guardado con exito");
-            Usuario.usuarios.add(this);
-            Serializador.serializarTodo();
-        }
-    }
-
-    public void modificarInformacion(String uNombre, String email, long movil){
-        Usuario aux = new Usuario();
-        aux.Usuario(this.cc, uNombre, email, movil, this.cartera, this.historicoViajes);
-        this.darseDeBaja();
-        aux.registrarse();
-    }
-
-
-    public void darseDeBaja(){
-        Usuario.usuarios.remove(this);
-        Serializador.serializarTodo();
-    }
+    public void  darseDeBaja(){}
 
     public int consultarSaldo(){
-        return this.cartera;
+        return this.billetera;
     }
 
     public int agregarSaldo(int dinero){
         if(dinero > 0){
-            this.cartera += dinero;
+            this.billetera += dinero;
         }else{
             System.out.println("El dinero a agregar debe ser en numeros positivos");
         }
         return this.consultarSaldo();
     }
-
-
-    /*public ArrayList<Tiquete> historicoViaje(Date fechaInicial, Date fechaFinal){
-        ArrayList<Tiquete> viajes = new ArrayList<Tiquete>();
-        for(tiquete : Tiquete.getTiquete()){
-            Date d = tiquete.viaje.getFechaViaje();
-            if (d.after(fechaInicial) && d.before(fechaFinal)){
-                viajes.add(tiquete);
-            }
-        }
-        return viajes;
-    }*/
-
-    /*public int historicoViaje(Ciudad ciudad){
-        int cantidad = 0;
-        for(tiquete : Tiquete.getTiquete()){
-            if (tiquete.viaje.getCiudad() == ciudad){
-                cantidad += 1;
-            }
-        }
-        return cantidad;
-    }*/
-
-    /*public ArrayList<Ciudad> recomendacion(){
-        Map<Ciudad, Integer> masVisitados = Ciudad.getCiudades().entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
-        return masVisitados[:5];
-    }*/
-
-
-
-    //Metodos Staticos
-    public static ArrayList<Usuario> getUsuarios(){
-        return usuarios;
-    }
-
-    //Metodos Auxiliares
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "cc=" + cc +
-                ", uNombre='" + uNombre + '\'' +
-                ", email='" + email + '\'' +
-                ", movil=" + movil +
-                ", cartera=" + cartera +
-                ", historicoViajes=" + historicoViajes +
-                '}';
-    }
-
 
 }
