@@ -3,90 +3,63 @@ package terminal;
 import baseDatos.Serializador;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.io.Serializable;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.LinkedHashMap;
 
-public class Usuario implements Serializable {
-
-    private int cc;
-    private String uNombre;
-    private String email;
-    private long movil;
-    private int cartera;
+public class Comprador extends Usuario implements Serializable{
     private ArrayList<Viaje> historicoViajes;
-    private static ArrayList<Usuario> usuarios;
+    private static ArrayList<Usuario> compradores;
     static {
-        usuarios = new ArrayList<Usuario>();
+        compradores = new ArrayList<Usuario>();
     }
 
-    public void Usuario(int cc, String uNombre, String email, long movil){
-        this.cc = cc;
-        this.uNombre = uNombre;
-        this.email = email;
-        this.movil = movil;
-        this.cartera = 0;
-        this.historicoViajes = new ArrayList<>();
+    public Comprador(int cc, String uNombre, String email, long movil) {
+        super(cc, uNombre, email, movil);
+        this.historicoViajes =  new ArrayList<>();
     }
 
-    public void Usuario(int cc, String uNombre, String email, long movil, int cartera, ArrayList<Viaje> historicoViajes){
-        this.cc = cc;
-        this.uNombre = uNombre;
-        this.email = email;
-        this.movil = movil;
-        this.cartera = cartera;
+    public Comprador(int cc, String uNombre, String email, long movil, int billetera,  ArrayList<Viaje> historicoViajes) {
+        super(cc, uNombre, email, movil, billetera);
         this.historicoViajes = historicoViajes;
     }
-
 
     public void registrarse(){
         ArrayList<String> emails = new ArrayList<String>();
         ArrayList<Integer> ccs = new ArrayList<Integer>();
         ArrayList<Long> movils = new ArrayList<Long>();
 
-        for(Usuario usuario : Usuario.getUsuarios()){
-            emails.add(usuario.email);
-            ccs.add(usuario.cc);
-            movils.add(usuario.movil);
+        for(Usuario comprador : Comprador.getCompradores()){
+            emails.add(comprador.email);
+            ccs.add(comprador.cc);
+            movils.add(comprador.movil);
         }
         if (emails.contains(this.email) || ccs.contains(this.cc) || movils.contains(this.movil) )
         {
             System.out.println("Este Usuario ya esta registrado");
         }else{
             System.out.println("Usuario-" + this.cc + " guardado con exito");
-            Usuario.usuarios.add(this);
+            Comprador.compradores.add(this);
             Serializador.serializarTodo();
         }
     }
 
     public void modificarInformacion(String uNombre, String email, long movil){
-        Usuario aux = new Usuario();
-        aux.Usuario(this.cc, uNombre, email, movil, this.cartera, this.historicoViajes);
+        Comprador aux = new Comprador(this.cc, uNombre, email, movil, this.billetera, this.historicoViajes);
         this.darseDeBaja();
         aux.registrarse();
     }
 
 
     public void darseDeBaja(){
-        Usuario.usuarios.remove(this);
+        Comprador.compradores.remove(this);
         Serializador.serializarTodo();
     }
 
-    public int consultarSaldo(){
-        return this.cartera;
-    }
 
-    public int agregarSaldo(int dinero){
-        if(dinero > 0){
-            this.cartera += dinero;
-        }else{
-            System.out.println("El dinero a agregar debe ser en numeros positivos");
-        }
-        return this.consultarSaldo();
-    }
 
 
     /*public ArrayList<Tiquete> historicoViaje(Date fechaInicial, Date fechaFinal){
@@ -118,8 +91,8 @@ public class Usuario implements Serializable {
 
 
     //Metodos Staticos
-    public static ArrayList<Usuario> getUsuarios(){
-        return usuarios;
+    public static ArrayList<Usuario> getCompradores(){
+        return compradores;
     }
 
     //Metodos Auxiliares
@@ -130,10 +103,8 @@ public class Usuario implements Serializable {
                 ", uNombre='" + uNombre + '\'' +
                 ", email='" + email + '\'' +
                 ", movil=" + movil +
-                ", cartera=" + cartera +
+                ", billetera=" + billetera +
                 ", historicoViajes=" + historicoViajes +
                 '}';
     }
-
-
 }

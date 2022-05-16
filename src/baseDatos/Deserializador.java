@@ -56,6 +56,6 @@ public class Deserializador {
      * Funcion para deserializar toda la aplicacion Generic IT
      */
     public static void deserializarTodo() {
-        Deserializador.deserializador(Usuario.getUsuarios(), "usuarios");
+        Deserializador.deserializador(Comprador.getCompradores(), "compradores");
     }
 }

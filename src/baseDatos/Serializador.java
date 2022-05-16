@@ -50,6 +50,6 @@ public class Serializador {
      * Serializamos todas las clases que necesitamos
      */
     public static void serializarTodo() {
-        Serializador.serializar(Usuario.getUsuarios(), "usuarios");
+        Serializador.serializar(Comprador.getCompradores(), "compradores");
     }
 }
