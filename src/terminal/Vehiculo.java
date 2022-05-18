@@ -7,6 +7,8 @@ public class Vehiculo {
     private Conductor conductor;
     private ArrayList<Silla> sillaEstandar;
     private ArrayList<Silla> sillaPremium;
-}
 
-public Silla selecionarSilla() {}
+
+    //public Silla selecionarSilla() {}
+
+}

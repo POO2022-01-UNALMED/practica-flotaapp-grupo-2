@@ -8,12 +8,14 @@ public class Ciudad {
     private String dirTerminal;
     private int numVisitantes;
     private static  ArrayList<Ciudad> ciudades = new ArrayList<>();
+	static {
+		ciudades = new ArrayList<Ciudad>();
+	}
     
-    
-    public Ciudad(int id, String nombre, String dirTerminal, numVisitantes) { 
+    public Ciudad(int id, String nombre, String dirTerminal, int numVisitantes) {
     	this.id = id;
     	this.nombre = nombre;
-    	this.numVisitantes = numVisitantes;
+		this.dirTerminal = dirTerminal;
     	this.numVisitantes = numVisitantes;
     	ciudades.add(this); 
     }
