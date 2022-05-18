@@ -10,10 +10,9 @@ public class Ciudad {
     private static  ArrayList<Ciudad> ciudades = new ArrayList<>();
     
     
-    public Ciudad(int id, String nombre, String dirTerminal, numVisitantes) { 
+    public Ciudad(int id, String nombre, String dirTerminal) { 
     	this.id = id;
     	this.nombre = nombre;
-    	this.numVisitantes = numVisitantes;
     	this.numVisitantes = numVisitantes;
     	ciudades.add(this); 
     }
@@ -22,7 +21,7 @@ public class Ciudad {
     	if (!ciudades.isEmpty()){
     		for (Ciudad c: ciudades) {
         		if (c.nombre.equals(ciudad)) {
-        			ciudades.remove(c); //por que me saca error al intentar eliminar 
+        			ciudades.remove(c); 
         		}
         	}
     	}else {
