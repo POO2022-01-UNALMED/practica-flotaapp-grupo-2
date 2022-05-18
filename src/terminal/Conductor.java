@@ -1,10 +1,19 @@
 package terminal;
 
-public class Conductor {
+public class Conductor extends Empleado {
 
-    private int id;
-    private String nombre;
-    private int categoria;
-    private int numViajes;
+    private Viaje historiaViajesRealizados;
+    private Categoria categoria;
+    private Conducor conductores;
 
 }
+
+public void registrarse() {}
+
+public void modificarinformacion() {}
+
+public Conductor aumenarCategoria(String Categoria) {}
+
+public void despedir() {}
+
+public void renunciar() {}
