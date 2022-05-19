@@ -15,6 +15,9 @@ public class Viaje {
     private Vehiculo vehiculo; 
     private boolean escala;
     private boolean disponibilidad;
+    public static ArrayList<Viaje> viajes = new ArrayList<>();
+    
+    
     
     public Viaje(int id, int costo, Ciudad origen, ArrayList<Ciudad> destino,
     		Tiquete tiquete, Date fechaViaje, Vehiculo vehiculo, boolean escala, boolean disponibilidad) {
@@ -29,5 +32,11 @@ public class Viaje {
     	this.escala = escala;
     	this.disponibilidad = disponibilidad;
     }
-    //public Viaje crearViaje(		)
+    
+    public void crearViaje() {
+    	
+    	
+    	
+    	
+    }
 }
