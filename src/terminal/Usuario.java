@@ -32,6 +32,7 @@ public class Usuario implements Serializable {
     }
 
     public void registrarse(){}
+
     public void  modificarInformacion(){}
 
     public void  darseDeBaja(){}

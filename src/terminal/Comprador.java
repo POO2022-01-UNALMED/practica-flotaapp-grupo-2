@@ -1,5 +1,6 @@
 package terminal;
 
+import baseDatos.Deserializador;
 import baseDatos.Serializador;
 
 import java.util.ArrayList;
@@ -44,7 +45,6 @@ public class Comprador extends Usuario implements Serializable{
         }else{
             System.out.println("Usuario-" + this.cc + " guardado con exito");
             Comprador.compradores.add(this);
-            Serializador.serializarTodo();
         }
     }
 
@@ -57,7 +57,7 @@ public class Comprador extends Usuario implements Serializable{
 
     public void darseDeBaja(){
         Comprador.compradores.remove(this);
-        Serializador.serializarTodo();
+        System.out.println(this.uNombre + " Eliminado");
     }
 
 

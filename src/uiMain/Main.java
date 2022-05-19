@@ -10,7 +10,7 @@ import java.util.Date;
 
 public class Main {
     public static void main(String[] args) {
-        Deserializador.deserializarTodo();
+        //Deserializador.deserializarTodo();
 
         // COMPRADORES
         Comprador u1 = new Comprador(1, "Usuario1", "example@email.com", 3234567890L);
@@ -19,11 +19,19 @@ public class Main {
         Comprador u2 = new Comprador(2, "Usuario2", "example2@email.com", 3087654321L);
         u2.registrarse();
 
+        Comprador uError = new Comprador(2, "Error", "example2@email.com", 3087654321L);
+        uError.registrarse();
+
         Comprador u3 = new Comprador(3, "Usuario3", "example3@email.com", 3088890321L);
         u3.registrarse();
 
         Comprador u4 = new Comprador(4, "Usuario4", "example4@email.com", 3087656654L);
         u4.registrarse();
+
+
+        u1.darseDeBaja();
+
+        Serializador.serializarTodo();
 
         ////FECHAS PRUEBAS
 
@@ -63,7 +71,7 @@ public class Main {
 
         //////SILLAS
 
-
         System.out.println(Comprador.getCompradores());
+        Serializador.serializarTodo();
     }
 }
