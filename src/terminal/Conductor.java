@@ -2,8 +2,7 @@ package terminal;
 
 import java.util.ArrayList;
 
-//public class Conductor extends Empleado {
-public class Conductor{
+public class Conductor extends Empleado {
 
     private Viaje historiaViajesRealizados;
     private Categoria categoria;

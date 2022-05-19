@@ -10,21 +10,28 @@ public class Tiquete {
 	private int valor;
 	private Date fechaCompra;
 	private static ArrayList<Tiquete> tiquetes = new ArrayList<>();
-	
-	
+	static {
+		tiquetes = new ArrayList<Tiquete>();
+	}
+
 	public Tiquete(int idTiquete, Usuario usuario, Viaje viaje, int valor, Date fechaCompra) {
-		this.idTiquete = idTiquete; 
+		this.idTiquete = idTiquete;
 		this.usuario = usuario;
 		this.viaje = viaje;
 		this.valor = valor;
 		this.fechaCompra = fechaCompra;
-		tiquetes.add(this);		
+		tiquetes.add(this);
 	}
-	
+
 	//public void crearTiquete(Tiquete nuevo) {
-		
+
 	//k}
-	
-	
+
+
+	public Viaje getViaje() {return viaje;	}
+
+	public Usuario getUsuario() {return usuario;}
+
+	public static ArrayList<Tiquete> getTiquetes(){	return tiquetes;}
 
 }

@@ -1,5 +1,6 @@
 package terminal;
 
+import baseDatos.Deserializador;
 import baseDatos.Serializador;
 
 import java.util.ArrayList;
@@ -7,18 +8,19 @@ import java.io.Serializable;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Date;
 import java.util.stream.Collectors;
 import java.util.LinkedHashMap;
 
 public class Comprador extends Usuario implements Serializable{
     private ArrayList<Viaje> historicoViajes;
-    private static ArrayList<Usuario> compradores;
+    private static ArrayList<Comprador> compradores;
     static {
-        compradores = new ArrayList<Usuario>();
+        compradores = new ArrayList<Comprador>();
     }
 
     public Comprador(int cc, String uNombre, String email, long movil) {
-        super(cc, uNombre, email, movil);
+        super(cc, uNombre, email, movil, 0);
         this.historicoViajes =  new ArrayList<>();
     }
 
@@ -41,47 +43,51 @@ public class Comprador extends Usuario implements Serializable{
         {
             System.out.println("Este Usuario ya esta registrado");
         }else{
-            System.out.println("Usuario-" + this.cc + " guardado con exito");
+            System.out.println("Informacion de Usuario-" + this.cc + " guardada con exito");
             Comprador.compradores.add(this);
-            Serializador.serializarTodo();
         }
     }
 
-    public void modificarInformacion(String uNombre, String email, long movil){
-        Comprador aux = new Comprador(this.cc, uNombre, email, movil, this.billetera, this.historicoViajes);
-        this.darseDeBaja();
-        aux.registrarse();
+    public void modificarNombre(String nombre){
+        this.uNombre = nombre;
+    }
+
+    public void modificarEmail(String email){
+        this.email = email;
+    }
+
+    public void modificarMovil(long movil){
+        this.movil = movil;
     }
 
 
     public void darseDeBaja(){
         Comprador.compradores.remove(this);
-        Serializador.serializarTodo();
+        System.out.println(this.uNombre + " Eliminado");
     }
 
 
-
-
-    /*public ArrayList<Tiquete> historicoViaje(Date fechaInicial, Date fechaFinal){
+    public ArrayList<Tiquete> historicoViaje(Date fechaInicial, Date fechaFinal){
         ArrayList<Tiquete> viajes = new ArrayList<Tiquete>();
-        for(tiquete : Tiquete.getTiquete()){
-            Date d = tiquete.viaje.getFechaViaje();
-            if (d.after(fechaInicial) && d.before(fechaFinal)){
+        for(Tiquete tiquete : Tiquete.getTiquetes()){
+            System.out.println(tiquete);
+            Date d = tiquete.getViaje().getFechaViaje();
+            if (d.after(fechaInicial) && d.before(fechaFinal) && tiquete.getUsuario() == this){
                 viajes.add(tiquete);
             }
         }
         return viajes;
-    }*/
+    }
 
-    /*public int historicoViaje(Ciudad ciudad){
+    public int historicoViaje(Ciudad ciudad){
         int cantidad = 0;
-        for(tiquete : Tiquete.getTiquete()){
-            if (tiquete.viaje.getCiudad() == ciudad){
+        for(Tiquete tiquete : Tiquete.getTiquetes()){
+            if (tiquete.getViaje().getDestino().contains(ciudad)){
                 cantidad += 1;
             }
         }
         return cantidad;
-    }*/
+    }
 
     /*public ArrayList<Ciudad> recomendacion(){
         Map<Ciudad, Integer> masVisitados = Ciudad.getCiudades().entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
@@ -91,7 +97,7 @@ public class Comprador extends Usuario implements Serializable{
 
 
     //Metodos Staticos
-    public static ArrayList<Usuario> getCompradores(){
+    public static ArrayList<Comprador> getCompradores(){
         return compradores;
     }
 
