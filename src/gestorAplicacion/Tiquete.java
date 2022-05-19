@@ -1,11 +1,12 @@
 package gestorAplicacion;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.ArrayList;
 
-public class Tiquete {
+public class Tiquete implements Serializable {
 	private int idTiquete;
-	private Usuario usuario;
+	private Comprador comprador;
 	private Viaje viaje;
 	private int valor;
 	private Date fechaCompra;
@@ -14,9 +15,8 @@ public class Tiquete {
 		tiquetes = new ArrayList<Tiquete>();
 	}
 
-	public Tiquete(int idTiquete, Usuario usuario, Viaje viaje, int valor, Date fechaCompra) {
+	public Tiquete(int idTiquete, Viaje viaje, int valor, Date fechaCompra) {
 		this.idTiquete = idTiquete;
-		this.usuario = usuario;
 		this.viaje = viaje;
 		this.valor = valor;
 		this.fechaCompra = fechaCompra;
@@ -30,7 +30,11 @@ public class Tiquete {
 
 	public Viaje getViaje() {return viaje;	}
 
-	public Usuario getUsuario() {return usuario;}
+	public Comprador getUsuario() {return comprador;}
+
+	public void setComprador(Comprador comprador) {this.comprador = comprador;}
+
+
 
 	public static ArrayList<Tiquete> getTiquetes(){	return tiquetes;}
 

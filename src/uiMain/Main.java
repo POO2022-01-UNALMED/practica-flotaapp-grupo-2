@@ -3,6 +3,7 @@ package uiMain;
 import  gestorAplicacion.*;
 
 import baseDatos.*;
+import uiMain.funcionalidades.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,8 +35,6 @@ public class Main {
         u3.modificarEmail("emailModificado@example.com");
         u4.modificarMovil(3333333333L);
 
-        Serializador.serializarTodo();
-
         ////FECHAS PRUEBAS
 
         Date fin = new Date(2022,1,1);
@@ -59,11 +58,17 @@ public class Main {
         Viaje v1 = new Viaje(1112, 300000, c2,destinos,intermedio, true, true);
 
         //TIQUETES
-        Tiquete t1 = new Tiquete(1,u2,v1,4000,fechaCompra);
+        Tiquete t1 = new Tiquete(1,v1,4000,fechaCompra);
+
+        //////funcionamiento de asignarTiquete
+        System.out.println(Asignar.asignarTiquete(u2, t1).getUsuario());
+
+        System.out.println(u2.getHistoricoViajes());
+
 
         //////funcionamiento de Comprador.historicoViaje => (DATE, DATE) --- (CIUDAD)
         System.out.println(u2.historicoViaje(inicio, fin));
-        System.out.println(u2.historicoViaje(c4));
+        System.out.println(u2.historicoViaje(c3));
 
 
         //EMPLEADOS
@@ -76,5 +81,7 @@ public class Main {
 
         System.out.println(Comprador.getCompradores());
         Serializador.serializarTodo();
+
+
     }
 }

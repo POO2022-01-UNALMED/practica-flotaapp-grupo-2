@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.io.Serializable;
 
-public class Viaje {
-
+public class Viaje implements Serializable {
 	private int id;
 	private int costo;
 	private Ciudad origen;

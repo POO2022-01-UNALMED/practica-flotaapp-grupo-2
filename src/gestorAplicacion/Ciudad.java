@@ -1,8 +1,9 @@
 package gestorAplicacion;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Ciudad {
+public class Ciudad implements Serializable {
 	private int id;
 	private String nombre; //
 	private String dirTerminal;
@@ -42,4 +43,6 @@ public class Ciudad {
 	public void eliminarVisitantes(int numVisitantes) {
 		this.numVisitantes -= numVisitantes;
 	}
+
+	public static ArrayList<Ciudad> getCiudades() { return ciudades; }
 }

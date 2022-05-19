@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 import java.util.LinkedHashMap;
 
 public class Comprador extends Usuario implements Serializable{
-    private ArrayList<Viaje> historicoViajes;
+    private ArrayList<Tiquete> historicoViajes;
     private static ArrayList<Comprador> compradores;
     static {
         compradores = new ArrayList<Comprador>();
@@ -24,7 +24,7 @@ public class Comprador extends Usuario implements Serializable{
         this.historicoViajes =  new ArrayList<>();
     }
 
-    public Comprador(int cc, String uNombre, String email, long movil, int billetera,  ArrayList<Viaje> historicoViajes) {
+    public Comprador(int cc, String uNombre, String email, long movil, int billetera,  ArrayList<Tiquete> historicoViajes) {
         super(cc, uNombre, email, movil, billetera);
         this.historicoViajes = historicoViajes;
     }
@@ -43,7 +43,6 @@ public class Comprador extends Usuario implements Serializable{
         {
             System.out.println("Este Usuario ya esta registrado");
         }else{
-            System.out.println("Informacion de Usuario-" + this.cc + " guardada con exito");
             Comprador.compradores.add(this);
         }
     }
@@ -63,7 +62,6 @@ public class Comprador extends Usuario implements Serializable{
 
     public void darseDeBaja(){
         Comprador.compradores.remove(this);
-        System.out.println(this.uNombre + " Eliminado");
     }
 
 
@@ -95,11 +93,17 @@ public class Comprador extends Usuario implements Serializable{
     }*/
 
 
+    public ArrayList<Tiquete> getHistoricoViajes() {
+        return historicoViajes;
+    }
+
+    public void anadirTiqueteHistoria(Tiquete tiquete) {this.historicoViajes.add(tiquete);}
 
     //Metodos Staticos
     public static ArrayList<Comprador> getCompradores(){
         return compradores;
     }
+
 
     //Metodos Auxiliares
     @Override
