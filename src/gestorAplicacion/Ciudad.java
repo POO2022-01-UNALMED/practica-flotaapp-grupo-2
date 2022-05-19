@@ -1,4 +1,4 @@
-package terminal;
+package gestorAplicacion;
 
 import java.util.ArrayList;
 
@@ -6,7 +6,7 @@ public class Ciudad {
 	private int id;
 	private String nombre; //
 	private String dirTerminal;
-	private int numVisitantes = 0;
+	private int numVisitantes;
 	private static  ArrayList<Ciudad> ciudades = new ArrayList<>();
 	static {
 		ciudades = new ArrayList<Ciudad>();
@@ -16,6 +16,7 @@ public class Ciudad {
 		this.id = id;
 		this.nombre = nombre;
 		this.dirTerminal = dirTerminal;
+		this.numVisitantes = 0;
 		ciudades.add(this);
 	}
 
@@ -34,4 +35,11 @@ public class Ciudad {
 	//historico de viajes
 
 
+	public void anadirVisitantes(int numVisitantes) {
+		this.numVisitantes += numVisitantes;
+	}
+
+	public void eliminarVisitantes(int numVisitantes) {
+		this.numVisitantes -= numVisitantes;
+	}
 }

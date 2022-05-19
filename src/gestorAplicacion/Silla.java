@@ -1,4 +1,4 @@
-package terminal;
+package gestorAplicacion;
 
 import java.util.ArrayList;
 
@@ -10,7 +10,7 @@ public class Silla {
     private Ubicacion ubicacion; //0 - V , 1 - P
     private boolean estado;
     
-    public Silla(int numeroSilla, boolean tipo, boolean ubicacion, boolean estado) {
+    public Silla(int numeroSilla, boolean tipo, Ubicacion ubicacion, boolean estado) {
     	this.numeroSilla = numeroSilla;
     	this.tipo = tipo;
     	this.ubicacion = ubicacion;

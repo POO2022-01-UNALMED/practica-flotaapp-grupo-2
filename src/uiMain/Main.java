@@ -1,6 +1,6 @@
 package uiMain;
 
-import  terminal.*;
+import  gestorAplicacion.*;
 
 import baseDatos.*;
 

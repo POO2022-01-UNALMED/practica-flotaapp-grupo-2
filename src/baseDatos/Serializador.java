@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.List;
 
-import terminal.*;
+import gestorAplicacion.*;
 
 /**
  * Se utiliza para serializar todos los objetos creados durante la ejecucion

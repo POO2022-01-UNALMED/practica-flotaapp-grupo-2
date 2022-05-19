@@ -1,4 +1,4 @@
-package terminal;
+package gestorAplicacion;
 
 import java.util.ArrayList;
 import java.util.Date;

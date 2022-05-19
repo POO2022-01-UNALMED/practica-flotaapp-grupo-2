@@ -9,7 +9,7 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import terminal.*;
+import gestorAplicacion.*;
 
 public class Deserializador {
     public static <E> void deserializador(List<E> list, String className) {

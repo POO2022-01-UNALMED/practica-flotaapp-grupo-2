@@ -1,4 +1,4 @@
-package terminal;
+package gestorAplicacion;
 
 import java.util.ArrayList;
 
@@ -9,6 +9,10 @@ public class Conductor extends Empleado {
     private static ArrayList<Conductor> conductores = new ArrayList<>();
     static {
         conductores = new ArrayList<Conductor>();
+    }
+
+    public Conductor(int cc, String uNombre, String email, long movil) {
+        super(cc, uNombre, email, movil);
     }
 
     public void registrarse() {}

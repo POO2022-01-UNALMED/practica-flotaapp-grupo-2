@@ -1,5 +1,5 @@
 
-package terminal;
+package gestorAplicacion;
 
 public class Empleado extends Usuario {
 	
