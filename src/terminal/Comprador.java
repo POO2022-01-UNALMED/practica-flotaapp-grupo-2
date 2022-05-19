@@ -20,7 +20,7 @@ public class Comprador extends Usuario implements Serializable{
     }
 
     public Comprador(int cc, String uNombre, String email, long movil) {
-        super(cc, uNombre, email, movil);
+        super(cc, uNombre, email, movil, 0);
         this.historicoViajes =  new ArrayList<>();
     }
 
@@ -43,15 +43,21 @@ public class Comprador extends Usuario implements Serializable{
         {
             System.out.println("Este Usuario ya esta registrado");
         }else{
-            System.out.println("Usuario-" + this.cc + " guardado con exito");
+            System.out.println("Informacion de Usuario-" + this.cc + " guardada con exito");
             Comprador.compradores.add(this);
         }
     }
 
-    public void modificarInformacion(String uNombre, String email, long movil){
-        Comprador aux = new Comprador(this.cc, uNombre, email, movil, this.billetera, this.historicoViajes);
-        this.darseDeBaja();
-        aux.registrarse();
+    public void modificarNombre(String nombre){
+        this.uNombre = nombre;
+    }
+
+    public void modificarEmail(String email){
+        this.email = email;
+    }
+
+    public void modificarMovil(long movil){
+        this.movil = movil;
     }
 
 

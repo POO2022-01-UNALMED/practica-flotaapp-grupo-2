@@ -30,6 +30,9 @@ public class Main {
 
 
         u1.darseDeBaja();
+        u2.modificarNombre("Usuario2Modificado");
+        u3.modificarEmail("emailModificado@example.com");
+        u4.modificarMovil(3333333333L);
 
         Serializador.serializarTodo();
 
