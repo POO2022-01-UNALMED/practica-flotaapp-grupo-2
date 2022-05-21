@@ -19,8 +19,8 @@ public class Viaje implements Serializable {
 	}
 
 
-	public Viaje(int id, int costo, Ciudad origen, ArrayList<Ciudad> destino,
-				 Date fechaViaje, Vehiculo vehiculo, boolean escala, boolean disponibilidad) {
+	public Viaje(int costo, Ciudad origen, ArrayList<Ciudad> destino, Vehiculo vehiculo,
+				 Date fechaViaje, boolean escala) {
 
 		this.id = 1 + Viaje.getViajes().size();
 		this.costo = costo;
@@ -29,7 +29,7 @@ public class Viaje implements Serializable {
 		this.fechaViaje = fechaViaje;
 		this.vehiculo = vehiculo;
 		this.escala = escala;
-		this.disponibilidad = disponibilidad;
+		this.disponibilidad = true;
 	}
 
 

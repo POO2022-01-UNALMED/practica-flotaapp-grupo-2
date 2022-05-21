@@ -1,20 +1,21 @@
 package gestorAplicacion;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Silla {
+public class Silla implements Serializable {
 	private enum ubicacion {PASILLO, VENTANA, INTERMEDIO}
 
     private int numeroSilla;
-    private boolean tipo; //0 - Estandar , 1 - Booleana
+    private boolean tipo; //0 - Estandar , 1 - Premium
     private Ubicacion ubicacion; //0 - V , 1 - P
     private boolean estado;
     
-    public Silla(int numeroSilla, boolean tipo, Ubicacion ubicacion, boolean estado) {
+    public Silla(int numeroSilla, boolean tipo, Ubicacion ubicacion) {
     	this.numeroSilla = numeroSilla;
     	this.tipo = tipo;
     	this.ubicacion = ubicacion;
-    	this.estado = estado;
+    	this.estado = false;
     	
     }
 

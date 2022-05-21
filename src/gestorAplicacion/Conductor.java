@@ -1,8 +1,9 @@
 package gestorAplicacion;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Conductor extends Empleado {
+public class Conductor extends Empleado implements Serializable {
 
     private ArrayList<Viaje> historiaViajesRealizados;
     private Categoria categoria;

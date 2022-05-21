@@ -13,7 +13,6 @@ public class Main {
     public static void main(String[] args) {
         Deserializador.deserializarTodo();
 
-        /*
         // COMPRADORES
         Comprador u1 = new Comprador(1, "Usuario1", "example@email.com", 3234567890L);
         u1.registrarse();
@@ -55,13 +54,28 @@ public class Main {
         destinos.add(c1);
         destinos.add(c4);
 
+        //////SILLAS
+        Silla sp1 = new Silla(1, true , Ubicacion.VENTANA);
+        Silla sp2 = new Silla(2, true , Ubicacion.PASILLO);
+        Silla se1 = new Silla(7, false , Ubicacion.VENTANA);
+        Silla se2 = new Silla(8, false , Ubicacion.PASILLO);
+        ArrayList<Silla> sillasP = new ArrayList<Silla>();
+        sillasP.add(sp1);
+        sillasP.add(sp2);
+        ArrayList<Silla> sillasE = new ArrayList<Silla>();
+        sillasE.add(se1);
+        sillasE.add(se2);
+
+        //////VEHICULO
+        Vehiculo v1 = new Vehiculo("AAA000", sillasE, sillasP);
+
         //VIAJES
-        Viaje v1 = new Viaje(1112, 300000, c2,destinos,intermedio, true, true);
+        Viaje viaje1 = new Viaje(300000, c2,destinos, v1 ,intermedio, true);
 
         //TIQUETES
-        Tiquete t1 = new Tiquete(1,v1,4000,fechaCompra);
-        Tiquete t2 = new Tiquete(2,v1,4000,fechaCompra);
-        Tiquete t3 = new Tiquete(3,v1,4000,fechaCompra);
+        Tiquete t1 = new Tiquete(1,viaje1,4000,fechaCompra);
+        Tiquete t2 = new Tiquete(2,viaje1,4000,fechaCompra);
+        Tiquete t3 = new Tiquete(3,viaje1,4000,fechaCompra);
 
         //////funcionamiento de asignarTiquete
         System.out.println(Asignar.asignarTiquete(u2, t1).getUsuario());
@@ -77,16 +91,17 @@ public class Main {
 
 
         //EMPLEADOS
-
+        ////MECANICOS
+        Especialista mec1 = new Especialista(27, "Jose", "emailMecanico@example.com", 3224568585L, Especialidad.MECANICO);
 
         ////CONDUCTORES
+        Conductor con1 = new Conductor(28, "Don Javie", "DonJavier@example.com", 3004569696L, Categoria.B3);
 
-
-        //////SILLAS
+        System.out.println(Asignar.asignarViaje(con1, viaje1));
+        System.out.println(Asignar.asignarVehiculo(mec1, v1));
 
         System.out.println(Comprador.getCompradores());
         Serializador.serializarTodo();
-        */
 
 
         System.out.println(Comprador.getCompradores());
