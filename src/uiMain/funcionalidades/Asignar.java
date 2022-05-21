@@ -8,6 +8,12 @@ public class Asignar {
         comprador.anadirTiqueteHistoria(tiquete);
         return tiquete;
     }
-    //public Viaje asignarViaje(Conductor conductor, Ciudad ciudad){ }
-    //public String asignarTiquete(Especialista mecanico, Vehiculo vehiculo){ }
+    public Viaje asignarViaje(Conductor conductor, Viaje viaje){
+        viaje.getVehiculo().setConductor(conductor);
+        conductor.anadirViajeHistoria(viaje);
+        return viaje;
+    }
+    public String asignarVehiculo(Especialista mecanico, Vehiculo vehiculo){
+
+    }
 }
