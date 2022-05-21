@@ -23,7 +23,7 @@ public class Tiquete {
 	
 	/*
 	public void crearTiquete() {    //Se puede pasar como argumento el id
-									// Se debe validar que el viaje este activo y que la silla no este ocupada
+									// Se debe validar que el viaje este activo y que la silla no este ocupada.
 		if ((!tiquetes.contains(this)) &&  ) {
 			tiquetes.add(this);
 		}else {
