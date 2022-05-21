@@ -97,9 +97,8 @@ public class Ciudad {
 	public void setDirTerminal(String dirTerminal) {
 		this.dirTerminal = dirTerminal;
 	}  
-	// Con esto se verifica que una ciudad exsita
 	
-	public  boolean ciudadExiste() { //Método estatico
+	public  boolean ciudadExiste() { 
 		if(ciudades.contains(this)) {
 			return true;
 		}else {
@@ -108,13 +107,17 @@ public class Ciudad {
 	}
 	
 	
+	public static ArrayList<Ciudad> getCiudad(){
+		return ciudades;
+	}
 	
-	public static Ciudad getCiudad(Ciudad existente) {
+	/*
+	public static boolean getCiudad(Ciudad existente) {
 		if(ciudades.contains(existente)) {
-			return existente;
+			return true;
 		}
 		else {
-			return null;
+			return false;
 		}
-	}
+	}*/
 }
