@@ -11,8 +11,9 @@ import java.util.Date;
 
 public class Main {
     public static void main(String[] args) {
-        //Deserializador.deserializarTodo();
+        Deserializador.deserializarTodo();
 
+        /*
         // COMPRADORES
         Comprador u1 = new Comprador(1, "Usuario1", "example@email.com", 3234567890L);
         u1.registrarse();
@@ -59,16 +60,20 @@ public class Main {
 
         //TIQUETES
         Tiquete t1 = new Tiquete(1,v1,4000,fechaCompra);
+        Tiquete t2 = new Tiquete(2,v1,4000,fechaCompra);
+        Tiquete t3 = new Tiquete(3,v1,4000,fechaCompra);
 
         //////funcionamiento de asignarTiquete
         System.out.println(Asignar.asignarTiquete(u2, t1).getUsuario());
+        System.out.println(Asignar.asignarTiquete(u2, t2).getUsuario());
+        System.out.println(Asignar.asignarTiquete(u3, t3).getUsuario());
 
         System.out.println(u2.getHistoricoViajes());
 
 
         //////funcionamiento de Comprador.historicoViaje => (DATE, DATE) --- (CIUDAD)
         System.out.println(u2.historicoViaje(inicio, fin));
-        System.out.println(u2.historicoViaje(c3));
+        System.out.println(u2.historicoViaje(c4));
 
 
         //EMPLEADOS
@@ -81,7 +86,9 @@ public class Main {
 
         System.out.println(Comprador.getCompradores());
         Serializador.serializarTodo();
+        */
 
 
+        System.out.println(Comprador.getCompradores());
     }
 }

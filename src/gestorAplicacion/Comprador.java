@@ -19,14 +19,10 @@ public class Comprador extends Usuario implements Serializable{
         compradores = new ArrayList<Comprador>();
     }
 
+    //CONSTRUCTOR
     public Comprador(int cc, String uNombre, String email, long movil) {
         super(cc, uNombre, email, movil, 0);
         this.historicoViajes =  new ArrayList<>();
-    }
-
-    public Comprador(int cc, String uNombre, String email, long movil, int billetera,  ArrayList<Tiquete> historicoViajes) {
-        super(cc, uNombre, email, movil, billetera);
-        this.historicoViajes = historicoViajes;
     }
 
     public void registrarse(){
@@ -67,10 +63,9 @@ public class Comprador extends Usuario implements Serializable{
 
     public ArrayList<Tiquete> historicoViaje(Date fechaInicial, Date fechaFinal){
         ArrayList<Tiquete> viajes = new ArrayList<Tiquete>();
-        for(Tiquete tiquete : Tiquete.getTiquetes()){
-            System.out.println(tiquete);
+        for(Tiquete tiquete : this.getHistoricoViajes()){
             Date d = tiquete.getViaje().getFechaViaje();
-            if (d.after(fechaInicial) && d.before(fechaFinal) && tiquete.getUsuario() == this){
+            if (d.after(fechaInicial) && d.before(fechaFinal)){
                 viajes.add(tiquete);
             }
         }
@@ -79,7 +74,7 @@ public class Comprador extends Usuario implements Serializable{
 
     public int historicoViaje(Ciudad ciudad){
         int cantidad = 0;
-        for(Tiquete tiquete : Tiquete.getTiquetes()){
+        for(Tiquete tiquete : this.getHistoricoViajes()){
             if (tiquete.getViaje().getDestino().contains(ciudad)){
                 cantidad += 1;
             }
