@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.List;
 
-import terminal.*;
+import gestorAplicacion.*;
 
 /**
  * Se utiliza para serializar todos los objetos creados durante la ejecucion
@@ -50,6 +50,10 @@ public class Serializador {
      * Serializamos todas las clases que necesitamos
      */
     public static void serializarTodo() {
+
         Serializador.serializar(Comprador.getCompradores(), "compradores");
+        Serializador.serializar(Tiquete.getTiquetes(), "tiquetes");
+        Serializador.serializar(Ciudad.getCiudades(), "ciudades");
+        Serializador.serializar(Viaje.getViajes(), "viajes");
     }
 }
