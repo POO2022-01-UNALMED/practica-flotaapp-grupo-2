@@ -77,22 +77,9 @@ public class Viaje implements Serializable {
     	return aux; 
     }
     
-    
-    public void crearViaje() { // Si la lista está vacia y origen y destino están en Ciudad se agrega el viaje 
-    	/*
-    	if(viajes.isEmpty() && Ciudad.getCiudad().contains(origen) && this.validarDestino()) {
-    		viajes.add(this);
-    	} */
-    	if(Ciudad.getCiudad().contains(origen) && this.validarDestino()) {
-    		viajes.add(this);
-    		
-    	}
-    	else {
-    		return;
-    	}
-    }
     	
     public void eliminarViaje() { // Elimina viaje desde una instancia 
+    	
     	if (viajes.contains(this)) {
     		viajes.remove(this);    			
     	}else {
@@ -127,9 +114,6 @@ public class Viaje implements Serializable {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public int getCosto() {
 		return costo;
@@ -139,14 +123,7 @@ public class Viaje implements Serializable {
 		this.costo = costo;
 	}
 
-	public Tiquete getTiquete() {
-		return tiquete;
-	}
-
-	public void setTiquete(Tiquete tiquete) {
-		this.tiquete = tiquete;
-	}
-
+	
 	public Date getFechaViaje() {
 		return fechaViaje;
 	}
