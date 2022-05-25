@@ -6,13 +6,11 @@ import java.util.ArrayList;
 public class Vehiculo implements Serializable {
     private String placa;
     private Conductor conductor;
-    private ArrayList<Silla> sillaEstandar;
-    private ArrayList<Silla> sillaPremium;
+    private ArrayList<Silla> sillas;
 
-    public Vehiculo(String placa, ArrayList<Silla> sillaEstandar, ArrayList<Silla> sillaPremium){
+    public Vehiculo(String placa, ArrayList<Silla> sillas){
         this.placa = placa;
-        this.sillaEstandar = sillaEstandar;
-        this.sillaPremium = sillaPremium;
+        this.setSillas(sillas);
     }
 
     public String getPlaca() {   return placa;  }
@@ -22,6 +20,14 @@ public class Vehiculo implements Serializable {
     public void setConductor(Conductor conductor) {
         this.conductor = conductor;
     }
+
+	public ArrayList<Silla> getSillas() {
+		return sillas;
+	}
+
+	public void setSillas(ArrayList<Silla> sillas) {
+		this.sillas = sillas;
+	}
 
     //public Silla selecionarSilla() {}
 

@@ -6,25 +6,44 @@ import java.util.Date;
 import java.util.ArrayList;
 
 public class Ciudad implements Serializable {
-	private int id;
+//public class Ciudad{
+	private final int id;
     private String nombre; //
     private String dirTerminal;
     private int numVisitantes;
     private static  ArrayList<Ciudad> ciudades = new ArrayList<>();
     
+    /*
+     * Desde el constructor se valida para agregar una nueva ciudad que no exista previamente y cuando esto pase no
+     * se crea la instancia
+     */
     
     public Ciudad(int id, String nombre, String dirTerminal) { 
     	this.id = id;
-    	this.nombre = nombre;
-    	this.setDirTerminal(dirTerminal);
-    	ciudades.add(this); 
+    	this.setNombre(nombre);
+    	this.dirTerminal = dirTerminal;
+    	
+    	if(ciudades.isEmpty()) {
+    		ciudades.add(this);
+    	}else {
+    		for (Ciudad c: ciudades) {
+        		if (c.id == this.id){  // compara el identificador de la ciudad que es la llave
+        			break;
+        		} else {
+        			ciudades.add(this);
+        		}
+        	}
+        }
     }
+    	
     
-    public static void quitarCiudad(String ciudad) {
+    public static void quitarCiudad(int idCiudad) {
     	if (!ciudades.isEmpty()){
     		for (Ciudad c: ciudades) {
-        		if (c.nombre.equals(ciudad)) {
-        			ciudades.remove(c); //No corre en una clase afuera, analizar método
+        		if (c.id == idCiudad) {
+        			ciudades.remove(c); 
+        		}else {
+        			return;
         		}
         	}
     		
@@ -34,60 +53,6 @@ public class Ciudad implements Serializable {
 
     }
     
-    
-    public static void agregarCiudad(Ciudad nuevaCiudad) {
-    	
-    	if(ciudades.isEmpty()) {
-    		ciudades.add(nuevaCiudad);
-    		return;
-    	}
-    	for (Ciudad c: ciudades) {
-    		if (ciudades.contains(nuevaCiudad)){
-    			return;
-    		} else {
-    			ciudades.add(nuevaCiudad);
-    			return;
-    		}
-    	}
-    }
-    
-    // hV es la cidad con su respectivo historico de viajes
-    //Lo mejor sería implementar un toString para retornar toda la ciudad y es mejor que sea un método de clase?
-    public static String historicoViajes(String nomCiudad) {
-    	String hV = "";
-    	
-    	if (!ciudades.isEmpty()) {
-    		for(Ciudad c: ciudades) {
-    			if (c.nombre.equals(nomCiudad)) {
-    				hV = "La ciudad " + c.nombre + "a tenido " + c.numVisitantes; //Numero de visitantes es de tipo String mirar que compile
-    			}else {
-    				hV = "La ciudad " +  nomCiudad + " no existe dentro de nuestra base de datos";
-    			}
-    		}
-    		
-    	}else {
-    		hV = "La ciudad " + nomCiudad + "no existe";	
-    	}
-		return hV;
-    } 
-    
-    public String historicoViajes() {  // Método sobrecargado para llamarse desde una instancia
-    	
-    	String hV = "";
-    	if (!ciudades.isEmpty()) {
-    		for(Ciudad c: ciudades) {
-    			if (c.nombre.equals(this.nombre)) {
-    				hV = "La ciudad " + c.nombre + "a tenido " + c.numVisitantes;
-    			}else {
-    				hV = "La ciudad " +  this.nombre + " no existe dentro de nuestra base de datos";
-    			}
-    		}
-    		
-    	}else {
-    		hV = "La ciudad " + this.nombre + "no existe";	
-    	}
-		return hV;
-    }
     
 
 	public String getDirTerminal() {
@@ -110,14 +75,29 @@ public class Ciudad implements Serializable {
 	public static ArrayList<Ciudad> getCiudad(){
 		return ciudades;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+	public int getNumVisitantes() {
+		return numVisitantes;
+	}
+
+
+	public void setNumVisitantes(int numVisitantes) {
+		this.numVisitantes = numVisitantes;
+	}
 	
-	/*
-	public static boolean getCiudad(Ciudad existente) {
-		if(ciudades.contains(existente)) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}*/
 }
