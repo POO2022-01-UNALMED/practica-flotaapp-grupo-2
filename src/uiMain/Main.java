@@ -51,11 +51,6 @@ public class Main {
         Ciudad c3 = new Ciudad(7,"Popayan", "calle X - 37");
         Ciudad c4 = new Ciudad(8,"Cali", "calle F - 13");
 
-        System.out.println(c1.getId());
-        System.out.println(c2.getId());
-        System.out.println(c3.getId());
-        System.out.println(c4.getId());
-
 
         //////SILLAS
         Silla sp1 = new Silla(1, true , Ubicacion.VENTANA);
@@ -77,9 +72,9 @@ public class Main {
         //TIQUETES
 
         //////funcionamiento de asignarTiquete
-        System.out.println(Asignar.asignarTiquete(u2, viaje1, 4000).getSillaTiquete());
-        System.out.println(Asignar.asignarTiquete(u2, viaje1, 5000).getSillaTiquete());
-        System.out.println(Asignar.asignarTiquete(u3, viaje1, 10000).getSillaTiquete());
+        System.out.println(Asignar.asignarTiquete(u2, viaje1, 4000).getIdTiquete());
+        System.out.println(Asignar.asignarTiquete(u2, viaje1, 5000).getIdTiquete());
+        System.out.println(Asignar.asignarTiquete(u3, viaje1, 10000).getIdTiquete());
 
         System.out.println(u2.getHistoricoViajes());
 

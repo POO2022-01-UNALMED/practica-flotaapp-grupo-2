@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.ArrayList;
 
 public class Tiquete implements Serializable {
+	private static int count = 0;
 	private int idTiquete;
 	private Comprador comprador;
 	private Silla sillaTiquete;
@@ -21,7 +22,7 @@ public class Tiquete implements Serializable {
 	}
 
 	public Tiquete(Silla sillaTiquete, Viaje viaje, int valor) {
-		this.idTiquete += 1;
+		this.setIdTiquete(++count);
 		this.sillaTiquete = sillaTiquete;
 		this.viaje = viaje;
 		this.valor = valor;
@@ -32,6 +33,10 @@ public class Tiquete implements Serializable {
 
 	//k}
 
+
+	public int getIdTiquete() {	return idTiquete;}
+
+	public void setIdTiquete(int idTiquete) {	this.idTiquete = idTiquete;	}
 
 	public Silla getSillaTiquete() {return sillaTiquete;}
 
