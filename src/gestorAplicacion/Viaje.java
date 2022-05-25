@@ -50,6 +50,9 @@ public class Viaje implements Serializable {
 
 	//public Viaje crearViaje(		)
 
+	public int getCosto() {	return costo;}
+
+	public void setCosto(int costo) {this.costo = costo;}
 
 	public ArrayList<Tiquete> getAllTiquetes() {return allTiquetes;	}
 
@@ -64,4 +67,8 @@ public class Viaje implements Serializable {
 	public Ciudad getDestino() {return destino;}
 
 	public static ArrayList<Viaje> getViajes() {return viajes;}
+
+	public boolean isDisponibilidad() {	return disponibilidad;	}
+
+	public void setDisponibilidad(boolean disponibilidad) {	this.disponibilidad = disponibilidad;}
 }
