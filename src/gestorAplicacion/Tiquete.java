@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.ArrayList;
 
 public class Tiquete implements Serializable {
-	private int idTiquete = 0;
+	private int idTiquete;
 	private Comprador comprador;
 	private Silla sillaTiquete;
 	private Viaje viaje;

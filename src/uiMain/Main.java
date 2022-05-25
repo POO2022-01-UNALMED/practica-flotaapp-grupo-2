@@ -48,8 +48,13 @@ public class Main {
 
         Ciudad c1 = new Ciudad(1,"Medellin", "calle X - 95");
         Ciudad c2 = new Ciudad(2,"Bello", "calle Y - 72");
-        Ciudad c3 = new Ciudad(3,"Popayan", "calle X - 37");
-        Ciudad c4 = new Ciudad(4,"Cali", "calle F - 13");
+        Ciudad c3 = new Ciudad(7,"Popayan", "calle X - 37");
+        Ciudad c4 = new Ciudad(8,"Cali", "calle F - 13");
+
+        System.out.println(c1.getId());
+        System.out.println(c2.getId());
+        System.out.println(c3.getId());
+        System.out.println(c4.getId());
 
 
         //////SILLAS
@@ -67,7 +72,7 @@ public class Main {
         Vehiculo v1 = new Vehiculo("AAA000", sillas);
 
         //VIAJES
-        Viaje viaje1 = new Viaje(300000, 4000, 7000, c2,c4, v1 ,intermedio);
+        Viaje viaje1 = new Viaje(12,300000, 4000, 7000, c2,c4, v1 ,intermedio);
 
         //TIQUETES
 
@@ -99,5 +104,7 @@ public class Main {
 
 
         System.out.println(Comprador.getCompradores());
+
+        AdminTiquete.visualizarEstadisticas();
     }
 }

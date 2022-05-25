@@ -12,6 +12,7 @@ public class Asignar implements Serializable {
                 tiquete.setComprador(comprador);
                 tiquete.getSillaTiquete().setEstado(true);
                 comprador.anadirTiqueteHistoria(tiquete);
+                viaje.getDestino().anadirVisitantes(1);
                 return tiquete;
             }
         }

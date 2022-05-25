@@ -5,7 +5,7 @@ import java.util.Date;
 import java.io.Serializable;
 
 public class Viaje implements Serializable {
-	private int id = 0;
+	private int id;
 	private int costo;
 	private  int precioEstandar;
 	private  int precioPremium;
@@ -23,10 +23,10 @@ public class Viaje implements Serializable {
 	}
 
 
-	public Viaje(int costo, int precioEstandar, int precioPremium, Ciudad origen, Ciudad destino, Vehiculo vehiculo,
+	public Viaje(int id , int costo, int precioEstandar, int precioPremium, Ciudad origen, Ciudad destino, Vehiculo vehiculo,
 				 Date fechaViaje) {
 
-		this.id += 1;
+		this.id = id;
 		this.costo = costo;
 		this.precioEstandar = precioEstandar;
 		this.precioPremium = precioPremium;
@@ -36,6 +36,7 @@ public class Viaje implements Serializable {
 		this.vehiculo = vehiculo;
 		this.disponibilidad = true;
 		this.allTiquetes = new ArrayList<Tiquete>();
+		Viaje.viajes.add(this);
 
 		for (Silla silla : vehiculo.getSillas()){
 			if (silla.getTipo() == true){
@@ -43,13 +44,15 @@ public class Viaje implements Serializable {
 			}else {
 				allTiquetes.add(new Tiquete(silla, this, precioEstandar));
 			}
-
 		}
 	}
 
 
 	//public Viaje crearViaje(		)
 
+	public int getCosto() {	return costo;}
+
+	public void setCosto(int costo) {this.costo = costo;}
 
 	public ArrayList<Tiquete> getAllTiquetes() {return allTiquetes;	}
 
@@ -64,4 +67,8 @@ public class Viaje implements Serializable {
 	public Ciudad getDestino() {return destino;}
 
 	public static ArrayList<Viaje> getViajes() {return viajes;}
+
+	public boolean isDisponibilidad() {	return disponibilidad;	}
+
+	public void setDisponibilidad(boolean disponibilidad) {	this.disponibilidad = disponibilidad;}
 }
