@@ -75,7 +75,7 @@ public class Comprador extends Usuario implements Serializable{
     public int historicoViaje(Ciudad ciudad){
         int cantidad = 0;
         for(Tiquete tiquete : this.getHistoricoViajes()){
-            if (tiquete.getViaje().getDestino().contains(ciudad)){
+            if (tiquete.getViaje().getDestino()== ciudad){
                 cantidad += 1;
             }
         }
