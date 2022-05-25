@@ -72,9 +72,9 @@ public class Main {
         //TIQUETES
 
         //////funcionamiento de asignarTiquete
-        System.out.println(Asignar.asignarTiquete(u2, viaje1, 4000).getIdTiquete());
-        System.out.println(Asignar.asignarTiquete(u2, viaje1, 5000).getIdTiquete());
-        System.out.println(Asignar.asignarTiquete(u3, viaje1, 10000).getIdTiquete());
+        System.out.println(Asignar.asignarTiquete(u2, viaje1, 4000));
+        System.out.println(Asignar.asignarTiquete(u2, viaje1, 5000));
+        System.out.println(Asignar.asignarTiquete(u3, viaje1, 10000));
 
         System.out.println(u2.getHistoricoViajes());
 
