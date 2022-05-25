@@ -32,7 +32,7 @@ public class Ciudad implements Serializable {
     	}
 
     }
-	
+
     // hV es la cidad con su respectivo historico de viajes
     //Lo mejor ser�a implementar un toString para retornar toda la ciudad y es mejor que sea un m�todo de clase?
     public static String historicoViajes(String nomCiudad) {
@@ -96,9 +96,9 @@ public class Ciudad implements Serializable {
 
 	public String getNombre() {	return nombre;	}
 
-	public ArrayList<Ciudad> anadirVisitantes(int numVisitantes) {
+	public void anadirVisitantes(int numVisitantes) {
 		this.numVisitantes += numVisitantes;
-
+	}
 	
 	public static ArrayList<Ciudad> getCiudades(){return ciudades;	}
 	
