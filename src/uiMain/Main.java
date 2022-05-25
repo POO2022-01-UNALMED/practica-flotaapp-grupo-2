@@ -1,6 +1,6 @@
 package uiMain;
 
-import  gestorAplicacion.*;
+import gestorAplicacion.*;
 
 import baseDatos.*;
 import uiMain.funcionalidades.*;
@@ -48,39 +48,33 @@ public class Main {
 
         Ciudad c1 = new Ciudad(1,"Medellin", "calle X - 95");
         Ciudad c2 = new Ciudad(2,"Bello", "calle Y - 72");
-        Ciudad c3 = new Ciudad(3,"Popayan", "calle X - 37");
-        Ciudad c4 = new Ciudad(4,"Cali", "calle F - 13");
-        ArrayList<Ciudad> destinos = new ArrayList<>();
-        destinos.add(c1);
-        destinos.add(c4);
+        Ciudad c3 = new Ciudad(7,"Popayan", "calle X - 37");
+        Ciudad c4 = new Ciudad(8,"Cali", "calle F - 13");
+
 
         //////SILLAS
         Silla sp1 = new Silla(1, true , Ubicacion.VENTANA);
         Silla sp2 = new Silla(2, true , Ubicacion.PASILLO);
         Silla se1 = new Silla(7, false , Ubicacion.VENTANA);
         Silla se2 = new Silla(8, false , Ubicacion.PASILLO);
-        ArrayList<Silla> sillasP = new ArrayList<Silla>();
-        sillasP.add(sp1);
-        sillasP.add(sp2);
-        ArrayList<Silla> sillasE = new ArrayList<Silla>();
-        sillasE.add(se1);
-        sillasE.add(se2);
+        ArrayList<Silla> sillas = new ArrayList<Silla>();
+        sillas.add(sp1);
+        sillas.add(sp2);
+        sillas.add(se1);
+        sillas.add(se2);
 
         //////VEHICULO
-        Vehiculo v1 = new Vehiculo("AAA000", sillasE, sillasP);
+        Vehiculo v1 = new Vehiculo("AAA000", sillas);
 
         //VIAJES
-        Viaje viaje1 = new Viaje(300000, c2,destinos, v1 ,intermedio, true);
+        Viaje viaje1 = new Viaje(12,300000, 4000, 7000, c2,c4, v1 ,intermedio);
 
         //TIQUETES
-        Tiquete t1 = new Tiquete(1,viaje1,4000,fechaCompra);
-        Tiquete t2 = new Tiquete(2,viaje1,4000,fechaCompra);
-        Tiquete t3 = new Tiquete(3,viaje1,4000,fechaCompra);
 
         //////funcionamiento de asignarTiquete
-        System.out.println(Asignar.asignarTiquete(u2, t1).getUsuario());
-        System.out.println(Asignar.asignarTiquete(u2, t2).getUsuario());
-        System.out.println(Asignar.asignarTiquete(u3, t3).getUsuario());
+        System.out.println(Asignar.asignarTiquete(u2, viaje1, 4000));
+        System.out.println(Asignar.asignarTiquete(u2, viaje1, 5000));
+        System.out.println(Asignar.asignarTiquete(u3, viaje1, 10000));
 
         System.out.println(u2.getHistoricoViajes());
 
@@ -105,5 +99,7 @@ public class Main {
 
 
         System.out.println(Comprador.getCompradores());
+
+        AdminTiquete.visualizarEstadisticas();
     }
 }

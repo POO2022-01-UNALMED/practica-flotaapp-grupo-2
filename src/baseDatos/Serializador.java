@@ -52,7 +52,6 @@ public class Serializador {
     public static void serializarTodo() {
 
         Serializador.serializar(Comprador.getCompradores(), "compradores");
-        Serializador.serializar(Tiquete.getTiquetes(), "tiquetes");
         Serializador.serializar(Ciudad.getCiudades(), "ciudades");
         Serializador.serializar(Viaje.getViajes(), "viajes");
     }

@@ -19,15 +19,7 @@ public class Silla implements Serializable {
     	
     }
 
-    public Silla ocuparSilla(){
-        this.estado = true;
-        return this;
-    }
-
-    public Silla liberarSilla(){
-        this.estado = false;
-        return this;
-    }
+    public boolean getTipo() { return  tipo;}
 
     public boolean getEstado() {
         return estado;

@@ -1,7 +1,6 @@
 package gestorAplicacion;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import java.util.ArrayList;
 
@@ -24,7 +23,7 @@ public class Ciudad implements Serializable {
     	if (!ciudades.isEmpty()){
     		for (Ciudad c: ciudades) {
         		if (c.nombre.equals(ciudad)) {
-        			ciudades.remove(c); //No corre en una clase afuera, analizar método
+        			ciudades.remove(c); //No corre en una clase afuera, analizar mï¿½todo
         		}
         	}
     		
@@ -33,26 +32,9 @@ public class Ciudad implements Serializable {
     	}
 
     }
-    
-    
-    public static void agregarCiudad(Ciudad nuevaCiudad) {
-    	
-    	if(ciudades.isEmpty()) {
-    		ciudades.add(nuevaCiudad);
-    		return;
-    	}
-    	for (Ciudad c: ciudades) {
-    		if (ciudades.contains(nuevaCiudad)){
-    			return;
-    		} else {
-    			ciudades.add(nuevaCiudad);
-    			return;
-    		}
-    	}
-    }
-    
+
     // hV es la cidad con su respectivo historico de viajes
-    //Lo mejor sería implementar un toString para retornar toda la ciudad y es mejor que sea un método de clase?
+    //Lo mejor serï¿½a implementar un toString para retornar toda la ciudad y es mejor que sea un mï¿½todo de clase?
     public static String historicoViajes(String nomCiudad) {
     	String hV = "";
     	
@@ -71,7 +53,7 @@ public class Ciudad implements Serializable {
 		return hV;
     } 
     
-    public String historicoViajes() {  // Método sobrecargado para llamarse desde una instancia
+    public String historicoViajes() {  // Mï¿½todo sobrecargado para llamarse desde una instancia
     	
     	String hV = "";
     	if (!ciudades.isEmpty()) {
@@ -105,11 +87,20 @@ public class Ciudad implements Serializable {
 			return false;
 		}
 	}
-	
-	
-	public static ArrayList<Ciudad> getCiudad(){
-		return ciudades;
+
+	public void setId(int id) {	this.id = id;}
+
+	public int getId() {return id;}
+
+	public int getNumVisitantes() {	return numVisitantes;}
+
+	public String getNombre() {	return nombre;	}
+
+	public void anadirVisitantes(int numVisitantes) {
+		this.numVisitantes += numVisitantes;
 	}
+	
+	public static ArrayList<Ciudad> getCiudades(){return ciudades;	}
 	
 	/*
 	public static boolean getCiudad(Ciudad existente) {
