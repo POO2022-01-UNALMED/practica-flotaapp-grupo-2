@@ -12,9 +12,9 @@ public class Silla implements Serializable {
     private boolean estado;
     
     public Silla(int numeroSilla, boolean tipo, Ubicacion ubicacion) {
-    	this.numeroSilla = numeroSilla;
-    	this.tipo = tipo;
-    	this.ubicacion = ubicacion;
+    	this.setNumeroSilla(numeroSilla);
+    	this.setTipo(tipo);
+    	this.setUbicacion(ubicacion);
     	this.estado = false;
     	
     }
@@ -36,6 +36,30 @@ public class Silla implements Serializable {
     public void setEstado(boolean estado) {
     	this.estado = estado;
     }
+
+	public int getNumeroSilla() {
+		return numeroSilla;
+	}
+
+	public void setNumeroSilla(int numeroSilla) {
+		this.numeroSilla = numeroSilla;
+	}
+
+	public boolean isTipo() {
+		return tipo;
+	}
+
+	public void setTipo(boolean tipo) {
+		this.tipo = tipo;
+	}
+
+	public Ubicacion getUbicacion() {
+		return ubicacion;
+	}
+
+	public void setUbicacion(Ubicacion ubicacion) {
+		this.ubicacion = ubicacion;
+	}
     
     
 }
