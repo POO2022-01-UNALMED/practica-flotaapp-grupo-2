@@ -8,6 +8,8 @@ public class AdminViaje {
     private int idEmpresa;
 
     public static void visualizarEstadisticas(){
+        System.out.println(" ");
+        System.out.println("----- V I S U A L I Z A R   E S T A D I S T I C A S -----");
         for(Ciudad ciudad : Ciudad.getCiudades()){
             System.out.println(" ");
             System.out.println("id: " + ciudad.getId() + " - Nombre: "+ciudad.getNombre());
@@ -31,10 +33,10 @@ public class AdminViaje {
 
     public static Viaje evaluarPorcentajeOcupacion(Viaje viaje, float porcentaje){
         if (porcentaje >= 85){
-            viaje.aumentarFrecuencia(1);
+            viaje.setFrecuencia(viaje.getFrecuencia() + 1);
             return viaje;
         }else if(porcentaje >= 40 && porcentaje < 60){
-            viaje.disminuirFrecuencia(2);
+            viaje.setFrecuencia(viaje.getFrecuencia() - 2);
             //APLICAR LO DEL BONO
             return viaje;
         }else if(porcentaje < 10){
@@ -42,7 +44,7 @@ public class AdminViaje {
             Scanner aux = new Scanner(System.in);
             int propuesta = aux.nextInt();
             if ( propuesta == 1) {
-                viaje.eliminarViaje();
+                Viaje.eliminarViaje(viaje.getId());
             }else{
                 System.out.println("Esperemos que no genere muchas Perdidas");
             }

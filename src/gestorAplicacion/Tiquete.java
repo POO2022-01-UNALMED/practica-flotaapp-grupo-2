@@ -5,6 +5,7 @@ import java.util.Date;
 //import java.util.ArrayList;
 
 public class Tiquete implements Serializable {
+	protected int id;
 	protected Comprador comprador;
 	protected Silla sillaTiquete;
 	protected Viaje viaje;
@@ -15,19 +16,11 @@ public class Tiquete implements Serializable {
 		System.out.println("No se encontraron tiquetes disponibles");
 	}
 
-	public Tiquete(Silla sillaTiquete, Viaje viaje, int valor) {
+	public Tiquete(int id, Silla sillaTiquete, Viaje viaje, int valor) {
+		this.id = id;
 		this.sillaTiquete = sillaTiquete;
 		this.viaje = viaje;
 		this.valor = valor;
-	}
-
-	public Tiquete(int idTiquete, Comprador comprador,  Silla silla, Viaje viaje, int valor, Date fechaCompra) {
-		this.idTiquete = idTiquete;
-		this.setComprador(comprador);
-		this.setSilla(silla);
-		this.viaje = viaje;
-		this.valor = valor;
-		this.fechaCompra = fechaCompra;
 	}
 
 	// ----- G E T   A N D   S E T -----
