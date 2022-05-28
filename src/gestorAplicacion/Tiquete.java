@@ -5,11 +5,11 @@ import java.util.Date;
 import java.util.ArrayList;
 
 public class Tiquete implements Serializable {
-	private Comprador comprador;
-	private Silla sillaTiquete;
-	private Viaje viaje;
-	private int valor;
-	private Date fechaCompra;
+	protected Comprador comprador;
+	protected Silla sillaTiquete;
+	protected Viaje viaje;
+	protected int valor;
+	protected Date fechaCompra;
 
 	public  Tiquete(){
 		System.out.println("No se encontraron tiquetes disponibles");
@@ -21,9 +21,8 @@ public class Tiquete implements Serializable {
 		this.valor = valor;
 	}
 
-	//public void crearTiquete(Tiquete nuevo) {
 
-	//k}
+	// ----- G E T   A N D   S E T -----
 
 	public Silla getSillaTiquete() {return sillaTiquete;}
 

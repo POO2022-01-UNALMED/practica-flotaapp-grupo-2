@@ -13,15 +13,6 @@ public class Vehiculo implements Serializable {
         this.sillas = sillas;
     }
 
-    public String getPlaca() {   return placa;  }
-
-    public Conductor getConductor() { return conductor;  }
-
-    public ArrayList<Silla> getSillas() {    return sillas;   }
-
-    public void setConductor(Conductor conductor) {
-        this.conductor = conductor;
-    }
 
     public ArrayList<Silla> sillasDisponibles(){
         ArrayList<Silla> disponibles = new ArrayList<>();
@@ -33,6 +24,16 @@ public class Vehiculo implements Serializable {
         return disponibles;
     }
 
-    //public Silla selecionarSilla() {}
+    // ----- G E T   A N D   S E T -----
+
+    public String getPlaca() {   return placa;  }
+
+    public Conductor getConductor() { return conductor;  }
+
+    public ArrayList<Silla> getSillas() {    return sillas;   }
+
+    public void setConductor(Conductor conductor) {
+        this.conductor = conductor;
+    }
 
 }

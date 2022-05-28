@@ -20,18 +20,14 @@ public class Ciudad implements Serializable {
     }
     
     public static void quitarCiudad(String ciudad) {
-    	if (!ciudades.isEmpty()){
-    		for (Ciudad c: ciudades) {
-        		if (c.nombre.equals(ciudad)) {
-        			ciudades.remove(c); //No corre en una clase afuera, analizar m�todo
-        		}
-        	}
-    		
-    	}else {
-    		return;
-    	}
-
-    }
+    	if (!ciudades.isEmpty()) {
+			for (Ciudad c : ciudades) {
+				if (c.nombre.equals(ciudad)) {
+					ciudades.remove(c); //No corre en una clase afuera, analizar m�todo
+				}
+			}
+		}
+	}
 
     // hV es la cidad con su respectivo historico de viajes
     //Lo mejor ser�a implementar un toString para retornar toda la ciudad y es mejor que sea un m�todo de clase?

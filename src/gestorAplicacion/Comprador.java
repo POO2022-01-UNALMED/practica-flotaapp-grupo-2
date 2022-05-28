@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 import java.util.LinkedHashMap;
 
 public class Comprador extends Usuario implements Serializable{
+
     private ArrayList<Tiquete> historicoViajes;
     private static ArrayList<Comprador> compradores;
     static {
@@ -23,36 +24,7 @@ public class Comprador extends Usuario implements Serializable{
     public Comprador(int cc, String uNombre, String email, long movil) {
         super(cc, uNombre, email, movil, 0);
         this.historicoViajes =  new ArrayList<>();
-    }
-
-    public void registrarse(){
-        ArrayList<String> emails = new ArrayList<String>();
-        ArrayList<Integer> ccs = new ArrayList<Integer>();
-        ArrayList<Long> movils = new ArrayList<Long>();
-
-        for(Usuario comprador : Comprador.getCompradores()){
-            emails.add(comprador.email);
-            ccs.add(comprador.cc);
-            movils.add(comprador.movil);
-        }
-        if (emails.contains(this.email) || ccs.contains(this.cc) || movils.contains(this.movil) )
-        {
-            System.out.println("Este Usuario ya esta registrado");
-        }else{
-            Comprador.compradores.add(this);
-        }
-    }
-
-    public void modificarNombre(String nombre){
-        this.uNombre = nombre;
-    }
-
-    public void modificarEmail(String email){
-        this.email = email;
-    }
-
-    public void modificarMovil(long movil){
-        this.movil = movil;
+        Comprador.compradores.add(this);
     }
 
 
@@ -82,11 +54,7 @@ public class Comprador extends Usuario implements Serializable{
         return cantidad;
     }
 
-    /*public ArrayList<Ciudad> recomendacion(){
-        Map<Ciudad, Integer> masVisitados = Ciudad.getCiudades().entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
-        return masVisitados[:5];
-    }*/
-
+    // ----- G E T   A N D   S E T -----
 
     public ArrayList<Tiquete> getHistoricoViajes() {
         return historicoViajes;
@@ -94,7 +62,18 @@ public class Comprador extends Usuario implements Serializable{
 
     public void anadirTiqueteHistoria(Tiquete tiquete) {this.historicoViajes.add(tiquete);}
 
-    //Metodos Staticos
+    public void modificarNombre(String nombre){
+        this.uNombre = nombre;
+    }
+
+    public void modificarEmail(String email){
+        this.email = email;
+    }
+
+    public void modificarMovil(long movil){
+        this.movil = movil;
+    }
+
     public static ArrayList<Comprador> getCompradores(){
         return compradores;
     }

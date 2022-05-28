@@ -15,19 +15,10 @@ public class Main {
 
         // COMPRADORES
         Comprador u1 = new Comprador(1, "Usuario1", "example@email.com", 3234567890L);
-        u1.registrarse();
-
         Comprador u2 = new Comprador(2, "Usuario2", "example2@email.com", 3087654321L);
-        u2.registrarse();
-
         Comprador uError = new Comprador(2, "Error", "example2@email.com", 3087654321L);
-        uError.registrarse();
-
         Comprador u3 = new Comprador(3, "Usuario3", "example3@email.com", 3088890321L);
-        u3.registrarse();
-
         Comprador u4 = new Comprador(4, "Usuario4", "example4@email.com", 3087656654L);
-        u4.registrarse();
 
 
         u1.darseDeBaja();
@@ -86,10 +77,10 @@ public class Main {
 
         //EMPLEADOS
         ////MECANICOS
-        Especialista mec1 = new Especialista(27, "Jose", "emailMecanico@example.com", 3224568585L, Especialidad.MECANICO);
+        Especialista mec1 = new Especialista(27, "Jose", "emailMecanico@example.com", 3224568585L, 3000,Especialidad.MECANICO);
 
         ////CONDUCTORES
-        Conductor con1 = new Conductor(28, "Don Javie", "DonJavier@example.com", 3004569696L, Categoria.B3);
+        Conductor con1 = new Conductor(28, "Don Javie", "DonJavier@example.com", 3004569696L, 4000, Categoria.B3);
 
         System.out.println(Asignar.asignarViaje(con1, viaje1));
         System.out.println(Asignar.asignarVehiculo(mec1, v1));

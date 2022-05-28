@@ -47,8 +47,7 @@ public class Viaje implements Serializable {
 		}
 	}
 
-
-	//public Viaje crearViaje(		)
+	// ----- G E T   A N D   S E T -----
 
 	public int getCosto() {	return costo;}
 
