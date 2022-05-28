@@ -3,7 +3,7 @@ package gestorAplicacion;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 public class Tiquete implements Serializable {
 	private final int idTiquete;
@@ -13,14 +13,14 @@ public class Tiquete implements Serializable {
 	private int valor;
 	private Date fechaCompra;
 	
-	private static ArrayList<Tiquete> tiquetes = new ArrayList<>();
+	//private static ArrayList<Tiquete> tiquetes = new ArrayList<>();
 
 	
 	
 	public Tiquete(int idTiquete, Comprador comprador,  Silla silla, Viaje viaje, int valor, Date fechaCompra) {
 		this.idTiquete = idTiquete;
-		this.comprador = comprador;
-		this.silla = silla;
+		this.setComprador(comprador);
+		this.setSilla(silla);
 		this.viaje = viaje;
 		this.valor = valor;
 		this.fechaCompra = fechaCompra;
@@ -30,18 +30,7 @@ public class Tiquete implements Serializable {
 		return idTiquete;
 	}
 
-	public void setIdTiquete(int idTiquete) {
-		this.idTiquete = idTiquete;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
+	
 	public Viaje getViaje() {
 		return viaje;
 	}
@@ -64,6 +53,22 @@ public class Tiquete implements Serializable {
 
 	public void setFechaCompra(Date fechaCompra) {
 		this.fechaCompra = fechaCompra;
+	}
+
+	public Comprador getComprador() {
+		return comprador;
+	}
+
+	public void setComprador(Comprador comprador) {
+		this.comprador = comprador;
+	}
+
+	public Silla getSilla() {
+		return silla;
+	}
+
+	public void setSilla(Silla silla) {
+		this.silla = silla;
 	}
 	
 }	

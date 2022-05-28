@@ -13,9 +13,13 @@ public class Vehiculo implements Serializable {
         this.setSillas(sillas);
     }
 
-    public String getPlaca() {   return placa;  }
+    public String getPlaca() {   
+    	return placa;
+    	}
 
-    public Conductor getConductor() { return conductor;  }
+    public Conductor getConductor() { 
+    	return conductor;  
+    	}
 
     public void setConductor(Conductor conductor) {
         this.conductor = conductor;

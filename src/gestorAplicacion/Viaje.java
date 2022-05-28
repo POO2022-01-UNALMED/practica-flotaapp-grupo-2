@@ -33,12 +33,12 @@ public class Viaje implements Serializable {
     	
     	this.id = id;
     	this.costo = costo;
-    	this.precioEstandar = precioEstandar;
-    	this.precioPremium = precioPremium;
-    	this.origen = origen;
-    	this.destino = destino;
-    	this.ruta = ruta;
-    	this.frecuencia = frecuencia;
+    	this.setPrecioEstandar(precioEstandar);
+    	this.setPrecioPremium(precioPremium);
+    	this.setOrigen(origen);
+    	this.setDestino(destino);
+    	this.setRuta(ruta);
+    	this.setFrecuencia(frecuencia);
     	this.fechaViaje = fechaViaje;
     	this.vehiculo = vehiculo;
     	this.disponibilidad = disponibilidad;
@@ -47,67 +47,48 @@ public class Viaje implements Serializable {
     	 * los tiquetes se generan a partir de la cantidad y tipo de sillas en el vehiculo y su respectivo id es el 
     	 * índice de la silla. El estado al ser un booleano se define como true para premium y false para estandar
     	 */
+   
     	
-    	for (Silla s: this.vehiculo.getSillas()) {
-    		int genId = this.vehiculo.getSillas().indexOf(s);
-    		int auxValor = 0;
-    		if (s.getEstado()) {
-    			auxValor = precioPremium;
+    	for (Silla sillaEnVehiculo: this.vehiculo.getSillas()) {
+    		int genId = this.vehiculo.getSillas().indexOf(sillaEnVehiculo);
+    		int tipoSilla = 0;                    // 0 Estandar y 1 premium
+    		if (sillaEnVehiculo.getEstado()) {
+    			tipoSilla = precioPremium;
     		}
-    		this.allTiquetes.add(new Tiquete(genId, null, s, this, auxValor, fechaViaje)); 
+    		this.allTiquetes.add(new Tiquete(genId, null, sillaEnVehiculo, this, tipoSilla, fechaViaje)); 
+    		
     		/*
     		 *  El argumento null ( comrador) se le cambiará el estado al momento de comprar tiquete donde 
     		 *  se asignará el respectivo comprador 
     		 */
     	}
+    	
+    	viajes.add(this); // Para este caso no se está validando si la ciudad ya existe
+    	
     
     }
-    // Se valida por cada Ciudad de destino que ya esté creado en Ciudad
+    
     /*
      * Como hacer que el contains compare por la llave primaria que es el identifciador desde un contains 
      */
     
-    public boolean validarDestino() {
-    	boolean aux = false;
-    	for(Ciudad c: ruta) {
-    		if (Ciudad.getCiudad().contains(c)) {
-    			aux = true;
+    
+    /*
+     * Validar ciudades compara si cada ciudad asignada en la ruta hace parte de las ciudades a las cuales 
+     * ya se hacen viajes
+     */
+    
+    
+    	
+    public void eliminarViaje(int id) { 
+    	for (Viaje cadaViaje: viajes) {
+    		if (cadaViaje.id == id) {
+    			viajes.remove(this);
     		}
     	}
-    	return aux; 
     }
+   
     
-    	
-    public void eliminarViaje() { // Elimina viaje desde una instancia 
-    	
-    	if (viajes.contains(this)) {
-    		viajes.remove(this);    			
-    	}else {
-    		return;
-    	}
-    }
-    
-    public void suspenderViaje() {
-    	if(viajes.contains(this)) {
-    		this.setDisponibilidad(false);
-    		System.out.println("Se ha cambiado la disponibilidad con exito");
-    	}else {
-    		System.out.println("No se puede suspender, el viaje no existe");
-    	}
-    }
-    
-    public void activarViaje() {
-    	if(viajes.contains(this)) {
-    		this.setDisponibilidad(true);
-    		System.out.println("Se ha cambiado la disponibilidad con exito");
-    	}else {
-    		System.out.println("No se puede suspender, el viaje no existe");
-    	}
-    }
-    
-    public ArrayList<Ciudad>  consultarCiudad() { //Es cnsultar ciudad o consultar ciudades?
-    	return Ciudad.getCiudad();
-    }
     //// Setters and Getters
     
 	public int getId() {
@@ -147,6 +128,54 @@ public class Viaje implements Serializable {
 
 	public void setDisponibilidad(boolean disponibilidad) {
 		this.disponibilidad = disponibilidad;
+	}
+
+	public ArrayList<Ciudad> getRuta() {
+		return ruta;
+	}
+
+	public void setRuta(ArrayList<Ciudad> ruta) {
+		this.ruta = ruta;
+	}
+
+	public int getPrecioEstandar() {
+		return precioEstandar;
+	}
+
+	public void setPrecioEstandar(int precioEstandar) {
+		this.precioEstandar = precioEstandar;
+	}
+
+	public int getPrecioPremium() {
+		return precioPremium;
+	}
+
+	public void setPrecioPremium(int precioPremium) {
+		this.precioPremium = precioPremium;
+	}
+
+	public Ciudad getOrigen() {
+		return origen;
+	}
+
+	public void setOrigen(Ciudad origen) {
+		this.origen = origen;
+	}
+
+	public Ciudad getDestino() {
+		return destino;
+	}
+
+	public void setDestino(Ciudad destino) {
+		this.destino = destino;
+	}
+
+	public Date getFrecuencia() {
+		return frecuencia;
+	}
+
+	public void setFrecuencia(Date frecuencia) {
+		this.frecuencia = frecuencia;
 	}
 }
 	
