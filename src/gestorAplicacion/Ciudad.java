@@ -107,4 +107,9 @@ public class Ciudad implements Serializable {
 			return false;
 		}
 	}*/
+
+	@Override
+	public String toString() {
+		return nombre;
+	}
 }

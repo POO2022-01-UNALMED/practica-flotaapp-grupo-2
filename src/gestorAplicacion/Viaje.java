@@ -12,7 +12,7 @@ public class Viaje implements Serializable {
 	private Ciudad origen;
 	private Ciudad destino;
 	private ArrayList<Ciudad> ruta;
-	private Date frecuencia;
+	private int frecuencia;
 	private ArrayList<Tiquete> allTiquetes;
 	private Date fechaViaje;
 	private Vehiculo vehiculo;
@@ -23,7 +23,7 @@ public class Viaje implements Serializable {
 	}
 
 
-	public Viaje(int id , int costo, int precioEstandar, int precioPremium, Ciudad origen, Ciudad destino, Vehiculo vehiculo,
+	public Viaje(int id , int costo, int precioEstandar, int precioPremium, Ciudad origen, Ciudad destino,int frecuencia, Vehiculo vehiculo,
 				 Date fechaViaje) {
 
 		this.id = id;
@@ -32,6 +32,7 @@ public class Viaje implements Serializable {
 		this.precioPremium = precioPremium;
 		this.origen = origen;
 		this.destino = destino;
+		this.frecuencia = frecuencia;
 		this.fechaViaje = fechaViaje;
 		this.vehiculo = vehiculo;
 		this.disponibilidad = true;
@@ -47,7 +48,14 @@ public class Viaje implements Serializable {
 		}
 	}
 
+	public void eliminarViaje(){
+		Viaje.viajes.remove(this);
+	}
+
 	// ----- G E T   A N D   S E T -----
+
+
+	public int getId() {return id;}
 
 	public int getCosto() {	return costo;}
 
@@ -63,6 +71,8 @@ public class Viaje implements Serializable {
 
 	public Vehiculo getVehiculo() {	return vehiculo; }
 
+	public Ciudad getOrigen() {	return origen;	}
+
 	public Ciudad getDestino() {return destino;}
 
 	public static ArrayList<Viaje> getViajes() {return viajes;}
@@ -70,4 +80,8 @@ public class Viaje implements Serializable {
 	public boolean isDisponibilidad() {	return disponibilidad;	}
 
 	public void setDisponibilidad(boolean disponibilidad) {	this.disponibilidad = disponibilidad;}
+
+	public void aumentarFrecuencia(int frecuencia) {	this.frecuencia += frecuencia;	}
+
+	public void disminuirFrecuencia(int frecuencia) {	this.frecuencia -= frecuencia;	}
 }
