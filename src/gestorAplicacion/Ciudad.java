@@ -1,7 +1,6 @@
 package gestorAplicacion;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import java.util.ArrayList;
 
@@ -36,7 +35,6 @@ public class Ciudad implements Serializable {
         }
     }
     	
-    
     public static void quitarCiudad(int idCiudad) {
     	if (!ciudades.isEmpty()){
     		for (Ciudad c: ciudades) {
@@ -52,8 +50,6 @@ public class Ciudad implements Serializable {
     	}
 
     }
-    
-    
 
 	public String getDirTerminal() {
 		return dirTerminal;
@@ -70,10 +66,11 @@ public class Ciudad implements Serializable {
 			return false;
 		}
 	}
-	
-	
-	public static ArrayList<Ciudad> getCiudad(){
-		return ciudades;
+
+	public void setId(int id) {	this.id = id;}
+
+	public void anadirVisitantes(int numVisitantes) {
+		this.numVisitantes += numVisitantes;
 	}
 
 	public int getId() {
@@ -100,4 +97,22 @@ public class Ciudad implements Serializable {
 		this.numVisitantes = numVisitantes;
 	}
 	
+
+	public static ArrayList<Ciudad> getCiudades(){return ciudades;	}
+	
+	/*
+	public static boolean getCiudad(Ciudad existente) {
+		if(ciudades.contains(existente)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}*/
+
+	@Override
+	public String toString() {
+		return nombre;
+	}
+
 }

@@ -2,33 +2,55 @@ package gestorAplicacion;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Conductor extends Empleado implements Serializable {
 
-    private ArrayList<Viaje> historiaViajesRealizados;
     private Categoria categoria;
+    private ArrayList<Viaje> historiaViajesRealizados;
     private static ArrayList<Conductor> conductores = new ArrayList<>();
     static {
         conductores = new ArrayList<Conductor>();
     }
 
-    public Conductor(int cc, String uNombre, String email, long movil, Categoria categoria) {
+    public Conductor(int cc, String uNombre, String email, long movil,int salario, Categoria categoria) {
 
-        super(cc, uNombre, email, movil);
+        super(cc, uNombre, email, movil, salario);
         this.categoria = categoria;
         this.historiaViajesRealizados = new ArrayList<Viaje>();
+        Conductor.conductores.add(this);
     }
-
-    public void registrarse() {}
-
-    public void modificarinformacion() {}
 
     public void anadirViajeHistoria(Viaje viaje) {this.historiaViajesRealizados.add(viaje);}
 
-    //public Conductor aumenarCategoria(String Categoria) {}
+    // ----- M E T O D O S -----
 
-    public void despedir() {}
+    public Conductor modificarCategoria(Categoria categoria) {
+        System.out.println("[1] B3 , [2] C1 , [3] C2, [4]");
+        Scanner aux = new Scanner(System.in);
+        int categoriaModificada = aux.nextInt();
+        switch (categoriaModificada){
+            case 1:
+                this.setCategoria(Categoria.B3);
+            case 2:
+                this.setCategoria(Categoria.C1);
+            case 3:
+                this.setCategoria(Categoria.C2);
+            case 4:
+                this.setCategoria(Categoria.C3);
+        }
+        return this;
+    }
 
-    public void renunciar() {}
+    //bonoSueldo() : void
 
+    public void renunciar() {
+        Conductor.conductores.remove(this);
+    }
+
+    // ----- G E T   A N D   S E T -----
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
 }

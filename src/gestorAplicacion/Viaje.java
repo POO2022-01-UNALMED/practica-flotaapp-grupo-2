@@ -21,7 +21,7 @@ public class Viaje implements Serializable {
     public static ArrayList<Viaje> viajes = new ArrayList<>();
     
     /*
-     * Se almacenará en el atributo de clase viajes, todos los viajes disponibles para una vez terminada la ejecución 
+     * Se almacenarï¿½ en el atributo de clase viajes, todos los viajes disponibles para una vez terminada la ejecuciï¿½n 
      * del programa se serialice en os arcjvos txt, esto aunque no es una manera optima ya que el ideal es hacer el CRUD 
      * directamente en los archivos txt es una solucion viable para este ejemplo.
      */
@@ -33,19 +33,21 @@ public class Viaje implements Serializable {
     	
     	this.id = id;
     	this.costo = costo;
-    	this.setPrecioEstandar(precioEstandar);
-    	this.setPrecioPremium(precioPremium);
-    	this.setOrigen(origen);
-    	this.setDestino(destino);
-    	this.setRuta(ruta);
-    	this.setFrecuencia(frecuencia);
+    	this.precioEstandar = precioEstandar;
+		this.precioPremium = precioPremium;
+		this.origen = origen;
+		this.destino = destino;
+		this.frecuencia = frecuencia;
     	this.fechaViaje = fechaViaje;
     	this.vehiculo = vehiculo;
     	this.disponibilidad = disponibilidad;
+
+		
+		
     	
     	/*
     	 * los tiquetes se generan a partir de la cantidad y tipo de sillas en el vehiculo y su respectivo id es el 
-    	 * índice de la silla. El estado al ser un booleano se define como true para premium y false para estandar
+    	 * ï¿½ndice de la silla. El estado al ser un booleano se define como true para premium y false para estandar
     	 */
    
     	
@@ -58,12 +60,11 @@ public class Viaje implements Serializable {
     		this.allTiquetes.add(new Tiquete(genId, null, sillaEnVehiculo, this, tipoSilla, fechaViaje)); 
     		
     		/*
-    		 *  El argumento null ( comrador) se le cambiará el estado al momento de comprar tiquete donde 
-    		 *  se asignará el respectivo comprador 
+    		 *  El argumento null ( comrador) se le cambiarï¿½ el estado al momento de comprar tiquete donde 
+    		 *  se asignarï¿½ el respectivo comprador 
     		 */
     	}
-    	
-    	viajes.add(this); // Para este caso no se está validando si la ciudad ya existe
+    	viajes.add(this); // Para este caso no se estï¿½ validando si la ciudad ya existe
     	
     
     }
@@ -77,7 +78,6 @@ public class Viaje implements Serializable {
      * Validar ciudades compara si cada ciudad asignada en la ruta hace parte de las ciudades a las cuales 
      * ya se hacen viajes
      */
-    
     
     	
     public void eliminarViaje(int id) { 
@@ -109,22 +109,7 @@ public class Viaje implements Serializable {
 		return fechaViaje;
 	}
 
-	public void setFechaViaje(Date fechaViaje) {
-		this.fechaViaje = fechaViaje;
-	}
 
-	public Vehiculo getVehiculo() {
-		return vehiculo;
-	}
-
-	public void setVehiculo(Vehiculo vehiculo) {
-		this.vehiculo = vehiculo;
-	}
-
-
-	public boolean isDisponibilidad() {
-		return disponibilidad;
-	}
 
 	public void setDisponibilidad(boolean disponibilidad) {
 		this.disponibilidad = disponibilidad;

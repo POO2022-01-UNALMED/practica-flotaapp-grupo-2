@@ -7,13 +7,13 @@ import java.util.Date;
 import java.io.Serializable;
 
 
-public class Usuario implements Serializable {
+public abstract class Usuario implements Serializable {
 
-    public int cc;
-    public String uNombre;
-    public String email;
-    public long movil;
-    public int billetera;
+    protected int cc;
+    protected String uNombre;
+    protected String email;
+    protected long movil;
+    protected int billetera;
 
     public Usuario(int cc, String uNombre, String email, long movil) {
         this(cc,uNombre,email,movil,0);
@@ -26,12 +26,6 @@ public class Usuario implements Serializable {
         this.movil = movil;
         this.billetera = billetera;
     }
-
-    public void registrarse(){}
-
-    public void  modificarInformacion(){}
-
-    public void  darseDeBaja(){}
 
     public int consultarSaldo(){
         return this.billetera;

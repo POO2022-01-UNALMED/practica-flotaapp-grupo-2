@@ -1,4 +1,3 @@
-
 package gestorAplicacion;
 
 import java.io.Serializable;
@@ -6,17 +5,22 @@ import java.util.Date;
 //import java.util.ArrayList;
 
 public class Tiquete implements Serializable {
-	private final int idTiquete;
-	private Comprador comprador;
-	private Silla silla;
-	private Viaje viaje;
-	private int valor;
-	private Date fechaCompra;
-	
-	//private static ArrayList<Tiquete> tiquetes = new ArrayList<>();
+	protected Comprador comprador;
+	protected Silla sillaTiquete;
+	protected Viaje viaje;
+	protected int valor;
+	protected Date fechaCompra;
 
-	
-	
+	public  Tiquete(){
+		System.out.println("No se encontraron tiquetes disponibles");
+	}
+
+	public Tiquete(Silla sillaTiquete, Viaje viaje, int valor) {
+		this.sillaTiquete = sillaTiquete;
+		this.viaje = viaje;
+		this.valor = valor;
+	}
+
 	public Tiquete(int idTiquete, Comprador comprador,  Silla silla, Viaje viaje, int valor, Date fechaCompra) {
 		this.idTiquete = idTiquete;
 		this.setComprador(comprador);
@@ -25,50 +29,19 @@ public class Tiquete implements Serializable {
 		this.valor = valor;
 		this.fechaCompra = fechaCompra;
 	}
-	
-	public int getIdTiquete() {
-		return idTiquete;
-	}
 
-	
-	public Viaje getViaje() {
-		return viaje;
-	}
+	// ----- G E T   A N D   S E T -----
 
-	public void setViaje(Viaje viaje) {
-		this.viaje = viaje;
-	}
+	public Silla getSillaTiquete() {return sillaTiquete;}
 
-	public int getValor() {
-		return valor;
-	}
+	public Viaje getViaje() {return viaje;	}
 
-	public void setValor(int valor) {
-		this.valor = valor;
-	}
+	public Comprador getUsuario() {return comprador;}
 
-	public Date getFechaCompra() {
-		return fechaCompra;
-	}
+	public void setComprador(Comprador comprador) {this.comprador = comprador;}
 
-	public void setFechaCompra(Date fechaCompra) {
-		this.fechaCompra = fechaCompra;
-	}
+	public int getValor() {	return valor;}
 
-	public Comprador getComprador() {
-		return comprador;
-	}
 
-	public void setComprador(Comprador comprador) {
-		this.comprador = comprador;
-	}
+}
 
-	public Silla getSilla() {
-		return silla;
-	}
-
-	public void setSilla(Silla silla) {
-		this.silla = silla;
-	}
-	
-}	
