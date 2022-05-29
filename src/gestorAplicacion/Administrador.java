@@ -29,6 +29,10 @@ public class Administrador extends Empleado{
         empleado.agregarSaldo(3000); //Comision de Despido
         empleado.renunciar();
     }
+    
+    public String gestionarConductores(Conductor conductores) {
+    	
+    }
 
 
     public void renunciar() {
