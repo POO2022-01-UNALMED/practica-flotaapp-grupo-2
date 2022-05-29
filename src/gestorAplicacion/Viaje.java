@@ -51,7 +51,7 @@ public class Viaje implements Serializable {
     		if (sillaEnVehiculo.getEstado()) {
     			tipoSilla = precioPremium;
     		}
-    		this.allTiquetes.add(new Tiquete(genId, sillaEnVehiculo, this, tipoSilla));
+    		this.allTiquetes.add(new Tiquete(genId, null, sillaEnVehiculo, this, tipoSilla, fechaViaje));
     		
     		/*
     		 *  El argumento null ( comrador) se le cambiara el estado al momento de comprar tiquete donde 
@@ -99,13 +99,6 @@ public class Viaje implements Serializable {
 
 	public Vehiculo getVehiculo() {	return vehiculo;}
 
-	public ArrayList<Ciudad> getRuta() {
-		return ruta;
-	}
-
-	public void setRuta(ArrayList<Ciudad> ruta) {
-		this.ruta = ruta;
-	}
 
 	public int getPrecioEstandar() {
 		return precioEstandar;

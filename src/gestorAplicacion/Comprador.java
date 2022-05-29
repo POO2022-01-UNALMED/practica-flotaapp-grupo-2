@@ -56,11 +56,15 @@ public class Comprador extends Usuario implements Serializable{
 
     // ----- G E T   A N D   S E T -----
 
-    public ArrayList<Tiquete> getHistoricoViajes() {
+    public  ArrayList<Tiquete> getHistoricoViajes() {
         return historicoViajes;
     }
 
     public void anadirTiqueteHistoria(Tiquete tiquete) {this.historicoViajes.add(tiquete);}
+    
+    public String getNombre() {
+    	return uNombre;
+    }
 
     public void modificarNombre(String nombre){
         this.uNombre = nombre;

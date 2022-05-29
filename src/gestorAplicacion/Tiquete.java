@@ -13,6 +13,20 @@ public class Tiquete implements Serializable {
 	protected Date fechaCompra;
 	
 	
+		/*
+		public  Tiquete(){
+			System.out.println("No se encontraron tiquetes disponibles");
+		}
+		*/
+
+		public Tiquete(int idTiquete, Comprador comprador, Silla sillaTiquete, Viaje viaje, int valor, Date fechaCompra) {
+			this.idTiquete = idTiquete;
+			this.comprador = comprador;
+			this.sillaTiquete = sillaTiquete;
+			this.viaje = viaje;
+			this.valor = valor;
+			this.fechaCompra = fechaCompra;
+		}
 	/*
 	public  Tiquete(){
 		System.out.println("No se encontraron tiquetes disponibles");
@@ -28,6 +42,8 @@ public class Tiquete implements Serializable {
 
 	// ----- G E T   A N D   S E T -----
 
+	
+
 	public Silla getSillaTiquete() {return sillaTiquete;}
 
 	public Viaje getViaje() {return viaje;	}
@@ -37,6 +53,10 @@ public class Tiquete implements Serializable {
 	public void setComprador(Comprador comprador) {this.comprador = comprador;}
 
 	public int getValor() {	return valor;}
+
+	public int getIdTiquete() {
+		return idTiquete;
+	}
 
 
 }
