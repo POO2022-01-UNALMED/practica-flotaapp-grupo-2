@@ -2,6 +2,7 @@ package gestorAplicacion;
 
 import baseDatos.Deserializador;
 import baseDatos.Serializador;
+import uiMain.funcionalidades.Asignar;
 
 import java.util.ArrayList;
 import java.io.Serializable;
@@ -27,6 +28,18 @@ public class Comprador extends Usuario implements Serializable{
         Comprador.compradores.add(this);
     }
 
+    public Tiquete comprarTiquete(Ciudad salida, Ciudad destino, int presupuesto){
+        Tiquete tiqueteFinal = new Tiquete();
+        for(Viaje viaje: Viaje.getViajes()){
+            if(viaje.getDestino() == destino && viaje.getOrigen() == salida){
+                tiqueteFinal = viaje.tiqueteDisponible(presupuesto);
+                if( tiqueteFinal.getViaje() != new Tiquete().getViaje()){
+                    return  Asignar.asignarTiquete(this, tiqueteFinal);
+                }
+            }
+        }
+        return tiqueteFinal;
+    }
 
     public void darseDeBaja(){
         Comprador.compradores.remove(this);

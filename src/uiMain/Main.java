@@ -70,17 +70,17 @@ public class Main {
 
         System.out.println(u2.historicoViaje(inicio, fin));
 
-                //////funcionamiento de asignarTiquete
-        System.out.println(Asignar.asignarTiquete(u2, viaje1, 4000));
-        System.out.println(Asignar.asignarTiquete(u2, viaje1, 5000));
-        System.out.println(Asignar.asignarTiquete(u3, viaje1, 10000));
+        //////funcionamiento de comprarTiquete
+        System.out.println("u1: compra el tiquete: "+ u1.comprarTiquete(c2, c4, 4000));
+        System.out.println("u3: compra el tiquete: "+u2.comprarTiquete(c2, c4, 5000));
+        System.out.println("u3: compra el tiquete: "+u3.comprarTiquete(c2, c4, 10000));
 
         System.out.println(u2.getHistoricoViajes());
 
 
         //////funcionamiento de Comprador.historicoViaje => (DATE, DATE) --- (CIUDAD)
-        System.out.println(u2.historicoViaje(inicio, fin));
-        System.out.println(u2.historicoViaje(c4));
+        System.out.println(u3.historicoViaje(inicio, fin));
+        System.out.println(u1.historicoViaje(c4));
 
         System.out.println(Asignar.asignarViaje(con1, viaje1));
         System.out.println(Asignar.asignarVehiculo(mec1, v1));

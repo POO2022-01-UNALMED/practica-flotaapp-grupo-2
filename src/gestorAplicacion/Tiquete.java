@@ -11,9 +11,7 @@ public class Tiquete implements Serializable {
 	protected int valor;
 	protected Date fechaCompra;
 
-	public  Tiquete(){
-		System.out.println("No se encontraron tiquetes disponibles");
-	}
+	public Tiquete(){}
 
 	public Tiquete(Silla sillaTiquete, Viaje viaje, int valor) {
 		this.sillaTiquete = sillaTiquete;

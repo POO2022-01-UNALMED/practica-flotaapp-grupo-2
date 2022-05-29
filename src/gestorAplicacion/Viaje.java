@@ -48,6 +48,16 @@ public class Viaje implements Serializable {
 		}
 	}
 
+	public Tiquete tiqueteDisponible(int presupuesto){
+		Tiquete tiqueteFinal = new Tiquete();
+		for(Tiquete tiquete : allTiquetes){
+			if(tiquete.getValor() <= presupuesto && tiquete.getSillaTiquete().getEstado() == false){
+				tiqueteFinal =  tiquete;
+			}
+		}
+		return tiqueteFinal;
+	}
+
 	public void eliminarViaje(){
 		Viaje.viajes.remove(this);
 	}
