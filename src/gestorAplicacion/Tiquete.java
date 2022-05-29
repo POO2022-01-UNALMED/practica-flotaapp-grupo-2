@@ -26,15 +26,6 @@ public class Tiquete implements Serializable {
 	}
 	*/
 
-	public Tiquete(int idTiquete, Comprador comprador,  Silla silla, Viaje viaje, int valor, Date fechaCompra) {
-		this.idTiquete = idTiquete;
-		this.setComprador(comprador);
-		this.setSilla(silla);
-		this.viaje = viaje;
-		this.valor = valor;
-		this.fechaCompra = fechaCompra;
-	}
-
 	// ----- G E T   A N D   S E T -----
 
 	public Silla getSillaTiquete() {return sillaTiquete;}

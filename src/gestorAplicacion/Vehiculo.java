@@ -12,6 +12,15 @@ public class Vehiculo implements Serializable {
         this.placa = placa;
         this.setSillas(sillas);
     }
+    public ArrayList<Silla> sillasDisponibles(){
+        ArrayList<Silla> disponibles = new ArrayList<>();
+        for(Silla silla : this.getSillas()){
+            if(silla.getEstado() == false){
+                disponibles.add(silla);
+            }
+        }
+        return disponibles;
+    }
 
     public String getPlaca() {   
     	return placa;

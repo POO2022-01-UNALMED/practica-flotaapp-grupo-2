@@ -1,11 +1,9 @@
 package gestorAplicacion;
 
 import java.io.Serializable;
-
 import java.util.ArrayList;
 
 public class Ciudad implements Serializable {
-//public class Ciudad{
 	private final int id;
     private String nombre; //
     private String dirTerminal;
@@ -21,19 +19,16 @@ public class Ciudad implements Serializable {
     	this.id = id;
     	this.setNombre(nombre);
     	this.dirTerminal = dirTerminal;
-    	
-    	if(ciudades.isEmpty()) {
-    		ciudades.add(this);
-    	}else {
-    		for (Ciudad c: ciudades) {
-        		if (c.id == this.id){  // compara el identificador de la ciudad que es la llave
-        			break;
-        		} else {
-        			ciudades.add(this);
-        		}
-        	}
-        }
+		ciudades.add(this);
     }
+
+	public static void eliminarCiudad(int idCiudad){
+		for (Ciudad cadaCiudad: ciudades) {
+			if (cadaCiudad.id == idCiudad) {
+				ciudades.remove(cadaCiudad);
+			}
+		}
+	}
     	
     public static void quitarCiudad(int idCiudad) {
     	if (!ciudades.isEmpty()){
@@ -49,7 +44,7 @@ public class Ciudad implements Serializable {
     		return;
     	}
 
-    }
+	}
 
 	public String getDirTerminal() {
 		return dirTerminal;
@@ -57,17 +52,15 @@ public class Ciudad implements Serializable {
 
 	public void setDirTerminal(String dirTerminal) {
 		this.dirTerminal = dirTerminal;
-	}  
-	
-	public  boolean ciudadExiste() { 
-		if(ciudades.contains(this)) {
+	}
+
+	public boolean ciudadExiste() {
+		if (ciudades.contains(this)) {
 			return true;
-		}else {
+		} else {
 			return false;
 		}
 	}
-
-	public void setId(int id) {	this.id = id;}
 
 	public void anadirVisitantes(int numVisitantes) {
 		this.numVisitantes += numVisitantes;
@@ -92,23 +85,7 @@ public class Ciudad implements Serializable {
 		return numVisitantes;
 	}
 
-
-	public void setNumVisitantes(int numVisitantes) {
-		this.numVisitantes = numVisitantes;
-	}
-	
-
 	public static ArrayList<Ciudad> getCiudades(){return ciudades;	}
-	
-	/*
-	public static boolean getCiudad(Ciudad existente) {
-		if(ciudades.contains(existente)) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}*/
 
 	@Override
 	public String toString() {
