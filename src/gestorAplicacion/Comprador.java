@@ -43,7 +43,7 @@ public class Comprador extends Usuario implements Serializable{
         }
         return viajes;
     }
-
+    
     public int historicoViaje(Ciudad ciudad){
         int cantidad = 0;
         for(Tiquete tiquete : this.getHistoricoViajes()){

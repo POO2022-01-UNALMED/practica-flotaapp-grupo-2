@@ -16,7 +16,6 @@ public class Viaje implements Serializable {
     private ArrayList<Tiquete> allTiquetes = new ArrayList<>();
     private Date fechaViaje;
     private Vehiculo vehiculo; 
-    private boolean disponibilidad;
     
     public static ArrayList<Viaje> viajes = new ArrayList<>();
     
@@ -40,7 +39,6 @@ public class Viaje implements Serializable {
 		this.frecuencia = frecuencia;
     	this.fechaViaje = fechaViaje;
     	this.vehiculo = vehiculo;
-    	this.disponibilidad = disponibilidad;
 
 		
 		
@@ -60,11 +58,11 @@ public class Viaje implements Serializable {
     		this.allTiquetes.add(new Tiquete(genId, null, sillaEnVehiculo, this, tipoSilla, fechaViaje)); 
     		
     		/*
-    		 *  El argumento null ( comrador) se le cambiar� el estado al momento de comprar tiquete donde 
+    		 *  El argumento null ( comrador) se le cambiara el estado al momento de comprar tiquete donde 
     		 *  se asignar� el respectivo comprador 
     		 */
     	}
-    	viajes.add(this); // Para este caso no se est� validando si la ciudad ya existe
+    	viajes.add(this); 
     	
     
     }
@@ -73,11 +71,6 @@ public class Viaje implements Serializable {
      * Como hacer que el contains compare por la llave primaria que es el identifciador desde un contains 
      */
     
-    
-    /*
-     * Validar ciudades compara si cada ciudad asignada en la ruta hace parte de las ciudades a las cuales 
-     * ya se hacen viajes
-     */
     
     	
     public void eliminarViaje(int id) { 
@@ -109,11 +102,6 @@ public class Viaje implements Serializable {
 		return fechaViaje;
 	}
 
-
-
-	public void setDisponibilidad(boolean disponibilidad) {
-		this.disponibilidad = disponibilidad;
-	}
 
 	public ArrayList<Ciudad> getRuta() {
 		return ruta;
