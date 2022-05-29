@@ -30,9 +30,7 @@ public class Administrador extends Empleado{
         empleado.renunciar();
     }
     
-    public String gestionarConductores(Conductor conductores) {
-    	
-    }
+  
 
 
     public void renunciar() {
