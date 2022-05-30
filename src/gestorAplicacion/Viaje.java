@@ -1,7 +1,8 @@
 package gestorAplicacion;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDate;
 import java.io.Serializable;
 
 public class Viaje implements Serializable {
@@ -14,7 +15,7 @@ public class Viaje implements Serializable {
 	private ArrayList<Ciudad> ruta;
 	private int frecuencia;
 	private ArrayList<Tiquete> allTiquetes;
-	private Date fechaViaje;
+	private LocalDate fechaViaje;
 	private Vehiculo vehiculo;
 	private boolean disponibilidad;
 	private static ArrayList<Viaje> viajes;
@@ -24,7 +25,7 @@ public class Viaje implements Serializable {
 
 
 	public Viaje(int id , int costo, int precioEstandar, int precioPremium, Ciudad origen, Ciudad destino,int frecuencia, Vehiculo vehiculo,
-				 Date fechaViaje) {
+				 LocalDate fechaViaje) {
 
 		this.id = id;
 		this.costo = costo;
@@ -77,7 +78,7 @@ public class Viaje implements Serializable {
 
 	public int getPrecioPremium() {	return precioPremium;}
 
-	public Date getFechaViaje() {return fechaViaje;	}
+	public LocalDate getFechaViaje() {return fechaViaje;	}
 
 	public Vehiculo getVehiculo() {	return vehiculo; }
 

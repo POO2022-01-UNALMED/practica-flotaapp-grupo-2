@@ -31,7 +31,7 @@ public abstract class Usuario implements Serializable {
         return this.billetera;
     }
 
-    public int agregarSaldo(int dinero){
+    public double agregarSaldo(double dinero){
         if(dinero > 0){
             this.billetera += dinero;
         }else{

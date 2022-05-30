@@ -6,26 +6,25 @@ import baseDatos.*;
 import uiMain.funcionalidades.*;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDate;
 
 
 public class Main {
     public static void main(String[] args) {
-        Deserializador.deserializarTodo();
-        /*
+        //Deserializador.deserializarTodo();
+
         // COMPRADORES
         Comprador u1 = new Comprador(1, "Usuario1", "example@email.com", 3234567890L);
         Comprador u2 = new Comprador(2, "Usuario2", "example2@email.com", 3087654321L);
         Comprador uError = new Comprador(2, "Error", "example2@email.com", 3087654321L);
         Comprador u3 = new Comprador(3, "Usuario3", "example3@email.com", 3088890321L);
-        Comprador u4 = new Comprador(4, "Usuario4", "example4@email.com", 3087656654L);
+        Comprador   u4 = new Comprador(4, "Usuario4", "example4@email.com", 3087656654L);
 
         ////FECHAS PRUEBAS
 
-        Date fin = new Date(2022, 1, 1);
-        Date inicio = new Date(2020, 3, 12);
-        Date intermedio = new Date(2020, 7, 14);
-        Date fechaCompra = new Date(2020, 6, 22);
+        LocalDate fin = LocalDate.now().plusDays(15);
+        LocalDate inicio = LocalDate.now();
+        LocalDate intermedio = LocalDate.now().plusDays(12);
 
         ////CIUDADES
 
@@ -88,11 +87,12 @@ public class Main {
         System.out.println(Asignar.asignarVehiculo(mec1, v1));
 
         System.out.println(Comprador.getCompradores());
-        Serializador.serializarTodo(); */
 
-
+        Serializador.serializarTodo();
+        Gestionar.gestionarViajes(2);
         AdminViaje.visualizarEstadisticas();
         Gestionar.gestionarEspecialistas();
+
 
     }
 }

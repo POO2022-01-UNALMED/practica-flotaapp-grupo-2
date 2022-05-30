@@ -28,6 +28,14 @@ public class Silla implements Serializable {
     public void setEstado(boolean estado) {
     	this.estado = estado;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Silla{" +
+                "numeroSilla=" + numeroSilla +
+                ", tipo=" + tipo +
+                ", ubicacion=" + ubicacion +
+                ", estado=" + estado +
+                '}';
+    }
 }

@@ -1,7 +1,7 @@
 package gestorAplicacion;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Tiquete implements Serializable {
@@ -9,7 +9,7 @@ public class Tiquete implements Serializable {
 	protected Silla sillaTiquete;
 	protected Viaje viaje;
 	protected int valor;
-	protected Date fechaCompra;
+	protected LocalDate fechaCompra;
 
 	public Tiquete(){}
 
@@ -26,11 +26,12 @@ public class Tiquete implements Serializable {
 
 	public Viaje getViaje() {return viaje;	}
 
-	public Comprador getUsuario() {return comprador;}
+	public Comprador getComprador() {return comprador;}
 
 	public void setComprador(Comprador comprador) {this.comprador = comprador;}
 
 	public int getValor() {	return valor;}
 
+	public void setFechaCompra(LocalDate fechaCompra) {	this.fechaCompra = fechaCompra;	}
 
 }
