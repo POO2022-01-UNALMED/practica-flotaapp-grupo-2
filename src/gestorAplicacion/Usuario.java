@@ -40,4 +40,7 @@ public abstract class Usuario implements Serializable {
         return this.consultarSaldo();
     }
 
+    public String getuNombre() {  return uNombre;   }
+
+    public int getCc() {  return cc;  }
 }

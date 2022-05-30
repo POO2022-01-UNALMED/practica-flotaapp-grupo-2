@@ -55,7 +55,9 @@ public class Main {
         //EMPLEADOS
 
         ////MECANICOS
-        Especialista mec1 = new Especialista(27, "Jose", "emailMecanico@example.com", 3224568585L, 3000,Especialidad.MECANICO);
+        Especialista mec1 = new Especialista(27, "Jose", "emailMecanico1@example.com", 3224568585L, 3000,Especialidad.MECANICO);
+        Especialista mec2 = new Especialista(28, "Maria", "emailMecanico2@example.com", 3224567585L, 4000,Especialidad.ELECTRICO);
+        Especialista mec3 = new Especialista(28, "Pablo", "emailMecanico3@example.com", 3224538585L, 3700,Especialidad.MECANICO);
 
         ////CONDUCTORES
         Conductor con1 = new Conductor(28, "Don Javie", "DonJavier@example.com", 3004569696L, 4000, Categoria.B3);
@@ -86,10 +88,9 @@ public class Main {
         System.out.println(Asignar.asignarVehiculo(mec1, v1));
 
         System.out.println(Comprador.getCompradores());
-        Serializador.serializarTodo();
-
-        System.out.println(Comprador.getCompradores());
 
         AdminViaje.visualizarEstadisticas();
+        Gestionar.gestionarEspecialistas();
+        Serializador.serializarTodo();
     }
 }
