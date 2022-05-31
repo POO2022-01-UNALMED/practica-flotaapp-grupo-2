@@ -1,7 +1,8 @@
 package gestorAplicacion;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDate;
 import java.io.Serializable;
 
 public class Viaje implements Serializable {
@@ -14,7 +15,7 @@ public class Viaje implements Serializable {
 	private ArrayList<Ciudad> ruta;
 	private int frecuencia;
 	private ArrayList<Tiquete> allTiquetes;
-	private Date fechaViaje;
+	private LocalDate fechaViaje;
 	private Vehiculo vehiculo;
 	private boolean disponibilidad;
 	private static ArrayList<Viaje> viajes;
@@ -23,8 +24,8 @@ public class Viaje implements Serializable {
 	}
 
 
-	public Viaje(int id , int costo, int precioEstandar, int precioPremium, Ciudad origen, Ciudad destino,int frecuencia, Vehiculo vehiculo,
-				 Date fechaViaje) {
+	public Viaje(int id, int costo, int precioEstandar, int precioPremium, Ciudad origen, Ciudad destino, int frecuencia,
+				 Vehiculo vehiculo, LocalDate fechaViaje) {
 
 		this.id = id;
 		this.costo = costo;
@@ -35,17 +36,38 @@ public class Viaje implements Serializable {
 		this.frecuencia = frecuencia;
 		this.fechaViaje = fechaViaje;
 		this.vehiculo = vehiculo;
-		this.disponibilidad = true;
-		this.allTiquetes = new ArrayList<Tiquete>();
-		Viaje.viajes.add(this);
+		this.allTiquetes = new ArrayList<>();
 
-		for (Silla silla : vehiculo.getSillas()){
-			if (silla.getTipo() == true){
-				allTiquetes.add(new Tiquete(silla, this, precioPremium));
-			}else {
-				allTiquetes.add(new Tiquete(silla, this, precioEstandar));
+		/*
+		 * los tiquetes se generan a partir de la cantidad y tipo de sillas en el vehiculo y su respectivo id es el
+		 * �ndice de la silla. El estado al ser un booleano se define como true para premium y false para estandar
+		 */
+
+
+		for (Silla sillaEnVehiculo: this.vehiculo.getSillas()) {
+			int genId = this.vehiculo.getSillas().indexOf(sillaEnVehiculo);
+			int tipoSilla = precioEstandar;                    // 0 Estandar y 1 premium
+			if (sillaEnVehiculo.getEstado()) {
+				tipoSilla = precioPremium;
+			}
+			this.allTiquetes.add(new Tiquete(genId, null, sillaEnVehiculo, this, tipoSilla, fechaViaje));
+
+			/*
+			 *  El argumento null ( comrador) se le cambiara el estado al momento de comprar tiquete donde
+			 *  se asignar� el respectivo comprador
+			 */
+		}
+		viajes.add(this);
+	}
+
+	public Tiquete tiqueteDisponible(int presupuesto){
+		Tiquete tiqueteFinal = new Tiquete();
+		for(Tiquete tiquete : allTiquetes){
+			if(tiquete.getValor() <= presupuesto && tiquete.getSillaTiquete().getEstado() == false){
+				tiqueteFinal =  tiquete;
 			}
 		}
+		return tiqueteFinal;
 	}
 
 	public void eliminarViaje(){
@@ -54,6 +76,15 @@ public class Viaje implements Serializable {
 
 	// ----- G E T   A N D   S E T -----
 
+	public static ArrayList<Viaje> viajesSinConductor(){
+		ArrayList<Viaje> viajes = new ArrayList<>();
+		for(Viaje viaje : Viaje.getViajes()){
+			if(viaje.getVehiculo().getConductor() == null){
+				viajes.add(viaje);
+			}
+		}
+		return viajes;
+	}
 
 	public int getId() {return id;}
 
@@ -67,7 +98,7 @@ public class Viaje implements Serializable {
 
 	public int getPrecioPremium() {	return precioPremium;}
 
-	public Date getFechaViaje() {return fechaViaje;	}
+	public LocalDate getFechaViaje() {return fechaViaje;	}
 
 	public Vehiculo getVehiculo() {	return vehiculo; }
 
@@ -84,4 +115,14 @@ public class Viaje implements Serializable {
 	public void aumentarFrecuencia(int frecuencia) {	this.frecuencia += frecuencia;	}
 
 	public void disminuirFrecuencia(int frecuencia) {	this.frecuencia -= frecuencia;	}
+
+	@Override
+	public String toString() {
+		return "Viaje{" +
+				"id=" + id +
+				", origen=" + origen +
+				", destino=" + destino +
+				", fechaViaje=" + fechaViaje +
+				'}';
+	}
 }

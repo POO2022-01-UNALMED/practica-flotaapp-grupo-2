@@ -4,23 +4,26 @@ import gestorAplicacion.Viaje;
 
 import java.util.Scanner;
 
+import java.io.IOException;
+
 public class AdminViaje {
     private int idEmpresa;
 
     public static void visualizarEstadisticas(){
+        System.out.println("----- V I S U A L I Z A R   E S T A D I S T I C A S -----");
         for(Ciudad ciudad : Ciudad.getCiudades()){
             System.out.println(" ");
             System.out.println("id: " + ciudad.getId() + " - Nombre: "+ciudad.getNombre());
             System.out.println("Numero de Visitante: "+ ciudad.getNumVisitantes());
             int allSillasDisponiblesViajes = 0;
             for(Viaje viaje : Viaje.getViajes()){
-                if (viaje.getDestino().getNombre() == ciudad.getNombre()){
+                if (viaje.getDestino() == ciudad && viaje.getDestino() != null){
                     System.out.println(" ");
                     allSillasDisponiblesViajes += viaje.getAllTiquetes().size();
-                    System.out.println("Viaje: "+ viaje.getId() + " - Origen: " + viaje.getOrigen() + " - Destino: " + viaje.getDestino() );
+                    System.out.println("    Viaje: "+ viaje.getId() + " - Origen: " + viaje.getOrigen() + " - Destino: " + viaje.getDestino() );
 
                     float porcentaje = ((viaje.getVehiculo().getSillas().size() - viaje.getVehiculo().sillasDisponibles().size())*100)/viaje.getVehiculo().getSillas().size();
-                    System.out.println("Promedio de ocupacion: " + porcentaje + " %");
+                    System.out.println("    Promedio de ocupacion: " + porcentaje + " %");
                     evaluarPorcentajeOcupacion(viaje, porcentaje);
 
 

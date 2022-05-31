@@ -3,10 +3,8 @@ package gestorAplicacion;
 import java.util.ArrayList;
 
 public class Administrador extends Empleado{
-    private static ArrayList<Administrador> administradores = new ArrayList<Administrador>();
-    static {
-        administradores = new ArrayList<Administrador>();
-    }
+    private static ArrayList<Administrador> administradores = new ArrayList<>();
+    
 
     public Administrador(int cc, String uNombre, String email, long movil, int sueldo) {
         super(cc, uNombre, email, movil, sueldo);

@@ -56,6 +56,14 @@ public class Deserializador {
      * Funcion para deserializar toda la aplicacion Generic IT
      */
     public static void deserializarTodo() {
+
         Deserializador.deserializador(Comprador.getCompradores(), "compradores");
+        Deserializador.deserializador(Ciudad.getCiudades(), "ciudades");
+        Deserializador.deserializador(Viaje.getViajes(), "viajes");
+        Deserializador.deserializador(Especialista.getEspecialistas(), "especilistas");
+        Deserializador.deserializador(Conductor.getConductores(), "conductores");
+        Deserializador.deserializador(Vehiculo.getVehiculos(), "vehiculos");
+        Deserializador.deserializador(Tiquete.getTiquetes(), "tiquetes");
+        Deserializador.deserializador(Silla.getSillas(), "sillas");
     }
 }

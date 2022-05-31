@@ -54,5 +54,10 @@ public class Serializador {
         Serializador.serializar(Comprador.getCompradores(), "compradores");
         Serializador.serializar(Ciudad.getCiudades(), "ciudades");
         Serializador.serializar(Viaje.getViajes(), "viajes");
+        Serializador.serializar(Especialista.getEspecialistas(), "especilistas");
+        Serializador.serializar(Conductor.getConductores(), "conductores");
+        Serializador.serializar(Vehiculo.getVehiculos(), "vehiculos");
+        Serializador.serializar(Tiquete.getTiquetes(), "tiquetes");
+        Serializador.serializar(Silla.getSillas(), "sillas");
     }
 }

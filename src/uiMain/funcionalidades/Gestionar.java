@@ -7,37 +7,43 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Gestionar {
-    public void gestionarConductores(){
-    	for(Conductores conductores: Conductores.getConductores()) {
-	 		for(Viaje viaje: Viaje.getViajes()) {
-	 			if(conductores == viaje.getVehiculo().getConductor()) {
-	 				System.out.println("El conductor " + conductores.getNombre() + " ya tiene viaje asignado");
-		
-	 			}
-	 			else {
-	 				System.out.println("El conductor " + conductores.getNombre() + " no tiene viaje asignado");
-	 			}   Scanner aux = new Scanner(System.in);
-	 				String name = aux.nextLine();
-	 				System.out.println("Quieres asignar un viaje a un conductor: ");
-	 			
-	 			
-	 				if(name == "Si") {
-	 					Asign.asignarViaje(Conductor conductor,Viaje viaje);
-	 					System.out.println("A el conductor " + conductor.getNombre() + " se le asigno un viaje");
-	 			}
-	 				else{
-	 					System.out.println("No se le ha asignado viaje a conductor");
-	 				
-	 				}
-	 			
-	 			
-			 
-	 		}
-	 	}
+    public static void gestionarConductores(){
+    	for(Conductor conductor: Conductor.getConductores()) {
+            System.out.println(" ");
+            System.out.println("CC: " + conductor.getCc() + " - Nombre: " + conductor.getuNombre());
+            System.out.println("Cantidad de Viajes asignados: " + conductor.getHistoriaViajesRealizados().toArray().length);
+            if (conductor.getHistoriaViajesRealizados().isEmpty()) {
+                System.out.println("[4] Asignar un Viaje, [5] Despedir");
+                Scanner aux = new Scanner(System.in);
+                switch (aux.nextInt()) {
+                    case 4: {
+                        if (Viaje.viajesSinConductor().isEmpty()) {
+                            System.out.println("Actualmente todos los viajes tienen Conductor");
+                        } else {
+                            for (int i = 0; i < Viaje.viajesSinConductor().size(); i++) {
+                                System.out.println(" ");
+                                System.out.println("id : [" + i + "] = " + Viaje.viajesSinConductor().get(i).toString());
+                            }
+                            System.out.println(" ");
+                            Scanner des = new Scanner(System.in);
+                            int num = des.nextInt();
+                            Asignar.asignarViaje(conductor, Viaje.viajesSinConductor().get(num));
+                            System.out.println("VIAJE: " + Viaje.viajesSinConductor().get(num));
+                        }
+                    }
+                    break;
 
+                    case 5: {
+                        Administrador.despedir(conductor);
+                    }
+                }
+            }
+        }
     }
 
+
     public static void gestionarViajes(int cc){
+        System.out.println("----- G E S T I O N A R   V I A J E S -----");
 
             Comprador comprador = new Comprador();
             for(Comprador comprador1 : Comprador.getCompradores()){
@@ -58,6 +64,10 @@ public class Gestionar {
         }
 
     public static void gestionarEspecialistas(){
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+        System.out.println("----- G E S T I O N A R   E S P E C I A L I S T A S -----");
+        System.out.println(" ");
         System.out.println("[1] Electrico, [2] Mecanico, [3] Silleteria");
         Scanner aux = new Scanner(System.in);
         int uno = aux.nextInt();
@@ -110,7 +120,7 @@ public class Gestionar {
                     System.out.println("Escoge un tiquete por el cual cambiarlo");
                     Scanner cambio = new Scanner(System.in);
                     int auxnum = cambio.nextInt();
-                    Asignar.asignarTiquete(tiquete.getComprador(), tiquetesDisponibes.get(auxnum));
+                    Asignar.asignarTiquete( tiquete.getComprador() , tiquetesDisponibes.get(auxnum));
                     tiquete.getComprador().eliminarTiqueteHistoria(tiquete);
                     tiquete.getSillaTiquete().setEstado(false);
                     tiquete.setComprador(null);
@@ -152,6 +162,7 @@ public class Gestionar {
                 case 4: {
                     System.out.println("Tipo Revision: " + especialista.getEspecialidad().toString() + " - La revision se realizara prontemente");
                     Asignar.asignarVehiculo(especialista, Vehiculo.getVehiculoRevisar());
+                    System.out.println("VEHICULO: " + Vehiculo.getVehiculoRevisar().getPlaca());
                 }
                 break;
 

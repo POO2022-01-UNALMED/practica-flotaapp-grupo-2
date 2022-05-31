@@ -39,4 +39,7 @@ public class Especialista extends Empleado implements Serializable {
 
 	public Especialidad getEspecialidad() {return especialidad;	}
 
+	public static ArrayList<Vehiculo> getHistorialVehiculosRevisados() {	return historialVehiculosRevisados;}
+
+	public static ArrayList<Especialista> getEspecialistas() {	return especialistas;}
 }
