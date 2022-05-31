@@ -16,7 +16,7 @@ public class Recomendacion {
 	
 	// validar historico de viajes por usuario
 	
-	public static String recomendarViaje(Comprador aRecomendar) {
+	public static Ciudad recomendarViaje(Comprador aRecomendar) {
 		Ciudad recomendadisima;
 		/*
 		 * Se va a guardar en visitadas la cantidad de viajes por usuario, para esto se recorre la lista de historicoViaje
@@ -64,10 +64,12 @@ public class Recomendacion {
 			recomendadisima = masVisitada;
 		}
 		
-		String f = promociones.get(aRecomendar)+""; //El toString saca errores
+		String f = promociones.get(aRecomendar)+""; 
 		
-		return "Te recomendamos " + aRecomendar.getNombre() + " que viajes a" + recomendadisima.getNombre() + 
-				" con una promoción de "  + f +"%";
+		String vaenelMain = "Te recomendamos " + aRecomendar.getNombre() + " que viajes a" + recomendadisima.getNombre() + 
+		" con una promoción de "  + f +"%";
+		
+		return recomendadisima;
 		
 		
 	}

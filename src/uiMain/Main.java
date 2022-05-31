@@ -17,7 +17,7 @@ public class Main {
         Comprador u1 = new Comprador(1, "Usuario1", "example@email.com", 3234567890L);
         Comprador u2 = new Comprador(2, "Usuario2", "example2@email.com", 3087654321L);
         Comprador u3 = new Comprador(3, "Usuario3", "example3@email.com", 3088890321L);
-        Comprador   u4 = new Comprador(4, "Usuario4", "example4@email.com", 3087656654L);
+        Comprador  u4 = new Comprador(4, "Usuario4", "example4@email.com", 3087656654L);
 
         ////FECHAS PRUEBAS
 
@@ -27,10 +27,15 @@ public class Main {
 
         ////CIUDADES
 
-        Ciudad c1 = new Ciudad(1, "Medellin", "calle X - 95");
-        Ciudad c2 = new Ciudad(2, "Bello", "calle Y - 72");
-        Ciudad c3 = new Ciudad(7, "Popayan", "calle X - 37");
-        Ciudad c4 = new Ciudad(8, "Cali", "calle F - 13");
+        Ciudad Medellin = new Ciudad(1, "Medellin", "calle X - 95");
+        Ciudad Bello = new Ciudad(12, "Bello", "calle Y - 72");
+        Ciudad Popayan = new Ciudad(7, "Popayan", "calle X - 37");
+        Ciudad Cali = new Ciudad(8, "Cali", "calle F - 13");
+        Ciudad Monteria = new Ciudad(5, "Montería", "circular 4 # 1 - 44");
+        Ciudad Cartagena = new Ciudad(4, "Cartagena", "calle G - 14");
+        Ciudad Pasto = new Ciudad(6, "Pasto", "Carrera 24 # 4 - 22");
+        Ciudad Barranquilla = new Ciudad(9, "Barranquilla", "calle siempre viva # 123");
+        Ciudad Manizales = new Ciudad(3, "Manizales", "avenida 24 # 3-23");
 
         //////SILLAS
         Silla se1 = new Silla(7, false, Ubicacion.VENTANA);
@@ -48,10 +53,19 @@ public class Main {
         Vehiculo v1 = new Vehiculo("AAA000", sillas);
 
         //VIAJES
-        Viaje viaje1 = new Viaje(12, 300000, 4000, 7000, c2, c4, 7, v1, intermedio);
+        Viaje viaje1 = new Viaje(12, 300000, 4000, 7000, Bello, Cali, 7, v1, intermedio);
 
 
         //EMPLEADOS
+        
+        // PROMOCIONES
+        Recomendacion.promociones.put(Cali, 10);
+        Recomendacion.promociones.put(Bello, 15);
+        Recomendacion.promociones.put(Popayan, 5);
+        Recomendacion.promociones.put(Medellin, 20);
+        Recomendacion.promociones.put(Cartagena, 25);
+        
+        
 
         ////MECANICOS
         Especialista mec1 = new Especialista(27, "Jose", "emailMecanico1@example.com", 3224568585L, 3000, Especialidad.MECANICO);
