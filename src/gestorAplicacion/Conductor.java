@@ -2,6 +2,7 @@ package gestorAplicacion;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Conductor extends Empleado implements Serializable {
@@ -45,20 +46,20 @@ public class Conductor extends Empleado implements Serializable {
     //bonoSueldo() : void
 
     public static void  bonoSueldo() {
-    	public ArrayList<Integer> listaDeViajes = new ArrayList<>();
+    	ArrayList<Integer> listaDeViajes = new ArrayList<>();
     	for(Conductor allConductores: Conductor.getConductores()) {
-    		listaDeViajes.add(allConductores.getHistoriaViajesRealizados.size());
+    		listaDeViajes.add( allConductores.historiaViajesRealizados.size() );
     		//Agrega el numero de viajes de cada conductor
     	}
     	int posicionConductorBono = listaDeViajes.indexOf(Collections.max(listaDeViajes));
     	//Da la posicion del mayor numero de viajes entre los conductores
     	
-    	Conductor conductorMasViajes= Conductor.getConductores().get(posicionConductorBono);
+    	Conductor conductorMasViajes = Conductor.getConductores().get(posicionConductorBono);
     	//Da la posicion del conductor con mas viajes
     	
     	int porcentajeBono = (int) (conductorMasViajes.sueldo * 0.10);
     	
-    	int totalBono = conductoresMasViajes.sueldo + porcantajeBono;
+    	int totalBono = conductorMasViajes.sueldo + porcentajeBono;
     	
     	conductorMasViajes.sueldo = totalBono; //Actualiza el sueldo del conductor
     	
@@ -73,5 +74,11 @@ public class Conductor extends Empleado implements Serializable {
 
     public static ArrayList<Conductor> getConductores() {
         return conductores;
+    }
+
+    public ArrayList<Viaje> getHistoriaViajesRealizados() {      return historiaViajesRealizados;   }
+
+    @Override
+    public void renunciar() {
     }
 }

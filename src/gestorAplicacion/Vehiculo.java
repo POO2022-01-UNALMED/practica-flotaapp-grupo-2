@@ -34,7 +34,7 @@ public class Vehiculo implements Serializable {
     	int numeroSilla = aux.nextInt();
     	if(this.sillasDisponibles().size() > 1) {
     		for(Silla sillas: this.sillasDisponibles()) {
-    		if(sillas.getNumeroSilla() == numeroSilla && sillas.getEstado == false) {
+    		if(sillas.getNumeroSilla() == numeroSilla && sillas.getEstado() == false) {
     			sillas.setEstado(true);
     		}
     		if(sillas.getEstado() == true) {

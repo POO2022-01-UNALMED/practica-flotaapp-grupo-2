@@ -95,6 +95,7 @@ public class Viaje implements Serializable {
 	public void eliminarViaje(){
 		Viaje.viajes.remove(this);
 	}
+
 	public int getCosto() {
 		return costo;
 	}
@@ -138,6 +139,7 @@ public class Viaje implements Serializable {
 	public Ciudad getDestino() {
 		return destino;
 	}
+
 	public void setDestino(Ciudad destino) {
 		this.destino = destino;
 	}
@@ -150,11 +152,21 @@ public class Viaje implements Serializable {
 		this.frecuencia = frecuencia;
 	}
 
-	public static ArrayList<Viaje> getViajes() {
-		return viajes;
-	}
-	public ArrayList<Tiquete> getAllTiquetes(){
-		return allTiquetes;
+	public static ArrayList<Viaje> getViajes() {return viajes;}
+
+	public void aumentarFrecuencia(int frecuencia) {	this.frecuencia += frecuencia;	}
+
+	public void disminuirFrecuencia(int frecuencia) {	this.frecuencia -= frecuencia;	}
+
+	public ArrayList<Tiquete> getAllTiquetes() {return allTiquetes;	}
+
+	@Override
+	public String toString() {
+		return "Viaje{" +
+				"id=" + id +
+				", origen=" + origen +
+				", destino=" + destino +
+				", fechaViaje=" + fechaViaje +
+				'}';
 	}
 }
-	

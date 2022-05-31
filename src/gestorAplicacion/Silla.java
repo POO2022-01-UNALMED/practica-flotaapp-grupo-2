@@ -19,6 +19,8 @@ public class Silla implements Serializable {
     	
     }
 
+    public int getNumeroSilla() {      return numeroSilla;   }
+
     public boolean getTipo() { return  tipo;}
 
     public boolean getEstado() {
@@ -28,10 +30,6 @@ public class Silla implements Serializable {
     public void setEstado(boolean estado) {
     	this.estado = estado;
     }
-
-	public int getNumeroSilla() {
-		return numeroSilla;
-	}
 
 	public void setNumeroSilla(int numeroSilla) {
 		this.numeroSilla = numeroSilla;
