@@ -63,5 +63,7 @@ public class Deserializador {
         Deserializador.deserializador(Especialista.getEspecialistas(), "especilistas");
         Deserializador.deserializador(Conductor.getConductores(), "conductores");
         Deserializador.deserializador(Vehiculo.getVehiculos(), "vehiculos");
+        Deserializador.deserializador(Tiquete.getTiquetes(), "tiquetes");
+        Deserializador.deserializador(Silla.getSillas(), "sillas");
     }
 }

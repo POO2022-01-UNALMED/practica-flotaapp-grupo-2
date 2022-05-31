@@ -22,7 +22,7 @@ public class Comprador extends Usuario implements Serializable{
     }
 
     //CONSTRUCTOR
-    public Comprador(){super();}
+    public Comprador(){super(0, "USUARIO NO EXISTENTE", "usuarioInexistente@error.exe" , 666);this.historicoViajes =  new ArrayList<>();}
 
     public Comprador(int cc, String uNombre, String email, long movil) {
         super(cc, uNombre, email, movil, 0);

@@ -16,8 +16,16 @@ public class Recomendacion {
 	
 	// validar historico de viajes por usuario
 	
-	public static Ciudad recomendarViaje(Comprador aRecomendar) {
+	public static Ciudad recomendarViaje(int cc) {
+		System.out.print("\033[H\033[2J");
+		System.out.flush();
+		System.out.println("----- R E C O M E N D A R   V I A J E -----");
 		Ciudad recomendadisima;
+
+		Comprador aRecomendar = new Comprador();
+		for(Comprador comprador : Comprador.getCompradores()){
+			if(comprador.getCc() == cc){ aRecomendar = comprador;}
+		}
 		/*
 		 * Se va a guardar en visitadas la cantidad de viajes por usuario, para esto se recorre la lista de historicoViaje
 		 * del usuario solicitado y para posteriormente guardarlo en el valor de cada ciudad la cual es la llave de HashMap
@@ -50,7 +58,7 @@ public class Recomendacion {
 			
 		}
 		
-		else { //Busca la ciudad con mas visitas y la devuelve como recomendación
+		else { //Busca la ciudad con mas visitas y la devuelve como recomendaciï¿½n
 			Ciudad masVisitada = null;
 			int visitas = 0;
 			for (Ciudad cadaCiudad: Ciudad.getCiudades()) {
@@ -67,7 +75,7 @@ public class Recomendacion {
 		String f = promociones.get(aRecomendar)+""; 
 		
 		String vaenelMain = "Te recomendamos " + aRecomendar.getNombre() + " que viajes a" + recomendadisima.getNombre() + 
-		" con una promoción de "  + f +"%";
+		" con una promociï¿½n de "  + f +"%";
 		
 		return recomendadisima;
 		

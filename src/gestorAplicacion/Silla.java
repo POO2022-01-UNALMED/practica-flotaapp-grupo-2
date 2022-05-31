@@ -10,13 +10,18 @@ public class Silla implements Serializable {
     private boolean tipo; //0 (false) -> Estandar , 1 (true) - Premium
     private Ubicacion ubicacion; //0 - V , 1 - P
     private boolean estado;
-    
-    public Silla(int numeroSilla, boolean tipo, Ubicacion ubicacion) {
+	private static  ArrayList<Silla> sillas;
+	static {
+		sillas = new ArrayList<Silla>();
+	}
+
+
+	public Silla(int numeroSilla, boolean tipo, Ubicacion ubicacion) {
     	this.setNumeroSilla(numeroSilla);
     	this.setTipo(tipo);
     	this.setUbicacion(ubicacion);
     	this.estado = false;
-    	
+    	Silla.sillas.add(this);
     }
 
     public int getNumeroSilla() {      return numeroSilla;   }
@@ -50,8 +55,10 @@ public class Silla implements Serializable {
 	public void setUbicacion(Ubicacion ubicacion) {
 		this.ubicacion = ubicacion;
 	}
-    
-    @Override
+
+	public static ArrayList<Silla> getSillas() {	return sillas;	}
+
+	@Override
     public String toString() {
         return "Silla{" +
                 "numeroSilla=" + numeroSilla +

@@ -12,6 +12,10 @@ public class Tiquete implements Serializable {
 		protected Viaje viaje;
 		protected int valor;
 		protected LocalDate fechaCompra;
+		private static ArrayList<Tiquete> tiquetes;
+		static {
+			tiquetes = new ArrayList<Tiquete>();
+		}
 
 		public Tiquete(){}
 
@@ -22,6 +26,7 @@ public class Tiquete implements Serializable {
 			this.viaje = viaje;
 			this.valor = valor;
 			this.fechaCompra = fechaCompra;
+			Tiquete.tiquetes.add(this);
 		}
 
 	// ----- G E T   A N D   S E T -----
@@ -43,6 +48,8 @@ public class Tiquete implements Serializable {
 	}
 
 	public void setFechaCompra(LocalDate fechaCompra) {	this.fechaCompra = fechaCompra;	}
+
+	public static ArrayList<Tiquete> getTiquetes() {return tiquetes;	}
 
 	public String toString() {
 		return "Tiquete{" +
