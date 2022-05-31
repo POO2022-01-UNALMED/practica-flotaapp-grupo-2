@@ -5,22 +5,24 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 
-	public class Tiquete implements Serializable {
-		private final int idTiquete;
+public class Tiquete implements Serializable {
+		private int idTiquete;
 		protected Comprador comprador;
 		protected Silla sillaTiquete;
 		protected Viaje viaje;
 		protected int valor;
 		protected LocalDate fechaCompra;
-	
-	public Tiquete(int idTiquete, Comprador comprador, Silla sillaTiquete, Viaje viaje, int valor, LocalDate fechaCompra) {
-		this.idTiquete = idTiquete;
-		this.comprador = comprador;
-		this.sillaTiquete = sillaTiquete;
-		this.viaje = viaje;
-		this.valor = valor;
-		this.fechaCompra = fechaCompra;
-	}
+
+		public Tiquete(){}
+
+		public Tiquete(int idTiquete, Comprador comprador, Silla sillaTiquete, Viaje viaje, int valor, LocalDate fechaCompra) {
+			this.idTiquete = idTiquete;
+			this.comprador = comprador;
+			this.sillaTiquete = sillaTiquete;
+			this.viaje = viaje;
+			this.valor = valor;
+			this.fechaCompra = fechaCompra;
+		}
 
 	// ----- G E T   A N D   S E T -----
 

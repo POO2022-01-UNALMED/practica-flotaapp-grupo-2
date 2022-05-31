@@ -40,7 +40,7 @@ public class Comprador extends Usuario implements Serializable{
                 }
             }
         }
-        return tiqueteFinal;
+        return tiqueteFinal = new Tiquete();
     }
 
     public void darseDeBaja(){

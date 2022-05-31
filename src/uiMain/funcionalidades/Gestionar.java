@@ -86,6 +86,7 @@ public class Gestionar {
                     int auxnum = cambio.nextInt();
                     Asignar.asignarTiquete(tiquete.getComprador(), tiquetesDisponibes.get(auxnum));
                     tiquete.getComprador().eliminarTiqueteHistoria(tiquete);
+                    tiquete.getSillaTiquete().setEstado(false);
                     tiquete.setComprador(null);
                     System.out.println(tiquetesDisponibes.get(auxnum));
                 }
@@ -97,11 +98,13 @@ public class Gestionar {
                     System.out.println("El tiquete a sido cancelado y su dinero devuelto");
                     tiquete.getComprador().agregarSaldo(tiquete.getValor());
                     tiquete.getComprador().eliminarTiqueteHistoria(tiquete);
+                    tiquete.getSillaTiquete().setEstado(false);
                     tiquete.setComprador(null);
                 } else if(tiquete.getViaje().getFechaViaje().isBefore(LocalDate.now())) {
                     System.out.println("La fecha del viaje es muy cercana, por lo que solo podremos devolverle el 30% del valor de su Tiquete");
                     tiquete.getComprador().agregarSaldo(tiquete.getValor()*0.3);
                     tiquete.getComprador().eliminarTiqueteHistoria(tiquete);
+                    tiquete.getSillaTiquete().setEstado(false);
                     tiquete.setComprador(null);
                 } else{
                     System.out.println("El viaje ya se a realizado, no se puede hacer devuelta de su dinero");

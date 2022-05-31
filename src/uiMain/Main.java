@@ -86,8 +86,8 @@ public class Main {
 
         //Serializador.serializarTodo();
         Gestionar.gestionarViajes(3);
-        //AdminViaje.visualizarEstadisticas();
-        //Gestionar.gestionarEspecialistas();
+        AdminViaje.visualizarEstadisticas();
+        Gestionar.gestionarEspecialistas();
 
 
     }

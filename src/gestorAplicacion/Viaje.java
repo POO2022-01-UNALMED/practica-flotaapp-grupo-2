@@ -158,6 +158,8 @@ public class Viaje implements Serializable {
 
 	public void disminuirFrecuencia(int frecuencia) {	this.frecuencia -= frecuencia;	}
 
+	public ArrayList<Tiquete> getAllTiquetes() {return allTiquetes;	}
+
 	@Override
 	public String toString() {
 		return "Viaje{" +

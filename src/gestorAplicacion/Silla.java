@@ -31,10 +31,6 @@ public class Silla implements Serializable {
     	this.estado = estado;
     }
 
-	public int getNumeroSilla() {
-		return numeroSilla;
-	}
-
 	public void setNumeroSilla(int numeroSilla) {
 		this.numeroSilla = numeroSilla;
 	}
