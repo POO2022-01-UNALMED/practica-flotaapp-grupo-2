@@ -16,7 +16,7 @@ public class Recomendacion {
 	
 	// validar historico de viajes por usuario
 	
-	public String recomendarViaje(Comprador aRecomendar) {
+	public static String recomendarViaje(Comprador aRecomendar) {
 		Ciudad recomendadisima;
 		/*
 		 * Se va a guardar en visitadas la cantidad de viajes por usuario, para esto se recorre la lista de historicoViaje
