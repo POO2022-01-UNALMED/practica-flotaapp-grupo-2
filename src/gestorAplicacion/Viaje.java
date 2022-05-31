@@ -11,13 +11,11 @@ public class Viaje implements Serializable {
 	private  int precioEstandar;
 	private  int precioPremium;
 	private Ciudad origen;
-<<<<<<< HEAD
     private Ciudad destino;
     private int frecuencia;
     private ArrayList<Tiquete> allTiquetes = new ArrayList<>();
-    private Date fechaViaje;
+    private LocalDate fechaViaje;
     private Vehiculo vehiculo; 
-    
     public static ArrayList<Viaje> viajes = new ArrayList<>();
     
     /*
@@ -29,32 +27,11 @@ public class Viaje implements Serializable {
     
     
     public Viaje(int id, int costo, int precioEstandar, int precioPremium, Ciudad origen, Ciudad destino, int frecuencia,
-    	Vehiculo vehiculo, Date fechaViaje) {
+    	Vehiculo vehiculo, LocalDate fechaViaje) {
     	
     	this.id = id;
     	this.costo = costo;
     	this.precioEstandar = precioEstandar;
-=======
-	private Ciudad destino;
-	private ArrayList<Ciudad> ruta;
-	private int frecuencia;
-	private ArrayList<Tiquete> allTiquetes;
-	private LocalDate fechaViaje;
-	private Vehiculo vehiculo;
-	private boolean disponibilidad;
-	private static ArrayList<Viaje> viajes;
-	static {
-		viajes = new ArrayList<Viaje>();
-	}
-
-
-	public Viaje(int id , int costo, int precioEstandar, int precioPremium, Ciudad origen, Ciudad destino,int frecuencia, Vehiculo vehiculo,
-				 LocalDate fechaViaje) {
-
-		this.id = id;
-		this.costo = costo;
-		this.precioEstandar = precioEstandar;
->>>>>>> master
 		this.precioPremium = precioPremium;
 		this.origen = origen;
 		this.destino = destino;
@@ -82,8 +59,6 @@ public class Viaje implements Serializable {
     		 */
     	}
     	viajes.add(this); 
-    	
-    
     }
     
     /*
@@ -107,12 +82,8 @@ public class Viaje implements Serializable {
 		return id;
 	}
 
-<<<<<<< HEAD
-	public int getCosto() {
-		return costo;
-=======
 	public Tiquete tiqueteDisponible(int presupuesto){
-		Tiquete tiqueteFinal = new Tiquete();
+		Tiquete tiqueteFinal = new Tiquete(0, null, null, null, 0, null);
 		for(Tiquete tiquete : allTiquetes){
 			if(tiquete.getValor() <= presupuesto && tiquete.getSillaTiquete().getEstado() == false){
 				tiqueteFinal =  tiquete;
@@ -123,7 +94,9 @@ public class Viaje implements Serializable {
 
 	public void eliminarViaje(){
 		Viaje.viajes.remove(this);
->>>>>>> master
+	}
+	public int getCosto() {
+		return costo;
 	}
 
 	public void setCosto(int costo) {
@@ -131,7 +104,7 @@ public class Viaje implements Serializable {
 	}
 
 	
-	public Date getFechaViaje() {
+	public LocalDate getFechaViaje() {
 		return fechaViaje;
 	}
 
@@ -162,14 +135,9 @@ public class Viaje implements Serializable {
 		this.origen = origen;
 	}
 
-<<<<<<< HEAD
 	public Ciudad getDestino() {
 		return destino;
 	}
-=======
-	public LocalDate getFechaViaje() {return fechaViaje;	}
->>>>>>> master
-
 	public void setDestino(Ciudad destino) {
 		this.destino = destino;
 	}
@@ -182,6 +150,11 @@ public class Viaje implements Serializable {
 		this.frecuencia = frecuencia;
 	}
 
-	public static ArrayList<Viaje> getViajes() {return viajes;}
+	public static ArrayList<Viaje> getViajes() {
+		return viajes;
+	}
+	public ArrayList<Tiquete> getAllTiquetes(){
+		return allTiquetes;
+	}
 }
 	

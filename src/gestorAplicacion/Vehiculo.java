@@ -14,13 +14,10 @@ public class Vehiculo implements Serializable {
 
     public Vehiculo(String placa, ArrayList<Silla> sillas){
         this.placa = placa;
-<<<<<<< HEAD
-        this.setSillas(sillas);
-=======
         this.sillas = sillas;
         Vehiculo.vehiculos.add(this);
->>>>>>> master
     }
+    
     public ArrayList<Silla> sillasDisponibles(){
         ArrayList<Silla> disponibles = new ArrayList<>();
         for(Silla silla : this.getSillas()){
@@ -43,7 +40,6 @@ public class Vehiculo implements Serializable {
         this.conductor = conductor;
     }
 
-<<<<<<< HEAD
 	public ArrayList<Silla> getSillas() {
 		return sillas;
 	}
@@ -54,11 +50,11 @@ public class Vehiculo implements Serializable {
 
     //public Silla selecionarSilla() {}
 
-=======
-    public static ArrayList<Vehiculo> getVehiculos() {        return vehiculos;    }
+    public static ArrayList<Vehiculo> getVehiculos() {
+    	return vehiculos;
+    	}
 
     public static Vehiculo  getVehiculoRevisar(){
         return Vehiculo.getVehiculos().get(0);
     }
->>>>>>> master
 }

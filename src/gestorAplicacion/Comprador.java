@@ -29,7 +29,7 @@ public class Comprador extends Usuario implements Serializable{
     }
 
     public Tiquete comprarTiquete(Ciudad salida, Ciudad destino, int presupuesto){
-        Tiquete tiqueteFinal = new Tiquete();
+        Tiquete tiqueteFinal;
         for(Viaje viaje: Viaje.getViajes()){
             if(viaje.getDestino() == destino && viaje.getOrigen() == salida){
                 tiqueteFinal = viaje.tiqueteDisponible(presupuesto);
