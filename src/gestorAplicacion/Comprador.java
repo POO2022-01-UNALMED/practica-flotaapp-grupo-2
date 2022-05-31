@@ -2,7 +2,9 @@ package gestorAplicacion;
 
 import baseDatos.Deserializador;
 import baseDatos.Serializador;
+import uiMain.funcionalidades.Asignar;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.io.Serializable;
 
@@ -34,12 +36,25 @@ public class Comprador extends Usuario implements Serializable{
         Comprador.compradores.remove(this);
     }
 
+    public Tiquete comprarTiquete(Ciudad salida, Ciudad destino, int presupuesto){
+        Tiquete tiqueteFinal;
+        for(Viaje viaje: Viaje.getViajes()){
+            if(viaje.getDestino() == destino && viaje.getOrigen() == salida){
+                tiqueteFinal = viaje.tiqueteDisponible(presupuesto);
+                if( tiqueteFinal.getViaje() != new Tiquete().getViaje()){
+                    return  Asignar.asignarTiquete(this, tiqueteFinal);
+                }
+            }
+        }
+        return new Tiquete();
+    }
 
-    public ArrayList<Tiquete> historicoViaje(Date fechaInicial, Date fechaFinal){
+
+    public ArrayList<Tiquete> historicoViaje(LocalDate fechaInicial, LocalDate fechaFinal){
         ArrayList<Tiquete> viajes = new ArrayList<Tiquete>();
         for(Tiquete tiquete : this.getHistoricoViajes()){
-            Date d = tiquete.getViaje().getFechaViaje();
-            if (d.after(fechaInicial) && d.before(fechaFinal)){
+            LocalDate d = tiquete.getViaje().getFechaViaje();
+            if (d.isAfter(fechaInicial) && d.isBefore(fechaFinal)){
                 viajes.add(tiquete);
             }
         }
@@ -64,6 +79,8 @@ public class Comprador extends Usuario implements Serializable{
 
     public void anadirTiqueteHistoria(Tiquete tiquete) {this.historicoViajes.add(tiquete);}
 
+    public void eliminarTiqueteHistoria(Tiquete tiquete) {this.historicoViajes.remove(tiquete);}
+
     public void modificarNombre(String nombre){
         this.uNombre = nombre;
     }
@@ -80,17 +97,13 @@ public class Comprador extends Usuario implements Serializable{
         return compradores;
     }
 
-
-    //Metodos Auxiliares
     @Override
     public String toString() {
-        return "Usuario{" +
-                "cc=" + cc +
-                ", uNombre='" + uNombre + '\'' +
-                ", email='" + email + '\'' +
-                ", movil=" + movil +
-                ", billetera=" + billetera +
-                ", historicoViajes=" + historicoViajes +
+        return "Comprador{" +
+                "cc :" + cc +
+                ", Nombre : " + uNombre +
+                ", email : " + email  +
+                ", movil :" + movil +
                 '}';
     }
 }

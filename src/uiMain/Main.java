@@ -178,6 +178,7 @@ public class Main {
                 break;
             case 2:
                 System.out.println("GESTIONAR CONDUCTORES");
+                Gestionar.gestionarConductores();
                 break;
             case 3:
                 Gestionar.gestionarEspecialistas();

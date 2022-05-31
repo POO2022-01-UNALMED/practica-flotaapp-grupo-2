@@ -13,7 +13,7 @@ public abstract class Usuario implements Serializable {
     protected String uNombre;
     protected String email;
     protected long movil;
-    protected int billetera;
+    protected double billetera;
 
     public Usuario(int cc, String uNombre, String email, long movil) {
         this(cc,uNombre,email,movil,0);
@@ -27,11 +27,11 @@ public abstract class Usuario implements Serializable {
         this.billetera = billetera;
     }
 
-    public int consultarSaldo(){
+    public double consultarSaldo(){
         return this.billetera;
     }
 
-    public int agregarSaldo(int dinero){
+    public double agregarSaldo(double dinero){
         if(dinero > 0){
             this.billetera += dinero;
         }else{
@@ -39,5 +39,10 @@ public abstract class Usuario implements Serializable {
         }
         return this.consultarSaldo();
     }
+
+    public String getuNombre() {    return uNombre;   }
+
+    public int getCc() {       return cc;   }
+
 
 }

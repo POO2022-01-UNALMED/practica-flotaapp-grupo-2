@@ -92,12 +92,6 @@ public class Ciudad implements Serializable {
 
 	public void setId(int id) {	this.id = id;}
 
-	public int getId() {return id;}
-
-	public int getNumVisitantes() {	return numVisitantes;}
-
-	public String getNombre() {	return nombre;	}
-
 	public void anadirVisitantes(int numVisitantes) {
 		this.numVisitantes += numVisitantes;
 	}
