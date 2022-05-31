@@ -44,8 +44,25 @@ public class Conductor extends Empleado implements Serializable {
 
     //bonoSueldo() : void
 
-    public void renunciar() {
-        Conductor.conductores.remove(this);
+    public static void  bonoSueldo() {
+    	public ArrayList<Integer> listaDeViajes = new ArrayList<>();
+    	for(Conductor allConductores: Conductor.getConductores()) {
+    		listaDeViajes.add(allConductores.getHistoriaViajesRealizados.size());
+    		//Agrega el numero de viajes de cada conductor
+    	}
+    	int posicionConductorBono = listaDeViajes.indexOf(Collections.max(listaDeViajes));
+    	//Da la posicion del mayor numero de viajes entre los conductores
+    	
+    	Conductor conductorMasViajes= Conductor.getConductores().get(posicionConductorBono);
+    	//Da la posicion del conductor con mas viajes
+    	
+    	int porcentajeBono = (int) (conductorMasViajes.sueldo * 0.10);
+    	
+    	int totalBono = conductoresMasViajes.sueldo + porcantajeBono;
+    	
+    	conductorMasViajes.sueldo = totalBono; //Actualiza el sueldo del conductor
+    	
+    	
     }
 
     // ----- G E T   A N D   S E T -----
