@@ -7,7 +7,7 @@ public class Silla implements Serializable {
 	private enum ubicacion {PASILLO, VENTANA, INTERMEDIO}
 
     private int numeroSilla;
-    private boolean tipo; //0 (false) -> Estandar , 1 (true) - Premium
+    private boolean tipo; //0 - Estandar , 1 - Premium
     private Ubicacion ubicacion; //0 - V , 1 - P
     private boolean estado;
 	private static  ArrayList<Silla> sillas;
@@ -23,8 +23,6 @@ public class Silla implements Serializable {
     	this.estado = false;
     	Silla.sillas.add(this);
     }
-
-    public int getNumeroSilla() {      return numeroSilla;   }
 
     public boolean getTipo() { return  tipo;}
 

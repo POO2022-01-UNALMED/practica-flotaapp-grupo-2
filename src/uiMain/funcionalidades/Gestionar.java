@@ -8,6 +8,32 @@ import java.util.Scanner;
 
 public class Gestionar {
     public void gestionarConductores(){
+    	for(Conductores conductores: Conductores.getConductores()) {
+	 		for(Viaje viaje: Viaje.getViajes()) {
+	 			if(conductores == viaje.getVehiculo().getConductor()) {
+	 				System.out.println("El conductor " + conductores.getNombre() + " ya tiene viaje asignado");
+		
+	 			}
+	 			else {
+	 				System.out.println("El conductor " + conductores.getNombre() + " no tiene viaje asignado");
+	 			}   Scanner aux = new Scanner(System.in);
+	 				String name = aux.nextLine();
+	 				System.out.println("Quieres asignar un viaje a un conductor: ");
+	 			
+	 			
+	 				if(name == "Si") {
+	 					Asign.asignarViaje(Conductor conductor,Viaje viaje);
+	 					System.out.println("A el conductor " + conductor.getNombre() + " se le asigno un viaje");
+	 			}
+	 				else{
+	 					System.out.println("No se le ha asignado viaje a conductor");
+	 				
+	 				}
+	 			
+	 			
+			 
+	 		}
+	 	}
 
     }
 

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Especialista extends Empleado implements Serializable {
 	private Especialidad especialidad;
-	private ArrayList<Vehiculo> historialVehiculosRevisados = new ArrayList<Vehiculo>();
+	private static  ArrayList<Vehiculo> historialVehiculosRevisados = new ArrayList<Vehiculo>();
 	private static  ArrayList<Especialista> especialistas = new ArrayList<>();
 	static {
 		especialistas = new ArrayList<Especialista>();
@@ -39,7 +39,4 @@ public class Especialista extends Empleado implements Serializable {
 
 	public Especialidad getEspecialidad() {return especialidad;	}
 
-	public ArrayList<Vehiculo> getHistorialVehiculosRevisados() { return historialVehiculosRevisados; }
-
-	public static ArrayList<Especialista> getEspecialistas() {		return especialistas;	}
 }

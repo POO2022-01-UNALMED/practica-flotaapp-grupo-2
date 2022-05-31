@@ -1,9 +1,8 @@
 package gestorAplicacion;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.ArrayList;
-
 
 public class Tiquete implements Serializable {
 		private int idTiquete;
@@ -17,7 +16,15 @@ public class Tiquete implements Serializable {
 			tiquetes = new ArrayList<Tiquete>();
 		}
 
-		public Tiquete(){}
+	public  Tiquete(){
+		System.out.println("No se encontraron tiquetes disponibles");
+	}
+
+	public Tiquete(Silla sillaTiquete, Viaje viaje, int valor) {
+		this.sillaTiquete = sillaTiquete;
+		this.viaje = viaje;
+		this.valor = valor;
+	}
 
 		public Tiquete(int idTiquete, Comprador comprador, Silla sillaTiquete, Viaje viaje, int valor, LocalDate fechaCompra) {
 			this.idTiquete = idTiquete;
@@ -31,21 +38,16 @@ public class Tiquete implements Serializable {
 
 	// ----- G E T   A N D   S E T -----
 
-	
-
 	public Silla getSillaTiquete() {return sillaTiquete;}
 
 	public Viaje getViaje() {return viaje;	}
 
-	public Comprador getComprador() {return comprador;}
+	public Comprador getUsuario() {return comprador;}
 
 	public void setComprador(Comprador comprador) {this.comprador = comprador;}
 
 	public int getValor() {	return valor;}
 
-	public int getIdTiquete() {
-		return idTiquete;
-	}
 
 	public void setFechaCompra(LocalDate fechaCompra) {	this.fechaCompra = fechaCompra;	}
 
@@ -61,4 +63,3 @@ public class Tiquete implements Serializable {
 				'}';
 	}
 }
-

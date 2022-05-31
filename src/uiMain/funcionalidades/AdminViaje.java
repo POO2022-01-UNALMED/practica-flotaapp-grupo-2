@@ -34,10 +34,10 @@ public class AdminViaje {
 
     public static Viaje evaluarPorcentajeOcupacion(Viaje viaje, float porcentaje){
         if (porcentaje >= 85){
-            viaje.setFrecuencia(viaje.getFrecuencia() + 1);
+            viaje.aumentarFrecuencia(1);
             return viaje;
         }else if(porcentaje >= 40 && porcentaje < 60){
-            viaje.setFrecuencia(viaje.getFrecuencia() - 2);
+            viaje.disminuirFrecuencia(2);
             //APLICAR LO DEL BONO
             return viaje;
         }else if(porcentaje < 10){
@@ -45,7 +45,7 @@ public class AdminViaje {
             Scanner aux = new Scanner(System.in);
             int propuesta = aux.nextInt();
             if ( propuesta == 1) {
-                Viaje.eliminarViaje(viaje.getId());
+                viaje.eliminarViaje();
             }else{
                 System.out.println("Esperemos que no genere muchas Perdidas");
             }

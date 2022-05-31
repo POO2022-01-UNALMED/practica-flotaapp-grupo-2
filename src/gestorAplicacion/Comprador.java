@@ -2,14 +2,13 @@ package gestorAplicacion;
 
 import baseDatos.Deserializador;
 import baseDatos.Serializador;
-import uiMain.funcionalidades.Asignar;
 
 import java.util.ArrayList;
 import java.io.Serializable;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.stream.Collectors;
 import java.util.LinkedHashMap;
 
@@ -30,35 +29,23 @@ public class Comprador extends Usuario implements Serializable{
         Comprador.compradores.add(this);
     }
 
-    public Tiquete comprarTiquete(Ciudad salida, Ciudad destino, int presupuesto){
-        Tiquete tiqueteFinal;
-        for(Viaje viaje: Viaje.getViajes()){
-            if(viaje.getDestino() == destino && viaje.getOrigen() == salida){
-                tiqueteFinal = viaje.tiqueteDisponible(presupuesto);
-                if( tiqueteFinal.getViaje() != new Tiquete().getViaje()){
-                    return  Asignar.asignarTiquete(this, tiqueteFinal);
-                }
-            }
-        }
-        return tiqueteFinal = new Tiquete();
-    }
 
     public void darseDeBaja(){
         Comprador.compradores.remove(this);
     }
 
 
-    public ArrayList<Tiquete> historicoViaje(LocalDate fechaInicial, LocalDate fechaFinal){
+    public ArrayList<Tiquete> historicoViaje(Date fechaInicial, Date fechaFinal){
         ArrayList<Tiquete> viajes = new ArrayList<Tiquete>();
         for(Tiquete tiquete : this.getHistoricoViajes()){
-            LocalDate d = tiquete.getViaje().getFechaViaje();
-            if (d.isAfter(fechaInicial) && d.isBefore(fechaFinal)){
+            Date d = tiquete.getViaje().getFechaViaje();
+            if (d.after(fechaInicial) && d.before(fechaFinal)){
                 viajes.add(tiquete);
             }
         }
         return viajes;
     }
-    
+
     public int historicoViaje(Ciudad ciudad){
         int cantidad = 0;
         for(Tiquete tiquete : this.getHistoricoViajes()){
@@ -71,23 +58,15 @@ public class Comprador extends Usuario implements Serializable{
 
     // ----- G E T   A N D   S E T -----
 
-    public  ArrayList<Tiquete> getHistoricoViajes() {
+    public ArrayList<Tiquete> getHistoricoViajes() {
         return historicoViajes;
     }
 
     public void anadirTiqueteHistoria(Tiquete tiquete) {this.historicoViajes.add(tiquete);}
-    
-    public String getNombre() {
-    	return uNombre;
-    }
-
-    public void eliminarTiqueteHistoria(Tiquete tiquete) {this.historicoViajes.remove(tiquete);}
 
     public void modificarNombre(String nombre){
         this.uNombre = nombre;
     }
-
-    public int getCc() {  return cc;  }
 
     public void modificarEmail(String email){
         this.email = email;
@@ -101,13 +80,17 @@ public class Comprador extends Usuario implements Serializable{
         return compradores;
     }
 
+
+    //Metodos Auxiliares
     @Override
     public String toString() {
-        return "Comprador{" +
+        return "Usuario{" +
                 "cc=" + cc +
                 ", uNombre='" + uNombre + '\'' +
                 ", email='" + email + '\'' +
                 ", movil=" + movil +
+                ", billetera=" + billetera +
+                ", historicoViajes=" + historicoViajes +
                 '}';
     }
 }
