@@ -1,26 +1,15 @@
 package uiMain.funcionalidades;
 
 import gestorAplicacion.*;
-import sabrosito.Asign;
-import sabrosito.Cod;
-import sabrosito.Via;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Gestionar {
-    public void gestionarCompradores(){
-
-    }
-
-    public void gestionarViajes(){
-    
-    }
-    
-    public String gestionarConductores() {
-    	for(Cod conductores: Cod.getConductores()) {
-	 		for(Via viaje: Via.getViajes()) {
+    public void gestionarConductores(){
+    	for(Conductores conductores: Conductores.getConductores()) {
+	 		for(Viaje viaje: Viaje.getViajes()) {
 	 			if(conductores == viaje.getVehiculo().getConductor()) {
 	 				System.out.println("El conductor " + conductores.getNombre() + " ya tiene viaje asignado");
 		
@@ -33,8 +22,8 @@ public class Gestionar {
 	 			
 	 			
 	 				if(name == "Si") {
-	 					Asign.asignarViaje(primerR, viaje2);
-	 					System.out.println("A el conductor " + primerR.getNombre() + " se le asigno un viaje");
+	 					Asign.asignarViaje(Conductor conductor,Viaje viaje);
+	 					System.out.println("A el conductor " + conductor.getNombre() + " se le asigno un viaje");
 	 			}
 	 				else{
 	 					System.out.println("No se le ha asignado viaje a conductor");
@@ -45,7 +34,28 @@ public class Gestionar {
 			 
 	 		}
 	 	}
+
     }
+
+    public static void gestionarViajes(int cc){
+
+            Comprador comprador = new Comprador();
+            for(Comprador comprador1 : Comprador.getCompradores()){
+                if(comprador1.getCc() == cc){ comprador = comprador1;}
+            }
+            System.out.println("CC : " + comprador.getCc() + " - " + comprador.getuNombre());
+            ArrayList<Tiquete> viajesActivos = new ArrayList<>();
+            for(Tiquete tiquete : comprador.getHistoricoViajes()){
+                if(tiquete.getViaje().getFechaViaje().isAfter(LocalDate.now())){
+                    viajesActivos.add(tiquete);
+
+                }
+            }
+            for(int i = 0; i < viajesActivos.size() ; i++){
+                System.out.println("id : ["+i+"] = " + viajesActivos.get(i).toString() );
+                gestionarTiquete(viajesActivos.get(i));
+            }
+        }
 
     public static void gestionarEspecialistas(){
         System.out.println("[1] Electrico, [2] Mecanico, [3] Silleteria");
@@ -74,6 +84,60 @@ public class Gestionar {
                     }
                 }
             }break;
+        }
+    }
+
+    public static void gestionarTiquete(Tiquete tiquete){
+        System.out.println("[1] Cambiar Tiquete, [2] Cancelar Tiquete");
+        Scanner aux = new Scanner(System.in);
+        switch (aux.nextInt()) {
+            case 1: {
+                ArrayList<Tiquete> tiquetesDisponibes = new ArrayList<>();
+                for(Viaje viaje : Viaje.getViajes()){
+                    for(Tiquete tiqueteViaje : viaje.getAllTiquetes()){
+                        if( tiqueteViaje.getViaje().getDestino() == tiquete.getViaje().getDestino() &&  tiqueteViaje.getViaje().getOrigen() == tiquete.getViaje().getOrigen() && !tiqueteViaje.getSillaTiquete().getEstado())
+                        {
+                            tiquetesDisponibes.add(tiqueteViaje);
+                        }
+                    }
+                }
+                for(int i = 0; i < tiquetesDisponibes.size() ; i++){
+                    System.out.println("id : ["+i+"] = " + tiquetesDisponibes.get(i).toString() );
+                }
+                if(tiquetesDisponibes.isEmpty()){
+                    System.out.println("Lo siento, no hay Tiquetes disponibles para esa fecha - valor - origen - destino");
+                } else {
+                    System.out.println("Escoge un tiquete por el cual cambiarlo");
+                    Scanner cambio = new Scanner(System.in);
+                    int auxnum = cambio.nextInt();
+                    Asignar.asignarTiquete(tiquete.getComprador(), tiquetesDisponibes.get(auxnum));
+                    tiquete.getComprador().eliminarTiqueteHistoria(tiquete);
+                    tiquete.getSillaTiquete().setEstado(false);
+                    tiquete.setComprador(null);
+                    System.out.println(tiquetesDisponibes.get(auxnum));
+                }
+            }
+            break;
+
+            case 2: {
+                if(tiquete.getViaje().getFechaViaje().plusDays(7).isAfter(tiquete.getViaje().getFechaViaje())){
+                    System.out.println("El tiquete a sido cancelado y su dinero devuelto");
+                    tiquete.getComprador().agregarSaldo(tiquete.getValor());
+                    tiquete.getComprador().eliminarTiqueteHistoria(tiquete);
+                    tiquete.getSillaTiquete().setEstado(false);
+                    tiquete.setComprador(null);
+                } else if(tiquete.getViaje().getFechaViaje().isBefore(LocalDate.now())) {
+                    System.out.println("La fecha del viaje es muy cercana, por lo que solo podremos devolverle el 30% del valor de su Tiquete");
+                    tiquete.getComprador().agregarSaldo(tiquete.getValor()*0.3);
+                    tiquete.getComprador().eliminarTiqueteHistoria(tiquete);
+                    tiquete.getSillaTiquete().setEstado(false);
+                    tiquete.setComprador(null);
+                } else{
+                    System.out.println("El viaje ya se a realizado, no se puede hacer devuelta de su dinero");
+
+                }
+
+            }
         }
     }
 
