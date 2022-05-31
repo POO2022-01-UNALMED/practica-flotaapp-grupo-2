@@ -1,8 +1,13 @@
 package gestorAplicacion;
 
 import java.io.Serializable;
+<<<<<<< HEAD
 import java.util.Date;
 //import java.util.ArrayList;
+=======
+import java.time.LocalDate;
+import java.util.ArrayList;
+>>>>>>> master
 
 public class Tiquete implements Serializable {
 	private final int idTiquete;
@@ -10,6 +15,7 @@ public class Tiquete implements Serializable {
 	protected Silla sillaTiquete;
 	protected Viaje viaje;
 	protected int valor;
+<<<<<<< HEAD
 	protected Date fechaCompra;
 	
 	
@@ -18,6 +24,9 @@ public class Tiquete implements Serializable {
 			System.out.println("No se encontraron tiquetes disponibles");
 		}
 		*/
+=======
+	protected LocalDate fechaCompra;
+>>>>>>> master
 
 <<<<<<< HEAD
 		public Tiquete(int idTiquete, Comprador comprador, Silla sillaTiquete, Viaje viaje, int valor, Date fechaCompra) {
@@ -53,16 +62,20 @@ public class Tiquete implements Serializable {
 
 	public Viaje getViaje() {return viaje;	}
 
-	public Comprador getUsuario() {return comprador;}
+	public Comprador getComprador() {return comprador;}
 
 	public void setComprador(Comprador comprador) {this.comprador = comprador;}
 
 	public int getValor() {	return valor;}
 
+<<<<<<< HEAD
 	public int getIdTiquete() {
 		return idTiquete;
 	}
 
+=======
+	public void setFechaCompra(LocalDate fechaCompra) {	this.fechaCompra = fechaCompra;	}
+>>>>>>> master
 
 }
 

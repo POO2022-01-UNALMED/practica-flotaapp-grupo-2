@@ -16,8 +16,9 @@ public class Administrador extends Empleado{
     // ----- Sobrecargo metodo Despedir - Dependiendo el tipo de Empleado
 
     public static void despedir(Especialista empleado){
+        System.out.println("EMPLEADO DESPEDIDO");
         empleado.agregarSaldo(3000); //Comision de Despido
-        empleado.renunciar();
+        //empleado.renunciar();
     }
 
     public static void despedir(Conductor empleado){

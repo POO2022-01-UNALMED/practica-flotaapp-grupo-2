@@ -7,10 +7,19 @@ public class Vehiculo implements Serializable {
     private String placa;
     private Conductor conductor;
     private ArrayList<Silla> sillas;
+    private static  ArrayList<Vehiculo> vehiculos = new ArrayList<>();
+    static {
+        vehiculos = new ArrayList<Vehiculo>();
+    }
 
     public Vehiculo(String placa, ArrayList<Silla> sillas){
         this.placa = placa;
+<<<<<<< HEAD
         this.setSillas(sillas);
+=======
+        this.sillas = sillas;
+        Vehiculo.vehiculos.add(this);
+>>>>>>> master
     }
     public ArrayList<Silla> sillasDisponibles(){
         ArrayList<Silla> disponibles = new ArrayList<>();
@@ -34,6 +43,7 @@ public class Vehiculo implements Serializable {
         this.conductor = conductor;
     }
 
+<<<<<<< HEAD
 	public ArrayList<Silla> getSillas() {
 		return sillas;
 	}
@@ -44,4 +54,11 @@ public class Vehiculo implements Serializable {
 
     //public Silla selecionarSilla() {}
 
+=======
+    public static ArrayList<Vehiculo> getVehiculos() {        return vehiculos;    }
+
+    public static Vehiculo  getVehiculoRevisar(){
+        return Vehiculo.getVehiculos().get(0);
+    }
+>>>>>>> master
 }

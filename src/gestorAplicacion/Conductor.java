@@ -53,4 +53,8 @@ public class Conductor extends Empleado implements Serializable {
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
+
+    public static ArrayList<Conductor> getConductores() {
+        return conductores;
+    }
 }

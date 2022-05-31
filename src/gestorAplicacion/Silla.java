@@ -29,6 +29,7 @@ public class Silla implements Serializable {
     	this.estado = estado;
     }
 
+<<<<<<< HEAD
 	public int getNumeroSilla() {
 		return numeroSilla;
 	}
@@ -54,4 +55,15 @@ public class Silla implements Serializable {
 	}
     
     
+=======
+    @Override
+    public String toString() {
+        return "Silla{" +
+                "numeroSilla=" + numeroSilla +
+                ", tipo=" + tipo +
+                ", ubicacion=" + ubicacion +
+                ", estado=" + estado +
+                '}';
+    }
+>>>>>>> master
 }

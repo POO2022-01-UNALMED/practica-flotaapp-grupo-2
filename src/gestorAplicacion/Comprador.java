@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.stream.Collectors;
 import java.util.LinkedHashMap;
 
@@ -46,11 +46,11 @@ public class Comprador extends Usuario implements Serializable{
     }
 
 
-    public ArrayList<Tiquete> historicoViaje(Date fechaInicial, Date fechaFinal){
+    public ArrayList<Tiquete> historicoViaje(LocalDate fechaInicial, LocalDate fechaFinal){
         ArrayList<Tiquete> viajes = new ArrayList<Tiquete>();
         for(Tiquete tiquete : this.getHistoricoViajes()){
-            Date d = tiquete.getViaje().getFechaViaje();
-            if (d.after(fechaInicial) && d.before(fechaFinal)){
+            LocalDate d = tiquete.getViaje().getFechaViaje();
+            if (d.isAfter(fechaInicial) && d.isBefore(fechaFinal)){
                 viajes.add(tiquete);
             }
         }
@@ -96,16 +96,5 @@ public class Comprador extends Usuario implements Serializable{
     }
 
 
-    //Metodos Auxiliares
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "cc=" + cc +
-                ", uNombre='" + uNombre + '\'' +
-                ", email='" + email + '\'' +
-                ", movil=" + movil +
-                ", billetera=" + billetera +
-                ", historicoViajes=" + historicoViajes +
-                '}';
-    }
+
 }
