@@ -2,6 +2,7 @@ package gestorAplicacion;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Vehiculo implements Serializable {
     private String placa;
@@ -26,6 +27,21 @@ public class Vehiculo implements Serializable {
             }
         }
         return disponibles;
+    }
+    
+    public Silla selceccionarSilla() {
+    	Scanner aux = new Scanner(System.in);
+    	int numeroSilla = aux.nextInt();
+    	if(this.sillasDisponibles().size() > 1) {
+    		for(Silla sillas: this.sillasDisponibles()) {
+    		if(sillas.getNumeroSilla() == numeroSilla && sillas.getEstado == false) {
+    			sillas.setEstado(true);
+    		}
+    		if(sillas.getEstado() == true) {
+    			return sillas;
+    			}
+    		}
+    	}return null;
     }
 
     public String getPlaca() {   
