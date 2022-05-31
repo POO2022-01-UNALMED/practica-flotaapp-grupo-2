@@ -34,4 +34,13 @@ public class Tiquete implements Serializable {
 
 	public void setFechaCompra(LocalDate fechaCompra) {	this.fechaCompra = fechaCompra;	}
 
+	public String toString() {
+		return "Tiquete{" +
+				"comprador=" + comprador + "\n" +
+				"	sillaTiquete=" + sillaTiquete + "\n" +
+				"	viaje=" + viaje +
+				", valor=" + valor +
+				", fechaCompra=" + fechaCompra +
+				'}';
+	}
 }

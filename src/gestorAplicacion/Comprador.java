@@ -22,6 +22,8 @@ public class Comprador extends Usuario implements Serializable{
     }
 
     //CONSTRUCTOR
+    public Comprador(){super();}
+
     public Comprador(int cc, String uNombre, String email, long movil) {
         super(cc, uNombre, email, movil, 0);
         this.historicoViajes =  new ArrayList<>();
@@ -75,9 +77,13 @@ public class Comprador extends Usuario implements Serializable{
 
     public void anadirTiqueteHistoria(Tiquete tiquete) {this.historicoViajes.add(tiquete);}
 
+    public void eliminarTiqueteHistoria(Tiquete tiquete) {this.historicoViajes.remove(tiquete);}
+
     public void modificarNombre(String nombre){
         this.uNombre = nombre;
     }
+
+    public int getCc() {  return cc;  }
 
     public void modificarEmail(String email){
         this.email = email;
@@ -91,6 +97,13 @@ public class Comprador extends Usuario implements Serializable{
         return compradores;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Comprador{" +
+                "cc=" + cc +
+                ", uNombre='" + uNombre + '\'' +
+                ", email='" + email + '\'' +
+                ", movil=" + movil +
+                '}';
+    }
 }

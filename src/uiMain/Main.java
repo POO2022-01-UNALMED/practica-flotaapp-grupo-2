@@ -11,12 +11,11 @@ import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
-        //Deserializador.deserializarTodo();
+        Deserializador.deserializarTodo();
 
         // COMPRADORES
         Comprador u1 = new Comprador(1, "Usuario1", "example@email.com", 3234567890L);
         Comprador u2 = new Comprador(2, "Usuario2", "example2@email.com", 3087654321L);
-        Comprador uError = new Comprador(2, "Error", "example2@email.com", 3087654321L);
         Comprador u3 = new Comprador(3, "Usuario3", "example3@email.com", 3088890321L);
         Comprador   u4 = new Comprador(4, "Usuario4", "example4@email.com", 3087656654L);
 
@@ -34,15 +33,16 @@ public class Main {
         Ciudad c4 = new Ciudad(8, "Cali", "calle F - 13");
 
         //////SILLAS
-        Silla sp1 = new Silla(1, true, Ubicacion.VENTANA);
-        Silla sp2 = new Silla(2, true, Ubicacion.PASILLO);
         Silla se1 = new Silla(7, false, Ubicacion.VENTANA);
         Silla se2 = new Silla(8, false, Ubicacion.PASILLO);
+        Silla sp1 = new Silla(1, true, Ubicacion.VENTANA);
+        Silla sp2 = new Silla(2, true, Ubicacion.PASILLO);
         ArrayList<Silla> sillas = new ArrayList<Silla>();
-        sillas.add(sp1);
-        sillas.add(sp2);
         sillas.add(se1);
         sillas.add(se2);
+        sillas.add(sp1);
+        sillas.add(sp2);
+
 
         //////VEHICULO
         Vehiculo v1 = new Vehiculo("AAA000", sillas);
@@ -64,34 +64,30 @@ public class Main {
         //PRUEBAS
 
 
-        u1.darseDeBaja();
         u2.modificarNombre("Usuario2Modificado");
         u3.modificarEmail("emailModificado@example.com");
         u4.modificarMovil(3333333333L);
 
-        System.out.println(u2.historicoViaje(inicio, fin));
+        //System.out.println(u2.historicoViaje(inicio, fin));
 
         //////funcionamiento de comprarTiquete
-        System.out.println("u1: compra el tiquete: " + u1.comprarTiquete(c2, c4, 4000));
-        System.out.println("u3: compra el tiquete: " + u2.comprarTiquete(c2, c4, 5000));
+        //System.out.println("u1: compra el tiquete: " + u1.comprarTiquete(c2, c4, 4000));
+        //System.out.println("u3: compra el tiquete: " + u2.comprarTiquete(c2, c4, 5000));
         System.out.println("u3: compra el tiquete: " + u3.comprarTiquete(c2, c4, 10000));
 
-        System.out.println(u2.getHistoricoViajes());
-
-
         //////funcionamiento de Comprador.historicoViaje => (DATE, DATE) --- (CIUDAD)
-        System.out.println(u3.historicoViaje(inicio, fin));
-        System.out.println(u1.historicoViaje(c4));
+        //System.out.println(u3.historicoViaje(inicio, fin));
+        //System.out.println(u1.historicoViaje(c4));
 
-        System.out.println(Asignar.asignarViaje(con1, viaje1));
-        System.out.println(Asignar.asignarVehiculo(mec1, v1));
+        Asignar.asignarViaje(con1, viaje1);
+        Asignar.asignarVehiculo(mec1, v1);
 
-        System.out.println(Comprador.getCompradores());
+        //System.out.println(Comprador.getCompradores());
 
-        Serializador.serializarTodo();
-        Gestionar.gestionarViajes(2);
-        AdminViaje.visualizarEstadisticas();
-        Gestionar.gestionarEspecialistas();
+        //Serializador.serializarTodo();
+        Gestionar.gestionarViajes(3);
+        //AdminViaje.visualizarEstadisticas();
+        //Gestionar.gestionarEspecialistas();
 
 
     }

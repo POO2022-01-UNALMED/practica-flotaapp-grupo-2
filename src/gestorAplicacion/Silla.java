@@ -19,6 +19,8 @@ public class Silla implements Serializable {
     	
     }
 
+    public int getNumeroSilla() {      return numeroSilla;   }
+
     public boolean getTipo() { return  tipo;}
 
     public boolean getEstado() {

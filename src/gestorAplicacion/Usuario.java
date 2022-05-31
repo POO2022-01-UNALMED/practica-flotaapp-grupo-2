@@ -15,6 +15,8 @@ public abstract class Usuario implements Serializable {
     protected long movil;
     protected int billetera;
 
+    public Usuario(){}
+
     public Usuario(int cc, String uNombre, String email, long movil) {
         this(cc,uNombre,email,movil,0);
     }
@@ -40,7 +42,7 @@ public abstract class Usuario implements Serializable {
         return this.consultarSaldo();
     }
 
-    public String getuNombre() {  return uNombre;   }
+    public String getuNombre() {  return uNombre; }
 
     public int getCc() {  return cc;  }
 }

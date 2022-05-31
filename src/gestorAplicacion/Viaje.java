@@ -95,4 +95,14 @@ public class Viaje implements Serializable {
 	public void aumentarFrecuencia(int frecuencia) {	this.frecuencia += frecuencia;	}
 
 	public void disminuirFrecuencia(int frecuencia) {	this.frecuencia -= frecuencia;	}
+
+	@Override
+	public String toString() {
+		return "Viaje{" +
+				"id=" + id +
+				", origen=" + origen +
+				", destino=" + destino +
+				", fechaViaje=" + fechaViaje +
+				'}';
+	}
 }
