@@ -19,6 +19,7 @@ public class Tiquete implements Serializable {
 		}
 		*/
 
+<<<<<<< HEAD
 		public Tiquete(int idTiquete, Comprador comprador, Silla sillaTiquete, Viaje viaje, int valor, Date fechaCompra) {
 			this.idTiquete = idTiquete;
 			this.comprador = comprador;
@@ -33,6 +34,10 @@ public class Tiquete implements Serializable {
 	}
 	
 	
+=======
+	public Tiquete(){}
+
+>>>>>>> master
 	public Tiquete(Silla sillaTiquete, Viaje viaje, int valor) {
 		this.sillaTiquete = sillaTiquete;
 		this.viaje = viaje;
