@@ -7,14 +7,14 @@ public class Silla implements Serializable {
 	private enum ubicacion {PASILLO, VENTANA, INTERMEDIO}
 
     private int numeroSilla;
-    private boolean tipo; //0 - Estandar , 1 - Premium
+    private boolean tipo; //0 (false) -> Estandar , 1 (true) - Premium
     private Ubicacion ubicacion; //0 - V , 1 - P
     private boolean estado;
     
     public Silla(int numeroSilla, boolean tipo, Ubicacion ubicacion) {
-    	this.numeroSilla = numeroSilla;
-    	this.tipo = tipo;
-    	this.ubicacion = ubicacion;
+    	this.setNumeroSilla(numeroSilla);
+    	this.setTipo(tipo);
+    	this.setUbicacion(ubicacion);
     	this.estado = false;
     	
     }
@@ -31,6 +31,30 @@ public class Silla implements Serializable {
     	this.estado = estado;
     }
 
+	public int getNumeroSilla() {
+		return numeroSilla;
+	}
+
+	public void setNumeroSilla(int numeroSilla) {
+		this.numeroSilla = numeroSilla;
+	}
+
+	public boolean isTipo() {
+		return tipo;
+	}
+
+	public void setTipo(boolean tipo) {
+		this.tipo = tipo;
+	}
+
+	public Ubicacion getUbicacion() {
+		return ubicacion;
+	}
+
+	public void setUbicacion(Ubicacion ubicacion) {
+		this.ubicacion = ubicacion;
+	}
+    
     @Override
     public String toString() {
         return "Silla{" +

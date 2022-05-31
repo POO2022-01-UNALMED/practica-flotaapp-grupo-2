@@ -33,7 +33,6 @@ public class Administrador extends Empleado{
     
   
 
-
     public void renunciar() {
         Administrador.administradores.remove(this);
     }

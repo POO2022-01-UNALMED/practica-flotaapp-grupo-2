@@ -31,7 +31,7 @@ public class Comprador extends Usuario implements Serializable{
     }
 
     public Tiquete comprarTiquete(Ciudad salida, Ciudad destino, int presupuesto){
-        Tiquete tiqueteFinal = new Tiquete();
+        Tiquete tiqueteFinal;
         for(Viaje viaje: Viaje.getViajes()){
             if(viaje.getDestino() == destino && viaje.getOrigen() == salida){
                 tiqueteFinal = viaje.tiqueteDisponible(presupuesto);
@@ -58,7 +58,7 @@ public class Comprador extends Usuario implements Serializable{
         }
         return viajes;
     }
-
+    
     public int historicoViaje(Ciudad ciudad){
         int cantidad = 0;
         for(Tiquete tiquete : this.getHistoricoViajes()){
@@ -71,11 +71,15 @@ public class Comprador extends Usuario implements Serializable{
 
     // ----- G E T   A N D   S E T -----
 
-    public ArrayList<Tiquete> getHistoricoViajes() {
+    public  ArrayList<Tiquete> getHistoricoViajes() {
         return historicoViajes;
     }
 
     public void anadirTiqueteHistoria(Tiquete tiquete) {this.historicoViajes.add(tiquete);}
+    
+    public String getNombre() {
+    	return uNombre;
+    }
 
     public void eliminarTiqueteHistoria(Tiquete tiquete) {this.historicoViajes.remove(tiquete);}
 
