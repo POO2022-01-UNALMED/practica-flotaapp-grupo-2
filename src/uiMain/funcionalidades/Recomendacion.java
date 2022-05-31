@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public class Recomendacion {
 
-	HashMap<Ciudad, Integer> promociones = new HashMap<>();
-	HashMap<Ciudad,Integer> visitadas = new HashMap<>();
+	public static HashMap<Ciudad, Integer> promociones = new HashMap<>();
+	private static HashMap<Ciudad,Integer> visitadas = new HashMap<>();
 	
 	
 	
