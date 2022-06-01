@@ -26,20 +26,20 @@ public class Main {
         ////FECHAS PRUEBAS
 
         LocalDate fin = LocalDate.now().plusDays(15);
-        LocalDate inicio = LocalDate.now();
+        LocalDate inicio = LocalDate.now().plusDays(2);
         LocalDate intermedio = LocalDate.now().plusDays(12);
 
         ////CIUDADES
 
-        Ciudad Medellin = new Ciudad(1, "Medellin", "calle X - 95");
-        Ciudad Bello = new Ciudad(12, "Bello", "calle Y - 72");
-        Ciudad Popayan = new Ciudad(7, "Popayan", "calle X - 37");
-        Ciudad Cali = new Ciudad(8, "Cali", "calle F - 13");
-        Ciudad Monteria = new Ciudad(5, "Monter�a", "circular 4 # 1 - 44");
-        Ciudad Cartagena = new Ciudad(4, "Cartagena", "calle G - 14");
-        Ciudad Pasto = new Ciudad(6, "Pasto", "Carrera 24 # 4 - 22");
-        Ciudad Barranquilla = new Ciudad(9, "Barranquilla", "calle siempre viva # 123");
-        Ciudad Manizales = new Ciudad(3, "Manizales", "avenida 24 # 3-23");
+        Ciudad Medellin = new Ciudad(1, "MEDELLIN", "calle X - 95");
+        Ciudad Bello = new Ciudad(12, "BELLO", "calle Y - 72");
+        Ciudad Popayan = new Ciudad(7, "POPAYAN", "calle X - 37");
+        Ciudad Cali = new Ciudad(8, "CALI", "calle F - 13");
+        Ciudad Monteria = new Ciudad(5, "MONTERIA", "circular 4 # 1 - 44");
+        Ciudad Cartagena = new Ciudad(4, "CARTAGENA", "calle G - 14");
+        Ciudad Pasto = new Ciudad(6, "PASTO", "Carrera 24 # 4 - 22");
+        Ciudad Barranquilla = new Ciudad(9, "BARRANQUILLA", "calle siempre viva # 123");
+        Ciudad Manizales = new Ciudad(3, "MANIZALES", "avenida 24 # 3-23");
 
         //////SILLAS
         Silla se1v1 = new Silla(7, false, Ubicacion.VENTANA);
@@ -71,14 +71,26 @@ public class Main {
         sillasv2.add(sp2v2);
 
 
+        Silla se1v3 = new Silla(3, false, Ubicacion.VENTANA);
+        Silla se2v3 = new Silla(4, false, Ubicacion.PASILLO);
+        Silla sp1v3 = new Silla(1, true, Ubicacion.VENTANA);
+        Silla sp2v3 = new Silla(2, true, Ubicacion.PASILLO);
+        ArrayList<Silla> sillasv3 = new ArrayList<Silla>();
+        sillasv3.add(se1v3);
+        sillasv3.add(se2v3);
+        sillasv3.add(sp1v3);
+        sillasv3.add(sp2v3);
+
+
         //////VEHICULO
         Vehiculo v1 = new Vehiculo("AAA000", sillasv1);
         Vehiculo v2 = new Vehiculo("ZZZ999", sillasv2);
+        Vehiculo v3 = new Vehiculo("ABC123", sillasv3);
 
         //VIAJES
         Viaje viaje1 = new Viaje(1, 300000, 7000, 9000, Bello, Cali, 7, v1, intermedio);
         Viaje viaje2 = new Viaje(4, 400000, 3000, 5000, Monteria, Pasto, 7, v2, intermedio);
-
+        Viaje viaje3 = new Viaje(3, 350000, 5000, 7500, Medellin, Manizales, 7, v3, fin);
 
         // PROMOCIONES
         Recomendacion.promociones.put(Cali, 10);
@@ -190,7 +202,7 @@ public class Main {
                 Gestionar.gestionarViajes(cc);
                 break;
             case 5:
-                Comprador compradorBase = new Comprador(0, "FLOTAAPPCOMPRADOR", "FLOTA@app.com", 999);
+                AdminViaje.comprarTiqueteTerminal();
                 break;
             case 6:
                 System.out.println("Recomendar Viaje - CC: ");
