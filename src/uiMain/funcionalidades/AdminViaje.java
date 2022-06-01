@@ -1,13 +1,43 @@
 package uiMain.funcionalidades;
 import gestorAplicacion.Ciudad;
+import gestorAplicacion.Comprador;
+import gestorAplicacion.Tiquete;
 import gestorAplicacion.Viaje;
 
+import java.lang.reflect.Array;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import java.io.IOException;
 
 public class AdminViaje {
     private int idEmpresa;
+
+    public static Tiquete comprarTiqueteTerminal(){
+        Comprador compradorBase = new Comprador(0, "FLOTAAPPCOMPRADOR", "FLOTA@app.com", 999);
+        System.out.println("Ciudad a la que desea viajar: ");
+        Scanner aux = new Scanner(System.in);
+        String nombreCiudad = aux.nextLine();
+        Tiquete finalTiquete = new Tiquete();
+        for(Viaje viaje : Viaje.getViajes()){
+            if(viaje.getDestino().getNombre().equals(nombreCiudad) && viaje.getOrigen().getNombre() == "MEDELLIN" && viaje.getFechaViaje().isAfter(LocalDate.now())){
+                for(int i = 0; i < viaje.getAllTiquetes().size() ; i++){
+                    System.out.println("id : ["+i+"] = " + viaje.getAllTiquetes().get(i).toString() );
+                }
+                Scanner cambio = new Scanner(System.in);
+                int auxnum = cambio.nextInt();
+                Tiquete tiquete = viaje.getAllTiquetes().get(auxnum);
+
+                Asignar.asignarTiquete( compradorBase , tiquete);
+                tiquete.setComprador(null);
+                System.out.println(tiquete);
+                return tiquete;
+            }
+        }
+        return finalTiquete;
+    }
+
 
     public static void visualizarEstadisticas(){
         System.out.println("----- V I S U A L I Z A R   E S T A D I S T I C A S -----");
@@ -22,7 +52,7 @@ public class AdminViaje {
                     allSillasDisponiblesViajes += viaje.getAllTiquetes().size();
                     System.out.println("    Viaje: "+ viaje.getId() + " - Origen: " + viaje.getOrigen() + " - Destino: " + viaje.getDestino() );
 
-                    float porcentaje = ((viaje.getVehiculo().getSillas().size() - viaje.getVehiculo().sillasDisponibles().size())*100)/viaje.getVehiculo().getSillas().size();
+                    float porcentaje = ((viaje.getVehiculo().getSillas().size() - viaje.getVehiculo().sillasDisponibles().size()) * 100 )/viaje.getVehiculo().getSillas().size();
                     System.out.println("    Promedio de ocupacion: " + porcentaje + " %");
                     evaluarPorcentajeOcupacion(viaje, porcentaje);
 

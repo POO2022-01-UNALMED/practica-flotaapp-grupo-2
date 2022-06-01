@@ -27,8 +27,9 @@ public class Gestionar {
                             System.out.println(" ");
                             Scanner des = new Scanner(System.in);
                             int num = des.nextInt();
-                            Asignar.asignarViaje(conductor, Viaje.viajesSinConductor().get(num));
-                            System.out.println("VIAJE: " + Viaje.viajesSinConductor().get(num));
+                            ArrayList<Viaje> viajesDisponibles = Viaje.viajesSinConductor();
+                            Asignar.asignarViaje(conductor, viajesDisponibles.get(num));
+                            System.out.println("VIAJE: " + viajesDisponibles.get(num));
                         }
                     }
                     break;
@@ -54,7 +55,6 @@ public class Gestionar {
             for(Tiquete tiquete : comprador.getHistoricoViajes()){
                 if(tiquete.getViaje().getFechaViaje().isAfter(LocalDate.now())){
                     viajesActivos.add(tiquete);
-
                 }
             }
             for(int i = 0; i < viajesActivos.size() ; i++){
