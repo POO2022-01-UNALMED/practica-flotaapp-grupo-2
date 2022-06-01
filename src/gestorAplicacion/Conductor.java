@@ -45,7 +45,11 @@ public class Conductor extends Empleado implements Serializable {
     //bonoSueldo() : void
 
     public void renunciar() {
-        Conductor.conductores.remove(this);
+        Conductor.desvincularEmpleado(this);
+    }
+    
+    public static void desvincularEmpleado(Conductor empleado) {
+    	Conductor.conductores.remove(empleado);
     }
 
     // ----- G E T   A N D   S E T -----

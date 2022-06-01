@@ -19,9 +19,12 @@ public class Especialista extends Empleado implements Serializable {
 	}
 
 	public void renunciar() {
-		Especialista.especialistas.remove(this);
+		Especialista.desvincularEmpleado(this);
 	}
-
+	
+	public static void desvincularEmpleado(Especialista empleado) {
+    	Especialista.especialistas.remove(empleado);
+    }
 	// ----- M E T O D O S -----
 
 	public String revisionVehiculo(Vehiculo vehiculo) {
