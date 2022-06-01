@@ -18,8 +18,8 @@ public class Recomendacion {
 	
 	public static Ciudad recomendarViaje(int cc) {
 		System.out.println("----- R E C O M E N D A R   V I A J E -----");
+		
 		Ciudad recomendadisima;
-
 		Comprador aRecomendar = new Comprador();
 		for(Comprador comprador : Comprador.getCompradores()){
 			if(comprador.getCc() == cc){ aRecomendar = comprador;}
@@ -29,7 +29,7 @@ public class Recomendacion {
 		 * del usuario solicitado y para posteriormente guardarlo en el valor de cada ciudad la cual es la llave de HashMap
 		 */
 		
-		if (Comprador.getCompradores().contains(aRecomendar)) {
+		if (Comprador.getCompradores().contains(aRecomendar) && aRecomendar.getHistoricoViajes().size() > 0) {
 			for(Tiquete cadaTiquete: aRecomendar.getHistoricoViajes()) {
 				if (visitadas.isEmpty()) {
 					visitadas.put(cadaTiquete.getViaje().getDestino(), 1); //inicializa en 1 la Ciudad
