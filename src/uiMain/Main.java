@@ -102,9 +102,13 @@ public class Main {
 
         //EMPLEADOS
         Especialista mec1 = new Especialista(27, "Jose", "emailMecanico1@example.com", 3224568585L, 3500, Especialidad.MECANICO);
-        Especialista ele1 = new Especialista(28, "Maria", "emailElectrico1@example.com", 3224567585L, 4000, Especialidad.ELECTRICO);
+        Especialista ele1 = new Especialista(78, "Maria", "emailElectrico1@example.com", 3224567585L, 4000, Especialidad.ELECTRICO);
+        Especialista ele2 = new Especialista(88, "Maria", "emailElectrico2@example.com", 3228867585L, 4000, Especialidad.ELECTRICO);
+        Especialista ele3 = new Especialista(98, "Maria", "emailElectrico3@example.com", 3229967585L, 4000, Especialidad.ELECTRICO);
         Especialista mec3 = new Especialista(32, "Pablo", "emailMecanico3@example.com", 3224538585L, 3700, Especialidad.MECANICO);
-        Especialista si1 = new Especialista(12, "Edgar", "emailSillas1@example.com", 3224533485L, 3000, Especialidad.SILLETERIA);
+        Especialista si1 = new Especialista(12, "Edgar", "emailSillas1@example.com", 3224588485L, 3000, Especialidad.SILLETERIA);
+        Especialista si2 = new Especialista(102, "Edgar", "emailSillas2@example.com", 3224599485L, 3000, Especialidad.SILLETERIA);
+        Especialista si3 = new Especialista(120, "Edgar", "emailSillas3@example.com", 3224500485L, 3000, Especialidad.SILLETERIA);
 
         ////CONDUCTORES
         Conductor con1 = new Conductor(28, "Don Javie", "DonJavier@example.com", 3004569696L, 4000, Categoria.B3);

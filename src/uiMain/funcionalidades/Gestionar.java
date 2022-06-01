@@ -12,35 +12,45 @@ public class Gestionar {
             System.out.println(" ");
             System.out.println("CC: " + conductor.getCc() + " - Nombre: " + conductor.getuNombre());
             System.out.println("Cantidad de Viajes asignados: " + conductor.getHistoriaViajesRealizados().toArray().length);
-            if (conductor.getHistoriaViajesRealizados().isEmpty()) {
-                System.out.println("[4] Asignar un Viaje, [5] Despedir");
-                Scanner aux = new Scanner(System.in);
-                switch (aux.nextInt()) {
-                    case 4: {
-                        if (Viaje.viajesSinConductor().isEmpty()) {
-                            System.out.println("Actualmente todos los viajes tienen Conductor");
-                        } else {
-                            for (int i = 0; i < Viaje.viajesSinConductor().size(); i++) {
-                                System.out.println(" ");
-                                System.out.println("id : [" + i + "] = " + Viaje.viajesSinConductor().get(i).toString());
-                            }
-                            System.out.println(" ");
-                            Scanner des = new Scanner(System.in);
-                            int num = des.nextInt();
-                            ArrayList<Viaje> viajesDisponibles = Viaje.viajesSinConductor();
-                            Asignar.asignarViaje(conductor, viajesDisponibles.get(num));
-                            System.out.println("VIAJE: " + viajesDisponibles.get(num));
-                        }
-                    }
-                    break;
 
-                    case 5: {
-                        System.out.println("EMPLEADO DESPEDIDO");
-                        Administrador.despedir(conductor);
+        }
+        System.out.println("Dime la CC del conductor que deseas gestionar : ");
+        Scanner cond = new Scanner(System.in);
+        int conductorcc = cond.nextInt();
+        Especialista conductor = new Especialista();
+        for(Especialista especialista1 : Especialista.getEspecialistas()){
+            if(especialista1.getCc() == conductorcc){ conductor = especialista1;}
+        }
+        desicionEspecialistas(conductor);
+    }
+
+    public static void desicionConductor(Conductor conductor){
+            System.out.println("[4] Asignar un Viaje, [5] Despedir");
+            Scanner aux = new Scanner(System.in);
+            switch (aux.nextInt()) {
+                case 4: {
+                    if (Viaje.viajesSinConductor().isEmpty()) {
+                        System.out.println("Actualmente todos los viajes tienen Conductor");
+                    } else {
+                        for (int i = 0; i < Viaje.viajesSinConductor().size(); i++) {
+                            System.out.println(" ");
+                            System.out.println("id : [" + i + "] = " + Viaje.viajesSinConductor().get(i).toString());
+                        }
+                        System.out.println(" ");
+                        Scanner des = new Scanner(System.in);
+                        int num = des.nextInt();
+                        ArrayList<Viaje> viajesDisponibles = Viaje.viajesSinConductor();
+                        Asignar.asignarViaje(conductor, viajesDisponibles.get(num));
+                        System.out.println("VIAJE: " + viajesDisponibles.get(num));
                     }
                 }
+                break;
+
+                case 5: {
+                    System.out.println("EMPLEADO DESPEDIDO");
+                    Administrador.despedir(conductor);
+                }
             }
-        }
     }
 
 
@@ -96,6 +106,14 @@ public class Gestionar {
                 }
             }break;
         }
+        System.out.println("Dime la CC del especialista que deseas gestionar : ");
+        Scanner espe = new Scanner(System.in);
+        int especialistacc = espe.nextInt();
+        Especialista especialista = new Especialista();
+        for(Especialista especialista1 : Especialista.getEspecialistas()){
+            if(especialista1.getCc() == especialistacc){ especialista = especialista1;}
+        }
+        desicionEspecialistas(especialista);
     }
 
     public static void gestionarTiquete(Tiquete tiquete){
@@ -156,7 +174,9 @@ public class Gestionar {
         System.out.println(" ");
         System.out.println(especialista.getEspecialidad().toString() + " -  CC: " + especialista.getCc() + " - Nombre: " + especialista.getuNombre());
         System.out.println("Cantidad de vehiculos revisados: " + especialista.getHistorialVehiculosRevisados().toArray().length);
-        if (especialista.getHistorialVehiculosRevisados().isEmpty()) {
+    }
+
+    public static void desicionEspecialistas(Especialista especialista){
             System.out.println("[4] Asignar un vehiculo a revisar, [5] Despedir");
             Scanner aux = new Scanner(System.in);
             switch (aux.nextInt()) {
@@ -171,7 +191,6 @@ public class Gestionar {
                     Administrador.despedir(especialista);
                 }
             }
-        }
     }
 }
 
