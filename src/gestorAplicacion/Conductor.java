@@ -9,9 +9,7 @@ public class Conductor extends Empleado implements Serializable {
     private Categoria categoria;
     private ArrayList<Viaje> historiaViajesRealizados;
     private static ArrayList<Conductor> conductores = new ArrayList<>();
-    static {
-        conductores = new ArrayList<Conductor>();
-    }
+    
 
     public Conductor(int cc, String uNombre, String email, long movil,int salario, Categoria categoria) {
 
@@ -43,6 +41,26 @@ public class Conductor extends Empleado implements Serializable {
     }
 
     //bonoSueldo() : void
+    @Override
+    public void bonoSueldo() {
+    	sueldo += sueldo*0.15; //bono del 15% por ligadura dinámica
+    	Conductor superConductor = null;
+    	for (Conductor cadaConductor: Conductor.conductores) {
+    		if (superConductor.equals(cadaConductor)) {
+    			superConductor = cadaConductor;
+    		}
+    		else if (cadaConductor.historiaViajesRealizados.size() > superConductor.historiaViajesRealizados.size()) {
+    			superConductor = cadaConductor;
+    		}else {
+    			continue;
+    		}
+    		if (superConductor.equals(null)) {
+    			return;
+    		}else {
+    			this.sueldo += sueldo*0.15; //bono del 15% al mejor conductor
+    		}
+    	}
+    }
 
     public void renunciar() {
         Conductor.desvincularEmpleado(this);

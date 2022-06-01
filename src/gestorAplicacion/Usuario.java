@@ -31,13 +31,8 @@ public abstract class Usuario implements Serializable {
         return this.billetera;
     }
 
-    public double agregarSaldo(double dinero){
-        if(dinero > 0){
-            this.billetera += dinero;
-        }else{
-            System.out.println("El dinero a agregar debe ser en numeros positivos");
-        }
-        return this.consultarSaldo();
+    public void agregarSaldo(double dinero){
+    	this.billetera += dinero;
     }
 
     public String getuNombre() {    return uNombre;   }
