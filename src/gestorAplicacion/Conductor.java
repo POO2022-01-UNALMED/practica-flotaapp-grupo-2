@@ -81,4 +81,5 @@ public class Conductor extends Empleado implements Serializable {
     public ArrayList<Viaje> getHistoriaViajesRealizados() {
         return historiaViajesRealizados;
     }
+
 }
