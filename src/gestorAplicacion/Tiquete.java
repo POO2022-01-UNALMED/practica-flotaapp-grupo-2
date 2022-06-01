@@ -16,9 +16,7 @@ public class Tiquete implements Serializable {
 			tiquetes = new ArrayList<Tiquete>();
 		}
 
-	public  Tiquete(){
-		System.out.println("No se encontraron tiquetes disponibles");
-	}
+	public  Tiquete(){}
 
 	public Tiquete(Silla sillaTiquete, Viaje viaje, int valor) {
 		this.sillaTiquete = sillaTiquete;
