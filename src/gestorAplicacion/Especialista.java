@@ -7,9 +7,7 @@ public class Especialista extends Empleado implements Serializable {
 	private Especialidad especialidad;
 	private ArrayList<Vehiculo> historialVehiculosRevisados = new ArrayList<Vehiculo>();
 	private static  ArrayList<Especialista> especialistas = new ArrayList<>();
-	static {
-		especialistas = new ArrayList<Especialista>();
-	}
+	
 	
 	public Especialista(int cc, String uNombre, String email, long movil, int sueldo, Especialidad especialidad) {
 		super(cc, uNombre, email, movil, sueldo);
