@@ -88,16 +88,16 @@ public class Main {
         Vehiculo v3 = new Vehiculo("ABC123", sillasv3);
 
         //VIAJES
-        Viaje viaje1 = new Viaje(1, 300000, 7000, 9000, Bello, Cali, 7, v1, intermedio);
         Viaje viaje2 = new Viaje(4, 400000, 3000, 5000, Monteria, Pasto, 7, v2, intermedio);
         Viaje viaje3 = new Viaje(3, 350000, 5000, 7500, Medellin, Manizales, 7, v3, fin);
+        Viaje viaje1 = new Viaje(1, 300000, 7000, 9000, Bello, Cali, 7, v1, intermedio);
 
         // PROMOCIONES
+        Recomendacion.promociones.put(Pasto, 25);
         Recomendacion.promociones.put(Cali, 10);
         Recomendacion.promociones.put(Bello, 15);
-        Recomendacion.promociones.put(Popayan, 5);
         Recomendacion.promociones.put(Medellin, 20);
-        Recomendacion.promociones.put(Cartagena, 25);
+        Recomendacion.promociones.put(Manizales, 35);
 
 
         //EMPLEADOS
@@ -120,7 +120,8 @@ public class Main {
         u1.comprarTiquete(Bello, Cali, 8000);
         u2.comprarTiquete(Monteria, Pasto, 5000);
         u4.comprarTiquete(Monteria, Pasto, 9000);
-        u3.comprarTiquete(Bello, Cali, 10000);
+        u3.comprarTiquete(Bello, Cali, 9000);
+        u3.comprarTiquete(Monteria, Pasto, 10000);
 
 
         //////funcionalidad Asignar Viaje

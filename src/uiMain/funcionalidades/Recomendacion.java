@@ -24,10 +24,6 @@ public class Recomendacion {
 		for(Comprador comprador : Comprador.getCompradores()){
 			if(comprador.getCc() == cc){ aRecomendar = comprador;}
 		}
-		if(aRecomendar.getuNombre() == "USUARIO NO EXISTENTE"){
-			System.out.println("USUARIO NO EXISTENTE");
-			return new Ciudad();
-		}
 		/*
 		 * Se va a guardar en visitadas la cantidad de viajes por usuario, para esto se recorre la lista de historicoViaje
 		 * del usuario solicitado y para posteriormente guardarlo en el valor de cada ciudad la cual es la llave de HashMap

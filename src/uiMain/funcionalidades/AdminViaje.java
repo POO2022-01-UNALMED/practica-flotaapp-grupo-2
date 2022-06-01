@@ -22,15 +22,14 @@ public class AdminViaje {
         Tiquete finalTiquete = new Tiquete();
         for(Viaje viaje : Viaje.getViajes()){
             if(viaje.getDestino().getNombre().equals(nombreCiudad) && viaje.getOrigen().getNombre() == "MEDELLIN" && viaje.getFechaViaje().isAfter(LocalDate.now())){
-                for(int i = 0; i < viaje.getAllTiquetes().size() ; i++){
-                    System.out.println("id : ["+i+"] = " + viaje.getAllTiquetes().get(i).toString() );
+                for(int i = 0; i < viaje.tiquetesDisponibles().size() ; i++){
+                    System.out.println("id : ["+i+"] = " + viaje.tiquetesDisponibles().get(i).toString() );
                 }
                 Scanner cambio = new Scanner(System.in);
                 int auxnum = cambio.nextInt();
                 Tiquete tiquete = viaje.getAllTiquetes().get(auxnum);
 
                 Asignar.asignarTiquete( compradorBase , tiquete);
-                tiquete.setComprador(null);
                 System.out.println(tiquete);
                 return tiquete;
             }
@@ -52,7 +51,7 @@ public class AdminViaje {
                     allSillasDisponiblesViajes += viaje.getAllTiquetes().size();
                     System.out.println("    Viaje: "+ viaje.getId() + " - Origen: " + viaje.getOrigen() + " - Destino: " + viaje.getDestino() );
 
-                    float porcentaje = ((viaje.getVehiculo().getSillas().size() - viaje.getVehiculo().sillasDisponibles().size()) * 100 )/viaje.getVehiculo().getSillas().size();
+                    float porcentaje = ((viaje.getAllTiquetes().size() - viaje.tiquetesDisponibles().size()) * 100 )/viaje.getVehiculo().getSillas().size();
                     System.out.println("    Promedio de ocupacion: " + porcentaje + " %");
                     evaluarPorcentajeOcupacion(viaje, porcentaje);
 

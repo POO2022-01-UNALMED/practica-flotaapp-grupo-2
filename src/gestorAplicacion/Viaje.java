@@ -70,6 +70,16 @@ public class Viaje implements Serializable {
 		return tiqueteFinal;
 	}
 
+	public ArrayList<Tiquete> tiquetesDisponibles(){
+		ArrayList<Tiquete> tiqueteFinal = new ArrayList<>();
+		for(Tiquete tiquete : allTiquetes){
+			if(tiquete.getSillaTiquete().getEstado() == false){
+				tiqueteFinal.add(tiquete);
+			}
+		}
+		return tiqueteFinal;
+	}
+
 	public void eliminarViaje(){
 		Viaje.viajes.remove(this);
 	}
