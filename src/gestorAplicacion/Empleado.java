@@ -12,5 +12,9 @@ public abstract class Empleado extends Usuario {
 	}
 	
 	public abstract void renunciar();
+	
+	public void bonoSueldo() {
+		sueldo += sueldo*0.1; //Se brinda un bono del 10% a cada empleado
+	}
 
 }

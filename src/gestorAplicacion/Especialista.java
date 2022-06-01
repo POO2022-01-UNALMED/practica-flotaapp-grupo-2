@@ -5,12 +5,11 @@ import java.util.ArrayList;
 
 public class Especialista extends Empleado implements Serializable {
 	private Especialidad especialidad;
-	private static  ArrayList<Vehiculo> historialVehiculosRevisados = new ArrayList<Vehiculo>();
+	private ArrayList<Vehiculo> historialVehiculosRevisados = new ArrayList<Vehiculo>();
 	private static  ArrayList<Especialista> especialistas = new ArrayList<>();
-	static {
-		especialistas = new ArrayList<Especialista>();
-	}
-	
+
+	public Especialista(){ super(0, "ESPECIALISTA NO REGISTRADO", "noemail@error.exe", 666, 0);}
+
 	public Especialista(int cc, String uNombre, String email, long movil, int sueldo, Especialidad especialidad) {
 		super(cc, uNombre, email, movil, sueldo);
 		this.especialidad = especialidad;
@@ -19,8 +18,12 @@ public class Especialista extends Empleado implements Serializable {
 	}
 
 	public void renunciar() {
-		Especialista.especialistas.remove(this);
+		Especialista.desvincularEmpleado(this);
 	}
+	
+	public static void desvincularEmpleado(Especialista empleado) {
+    	Especialista.especialistas.remove(empleado);
+    }
 
 	// ----- M E T O D O S -----
 
@@ -39,7 +42,7 @@ public class Especialista extends Empleado implements Serializable {
 
 	public Especialidad getEspecialidad() {return especialidad;	}
 
-	public static ArrayList<Vehiculo> getHistorialVehiculosRevisados() {	return historialVehiculosRevisados;}
+	public ArrayList<Vehiculo> getHistorialVehiculosRevisados() {	return historialVehiculosRevisados;	}
 
 	public static ArrayList<Especialista> getEspecialistas() {	return especialistas;}
 }
