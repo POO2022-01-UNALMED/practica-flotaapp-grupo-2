@@ -15,13 +15,13 @@ public class Main {
     private static int election = -1;
 
     public static void main(String[] args) {
-        Deserializador.deserializarTodo();
+        //Deserializador.deserializarTodo();
         // COMPRADORES
 
-        Comprador u1 = new Comprador(1, "Usuario1", "example@email.com", 3234567890L);
-        Comprador u2 = new Comprador(2, "Usuario2", "example2@email.com", 3087654321L);
-        Comprador u3 = new Comprador(3, "Usuario3", "example3@email.com", 3088890321L);
-        Comprador u4 = new Comprador(4, "Usuario4", "example4@email.com", 3087656654L);
+        Comprador u1 = new Comprador(1, "Mateo", "example@email.com", 3234567890L);
+        Comprador u2 = new Comprador(2, "Marcos", "example2@email.com", 3087654321L);
+        Comprador u3 = new Comprador(3, "Lucas", "example3@email.com", 3088890321L);
+        Comprador u4 = new Comprador(4, "Juan", "example4@email.com", 3087656654L);
 
         ////FECHAS PRUEBAS
 
@@ -101,9 +101,10 @@ public class Main {
 
 
         //EMPLEADOS
-        Especialista mec1 = new Especialista(27, "Jose", "emailMecanico1@example.com", 3224568585L, 3000, Especialidad.MECANICO);
-        Especialista ele1 = new Especialista(28, "Maria", "emailMecanico2@example.com", 3224567585L, 4000, Especialidad.ELECTRICO);
-        Especialista mec3 = new Especialista(28, "Pablo", "emailMecanico3@example.com", 3224538585L, 3700, Especialidad.MECANICO);
+        Especialista mec1 = new Especialista(27, "Jose", "emailMecanico1@example.com", 3224568585L, 3500, Especialidad.MECANICO);
+        Especialista ele1 = new Especialista(28, "Maria", "emailElectrico1@example.com", 3224567585L, 4000, Especialidad.ELECTRICO);
+        Especialista mec3 = new Especialista(32, "Pablo", "emailMecanico3@example.com", 3224538585L, 3700, Especialidad.MECANICO);
+        Especialista si1 = new Especialista(12, "Edgar", "emailSillas1@example.com", 3224533485L, 3000, Especialidad.SILLETERIA);
 
         ////CONDUCTORES
         Conductor con1 = new Conductor(28, "Don Javie", "DonJavier@example.com", 3004569696L, 4000, Categoria.B3);
@@ -113,9 +114,12 @@ public class Main {
 
         //System.out.println(u2.historicoViaje(inicio, fin));
 
+
+
         //////funcionamiento de comprarTiquete
         u1.comprarTiquete(Bello, Cali, 8000);
         u2.comprarTiquete(Monteria, Pasto, 5000);
+        u4.comprarTiquete(Monteria, Pasto, 9000);
         u3.comprarTiquete(Bello, Cali, 10000);
 
 
@@ -126,7 +130,7 @@ public class Main {
         Asignar.asignarVehiculo(mec1, v1);
         Asignar.asignarVehiculo(ele1, v1);
 
-        System.out.println(Ciudad.getCiudades());
+        //System.out.println(Ciudad.getCiudades());
 
 
         Scanner in = new Scanner(System.in);
@@ -197,9 +201,9 @@ public class Main {
                 break;
             case 4:
                 System.out.println("Gestionar Viaje - CC: ");
-                Scanner aux = new Scanner(System.in);
-                int cc = aux.nextInt();
-                Gestionar.gestionarViajes(cc);
+                Scanner ccGV = new Scanner(System.in);
+                int ccCG = ccGV.nextInt();
+                Gestionar.gestionarViajes(ccCG);
                 break;
             case 5:
                 AdminViaje.comprarTiqueteTerminal();

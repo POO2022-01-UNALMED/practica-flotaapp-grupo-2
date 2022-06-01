@@ -15,7 +15,6 @@ public class Administrador extends Empleado{
     public static void despedir(Especialista empleado){
         empleado.agregarSaldo(3000); //Comision de Despido
         Especialista.desvincularEmpleado(empleado);
-        
     }
 
     public static void despedir(Conductor empleado){

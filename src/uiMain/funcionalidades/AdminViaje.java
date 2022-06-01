@@ -68,7 +68,6 @@ public class AdminViaje {
             return viaje;
         }else if(porcentaje >= 40 && porcentaje < 60){
             viaje.disminuirFrecuencia(2);
-            //APLICAR LO DEL BONO
             return viaje;
         }else if(porcentaje < 10){
             System.out.println("[1] Eliminar Viaje, [2] Tener Fé ");

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Especialista extends Empleado implements Serializable {
 	private Especialidad especialidad;
-	private static  ArrayList<Vehiculo> historialVehiculosRevisados = new ArrayList<Vehiculo>();
+	private ArrayList<Vehiculo> historialVehiculosRevisados = new ArrayList<Vehiculo>();
 	private static  ArrayList<Especialista> especialistas = new ArrayList<>();
 	static {
 		especialistas = new ArrayList<Especialista>();
@@ -25,6 +25,7 @@ public class Especialista extends Empleado implements Serializable {
 	public static void desvincularEmpleado(Especialista empleado) {
     	Especialista.especialistas.remove(empleado);
     }
+
 	// ----- M E T O D O S -----
 
 	public String revisionVehiculo(Vehiculo vehiculo) {
@@ -42,7 +43,7 @@ public class Especialista extends Empleado implements Serializable {
 
 	public Especialidad getEspecialidad() {return especialidad;	}
 
-	public static ArrayList<Vehiculo> getHistorialVehiculosRevisados() {	return historialVehiculosRevisados;}
+	public ArrayList<Vehiculo> getHistorialVehiculosRevisados() {	return historialVehiculosRevisados;	}
 
 	public static ArrayList<Especialista> getEspecialistas() {	return especialistas;}
 }

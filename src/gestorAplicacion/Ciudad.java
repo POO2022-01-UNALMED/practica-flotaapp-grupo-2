@@ -18,6 +18,8 @@ public class Ciudad implements Serializable {
      * Desde el constructor se valida para agregar una nueva ciudad que no exista previamente y cuando esto pase no
      * se crea la instancia
      */
+	public Ciudad(){}
+
     public Ciudad(int id, String nombre, String dirTerminal) { 
     	this.id = id;
     	this.nombre = nombre;
