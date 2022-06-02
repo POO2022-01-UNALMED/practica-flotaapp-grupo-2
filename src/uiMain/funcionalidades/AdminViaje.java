@@ -55,15 +55,8 @@ public class AdminViaje {
     }
     
   public static void rentabilidadViaje(Viaje viaje) {
-	  //Rentabilidad por viaje (;
-	  // Costo
-	  // Generado por viaje
-	  //diferencia
-	  //ocupacion en porcentaje (premium y estandar) y puestos disponibles frente a capacidad
 	  int valorTiquetes = 0;
 	  int sillasOcupadas = 0;
-	  
-	  
 	  for (Tiquete tiqueteViaje: viaje.getAllTiquetes()) {
 		  if (tiqueteViaje.getEstado()) {
 			  valorTiquetes += tiqueteViaje.getValor();
@@ -78,10 +71,33 @@ public class AdminViaje {
 	  System.out.println("Para este viaje se generó $" + valorTiquetes + "y su costo fue de " + viaje.getCosto() + 
 			  "y su uilidad fue del " + (valorTiquetes - viaje.getCosto()));
 	  
+	  // promedio  por ruta ruta
+	  int ocupacionT = 0;
+	  int cantViajes = 0;
+	  int costoTot = 0;
+	  int gananciaT = 0;
 	  for(Viaje cadaViaje: Viaje.getViajes()) {
 		  if(cadaViaje.getOrigen().equals(viaje) && cadaViaje.getDestino().equals(viaje)) {
-			  continue; ///Falta
+			  int valorTaux = 0;
+			  int ocupadasAux = 0;
+			  for (Tiquete tiqueteAux: cadaViaje.getAllTiquetes()) {
+				  if (tiqueteAux.getEstado()) {
+					  valorTaux +=  tiqueteAux.getValor();
+					  ocupadasAux++;
+				  }else {
+					  continue;
+				  }				  			  
+			  }
+			  ocupacionT += 100/cadaViaje.getAllTiquetes().size()*ocupadasAux;
+			  cantViajes++;
+			  costoTot += cadaViaje.getCosto();
+			  gananciaT += valorTaux;
+			  
+		  }else {
+			  continue;
 		  }
+		  System.out.println("La ocupación promedio de la ruta es: " + ocupacionT/cantViajes + 
+				  " y su utilidad" + (gananciaT -costoTot));
 	  }
    }
   
