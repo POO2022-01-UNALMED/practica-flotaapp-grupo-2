@@ -47,8 +47,8 @@ public class Gestionar {
                 break;
 
                 case 5: {
-                    System.out.println("EMPLEADO DESPEDIDO");
-                    Administrador.despedir(conductor);
+                    Administrador.despedir(conductor); //System.out.println("EMPLEADO DESPEDIDO");
+                    
                 }
             }
     }

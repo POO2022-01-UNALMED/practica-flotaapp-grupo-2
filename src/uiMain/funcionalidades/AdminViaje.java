@@ -1,42 +1,14 @@
 package uiMain.funcionalidades;
 import gestorAplicacion.Ciudad;
-import gestorAplicacion.Comprador;
-import gestorAplicacion.Tiquete;
 import gestorAplicacion.Viaje;
+import gestorAplicacion.Tiquete;
 
-import java.lang.reflect.Array;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import java.io.IOException;
 
 public class AdminViaje {
     private int idEmpresa;
-
-    public static Tiquete comprarTiqueteTerminal(){
-        Comprador compradorBase = new Comprador(0, "FLOTAAPPCOMPRADOR", "FLOTA@app.com", 999);
-        System.out.println("Ciudad a la que desea viajar: ");
-        Scanner aux = new Scanner(System.in);
-        String nombreCiudad = aux.nextLine();
-        Tiquete finalTiquete = new Tiquete();
-        for(Viaje viaje : Viaje.getViajes()){
-            if(viaje.getDestino().getNombre().equals(nombreCiudad) && viaje.getOrigen().getNombre() == "MEDELLIN" && viaje.getFechaViaje().isAfter(LocalDate.now())){
-                for(int i = 0; i < viaje.tiquetesDisponibles().size() ; i++){
-                    System.out.println("id : ["+i+"] = " + viaje.tiquetesDisponibles().get(i).toString() );
-                }
-                Scanner cambio = new Scanner(System.in);
-                int auxnum = cambio.nextInt();
-                Tiquete tiquete = viaje.getAllTiquetes().get(auxnum);
-
-                Asignar.asignarTiquete( compradorBase , tiquete);
-                System.out.println(tiquete);
-                return tiquete;
-            }
-        }
-        return finalTiquete;
-    }
-
 
     public static void visualizarEstadisticas(){
         System.out.println("----- V I S U A L I Z A R   E S T A D I S T I C A S -----");
@@ -51,7 +23,7 @@ public class AdminViaje {
                     allSillasDisponiblesViajes += viaje.getAllTiquetes().size();
                     System.out.println("    Viaje: "+ viaje.getId() + " - Origen: " + viaje.getOrigen() + " - Destino: " + viaje.getDestino() );
 
-                    float porcentaje = ((viaje.getAllTiquetes().size() - viaje.tiquetesDisponibles().size()) * 100 )/viaje.getVehiculo().getSillas().size();
+                    float porcentaje = ((viaje.getVehiculo().getSillas().size() - viaje.getVehiculo().sillasDisponibles().size())*100)/viaje.getVehiculo().getSillas().size();
                     System.out.println("    Promedio de ocupacion: " + porcentaje + " %");
                     evaluarPorcentajeOcupacion(viaje, porcentaje);
 
@@ -67,6 +39,7 @@ public class AdminViaje {
             return viaje;
         }else if(porcentaje >= 40 && porcentaje < 60){
             viaje.disminuirFrecuencia(2);
+            //APLICAR LO DEL BONO
             return viaje;
         }else if(porcentaje < 10){
             System.out.println("[1] Eliminar Viaje, [2] Tener Fé ");
@@ -79,5 +52,21 @@ public class AdminViaje {
             }
         }
         return viaje;
+    }
+  public static String rentabilidadViaje(Viaje viaje) {
+	  int utilidades = 0;
+	  for (Viaje cadaViaje: Viaje.getViajes()) {
+		  if (cadaViaje.equals(viaje)) {
+			  for (Tiquete cadaTiquete: cadaViaje.getAllTiquetes()) {
+				  if (!cadaTiquete.getUsuario().equals(null)) {
+					  utilidades += cadaTiquete.getViaje().getCosto();
+				  }else {
+					  continue;
+				  }
+			  }
+			  
+		  }
+		  
+	  }
     }
 }

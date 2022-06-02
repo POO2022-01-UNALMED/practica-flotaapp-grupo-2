@@ -12,7 +12,7 @@ public class Viaje implements Serializable {
 	private  int precioPremium;
 	private Ciudad origen;
 	private Ciudad destino;
-	private ArrayList<Ciudad> ruta;
+	private ArrayList<Ciudad> ruta; //eliminar ruta
 	private int frecuencia;
 	private ArrayList<Tiquete> allTiquetes;
 	private LocalDate fechaViaje;
@@ -65,16 +65,6 @@ public class Viaje implements Serializable {
 		for(Tiquete tiquete : allTiquetes){
 			if(tiquete.getValor() <= presupuesto && tiquete.getSillaTiquete().getEstado() == false){
 				tiqueteFinal =  tiquete;
-			}
-		}
-		return tiqueteFinal;
-	}
-
-	public ArrayList<Tiquete> tiquetesDisponibles(){
-		ArrayList<Tiquete> tiqueteFinal = new ArrayList<>();
-		for(Tiquete tiquete : allTiquetes){
-			if(tiquete.getSillaTiquete().getEstado() == false){
-				tiqueteFinal.add(tiquete);
 			}
 		}
 		return tiqueteFinal;
