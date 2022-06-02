@@ -15,9 +15,8 @@ public class Main {
     private static int election = -1;
 
     public static void main(String[] args) {
-        //Deserializador.deserializarTodo();
-        // COMPRADORES
-
+        Deserializador.deserializarTodo();
+/*
         Comprador u1 = new Comprador(1, "Mateo", "example@email.com", 3234567890L);
         Comprador u2 = new Comprador(2, "Marcos", "example2@email.com", 3087654321L);
         Comprador u3 = new Comprador(3, "Lucas", "example3@email.com", 3088890321L);
@@ -138,19 +137,17 @@ public class Main {
         Asignar.asignarVehiculo(mec1, v1);
         Asignar.asignarVehiculo(ele1, v1);
 
-        //System.out.println(Ciudad.getCiudades());
-
-
+        //*/
         Scanner in = new Scanner(System.in);
         showLogo();
         System.out.println("\n".repeat(2));
 
         while(running) {
             showMenu();
-            while(election < 0 || election > 7) {
+            while(election < 0 || election > 8) {
                 try {
                     election = in.nextInt();
-                    if (election < 0 || election > 7) {
+                    if (election < 0 || election > 8) {
                         System.out.println("Opcion invalida..., probemos otra vez");
                         System.out.println("Recuerda, elije una de las opciones [1] [2] [3] [4] [5] [6]");
                     }
@@ -164,6 +161,7 @@ public class Main {
             executeFunctionality(election, in);
             election = -1;
         }
+        Serializador.serializarTodo();
         in.close();
 
     }
@@ -191,7 +189,8 @@ public class Main {
         System.out.println("[4] Gestionar Viaje - (cc) ");
         System.out.println("[5] Compra de Tiquete");
         System.out.println("[6] Recomendacion");
-        System.out.println("[7] Salir\n");
+        System.out.println("[7] Rentabilidad Viajes");
+        System.out.println("[8] Salir\n");
 
     }
 
@@ -223,6 +222,9 @@ public class Main {
                 System.out.println(Recomendacion.recomendarViaje(cc1));
                 break;
             case 7:
+                AdminViaje.rentabilidad();
+                break;
+            case 8:
                 running = false;
                 break;
         }

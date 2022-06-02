@@ -40,8 +40,8 @@ public class AdminViaje {
             System.out.println("id: " + ciudad.getId() + " - Nombre: "+ciudad.getNombre());
             System.out.println("Numero de Visitante: "+ ciudad.getNumVisitantes());
             int allSillasDisponiblesViajes = 0;
-            for(Viaje viaje : Viaje.getViajes()){
-                if (viaje.getDestino() == ciudad && viaje.getDestino() != null){
+            for(Viaje viaje : Viaje.getViajes()) {
+                if (viaje.getDestino().getNombre().equals(ciudad.getNombre()) && viaje.getDestino() != null){
                     System.out.println(" ");
                     allSillasDisponiblesViajes += viaje.getAllTiquetes().size();
                     System.out.println("    Viaje: "+ viaje.getId() + " - Origen: " + viaje.getOrigen() + " - Destino: " + viaje.getDestino() );
@@ -76,7 +76,10 @@ public class AdminViaje {
         }
         return viaje;
     }
-    
+
+    public static void rentabilidad(){
+        System.out.println("CODIGO DE RENTABILIDAD CON PREGUNTAS Y TALES");
+    }
     
   public static void rentabilidadViaje(Viaje viaje) {
 	  int valorTiquetes = 0;
