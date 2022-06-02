@@ -9,7 +9,6 @@ public class Silla implements Serializable {
     private int numeroSilla;
     private boolean tipo; //0 - Estandar , 1 - Premium
     private Ubicacion ubicacion; //0 - V , 1 - P
-    private boolean estado;
 	private static  ArrayList<Silla> sillas;
 	static {
 		sillas = new ArrayList<Silla>();
@@ -20,19 +19,11 @@ public class Silla implements Serializable {
     	this.setNumeroSilla(numeroSilla);
     	this.setTipo(tipo);
     	this.setUbicacion(ubicacion);
-    	this.estado = false;
+
     	Silla.sillas.add(this);
     }
 
     public boolean getTipo() { return  tipo;}
-
-    public boolean getEstado() {
-        return estado;
-    }
-    
-    public void setEstado(boolean estado) {
-    	this.estado = estado;
-    }
 
 	public int getNumeroSilla() {	return numeroSilla;	}
 
@@ -64,7 +55,6 @@ public class Silla implements Serializable {
                 "numeroSilla=" + numeroSilla +
                 ", tipo=" + tipo +
                 ", ubicacion=" + ubicacion +
-                ", estado=" + estado +
                 '}';
     }
 }

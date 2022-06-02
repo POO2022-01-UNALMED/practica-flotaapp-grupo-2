@@ -11,6 +11,7 @@ public class Tiquete implements Serializable {
 		protected Viaje viaje;
 		protected int valor;
 		protected LocalDate fechaCompra;
+		private boolean estado;
 		private static ArrayList<Tiquete> tiquetes;
 		static {
 			tiquetes = new ArrayList<Tiquete>();
@@ -21,6 +22,7 @@ public class Tiquete implements Serializable {
 	public Tiquete(Silla sillaTiquete, Viaje viaje, int valor) {
 		this.sillaTiquete = sillaTiquete;
 		this.viaje = viaje;
+		this.estado = false;
 		this.valor = valor;
 	}
 
@@ -30,6 +32,7 @@ public class Tiquete implements Serializable {
 			this.sillaTiquete = sillaTiquete;
 			this.viaje = viaje;
 			this.valor = valor;
+			this.estado = false;
 			this.fechaCompra = fechaCompra;
 			Tiquete.tiquetes.add(this);
 		}
@@ -41,6 +44,14 @@ public class Tiquete implements Serializable {
 	public Viaje getViaje() {return viaje;	}
 
 	public Comprador getUsuario() {return comprador;}
+
+	public boolean getEstado() {
+		return estado;
+	}
+
+	public void setEstado(boolean estado) {
+		this.estado = estado;
+	}
 
 	public void setComprador(Comprador comprador) {this.comprador = comprador;}
 

@@ -10,12 +10,12 @@ public class Asignar implements Serializable {
     public static Tiquete asignarTiquete(Comprador comprador, Tiquete tiquete){
         tiquete.setComprador(comprador);
         tiquete.setFechaCompra(LocalDate.now());
-        tiquete.getSillaTiquete().setEstado(true);
+        tiquete.setEstado(true);
         comprador.anadirTiqueteHistoria(tiquete);
         tiquete.getViaje().getDestino().anadirVisitantes(1);
         return tiquete;
     }
-    public static Viaje asignarViaje(Conductor conductor, Viaje viaje){
+    public static Viaje asignarVehiculo(Conductor conductor, Viaje viaje){
         viaje.getVehiculo().setConductor(conductor);
         conductor.anadirViajeHistoria(viaje);
         return viaje;
