@@ -54,6 +54,7 @@ public class AdminViaje {
         return viaje;
     }
     
+    
   public static void rentabilidadViaje(Viaje viaje) {
 	  int valorTiquetes = 0;
 	  int sillasOcupadas = 0;

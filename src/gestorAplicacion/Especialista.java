@@ -35,6 +35,28 @@ public class Especialista extends Empleado implements Serializable {
 		}
 		return mesage;
 	}
+	
+	public  void despedir(Especialista empleado){
+		if (this.especialidad.equals(especialidad.ADMINISTRADOR)) {
+			empleado.agregarSaldo(3000); //Comision de Despido
+	        Especialista.desvincularEmpleado(empleado);
+		}
+		else {
+			return; //implementar retornar error
+		}
+        
+    }
+
+    public  void despedir(Conductor empleado){
+    	if (this.especialidad.equals(especialidad.ADMINISTRADOR)) {
+			empleado.agregarSaldo(3000); //Comision de Despido
+	        Conductor.desvincularEmpleado(empleado);
+		}
+		else {
+			return; //implementar retornar error
+		}
+    }
+
 
 	// ----- G E T   A N D   S E T -----
 
