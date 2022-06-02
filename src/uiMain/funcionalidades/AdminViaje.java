@@ -52,7 +52,7 @@ public class AdminViaje {
             }
         }
         return viaje;
-    }
+    /*
   public static String rentabilidadViaje(Viaje viaje) {
 	  int utilidades = 0;
 	  for (Viaje cadaViaje: Viaje.getViajes()) {
@@ -67,6 +67,6 @@ public class AdminViaje {
 			  
 		  }
 		  
-	  }
-    }
+	  } */
+    } 
 }
