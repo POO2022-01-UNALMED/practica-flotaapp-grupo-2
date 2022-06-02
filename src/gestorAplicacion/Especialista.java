@@ -36,25 +36,31 @@ public class Especialista extends Empleado implements Serializable {
 		return mesage;
 	}
 	
-	public  void despedir(Especialista empleado){
+	public  String despedir(Especialista empleado){
+		String mesage = "";
 		if (this.especialidad.equals(especialidad.ADMINISTRADOR)) {
 			empleado.agregarSaldo(3000); //Comision de Despido
 	        Especialista.desvincularEmpleado(empleado);
+	        mesage = "Se ha despedido el especialista" + empleado.getuNombre();
 		}
 		else {
-			return; //implementar retornar error
+			mesage = "Solo los ADMINISTRADORES pueden despedir empleados";
 		}
+		return mesage;
         
     }
 
-    public  void despedir(Conductor empleado){
+    public  String despedir(Conductor empleado){
+    	String mesage = "";
     	if (this.especialidad.equals(especialidad.ADMINISTRADOR)) {
-			empleado.agregarSaldo(3000); //Comision de Despido
+			empleado.agregarSaldo(3000); //comision por despido
 	        Conductor.desvincularEmpleado(empleado);
+	        mesage = "Se ha despedido el especialista" + empleado.getuNombre();
 		}
 		else {
-			return; //implementar retornar error
+			mesage = "Solo los ADMINISTRADORES pueden despedir empleados";
 		}
+    	return mesage;
     }
 
 
