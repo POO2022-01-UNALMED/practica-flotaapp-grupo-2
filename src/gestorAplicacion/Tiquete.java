@@ -66,7 +66,7 @@ public class Tiquete implements Serializable {
 	@Override
 	public String toString() {
 		return "Tiquete = " +"ID : " + idTiquete + ", SILLA :" + sillaTiquete + "\n" +
-				"	VIAJE =" + viaje +
+				"	VIAJE =" + viaje + 
 				", valor : " + valor +
 				", fechaCompra : " + fechaCompra;
 	}
