@@ -22,6 +22,7 @@ public class Main {
         Comprador u2 = new Comprador(2, "Marcos", "example2@email.com", 3087654321L);
         Comprador u3 = new Comprador(3, "Lucas", "example3@email.com", 3088890321L);
         Comprador u4 = new Comprador(4, "Juan", "example4@email.com", 3087656654L);
+        Comprador u5 = new Comprador(5, "Estrella", "example5@email.com", 3087756654L);
 
         ////FECHAS PRUEBAS
 
@@ -91,6 +92,7 @@ public class Main {
         Viaje viaje2 = new Viaje(4, 400000, 3000, 5000, Monteria, Pasto, 7, v2, intermedio);
         Viaje viaje3 = new Viaje(3, 350000, 5000, 7500, Medellin, Manizales, 7, v3, fin);
         Viaje viaje1 = new Viaje(1, 300000, 7000, 9000, Bello, Cali, 7, v1, intermedio);
+        Viaje viaje4 = new Viaje(2, 300000, 3000, 7000, Medellin, Cartagena, 7, v1, fin);
 
         // PROMOCIONES
         Recomendacion.promociones.put(Pasto, 25);
@@ -126,11 +128,12 @@ public class Main {
         u4.comprarTiquete(Monteria, Pasto, 9000);
         u3.comprarTiquete(Bello, Cali, 9000);
         u3.comprarTiquete(Monteria, Pasto, 10000);
+        u5.comprarTiquete(Medellin, Cartagena, 10000);
 
 
         //////funcionalidad Asignar Viaje
-        Asignar.asignarViaje(con1, viaje1);
-        Asignar.asignarViaje(con2, viaje2);
+        Asignar.asignarVehiculo(con1, viaje1);
+        Asignar.asignarVehiculo(con2, viaje2);
 
         Asignar.asignarVehiculo(mec1, v1);
         Asignar.asignarVehiculo(ele1, v1);

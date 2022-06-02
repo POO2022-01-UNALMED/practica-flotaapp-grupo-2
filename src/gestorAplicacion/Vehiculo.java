@@ -19,30 +19,6 @@ public class Vehiculo implements Serializable {
         Vehiculo.vehiculos.add(this);
     }
 
-    public ArrayList<Silla> sillasDisponibles(){
-        ArrayList<Silla> disponibles = new ArrayList<>();
-        for(Silla silla : this.getSillas()){
-            if(silla.getEstado() == false){
-                disponibles.add(silla);
-            }
-        }
-        return disponibles;
-    }
-
-    public Silla selceccionarSilla() {
-        Scanner aux = new Scanner(System.in);
-        int numeroSilla = aux.nextInt();
-        if(this.sillasDisponibles().size() > 1) {
-            for(Silla sillas: this.sillasDisponibles()) {
-                if(sillas.getNumeroSilla() == numeroSilla && sillas.getEstado() == false) {
-                    sillas.setEstado(true);
-                }
-                if(sillas.getEstado() == true) {
-                    return sillas;
-                }
-            }
-        }return null;
-    }
 
     public String getPlaca() {
         return placa;
@@ -63,6 +39,7 @@ public class Vehiculo implements Serializable {
     public void setSillas(ArrayList<Silla> sillas) {
         this.sillas = sillas;
     }
+
 
     //public Silla selecionarSilla() {}
 

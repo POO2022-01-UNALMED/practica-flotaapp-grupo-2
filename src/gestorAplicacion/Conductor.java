@@ -11,6 +11,8 @@ public class Conductor extends Empleado implements Serializable {
     private static ArrayList<Conductor> conductores = new ArrayList<>();
     
 
+    public Conductor(){super(0, "CONDUCTOR NO REGISTRADO", "noemail@error.exe", 666, 0);}
+
     public Conductor(int cc, String uNombre, String email, long movil,int salario, Categoria categoria) {
 
         super(cc, uNombre, email, movil, salario);
@@ -43,7 +45,7 @@ public class Conductor extends Empleado implements Serializable {
     //bonoSueldo() : void
     @Override
     public void bonoSueldo() {
-    	sueldo += sueldo*0.15; //bono del 15% por ligadura dinámica
+    	sueldo += sueldo*0.15; //bono del 15% por ligadura dinï¿½mica
     	Conductor superConductor = null;
     	for (Conductor cadaConductor: Conductor.conductores) {
     		if (superConductor.equals(cadaConductor)) {
