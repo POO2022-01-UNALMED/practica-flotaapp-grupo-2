@@ -1,5 +1,5 @@
 package gestorAplicacion;
 
 public enum Especialidad {
-    ELECTRICO, MECANICO , SILLETERIA
+    ELECTRICO, MECANICO , SILLETERIA, ADMINISTRADOR
 }

@@ -14,21 +14,32 @@ public class Gestionar {
             System.out.println("Cantidad de Viajes asignados: " + conductor.getHistoriaViajesRealizados().toArray().length);
 
         }
+        System.out.println(" ");
         System.out.println("Dime la CC del conductor que deseas gestionar : ");
         Scanner cond = new Scanner(System.in);
         int conductorcc = cond.nextInt();
-        Especialista conductor = new Especialista();
-        for(Especialista especialista1 : Especialista.getEspecialistas()){
-            if(especialista1.getCc() == conductorcc){ conductor = especialista1;}
+        Conductor conductor = new Conductor();
+        for(Conductor conductor1 : Conductor.getConductores()){
+            if(conductor1.getCc() == conductorcc){ conductor = conductor1;}
         }
-        desicionEspecialistas(conductor);
+        desicionConductor(conductor);
     }
 
     public static void desicionConductor(Conductor conductor){
-            System.out.println("[4] Asignar un Viaje, [5] Despedir");
+        if(conductor.getuNombre().equals("CONDUCTOR NO REGISTRADO")){
+            System.out.println(conductor.getuNombre());
+            return;
+        }
+            System.out.println("[4] Visualizar Historial de viajes Asignados \n[5] Asignar un Viaje \n[6] Despedir");
             Scanner aux = new Scanner(System.in);
             switch (aux.nextInt()) {
                 case 4: {
+                    for(Viaje viaje: conductor.getHistoriaViajesRealizados()){
+                        System.out.println(viaje);
+                    }
+
+                } break;
+                case 5: {
                     if (Viaje.viajesSinConductor().isEmpty()) {
                         System.out.println("Actualmente todos los viajes tienen Conductor");
                     } else {
@@ -40,15 +51,16 @@ public class Gestionar {
                         Scanner des = new Scanner(System.in);
                         int num = des.nextInt();
                         ArrayList<Viaje> viajesDisponibles = Viaje.viajesSinConductor();
-                        Asignar.asignarViaje(conductor, viajesDisponibles.get(num));
+                        Asignar.asignarVehiculo(conductor, viajesDisponibles.get(num));
                         System.out.println("VIAJE: " + viajesDisponibles.get(num));
                     }
                 }
                 break;
 
-                case 5: {
-                    System.out.println("EMPLEADO DESPEDIDO");
-                    Administrador.despedir(conductor);
+                case 6: {
+                    Especialista administrador = new Especialista();
+                    administrador.despedir(conductor); //System.out.println("EMPLEADO DESPEDIDO");
+                    
                 }
             }
     }
@@ -75,8 +87,6 @@ public class Gestionar {
         }
 
     public static void gestionarEspecialistas(){
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
         System.out.println("----- G E S T I O N A R   E S P E C I A L I S T A S -----");
         System.out.println(" ");
         System.out.println("[1] Electrico, [2] Mecanico, [3] Silleteria");
@@ -106,6 +116,7 @@ public class Gestionar {
                 }
             }break;
         }
+        System.out.println(" ");
         System.out.println("Dime la CC del especialista que deseas gestionar : ");
         Scanner espe = new Scanner(System.in);
         int especialistacc = espe.nextInt();
@@ -124,7 +135,7 @@ public class Gestionar {
                 ArrayList<Tiquete> tiquetesDisponibes = new ArrayList<>();
                 for(Viaje viaje : Viaje.getViajes()){
                     for(Tiquete tiqueteViaje : viaje.getAllTiquetes()){
-                        if( tiqueteViaje.getViaje().getDestino() == tiquete.getViaje().getDestino() &&  tiqueteViaje.getViaje().getOrigen() == tiquete.getViaje().getOrigen() && !tiqueteViaje.getSillaTiquete().getEstado())
+                        if( tiqueteViaje.getViaje().getDestino() == tiquete.getViaje().getDestino() &&  tiqueteViaje.getViaje().getOrigen() == tiquete.getViaje().getOrigen() && !tiqueteViaje.getEstado())
                         {
                             tiquetesDisponibes.add(tiqueteViaje);
                         }
@@ -141,7 +152,7 @@ public class Gestionar {
                     int auxnum = cambio.nextInt();
                     Asignar.asignarTiquete( tiquete.getComprador() , tiquetesDisponibes.get(auxnum));
                     tiquete.getComprador().eliminarTiqueteHistoria(tiquete);
-                    tiquete.getSillaTiquete().setEstado(false);
+                    tiquete.setEstado(false);
                     tiquete.setComprador(null);
                     System.out.println(tiquetesDisponibes.get(auxnum));
                 }
@@ -153,13 +164,13 @@ public class Gestionar {
                     System.out.println("El tiquete a sido cancelado y su dinero devuelto");
                     tiquete.getComprador().agregarSaldo(tiquete.getValor());
                     tiquete.getComprador().eliminarTiqueteHistoria(tiquete);
-                    tiquete.getSillaTiquete().setEstado(false);
+                    tiquete.setEstado(false);
                     tiquete.setComprador(null);
                 } else if(tiquete.getViaje().getFechaViaje().isBefore(LocalDate.now())) {
                     System.out.println("La fecha del viaje es muy cercana, por lo que solo podremos devolverle el 30% del valor de su Tiquete");
                     tiquete.getComprador().agregarSaldo(tiquete.getValor()*0.3);
                     tiquete.getComprador().eliminarTiqueteHistoria(tiquete);
-                    tiquete.getSillaTiquete().setEstado(false);
+                    tiquete.setEstado(false);
                     tiquete.setComprador(null);
                 } else{
                     System.out.println("El viaje ya se a realizado, no se puede hacer devuelta de su dinero");
@@ -177,20 +188,42 @@ public class Gestionar {
     }
 
     public static void desicionEspecialistas(Especialista especialista){
-            System.out.println("[4] Asignar un vehiculo a revisar, [5] Despedir");
+        if(especialista.getuNombre().equals("ESPECIALISTA NO REGISTRADO")){
+            System.out.println(especialista.getuNombre());
+            return;
+        }
+        System.out.println("[4] Visualizar Historial de viajes Asignados \n[5] Asignar un Viaje \n[6] Despedir");
             Scanner aux = new Scanner(System.in);
             switch (aux.nextInt()) {
                 case 4: {
-                    System.out.println("Tipo Revision: " + especialista.getEspecialidad().toString() + " - La revision se realizara prontemente");
-                    Asignar.asignarVehiculo(especialista, Vehiculo.getVehiculoRevisar());
-                    System.out.println("VEHICULO: " + Vehiculo.getVehiculoRevisar().getPlaca());
+                    for(Vehiculo vehiculo: especialista.getHistorialVehiculosRevisados()){
+                        System.out.println(vehiculo.getPlaca());
+                    }
+
+                } break;
+                case 5: {
+                    System.out.println("Tipo Revision: " + especialista.getEspecialidad().toString());
+                    asignarVehiculoEmpleados(especialista);
                 }
                 break;
 
-                case 5: {
-                    Administrador.despedir(especialista);
+                case 6: {
+                    Especialista administrador = new Especialista();
+                    administrador.despedir(especialista); //System.out.println("EMPLEADO DESPEDIDO");
                 }
             }
+    }
+
+    public static void asignarVehiculoEmpleados(Empleado empleado){
+
+            for(int i = 0 ;i < Vehiculo.getVehiculos().size() ; i++){
+                System.out.println("id : ["+i+"] = " + Vehiculo.getVehiculos().get(i).getPlaca());
+            }
+            System.out.println("Vehiculo a Asignar: ");
+            Scanner cambio = new Scanner(System.in);
+            int vehiculo = cambio.nextInt();
+            Asignar.asignarVehiculo((Especialista) empleado, Vehiculo.getVehiculos().get(vehiculo));
+            System.out.println("VEHICULO: " + Vehiculo.getVehiculos().get(vehiculo).getPlaca() + " Estara en revision.");
     }
 }
 

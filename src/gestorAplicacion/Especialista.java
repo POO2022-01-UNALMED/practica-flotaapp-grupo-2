@@ -5,10 +5,10 @@ import java.util.ArrayList;
 
 public class Especialista extends Empleado implements Serializable {
 	private Especialidad especialidad;
-	private ArrayList<Vehiculo> historialVehiculosRevisados = new ArrayList<Vehiculo>();
+	private ArrayList<Vehiculo> historialVehiculosRevisados;
 	private static  ArrayList<Especialista> especialistas = new ArrayList<>();
 
-	public Especialista(){ super(0, "ESPECIALISTA NO REGISTRADO", "noemail@error.exe", 666, 0);}
+	public Especialista(){ super(0, "ESPECIALISTA NO REGISTRADO", "noemail@error.exe", 666, 0); this.especialidad = Especialidad.ADMINISTRADOR;}
 
 	public Especialista(int cc, String uNombre, String email, long movil, int sueldo, Especialidad especialidad) {
 		super(cc, uNombre, email, movil, sueldo);
@@ -35,6 +35,34 @@ public class Especialista extends Empleado implements Serializable {
 		}
 		return mesage;
 	}
+	
+	public  String despedir(Especialista empleado){
+		String mesage = "";
+		if (this.especialidad.equals(especialidad.ADMINISTRADOR)) {
+			empleado.agregarSaldo(3000); //Comision de Despido
+	        Especialista.desvincularEmpleado(empleado);
+	        mesage = "Se ha despedido el especialista" + empleado.getuNombre();
+		}
+		else {
+			mesage = "Solo los ADMINISTRADORES pueden despedir empleados";
+		}
+		return mesage;
+        
+    }
+
+    public  String despedir(Conductor empleado){
+    	String mesage = "";
+    	if (this.especialidad.equals(especialidad.ADMINISTRADOR)) {
+			empleado.agregarSaldo(3000); //comision por despido
+	        Conductor.desvincularEmpleado(empleado);
+	        mesage = "Se ha despedido el especialista" + empleado.getuNombre();
+		}
+		else {
+			mesage = "Solo los ADMINISTRADORES pueden despedir empleados";
+		}
+    	return mesage;
+    }
+
 
 	// ----- G E T   A N D   S E T -----
 
