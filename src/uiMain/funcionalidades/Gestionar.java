@@ -30,10 +30,16 @@ public class Gestionar {
             System.out.println(conductor.getuNombre());
             return;
         }
-            System.out.println("[4] Asignar un Viaje, [5] Despedir");
+            System.out.println("[4] Visualizar Historial de viajes Asignados \n[5] Asignar un Viaje \n[6] Despedir");
             Scanner aux = new Scanner(System.in);
             switch (aux.nextInt()) {
                 case 4: {
+                    for(Viaje viaje: conductor.getHistoriaViajesRealizados()){
+                        System.out.println(viaje);
+                    }
+
+                } break;
+                case 5: {
                     if (Viaje.viajesSinConductor().isEmpty()) {
                         System.out.println("Actualmente todos los viajes tienen Conductor");
                     } else {
@@ -51,8 +57,9 @@ public class Gestionar {
                 }
                 break;
 
-                case 5: {
-                    Administrador.despedir(conductor); //System.out.println("EMPLEADO DESPEDIDO");
+                case 6: {
+                    Especialista administrador = new Especialista();
+                    administrador.despedir(conductor); //System.out.println("EMPLEADO DESPEDIDO");
                     
                 }
             }
@@ -185,17 +192,24 @@ public class Gestionar {
             System.out.println(especialista.getuNombre());
             return;
         }
-            System.out.println("[4] Asignar un vehiculo a revisar, [5] Despedir");
+        System.out.println("[4] Visualizar Historial de viajes Asignados \n[5] Asignar un Viaje \n[6] Despedir");
             Scanner aux = new Scanner(System.in);
             switch (aux.nextInt()) {
                 case 4: {
+                    for(Vehiculo vehiculo: especialista.getHistorialVehiculosRevisados()){
+                        System.out.println(vehiculo.getPlaca());
+                    }
+
+                } break;
+                case 5: {
                     System.out.println("Tipo Revision: " + especialista.getEspecialidad().toString());
                     asignarVehiculoEmpleados(especialista);
                 }
                 break;
 
-                case 5: {
-                    Administrador.despedir(especialista);
+                case 6: {
+                    Especialista administrador = new Especialista();
+                    administrador.despedir(especialista); //System.out.println("EMPLEADO DESPEDIDO");
                 }
             }
     }

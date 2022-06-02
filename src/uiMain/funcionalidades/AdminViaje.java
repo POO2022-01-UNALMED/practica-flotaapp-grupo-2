@@ -1,14 +1,37 @@
 package uiMain.funcionalidades;
-import gestorAplicacion.Ciudad;
-import gestorAplicacion.Viaje;
-import gestorAplicacion.Tiquete;
+import gestorAplicacion.*;
 
 import java.util.Scanner;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class AdminViaje {
     private int idEmpresa;
+
+    public static Tiquete comprarTiqueteTerminal(){
+        Comprador compradorBase = new Comprador(0, "FLOTAAPPCOMPRADOR", "FLOTA@app.com", 999);
+        System.out.println("Ciudad a la que desea viajar: ");
+        Scanner aux = new Scanner(System.in);
+        String nombreCiudad = aux.nextLine();
+        Tiquete finalTiquete = new Tiquete();
+        for(Viaje viaje : Viaje.getViajes()){
+            if(viaje.getDestino().getNombre().equals(nombreCiudad) && viaje.getOrigen().getNombre() == "MEDELLIN" && viaje.getFechaViaje().isAfter(LocalDate.now())){
+                for(int i = 0; i < viaje.tiquetesDisponibles().size() ; i++){
+                    System.out.println("id : ["+i+"] = " + viaje.tiquetesDisponibles().get(i).toString() );
+                }
+                Scanner cambio = new Scanner(System.in);
+                int auxnum = cambio.nextInt();
+                Tiquete tiquete = viaje.getAllTiquetes().get(auxnum);
+
+                Asignar.asignarTiquete( compradorBase , tiquete);
+                System.out.println(tiquete);
+                return tiquete;
+            }
+        }
+        return finalTiquete;
+    }
+
 
     public static void visualizarEstadisticas(){
         System.out.println("----- V I S U A L I Z A R   E S T A D I S T I C A S -----");
@@ -23,7 +46,7 @@ public class AdminViaje {
                     allSillasDisponiblesViajes += viaje.getAllTiquetes().size();
                     System.out.println("    Viaje: "+ viaje.getId() + " - Origen: " + viaje.getOrigen() + " - Destino: " + viaje.getDestino() );
 
-                    float porcentaje = ((viaje.getVehiculo().getSillas().size() - viaje.getVehiculo().sillasDisponibles().size())*100)/viaje.getVehiculo().getSillas().size();
+                    float porcentaje = ((viaje.getVehiculo().getSillas().size() - viaje.tiquetesDisponibles().size())*100)/viaje.getVehiculo().getSillas().size();
                     System.out.println("    Promedio de ocupacion: " + porcentaje + " %");
                     evaluarPorcentajeOcupacion(viaje, porcentaje);
 
@@ -42,7 +65,7 @@ public class AdminViaje {
             //APLICAR LO DEL BONO
             return viaje;
         }else if(porcentaje < 10){
-            System.out.println("[1] Eliminar Viaje, [2] Tener FÃ© ");
+            System.out.println("[1] Eliminar Viaje\n[2] Tener FÃ© ");
             Scanner aux = new Scanner(System.in);
             int propuesta = aux.nextInt();
             if ( propuesta == 1) {
@@ -67,9 +90,9 @@ public class AdminViaje {
 		  }
 	  }
 	  System.out.println(viaje.toString());
-	  System.out.println( "Ocupación del vehiculo : " + (100 / viaje.getAllTiquetes().size() * sillasOcupadas) + "%" + "," + 
+	  System.out.println( "Ocupaciï¿½n del vehiculo : " + (100 / viaje.getAllTiquetes().size() * sillasOcupadas) + "%" + "," + 
 	  "con" + viaje.getAllTiquetes().size() + "sillas disponibles. ");
-	  System.out.println("Para este viaje se generó $" + valorTiquetes + "y su costo fue de " + viaje.getCosto() + 
+	  System.out.println("Para este viaje se generï¿½ $" + valorTiquetes + "y su costo fue de " + viaje.getCosto() + 
 			  "y su uilidad fue del " + (valorTiquetes - viaje.getCosto()));
 	  
 	  // promedio  por ruta ruta
@@ -97,7 +120,7 @@ public class AdminViaje {
 		  }else {
 			  continue;
 		  }
-		  System.out.println("La ocupación promedio de la ruta es: " + ocupacionT/cantViajes + 
+		  System.out.println("La ocupaciï¿½n promedio de la ruta es: " + ocupacionT/cantViajes + 
 				  " y su utilidad" + (gananciaT -costoTot));
 	  }
    }
