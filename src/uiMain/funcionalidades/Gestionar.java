@@ -51,6 +51,12 @@ public class Gestionar {
                         Scanner des = new Scanner(System.in);
                         int num = des.nextInt();
                         ArrayList<Viaje> viajesDisponibles = Viaje.viajesSinConductor();
+                        for(Viaje viaje: conductor.getHistoriaViajesRealizados()){
+                            if(viaje.getFechaViaje().getYear() == viajesDisponibles.get(num).getFechaViaje().getYear() && viaje.getFechaViaje().getMonthValue() == viajesDisponibles.get(num).getFechaViaje().getMonthValue() && viaje.getFechaViaje().getDayOfMonth() == viajesDisponibles.get(num).getFechaViaje().getDayOfMonth()){
+                                System.out.println("Lo siento este conductor ya tiene un viaje para esa fecha");
+                                return;
+                            }
+                        }
                         Asignar.asignarVehiculo(conductor, viajesDisponibles.get(num));
                         System.out.println("VIAJE: " + viajesDisponibles.get(num));
                     }

@@ -133,7 +133,7 @@ public class Main {
 
         //////funcionalidad Asignar Viaje
         Asignar.asignarVehiculo(con1, viaje1);
-        Asignar.asignarVehiculo(con2, viaje2);
+        Asignar.asignarVehiculo(con2, viaje3);
 
         Asignar.asignarVehiculo(mec1, v1);
         Asignar.asignarVehiculo(ele1, v1);
