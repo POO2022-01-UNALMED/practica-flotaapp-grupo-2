@@ -11,3 +11,4 @@ Miguel Angel Fonseca Aldana  	mifonsecaa@unal.edu.co 	    	Mifonsecaa
 Juan Pablo Pineda Lopera     	jppinedal@unal.edu.co 	    	jppinedal
 -------------------------------------------------------------------------       
 Haison Urrutia Manyoma 	     	hurrutiam@unal.edu.co 	    	haison12        
+-------------------------------------------------------------------------
