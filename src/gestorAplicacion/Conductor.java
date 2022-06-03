@@ -34,8 +34,8 @@ public class Conductor extends Empleado implements Serializable {
     public void anadirViajeHistoria(Viaje viaje) {this.historiaViajesRealizados.add(viaje);}
 
     // ----- M E T O D O S -----
-
-    public Conductor modificarCategoria(Categoria categoria) { //no debe ir en conductor y scanner tampoco
+    /*
+    public Conductor modificarCategoria(Categoria categoria) { 
         System.out.println("[1] B3 , [2] C1 , [3] C2, [4]");
         Scanner aux = new Scanner(System.in);
         int categoriaModificada = aux.nextInt();
@@ -50,14 +50,14 @@ public class Conductor extends Empleado implements Serializable {
                 this.setCategoria(Categoria.C3);
         }
         return this;
-    }
+    }*/
 
     
     @Override
     public void bonoSueldo() {
     	sueldo += sueldo*0.15; //bono del 15% por ligadura dinamica
     	Conductor superConductor = new Conductor();
-    	for (Conductor cadaConductor: Conductor.conductores) { //si no ingresa eliminar bonificar al mejor conductor
+    	for (Conductor cadaConductor: Conductor.conductores) { 
     		if (superConductor.equals(cadaConductor)) {
     			superConductor = cadaConductor;
     		}
