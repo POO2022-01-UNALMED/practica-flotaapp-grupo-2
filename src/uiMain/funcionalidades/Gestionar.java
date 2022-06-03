@@ -250,6 +250,38 @@ public class Gestionar {
             Asignar.asignarVehiculo((Especialista) empleado, Vehiculo.getVehiculos().get(vehiculo));
             System.out.println("VEHICULO: " + Vehiculo.getVehiculos().get(vehiculo).getPlaca() + " Estara en revision.");
     }
+    
+    
+    public static void bonoEmpleado() {
+    	for (Especialista esp: Especialista.getEspecialistas()) {
+    		System.out.println(esp.toString());
+    	}
+    	for (Conductor cond: Conductor.getConductores()) {
+    		System.out.println(cond.toString());
+    	}
+    	System.out.println("Digite la cc del Empleado ");
+    	Scanner entrada = new Scanner(System.in);
+        int idEmpleado = entrada.nextInt();
+        
+        for (Especialista esp1: Especialista.getEspecialistas()) {
+        	if (esp1.getCc() == idEmpleado) {
+        		bonoEmpleado(esp1);
+        	}else {
+        		continue;
+        	}
+        }
+        for (Conductor cond1: Conductor.getConductores()) {
+        	if (cond1.getCc() == idEmpleado) {
+        		bonoEmpleado(cond1);
+        	}else {
+        		continue;
+        	}
+        }
+    }
+    public static void bonoEmpleado(Empleado empleado) {
+    	empleado.bonoSueldo();
+    	System.out.println(empleado.toString());
+    }
 }
 
 

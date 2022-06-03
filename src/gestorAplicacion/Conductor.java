@@ -57,7 +57,7 @@ public class Conductor extends Empleado implements Serializable {
     public void bonoSueldo() {
     	sueldo += sueldo*0.15; //bono del 15% por ligadura dinamica
     	Conductor superConductor = null;
-    	for (Conductor cadaConductor: Conductor.conductores) {
+    	for (Conductor cadaConductor: Conductor.conductores) { //si no ingresa eliminar bonificar al mejor conductor
     		if (superConductor.equals(cadaConductor)) {
     			superConductor = cadaConductor;
     		}
@@ -69,7 +69,7 @@ public class Conductor extends Empleado implements Serializable {
     		if (superConductor.equals(null)) {
     			return;
     		}else {
-    			this.sueldo += sueldo*0.15; //bono del 15% al mejor conductor
+    			this.sueldo += sueldo*0.15; //bono del 15% adicional al mejor conductor
     		}
     	}
     }
@@ -93,5 +93,14 @@ public class Conductor extends Empleado implements Serializable {
     public ArrayList<Viaje> getHistoriaViajesRealizados() {
         return historiaViajesRealizados;
     }
+    
+    @Override
+	public String toString() {
+		return "Id: " + super.cc + "\n"+
+				"Nombre: "+ super.uNombre+"\n"+
+				"Sueldo: "+ super.sueldo+"\n"+
+				"Categoria: "+ categoria +"\n"+
+				"Viajes realizados : "+ historiaViajesRealizados.size()+"\n";
+	}
 
 }

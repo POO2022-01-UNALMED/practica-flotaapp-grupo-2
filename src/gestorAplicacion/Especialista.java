@@ -91,4 +91,12 @@ public class Especialista extends Empleado implements Serializable {
 	public ArrayList<Vehiculo> getHistorialVehiculosRevisados() {	return historialVehiculosRevisados;	}
 
 	public static ArrayList<Especialista> getEspecialistas() {	return especialistas;}
+	
+	@Override
+	public String toString() {
+		return "Id: " + super.cc + "\n"+
+				"Nombre: "+ super.uNombre+"\n"+
+				"Sueldo: "+ super.sueldo+"\n"+
+				"Especialidad: "+ especialidad+"\n";
+	}
 }

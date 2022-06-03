@@ -24,7 +24,7 @@ public class Main {
 
     public static void main(String[] args) {
         Deserializador.deserializarTodo();
-        /*
+        
         Comprador u1 = new Comprador(1, "Mateo", "example@email.com", 3234567890L);
         Comprador u2 = new Comprador(2, "Marcos", "example2@email.com", 3087654321L);
         Comprador u3 = new Comprador(3, "Lucas", "example3@email.com", 3088890321L);
@@ -142,7 +142,7 @@ public class Main {
 
         Asignar.asignarVehiculo(mec1, v1);
         Asignar.asignarVehiculo(ele1, v1); 
-        */
+        
 
         System.out.println(Recomendacion.getPromociones());
 
@@ -198,7 +198,8 @@ public class Main {
         System.out.println("[5] Compra de Tiquete");
         System.out.println("[6] Recomendacion");
         System.out.println("[7] Rentabilidad Viajes");
-        System.out.println("[8] Salir\n");
+        System.out.println("[8] Aplicar Bono Empleado");
+        System.out.println("[9] Salir\n");
 
     }
 
@@ -233,6 +234,10 @@ public class Main {
                 AdminViaje.rentabilidad();
                 break;
             case 8:
+            	System.out.println("Aplicar Bono Empleado - CC: ");
+            	Gestionar.bonoEmpleado();
+            	
+            case 9:
                 running = false;
                 break;
         }
