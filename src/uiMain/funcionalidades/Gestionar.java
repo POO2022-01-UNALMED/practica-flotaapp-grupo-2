@@ -92,47 +92,6 @@ public class Gestionar {
             }
         }
 
-    public static void gestionarEspecialistas(){
-        System.out.println("----- G E S T I O N A R   E S P E C I A L I S T A S -----");
-        System.out.println(" ");
-        System.out.println("[1] Electrico, [2] Mecanico, [3] Silleteria");
-        Scanner aux = new Scanner(System.in);
-        int uno = aux.nextInt();
-        switch (uno){
-
-            case 1: {
-                for(Especialista especialista : Especialista.getEspecialistas()){
-                    if(especialista.getEspecialidad() == Especialidad.ELECTRICO){
-                        Gestionar.visualizarEspecialista(especialista);
-                    }
-                } break;
-            }
-            case 2:{
-                for(Especialista especialista : Especialista.getEspecialistas()){
-                    if(especialista.getEspecialidad() == Especialidad.MECANICO){
-                        Gestionar.visualizarEspecialista(especialista);
-                    }
-                } break;
-            }
-            case 3:{
-                for(Especialista especialista : Especialista.getEspecialistas()){
-                    if(especialista.getEspecialidad() == Especialidad.SILLETERIA){
-                        Gestionar.visualizarEspecialista(especialista);
-                    }
-                }
-            }break;
-        }
-        System.out.println(" ");
-        System.out.println("Dime la CC del especialista que deseas gestionar : ");
-        Scanner espe = new Scanner(System.in);
-        int especialistacc = espe.nextInt();
-        Especialista especialista = new Especialista();
-        for(Especialista especialista1 : Especialista.getEspecialistas()){
-            if(especialista1.getCc() == especialistacc){ especialista = especialista1;}
-        }
-        desicionEspecialistas(especialista);
-    }
-
     public static void gestionarTiquete(Tiquete tiquete){
         System.out.println("[1] Cambiar Tiquete, [2] Cancelar Tiquete");
         Scanner aux = new Scanner(System.in);
@@ -186,6 +145,48 @@ public class Gestionar {
             }
         }
     }
+
+    public static void gestionarEspecialistas(){
+        System.out.println("----- G E S T I O N A R   E S P E C I A L I S T A S -----");
+        System.out.println(" ");
+        System.out.println("[1] Electrico, [2] Mecanico, [3] Silleteria");
+        Scanner aux = new Scanner(System.in);
+        int uno = aux.nextInt();
+        switch (uno){
+
+            case 1: {
+                for(Especialista especialista : Especialista.getEspecialistas()){
+                    if(especialista.getEspecialidad() == Especialidad.ELECTRICO){
+                        Gestionar.visualizarEspecialista(especialista);
+                    }
+                } break;
+            }
+            case 2:{
+                for(Especialista especialista : Especialista.getEspecialistas()){
+                    if(especialista.getEspecialidad() == Especialidad.MECANICO){
+                        Gestionar.visualizarEspecialista(especialista);
+                    }
+                } break;
+            }
+            case 3:{
+                for(Especialista especialista : Especialista.getEspecialistas()){
+                    if(especialista.getEspecialidad() == Especialidad.SILLETERIA){
+                        Gestionar.visualizarEspecialista(especialista);
+                    }
+                }
+            }break;
+        }
+        System.out.println(" ");
+        System.out.println("Dime la CC del especialista que deseas gestionar : ");
+        Scanner espe = new Scanner(System.in);
+        int especialistacc = espe.nextInt();
+        Especialista especialista = new Especialista();
+        for(Especialista especialista1 : Especialista.getEspecialistas()){
+            if(especialista1.getCc() == especialistacc){ especialista = especialista1;}
+        }
+        desicionEspecialistas(especialista);
+    }
+
 
     public static void visualizarEspecialista(Especialista especialista) {
         System.out.println(" ");
