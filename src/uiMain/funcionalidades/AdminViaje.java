@@ -1,5 +1,5 @@
 /*
- * Clase que dispara la compra de tiquetes, la visualización de estadisticas, visualizar rentabilidad de cada uno de los viajes
+ * Clase que dispara la compra de tiquetes, la visualizaciï¿½n de estadisticas, visualizar rentabilidad de cada uno de los viajes
  * Estructuras: enum
  * 
  * @author: Mateo Hechavarria, Juan Pablo Pineda, Miguel Angel Fonseca, Haison Urrutia
@@ -60,7 +60,7 @@ public class AdminViaje {
             for(Viaje viaje : Viaje.getViajes()) {
                 if (viaje.getDestino().getNombre().equals(ciudad.getNombre()) && viaje.getDestino() != null){
                     System.out.println(" ");
-                    System.out.println("    Viaje: "+ viaje.getId() + " - Origen: " + viaje.getOrigen() + " - Destino: " + viaje.getDestino() );
+                    System.out.println("    Viaje: "+ viaje.getId() + "\n   Origen: " + viaje.getOrigen() + "\n   Destino: " + viaje.getDestino() );
                 }
             }
         }
@@ -138,7 +138,7 @@ public class AdminViaje {
 	  System.out.println(viaje.toString()+ "\n");
 	  System.out.println( "La ocupacion del vehiculo fue del : " + (100 / viaje.getAllTiquetes().size() * sillasOcupadas) + "%" + "," + 
 	  " con " + viaje.getAllTiquetes().size() + " sillas disponibles en total. \n");
-	  System.out.println("Para este viaje se genero por tiquetes $" + valorTiquetes + " y su costo de operación fue de " + viaje.getCosto() + 
+	  System.out.println("Para este viaje se genero por tiquetes $" + valorTiquetes + " y su costo de operaciï¿½n fue de " + viaje.getCosto() + 
 			  " con una uilidad del " + (valorTiquetes - viaje.getCosto())+ "\n");
 	  
 	  // promedio  por ruta 

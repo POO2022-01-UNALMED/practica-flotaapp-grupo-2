@@ -1,5 +1,5 @@
 /*
- * Clase con las funciones e información  de Conductor necesarias para hacer CRUD con Conductor, aplicar  bono y añadir viaje al histprial
+ * Clase con las funciones e informaciï¿½n  de Conductor necesarias para hacer CRUD con Conductor, aplicar  bono y aï¿½adir viaje al histprial
  * Estructuras: ArrayList, swich, herencia
  * 
  * @author: Mateo Hechavarria, Juan Pablo Pineda, Miguel Angel Fonseca, Haison Urrutia
@@ -21,7 +21,7 @@ public class Conductor extends Empleado implements Serializable {
     private static ArrayList<Conductor> conductores = new ArrayList<>();
     
 
-    public Conductor(){super(0, "CONDUCTOR NO REGISTRADO", "noemail@error.exe", 666, 0);}
+    public Conductor(){super(0, "CONDUCTOR NO REGISTRADO", "noemail@error.exe", 666, 0);this.historiaViajesRealizados = new ArrayList<>();}
 
     public Conductor(int cc, String uNombre, String email, long movil,int salario, Categoria categoria) {
 
@@ -56,7 +56,7 @@ public class Conductor extends Empleado implements Serializable {
     @Override
     public void bonoSueldo() {
     	sueldo += sueldo*0.15; //bono del 15% por ligadura dinamica
-    	Conductor superConductor = null;
+    	Conductor superConductor = new Conductor();
     	for (Conductor cadaConductor: Conductor.conductores) { //si no ingresa eliminar bonificar al mejor conductor
     		if (superConductor.equals(cadaConductor)) {
     			superConductor = cadaConductor;

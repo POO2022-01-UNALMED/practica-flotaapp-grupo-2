@@ -131,10 +131,9 @@ public class Ciudad implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Ciudad: "+nombre + "\n"+
-				"id: "+ id+ "\n"+
-				"Con dirección del terminal: "+dirTerminal+"\n"+
-				"Total de visitantes: "+ numVisitantes;
+		return "Ciudad: "+nombre +
+				" id: "+ id +
+				" - Direccion Terminal: "+dirTerminal;
 				
 				
 	}
