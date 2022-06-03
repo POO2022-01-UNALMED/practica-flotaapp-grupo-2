@@ -3,6 +3,7 @@ import gestorAplicacion.*;
 
 import java.util.Scanner;
 
+
 import java.io.IOException;
 import java.time.LocalDate;
 
@@ -78,7 +79,27 @@ public class AdminViaje {
     }
 
     public static void rentabilidad(){
-        System.out.println("CODIGO DE RENTABILIDAD CON PREGUNTAS Y TALES");
+        System.out.println("------R E N T A B I L I D A D------");
+        System.out.println("Dijite el id del viaje al cual le quiere calcular la rentabilidad");
+        for (Viaje allViajes: Viaje.getViajes()) {
+        	System.out.println(allViajes.toString());
+        }
+        Scanner ciudadR = new Scanner(System.in);
+        int entrada = ciudadR.nextInt();
+        
+        Viaje superViaje = (Viaje) Viaje.getViajes().stream().filter(Viaje -> Viaje.getId() == entrada);
+        
+        rentabilidadViaje(superViaje);
+        
+        /*
+        for (Viaje allViaje: Viaje.getViajes()) {
+        	if (allViaje.getId() == entrada) {
+        		rentabilidadViaje(allViaje);
+        	}else {
+        		continue;
+        	}
+        }
+        */
     }
     
   public static void rentabilidadViaje(Viaje viaje) {
@@ -93,7 +114,7 @@ public class AdminViaje {
 		  }
 	  }
 	  System.out.println(viaje.toString());
-	  System.out.println( "Ocupaci�n del vehiculo : " + (100 / viaje.getAllTiquetes().size() * sillasOcupadas) + "%" + "," + 
+	  System.out.println( "Ocupacion del vehiculo : " + (100 / viaje.getAllTiquetes().size() * sillasOcupadas) + "%" + "," + 
 	  "con" + viaje.getAllTiquetes().size() + "sillas disponibles. ");
 	  System.out.println("Para este viaje se gener� $" + valorTiquetes + "y su costo fue de " + viaje.getCosto() + 
 			  "y su uilidad fue del " + (valorTiquetes - viaje.getCosto()));
