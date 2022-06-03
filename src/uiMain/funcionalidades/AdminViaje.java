@@ -103,11 +103,11 @@ public class AdminViaje {
         Scanner ciudadR = new Scanner(System.in);
         int entrada = ciudadR.nextInt();
         
-        Viaje superViaje = (Viaje) Viaje.getViajes().stream().filter(Viaje -> Viaje.getId() == entrada);
+        //Viaje superViaje = (Viaje) Viaje.getViajes().stream().filter(Viaje -> Viaje.getId() == entrada);
         
-        rentabilidadViaje(superViaje);
+        //rentabilidadViaje(superViaje);
         
-        /*
+
         for (Viaje allViaje: Viaje.getViajes()) {
         	if (allViaje.getId() == entrada) {
         		rentabilidadViaje(allViaje);
@@ -115,7 +115,7 @@ public class AdminViaje {
         		continue;
         	}
         }
-        */
+
     }
     
   public static void rentabilidadViaje(Viaje viaje) {

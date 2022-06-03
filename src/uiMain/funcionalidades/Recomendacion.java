@@ -71,14 +71,14 @@ public class Recomendacion {
 		}
 		
 		String f = promociones.get(aRecomendar)+""; 
-		
-		String vaenelMain = "Te recomendamos " + aRecomendar.getuNombre() + " que viajes a" + recomendadisima.getNombre() +
-		" con una promoci�n de "  + f +"%";
+
 		
 		return recomendadisima;
-		
+
 		
 	}
-	
 
+	public static HashMap<Ciudad, Integer> getPromociones() {
+		return promociones;
+	}
 }

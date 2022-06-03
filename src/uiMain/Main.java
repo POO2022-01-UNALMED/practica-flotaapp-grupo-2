@@ -16,7 +16,7 @@ public class Main {
 
     public static void main(String[] args) {
         Deserializador.deserializarTodo();
-/*
+        /*
         Comprador u1 = new Comprador(1, "Mateo", "example@email.com", 3234567890L);
         Comprador u2 = new Comprador(2, "Marcos", "example2@email.com", 3087654321L);
         Comprador u3 = new Comprador(3, "Lucas", "example3@email.com", 3088890321L);
@@ -132,6 +132,8 @@ public class Main {
 
         Asignar.asignarVehiculo(mec1, v1);
         Asignar.asignarVehiculo(ele1, v1); */
+
+        System.out.println(Recomendacion.getPromociones());
 
         Scanner in = new Scanner(System.in);
         showLogo();
