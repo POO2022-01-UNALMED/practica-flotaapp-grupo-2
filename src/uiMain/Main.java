@@ -30,7 +30,7 @@ public class Main {
         LocalDate intermedio = LocalDate.now().plusDays(12);
 
         ////CIUDADES
-
+         
         Ciudad Medellin = new Ciudad(1, "MEDELLIN", "calle X - 95");
         Ciudad Bello = new Ciudad(12, "BELLO", "calle Y - 72");
         Ciudad Popayan = new Ciudad(7, "POPAYAN", "calle X - 37");
@@ -40,6 +40,8 @@ public class Main {
         Ciudad Pasto = new Ciudad(6, "PASTO", "Carrera 24 # 4 - 22");
         Ciudad Barranquilla = new Ciudad(9, "BARRANQUILLA", "calle siempre viva # 123");
         Ciudad Manizales = new Ciudad(3, "MANIZALES", "avenida 24 # 3-23");
+        
+        
 
         //////SILLAS
         Silla se1v1 = new Silla(7, false, Ubicacion.VENTANA);
@@ -131,7 +133,8 @@ public class Main {
         Asignar.asignarVehiculo(con2, viaje3);
 
         Asignar.asignarVehiculo(mec1, v1);
-        Asignar.asignarVehiculo(ele1, v1); */
+        Asignar.asignarVehiculo(ele1, v1); 
+        */
 
         System.out.println(Recomendacion.getPromociones());
 

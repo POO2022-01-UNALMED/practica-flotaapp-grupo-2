@@ -95,11 +95,11 @@ public class AdminViaje {
     }
 
     public static void rentabilidad(){
-        System.out.println("------R E N T A B I L I D A D------");
-        System.out.println("Dijite el id del viaje al cual le quiere calcular la rentabilidad");
+        System.out.println("--------- R E N T A B I L I D A D ---------" + "\n");        
         for (Viaje allViajes: Viaje.getViajes()) {
-        	System.out.println(allViajes.toString());
+        	System.out.println(allViajes.toString() + "\n");
         }
+        System.out.println("Dijite el id del viaje al cual le quiere calcular la rentabilidad");
         Scanner ciudadR = new Scanner(System.in);
         int entrada = ciudadR.nextInt();
         
@@ -129,11 +129,11 @@ public class AdminViaje {
 			  continue;
 		  }
 	  }
-	  System.out.println(viaje.toString());
-	  System.out.println( "Ocupacion del vehiculo : " + (100 / viaje.getAllTiquetes().size() * sillasOcupadas) + "%" + "," + 
-	  "con" + viaje.getAllTiquetes().size() + "sillas disponibles. ");
-	  System.out.println("Para este viaje se generï¿½ $" + valorTiquetes + "y su costo fue de " + viaje.getCosto() + 
-			  "y su uilidad fue del " + (valorTiquetes - viaje.getCosto()));
+	  System.out.println(viaje.toString()+ "\n");
+	  System.out.println( "La ocupacion del vehiculo fue del : " + (100 / viaje.getAllTiquetes().size() * sillasOcupadas) + "%" + "," + 
+	  " con " + viaje.getAllTiquetes().size() + " sillas disponibles en total. \n");
+	  System.out.println("Para este viaje se genero por tiquetes $" + valorTiquetes + " y su costo de operación fue de " + viaje.getCosto() + 
+			  " con una uilidad del " + (valorTiquetes - viaje.getCosto())+ "\n");
 	  
 	  // promedio  por ruta ruta
 	  int ocupacionT = 0;
@@ -141,7 +141,7 @@ public class AdminViaje {
 	  int costoTot = 0;
 	  int gananciaT = 0;
 	  for(Viaje cadaViaje: Viaje.getViajes()) {
-		  if(cadaViaje.getOrigen().equals(viaje) && cadaViaje.getDestino().equals(viaje)) {
+		  if(cadaViaje.getOrigen().equals(viaje.getOrigen()) && cadaViaje.getDestino().equals(viaje.getDestino())) {
 			  int valorTaux = 0;
 			  int ocupadasAux = 0;
 			  for (Tiquete tiqueteAux: cadaViaje.getAllTiquetes()) {
@@ -160,8 +160,8 @@ public class AdminViaje {
 		  }else {
 			  continue;
 		  }
-		  System.out.println("La ocupaciï¿½n promedio de la ruta es: " + ocupacionT/cantViajes + 
-				  " y su utilidad" + (gananciaT -costoTot));
+		  System.out.println("La ocupacion promedio para la ruta "+ viaje.getOrigen().getNombre()+"-"+viaje.getDestino().getNombre()+ " es del " + ocupacionT/cantViajes + "%"+
+				  " y su utilidad promedio es de " + (gananciaT -costoTot));
 	  }
    }
   

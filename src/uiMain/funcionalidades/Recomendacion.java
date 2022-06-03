@@ -3,11 +3,13 @@ package uiMain.funcionalidades;
 import gestorAplicacion.Comprador;
 import gestorAplicacion.Ciudad;
 import gestorAplicacion.Tiquete;
+import uiMain.Main;
 
 import java.util.HashMap;
 import java.util.ArrayList;
 
-public class Recomendacion {
+
+public class Recomendacion{
 
 	public static HashMap<Ciudad, Integer> promociones = new HashMap<>();
 	private static HashMap<Ciudad,Integer> visitadas = new HashMap<>();
@@ -16,10 +18,9 @@ public class Recomendacion {
 	
 	// validar historico de viajes por usuario
 	
-	public static Ciudad recomendarViaje(int cc) {
-		System.out.println("----- R E C O M E N D A R   V I A J E -----");
-		
-		Ciudad recomendadisima;
+	public static String recomendarViaje(int cc) {        
+		System.out.println("----- R E C O M E N D A R   V I A J E -----" + "\n");		
+		Ciudad recomendadisima = new Ciudad();
 		Comprador aRecomendar = new Comprador();
 		for(Comprador comprador : Comprador.getCompradores()){
 			if(comprador.getCc() == cc){ aRecomendar = comprador;}
@@ -29,22 +30,23 @@ public class Recomendacion {
 		 * del usuario solicitado y para posteriormente guardarlo en el valor de cada ciudad la cual es la llave de HashMap
 		 */
 		
-		if (Comprador.getCompradores().contains(aRecomendar) && aRecomendar.getHistoricoViajes().size() > 0) {
+		if (Comprador.getCompradores().contains(aRecomendar) && (aRecomendar.getHistoricoViajes().size() > 0)) {
 			for(Tiquete cadaTiquete: aRecomendar.getHistoricoViajes()) {
 				if (visitadas.isEmpty()) {
 					visitadas.put(cadaTiquete.getViaje().getDestino(), 1); //inicializa en 1 la Ciudad
 				}
-				if (visitadas.containsKey(cadaTiquete.getViaje().getDestino())) { //Suma 1 al valor de la ciudad (llave)
-					visitadas.put(cadaTiquete.getViaje().getDestino(), visitadas.get(cadaTiquete.getViaje().getDestino())+1);
+				else if (visitadas.containsKey(cadaTiquete.getViaje().getDestino())) { //Suma 1 al valor de la ciudad (llave)
+					visitadas.put(cadaTiquete.getViaje().getDestino(), visitadas.get((cadaTiquete.getViaje().getDestino())) + 1);
 				}
 				else {
 					visitadas.put(cadaTiquete.getViaje().getDestino(), 1);
 				}
 			}
+			
 			Ciudad masVisitada = null;
 			int visitas = 0;
 			for (Ciudad cadaCiudad: visitadas.keySet()) {
-				if ((promociones.containsKey(cadaCiudad)) && (visitadas.get(cadaCiudad)) > visitas) {
+				if ((promociones.containsKey(cadaCiudad)) && ((visitadas.get(cadaCiudad)) > visitas)) {
 					masVisitada = cadaCiudad;
 					visitas = visitadas.get(cadaCiudad);
 				}else {
@@ -56,24 +58,25 @@ public class Recomendacion {
 			
 		}
 		
-		else { //Busca la ciudad con mas visitas y la devuelve como recomendaci�n
+		else { //Busca la ciudad con mas visitas y la devuelve como recomendacion
 			Ciudad masVisitada = null;
 			int visitas = 0;
 			for (Ciudad cadaCiudad: Ciudad.getCiudades()) {
 				if((cadaCiudad.getNumVisitantes() > visitas) && promociones.containsKey(cadaCiudad)) {
-					visitas = cadaCiudad.getNumVisitantes();
 					masVisitada = cadaCiudad;
+					visitas = cadaCiudad.getNumVisitantes();					
 				}else {
 					continue;
 				}
-			}
+		    }
+			
 			recomendadisima = masVisitada;
 		}
 		
-		String f = promociones.get(aRecomendar)+""; 
+		String mesage = "Te recomendamos viajar a: \n" + recomendadisima.toString();
 
 		
-		return recomendadisima;
+		return mesage;
 
 		
 	}
