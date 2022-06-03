@@ -17,19 +17,26 @@ public class AdminViaje {
         String nombreCiudad = aux.nextLine();
         Tiquete finalTiquete = new Tiquete();
         for(Viaje viaje : Viaje.getViajes()){
-            if(viaje.getDestino().getNombre().equals(nombreCiudad) && viaje.getOrigen().getNombre() == "MEDELLIN" && viaje.getFechaViaje().isAfter(LocalDate.now())){
+            if(viaje.getDestino().getNombre().equals(nombreCiudad) && viaje.getOrigen().getNombre().equals("MEDELLIN") && viaje.getFechaViaje().isAfter(LocalDate.now())){
                 for(int i = 0; i < viaje.tiquetesDisponibles().size() ; i++){
                     System.out.println("id : ["+i+"] = " + viaje.tiquetesDisponibles().get(i).toString() );
                 }
                 Scanner cambio = new Scanner(System.in);
                 int auxnum = cambio.nextInt();
-                Tiquete tiquete = viaje.getAllTiquetes().get(auxnum);
+                if(auxnum >= viaje.tiquetesDisponibles().size()){
+                    System.out.println("ID NO VALIDO");
+                    return finalTiquete;
+                }
+                else{
+                    Tiquete tiquete = viaje.tiquetesDisponibles().get(auxnum);
+                    Asignar.asignarTiquete( compradorBase , tiquete);
+                    System.out.println(tiquete);
+                    return tiquete;
+                }
 
-                Asignar.asignarTiquete( compradorBase , tiquete);
-                System.out.println(tiquete);
-                return tiquete;
             }
         }
+        System.out.println("NO HAY TIQUETES DISPONIBLES PARA EL VIAJE QUE DESEAS");
         return finalTiquete;
     }
 
@@ -40,20 +47,29 @@ public class AdminViaje {
             System.out.println(" ");
             System.out.println("id: " + ciudad.getId() + " - Nombre: "+ciudad.getNombre());
             System.out.println("Numero de Visitante: "+ ciudad.getNumVisitantes());
-            int allSillasDisponiblesViajes = 0;
             for(Viaje viaje : Viaje.getViajes()) {
                 if (viaje.getDestino().getNombre().equals(ciudad.getNombre()) && viaje.getDestino() != null){
                     System.out.println(" ");
-                    allSillasDisponiblesViajes += viaje.getAllTiquetes().size();
                     System.out.println("    Viaje: "+ viaje.getId() + " - Origen: " + viaje.getOrigen() + " - Destino: " + viaje.getDestino() );
-
-                    float porcentaje = ((viaje.getVehiculo().getSillas().size() - viaje.tiquetesDisponibles().size())*100)/viaje.getVehiculo().getSillas().size();
-                    System.out.println("    Promedio de ocupacion: " + porcentaje + " %");
-                    evaluarPorcentajeOcupacion(viaje, porcentaje);
-
-
                 }
             }
+        }
+        System.out.println("Dime el ID del viaje que deseas gestionar :  ");
+        Scanner viajeIdS = new Scanner(System.in);
+        int viajeID = viajeIdS.nextInt();
+        Viaje viajeFinal = new Viaje();
+        for(Viaje viaje1 : Viaje.getViajes()){
+            if(viaje1.getId() == viajeID){
+                viajeFinal = viaje1;
+            }
+        }
+        if(viajeFinal.getVehiculo() == null){
+            System.out.println("VIAJE NO REGISTRADO");
+        }
+        else{
+            float porcentaje = ((viajeFinal.getVehiculo().getSillas().size() - viajeFinal.tiquetesDisponibles().size())*100)/viajeFinal.getVehiculo().getSillas().size();
+            System.out.println("    Promedio de ocupacion: " + porcentaje + " %");
+            evaluarPorcentajeOcupacion(viajeFinal, porcentaje);
         }
     }
 
@@ -66,7 +82,7 @@ public class AdminViaje {
             //APLICAR LO DEL BONO
             return viaje;
         }else if(porcentaje < 10){
-            System.out.println("[1] Eliminar Viaje\n[2] Tener Fé ");
+            System.out.println("[1] Eliminar Viaje\n[2] No eliminar, Tener Fe ");
             Scanner aux = new Scanner(System.in);
             int propuesta = aux.nextInt();
             if ( propuesta == 1) {

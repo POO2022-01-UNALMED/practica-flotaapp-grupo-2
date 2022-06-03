@@ -23,6 +23,7 @@ public class Viaje implements Serializable {
 		viajes = new ArrayList<Viaje>();
 	}
 
+	public Viaje(){}
 
 	public Viaje(int id, int costo, int precioEstandar, int precioPremium, Ciudad origen, Ciudad destino, int frecuencia,
 				 Vehiculo vehiculo, LocalDate fechaViaje) {

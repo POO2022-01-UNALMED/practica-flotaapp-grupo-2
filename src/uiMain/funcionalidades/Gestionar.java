@@ -34,6 +34,7 @@ public class Gestionar {
             Scanner aux = new Scanner(System.in);
             switch (aux.nextInt()) {
                 case 4: {
+                    System.out.println("--- HISTORIAL VIAJES ASIGNADOS ---");
                     for(Viaje viaje: conductor.getHistoriaViajesRealizados()){
                         System.out.println(viaje);
                     }
@@ -88,7 +89,16 @@ public class Gestionar {
             }
             for(int i = 0; i < viajesActivos.size() ; i++){
                 System.out.println("id : ["+i+"] = " + viajesActivos.get(i).toString() );
-                gestionarTiquete(viajesActivos.get(i));
+            }
+
+            System.out.println("Dime el ID del viaje que deseas gestionar :  ");
+            Scanner tiqueteIdS = new Scanner(System.in);
+            int tiqueteID = tiqueteIdS.nextInt();
+            if( tiqueteID > viajesActivos.size()){
+                System.out.println("VIAJE NO REGISTRADO");
+            }
+            else{
+                gestionarTiquete(viajesActivos.get(tiqueteID));
             }
         }
 
@@ -100,7 +110,7 @@ public class Gestionar {
                 ArrayList<Tiquete> tiquetesDisponibes = new ArrayList<>();
                 for(Viaje viaje : Viaje.getViajes()){
                     for(Tiquete tiqueteViaje : viaje.getAllTiquetes()){
-                        if( tiqueteViaje.getViaje().getDestino() == tiquete.getViaje().getDestino() &&  tiqueteViaje.getViaje().getOrigen() == tiquete.getViaje().getOrigen() && !tiqueteViaje.getEstado())
+                        if( tiqueteViaje.getViaje().getDestino().getNombre().equals(tiquete.getViaje().getDestino().getNombre()) &&  tiqueteViaje.getViaje().getOrigen().getNombre().equals(tiquete.getViaje().getOrigen().getNombre()) && !tiqueteViaje.getEstado())
                         {
                             tiquetesDisponibes.add(tiqueteViaje);
                         }
