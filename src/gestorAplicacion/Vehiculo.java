@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class Vehiculo implements Serializable {
     private String placa;
-    private Conductor conductor;
     private ArrayList<Silla> sillas;
     private static  ArrayList<Vehiculo> vehiculos = new ArrayList<>();
     static {
@@ -22,14 +21,6 @@ public class Vehiculo implements Serializable {
 
     public String getPlaca() {
         return placa;
-    }
-
-    public Conductor getConductor() {
-        return conductor;
-    }
-
-    public void setConductor(Conductor conductor) {
-        this.conductor = conductor;
     }
 
     public ArrayList<Silla> getSillas() {

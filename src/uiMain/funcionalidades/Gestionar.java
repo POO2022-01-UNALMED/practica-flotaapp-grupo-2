@@ -34,6 +34,7 @@ public class Gestionar {
             Scanner aux = new Scanner(System.in);
             switch (aux.nextInt()) {
                 case 4: {
+                    System.out.println("--- HISTORIAL VIAJES ASIGNADOS ---");
                     for(Viaje viaje: conductor.getHistoriaViajesRealizados()){
                         System.out.println(viaje);
                     }
@@ -51,6 +52,12 @@ public class Gestionar {
                         Scanner des = new Scanner(System.in);
                         int num = des.nextInt();
                         ArrayList<Viaje> viajesDisponibles = Viaje.viajesSinConductor();
+                        for(Viaje viaje: conductor.getHistoriaViajesRealizados()){
+                            if(viaje.getFechaViaje().getYear() == viajesDisponibles.get(num).getFechaViaje().getYear() && viaje.getFechaViaje().getMonthValue() == viajesDisponibles.get(num).getFechaViaje().getMonthValue() && viaje.getFechaViaje().getDayOfMonth() == viajesDisponibles.get(num).getFechaViaje().getDayOfMonth()){
+                                System.out.println("Lo siento este conductor ya tiene un viaje para esa fecha");
+                                return;
+                            }
+                        }
                         Asignar.asignarVehiculo(conductor, viajesDisponibles.get(num));
                         System.out.println("VIAJE: " + viajesDisponibles.get(num));
                     }
@@ -82,50 +89,18 @@ public class Gestionar {
             }
             for(int i = 0; i < viajesActivos.size() ; i++){
                 System.out.println("id : ["+i+"] = " + viajesActivos.get(i).toString() );
-                gestionarTiquete(viajesActivos.get(i));
             }
-        }
 
-    public static void gestionarEspecialistas(){
-        System.out.println("----- G E S T I O N A R   E S P E C I A L I S T A S -----");
-        System.out.println(" ");
-        System.out.println("[1] Electrico, [2] Mecanico, [3] Silleteria");
-        Scanner aux = new Scanner(System.in);
-        int uno = aux.nextInt();
-        switch (uno){
-
-            case 1: {
-                for(Especialista especialista : Especialista.getEspecialistas()){
-                    if(especialista.getEspecialidad() == Especialidad.ELECTRICO){
-                        Gestionar.visualizarEspecialista(especialista);
-                    }
-                } break;
+            System.out.println("Dime el ID del viaje que deseas gestionar :  ");
+            Scanner tiqueteIdS = new Scanner(System.in);
+            int tiqueteID = tiqueteIdS.nextInt();
+            if( tiqueteID > viajesActivos.size()){
+                System.out.println("VIAJE NO REGISTRADO");
             }
-            case 2:{
-                for(Especialista especialista : Especialista.getEspecialistas()){
-                    if(especialista.getEspecialidad() == Especialidad.MECANICO){
-                        Gestionar.visualizarEspecialista(especialista);
-                    }
-                } break;
+            else{
+                gestionarTiquete(viajesActivos.get(tiqueteID));
             }
-            case 3:{
-                for(Especialista especialista : Especialista.getEspecialistas()){
-                    if(especialista.getEspecialidad() == Especialidad.SILLETERIA){
-                        Gestionar.visualizarEspecialista(especialista);
-                    }
-                }
-            }break;
         }
-        System.out.println(" ");
-        System.out.println("Dime la CC del especialista que deseas gestionar : ");
-        Scanner espe = new Scanner(System.in);
-        int especialistacc = espe.nextInt();
-        Especialista especialista = new Especialista();
-        for(Especialista especialista1 : Especialista.getEspecialistas()){
-            if(especialista1.getCc() == especialistacc){ especialista = especialista1;}
-        }
-        desicionEspecialistas(especialista);
-    }
 
     public static void gestionarTiquete(Tiquete tiquete){
         System.out.println("[1] Cambiar Tiquete, [2] Cancelar Tiquete");
@@ -135,7 +110,7 @@ public class Gestionar {
                 ArrayList<Tiquete> tiquetesDisponibes = new ArrayList<>();
                 for(Viaje viaje : Viaje.getViajes()){
                     for(Tiquete tiqueteViaje : viaje.getAllTiquetes()){
-                        if( tiqueteViaje.getViaje().getDestino() == tiquete.getViaje().getDestino() &&  tiqueteViaje.getViaje().getOrigen() == tiquete.getViaje().getOrigen() && !tiqueteViaje.getEstado())
+                        if( tiqueteViaje.getViaje().getDestino().getNombre().equals(tiquete.getViaje().getDestino().getNombre()) &&  tiqueteViaje.getViaje().getOrigen().getNombre().equals(tiquete.getViaje().getOrigen().getNombre()) && !tiqueteViaje.getEstado())
                         {
                             tiquetesDisponibes.add(tiqueteViaje);
                         }
@@ -180,6 +155,48 @@ public class Gestionar {
             }
         }
     }
+
+    public static void gestionarEspecialistas(){
+        System.out.println("----- G E S T I O N A R   E S P E C I A L I S T A S -----");
+        System.out.println(" ");
+        System.out.println("[1] Electrico, [2] Mecanico, [3] Silleteria");
+        Scanner aux = new Scanner(System.in);
+        int uno = aux.nextInt();
+        switch (uno){
+
+            case 1: {
+                for(Especialista especialista : Especialista.getEspecialistas()){
+                    if(especialista.getEspecialidad() == Especialidad.ELECTRICO){
+                        Gestionar.visualizarEspecialista(especialista);
+                    }
+                } break;
+            }
+            case 2:{
+                for(Especialista especialista : Especialista.getEspecialistas()){
+                    if(especialista.getEspecialidad() == Especialidad.MECANICO){
+                        Gestionar.visualizarEspecialista(especialista);
+                    }
+                } break;
+            }
+            case 3:{
+                for(Especialista especialista : Especialista.getEspecialistas()){
+                    if(especialista.getEspecialidad() == Especialidad.SILLETERIA){
+                        Gestionar.visualizarEspecialista(especialista);
+                    }
+                }
+            }break;
+        }
+        System.out.println(" ");
+        System.out.println("Dime la CC del especialista que deseas gestionar : ");
+        Scanner espe = new Scanner(System.in);
+        int especialistacc = espe.nextInt();
+        Especialista especialista = new Especialista();
+        for(Especialista especialista1 : Especialista.getEspecialistas()){
+            if(especialista1.getCc() == especialistacc){ especialista = especialista1;}
+        }
+        desicionEspecialistas(especialista);
+    }
+
 
     public static void visualizarEspecialista(Especialista especialista) {
         System.out.println(" ");

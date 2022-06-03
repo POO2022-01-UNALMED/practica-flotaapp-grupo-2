@@ -12,7 +12,7 @@ public class Viaje implements Serializable {
 	private  int precioPremium;
 	private Ciudad origen;
 	private Ciudad destino;
-	private ArrayList<Ciudad> ruta; //eliminar ruta
+	private Conductor conductor;
 	private int frecuencia;
 	private ArrayList<Tiquete> allTiquetes;
 	private LocalDate fechaViaje;
@@ -23,6 +23,7 @@ public class Viaje implements Serializable {
 		viajes = new ArrayList<Viaje>();
 	}
 
+	public Viaje(){}
 
 	public Viaje(int id, int costo, int precioEstandar, int precioPremium, Ciudad origen, Ciudad destino, int frecuencia,
 				 Vehiculo vehiculo, LocalDate fechaViaje) {
@@ -89,7 +90,7 @@ public class Viaje implements Serializable {
 	public static ArrayList<Viaje> viajesSinConductor(){
 		ArrayList<Viaje> viajes = new ArrayList<>();
 		for(Viaje viaje : Viaje.getViajes()){
-			if(viaje.getVehiculo().getConductor() == null){
+			if(viaje.getConductor() == null){
 				viajes.add(viaje);
 			}
 		}
@@ -101,6 +102,10 @@ public class Viaje implements Serializable {
 	public int getCosto() {	return costo;}
 
 	public void setCosto(int costo) {this.costo = costo;}
+
+	public Conductor getConductor() {return conductor;	}
+
+	public void setConductor(Conductor conductor) {	this.conductor = conductor;	}
 
 	public ArrayList<Tiquete> getAllTiquetes() {return allTiquetes;	}
 

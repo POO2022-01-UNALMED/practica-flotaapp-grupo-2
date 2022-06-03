@@ -15,9 +15,8 @@ public class Main {
     private static int election = -1;
 
     public static void main(String[] args) {
-        //Deserializador.deserializarTodo();
-        // COMPRADORES
-
+        Deserializador.deserializarTodo();
+/*
         Comprador u1 = new Comprador(1, "Mateo", "example@email.com", 3234567890L);
         Comprador u2 = new Comprador(2, "Marcos", "example2@email.com", 3087654321L);
         Comprador u3 = new Comprador(3, "Lucas", "example3@email.com", 3088890321L);
@@ -89,10 +88,10 @@ public class Main {
         Vehiculo v3 = new Vehiculo("ABC123", sillasv3);
 
         //VIAJES
-        Viaje viaje2 = new Viaje(4, 400000, 3000, 5000, Monteria, Pasto, 7, v2, intermedio);
-        Viaje viaje3 = new Viaje(3, 350000, 5000, 7500, Medellin, Manizales, 7, v3, fin);
-        Viaje viaje1 = new Viaje(1, 300000, 7000, 9000, Bello, Cali, 7, v1, intermedio);
-        Viaje viaje4 = new Viaje(2, 300000, 3000, 7000, Medellin, Cartagena, 7, v1, fin);
+        Viaje viaje2 = new Viaje(4, 40000, 10000, 15000, Monteria, Pasto, 7, v2, intermedio);
+        Viaje viaje3 = new Viaje(3, 35000, 12000, 18000, Medellin, Manizales, 7, v3, fin);
+        Viaje viaje1 = new Viaje(1, 30000, 15000, 22000, Bello, Cali, 7, v1, intermedio);
+        Viaje viaje4 = new Viaje(2, 30000, 1100, 17000, Medellin, Cartagena, 7, v1, fin);
 
         // PROMOCIONES
         Recomendacion.promociones.put(Pasto, 25);
@@ -118,28 +117,21 @@ public class Main {
         Conductor con3 = new Conductor(30, "Dona Marta", "DonaMarta@example.com", 3004589696L, 4200, Categoria.C2);
 
 
-        //System.out.println(u2.historicoViaje(inicio, fin));
-
-
-
         //////funcionamiento de comprarTiquete
-        u1.comprarTiquete(Bello, Cali, 8000);
-        u2.comprarTiquete(Monteria, Pasto, 5000);
-        u4.comprarTiquete(Monteria, Pasto, 9000);
-        u3.comprarTiquete(Bello, Cali, 9000);
-        u3.comprarTiquete(Monteria, Pasto, 10000);
-        u5.comprarTiquete(Medellin, Cartagena, 10000);
+        u1.comprarTiquete(Bello, Cali, 80000);
+        u2.comprarTiquete(Monteria, Pasto, 50000);
+        u4.comprarTiquete(Monteria, Pasto, 90000);
+        u3.comprarTiquete(Bello, Cali, 90000);
+        u3.comprarTiquete(Monteria, Pasto, 100000);
+        u5.comprarTiquete(Medellin, Cartagena, 100000);
 
 
         //////funcionalidad Asignar Viaje
         Asignar.asignarVehiculo(con1, viaje1);
-        Asignar.asignarVehiculo(con2, viaje2);
+        Asignar.asignarVehiculo(con2, viaje3);
 
         Asignar.asignarVehiculo(mec1, v1);
-        Asignar.asignarVehiculo(ele1, v1);
-
-        //System.out.println(Ciudad.getCiudades());
-
+        Asignar.asignarVehiculo(ele1, v1); */
 
         Scanner in = new Scanner(System.in);
         showLogo();
@@ -147,23 +139,24 @@ public class Main {
 
         while(running) {
             showMenu();
-            while(election < 0 || election > 7) {
+            while(election < 0 || election > 8) {
                 try {
                     election = in.nextInt();
-                    if (election < 0 || election > 7) {
+                    if (election < 0 || election > 8) {
                         System.out.println("Opcion invalida..., probemos otra vez");
-                        System.out.println("Recuerda, elije una de las opciones [1] [2] [3] [4] [5] [6]");
+                        System.out.println("Recuerda, elije una de las opciones [1] [2] [3] [4] [5] [6] [7]");
                     }
                 } catch (Exception InputMismatchException) {
                     // TODO: handle exception
                     System.out.println("No te entiendo..., probemos otra vez");
-                    System.out.println("Recuerda, elije una de las opciones [1] [2] [3] [4] [5] [6]");
+                    System.out.println("Recuerda, elije una de las opciones [1] [2] [3] [4] [5] [6] [7]");
                 }
             }
             System.out.println("");
             executeFunctionality(election, in);
             election = -1;
         }
+        Serializador.serializarTodo();
         in.close();
 
     }
@@ -191,7 +184,8 @@ public class Main {
         System.out.println("[4] Gestionar Viaje - (cc) ");
         System.out.println("[5] Compra de Tiquete");
         System.out.println("[6] Recomendacion");
-        System.out.println("[7] Salir\n");
+        System.out.println("[7] Rentabilidad Viajes");
+        System.out.println("[8] Salir\n");
 
     }
 
@@ -218,11 +212,14 @@ public class Main {
                 break;
             case 6:
                 System.out.println("Recomendar Viaje - CC: ");
-                Scanner aux1 = new Scanner(System.in);
-                int cc1 = aux1.nextInt();
-                System.out.println(Recomendacion.recomendarViaje(cc1));
+                Scanner aux7 = new Scanner(System.in);
+                int cc8 = aux7.nextInt();
+                System.out.println(Recomendacion.recomendarViaje(cc8));
                 break;
             case 7:
+                AdminViaje.rentabilidad();
+                break;
+            case 8:
                 running = false;
                 break;
         }

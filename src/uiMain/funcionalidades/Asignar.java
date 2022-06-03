@@ -16,7 +16,7 @@ public class Asignar implements Serializable {
         return tiquete;
     }
     public static Viaje asignarVehiculo(Conductor conductor, Viaje viaje){
-        viaje.getVehiculo().setConductor(conductor);
+        viaje.setConductor(conductor);
         conductor.anadirViajeHistoria(viaje);
         return viaje;
     }
