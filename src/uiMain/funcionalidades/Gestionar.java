@@ -1,3 +1,11 @@
+/*
+ * Clase con las funciones de registrar usuario, cambiar o cancelr tiquete, consultar tareas de Especialista y asignar
+ * Estructuras: ArrayList, Scanner, LocalDate
+ * 
+ * @author: Mateo Hechavarria, Juan Pablo Pineda, Miguel Angel Fonseca, Haison Urrutia
+ */
+
+
 package uiMain.funcionalidades;
 
 import gestorAplicacion.*;

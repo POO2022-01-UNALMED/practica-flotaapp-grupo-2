@@ -1,3 +1,12 @@
+/*
+ * Clase con la informacion de Vehiculo y sillas totales por viaj
+ * Estructuras: ArrayList y sys funciones
+ * 
+ * @author: Mateo Hechavarria, Juan Pablo Pineda, Miguel Angel Fonseca, Haison Urrutia
+ */
+
+
+
 package gestorAplicacion;
 
 import java.io.Serializable;

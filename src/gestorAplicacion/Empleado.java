@@ -1,3 +1,10 @@
+/*
+ * Clase con las funciones e información de la clase abstacta Empelado necesarias para forzar la implementación del método renunciar
+ * Estructuras: Clases y métodos abstractos y herencia
+ * 
+ * @author: Mateo Hechavarria, Juan Pablo Pineda, Miguel Angel Fonseca, Haison Urrutia
+ */
+
 
 package gestorAplicacion;
 

@@ -1,3 +1,12 @@
+/*
+ * Clase con las funciones de Silla necesarias para asignar un tiquete de un viaje
+ * Estructuras: ArrayList y sus funciones, enum
+ * 
+ * @author: Mateo Hechavarria, Juan Pablo Pineda, Miguel Angel Fonseca, Haison Urrutia
+ */
+
+
+
 package gestorAplicacion;
 
 import java.io.Serializable;

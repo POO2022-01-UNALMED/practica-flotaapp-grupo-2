@@ -1,3 +1,13 @@
+/*
+ * Clase que dispara la compra de tiquetes, la visualización de estadisticas, visualizar rentabilidad de cada uno de los viajes
+ * Estructuras: enum
+ * 
+ * @author: Mateo Hechavarria, Juan Pablo Pineda, Miguel Angel Fonseca, Haison Urrutia
+ */
+
+
+
+
 package uiMain.funcionalidades;
 import gestorAplicacion.*;
 
@@ -103,10 +113,6 @@ public class AdminViaje {
         Scanner ciudadR = new Scanner(System.in);
         int entrada = ciudadR.nextInt();
         
-        //Viaje superViaje = (Viaje) Viaje.getViajes().stream().filter(Viaje -> Viaje.getId() == entrada);
-        
-        //rentabilidadViaje(superViaje);
-        
 
         for (Viaje allViaje: Viaje.getViajes()) {
         	if (allViaje.getId() == entrada) {
@@ -135,7 +141,7 @@ public class AdminViaje {
 	  System.out.println("Para este viaje se genero por tiquetes $" + valorTiquetes + " y su costo de operación fue de " + viaje.getCosto() + 
 			  " con una uilidad del " + (valorTiquetes - viaje.getCosto())+ "\n");
 	  
-	  // promedio  por ruta ruta
+	  // promedio  por ruta 
 	  int ocupacionT = 0;
 	  int cantViajes = 0;
 	  int costoTot = 0;

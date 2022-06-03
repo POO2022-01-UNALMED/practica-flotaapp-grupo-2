@@ -1,3 +1,12 @@
+/*
+ * Clase con las funciones de Especialista necesarias para hacer CRUD, generar estadisticas y reparaciones a vehiculos
+ * Estructuras: ArrayList y sus funciones, herencia, enum
+ * 
+ * @author: Mateo Hechavarria, Juan Pablo Pineda, Miguel Angel Fonseca, Haison Urrutia
+ */
+
+
+
 package gestorAplicacion;
 
 import java.io.Serializable;
@@ -8,7 +17,9 @@ public class Especialista extends Empleado implements Serializable {
 	private ArrayList<Vehiculo> historialVehiculosRevisados;
 	private static  ArrayList<Especialista> especialistas = new ArrayList<>();
 
-	public Especialista(){ super(0, "ESPECIALISTA NO REGISTRADO", "noemail@error.exe", 666, 0); this.especialidad = Especialidad.ADMINISTRADOR;}
+	public Especialista(){ 
+		super(0, "ESPECIALISTA NO REGISTRADO", "noemail@error.exe", 666, 0); this.especialidad = Especialidad.ADMINISTRADOR;
+		}
 
 	public Especialista(int cc, String uNombre, String email, long movil, int sueldo, Especialidad especialidad) {
 		super(cc, uNombre, email, movil, sueldo);

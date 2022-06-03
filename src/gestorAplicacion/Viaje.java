@@ -1,3 +1,11 @@
+/*
+ * Clase con la información de viaje, almacena la lista de tiquetes de acuerdo a la cantiudad de sillas
+ * Estructuras: ArrayList, to string
+ * 
+ * @author: Mateo Hechavarria, Juan Pablo Pineda, Miguel Angel Fonseca, Haison Urrutia
+ */
+
+
 package gestorAplicacion;
 
 import java.time.LocalDate;

@@ -1,3 +1,12 @@
+/*
+ * Clase que permite asignar un tiquete a un Comprador, un vehiculo a un especialista 
+ * Estructuras: ArrayList
+ * 
+ * @author: Mateo Hechavarria, Juan Pablo Pineda, Miguel Angel Fonseca, Haison Urrutia
+ */
+
+
+
 package uiMain.funcionalidades;
 
 import gestorAplicacion.*;

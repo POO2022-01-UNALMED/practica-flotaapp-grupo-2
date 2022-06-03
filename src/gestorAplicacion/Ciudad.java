@@ -1,3 +1,13 @@
+/*
+ * Clase con las funciones de Ciudad necesarias para hacer CRUD en ciudades
+ * Estructuras: ArrayList y sus funciones
+ * 
+ * @author: Mateo Hechavarria, Juan Pablo Pineda, Miguel Angel Fonseca, Haison Urrutia
+ */
+
+
+
+
 package gestorAplicacion;
 
 import java.io.Serializable;
@@ -6,7 +16,7 @@ import java.util.ArrayList;
 
 public class Ciudad implements Serializable {
 	private int id;
-    private String nombre; //
+    private String nombre; 
     private String dirTerminal;
     private int numVisitantes;
     private static  ArrayList<Ciudad> ciudades;
@@ -57,7 +67,7 @@ public class Ciudad implements Serializable {
 		return hV;
     } 
     
-    public String historicoViajes() {  // M�todo sobrecargado para llamarse desde una instancia
+    public String historicoViajes() {  
     	
     	String hV = "";
     	if (!ciudades.isEmpty()) {

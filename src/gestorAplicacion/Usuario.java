@@ -1,3 +1,12 @@
+/*
+ * Clase con las funciones de Usuario  necesarias almacenar la información de usuario y ser super clase de especialista, Comprador y Conductor
+ * Estructuras: funciones
+ * 
+ * @author: Mateo Hechavarria, Juan Pablo Pineda, Miguel Angel Fonseca, Haison Urrutia
+ */
+
+
+
 package gestorAplicacion;
 
 import baseDatos.Serializador;

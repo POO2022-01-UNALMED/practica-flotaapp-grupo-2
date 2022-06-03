@@ -1,3 +1,13 @@
+/*
+ * Clase con las funciones e información  de Conductor necesarias para hacer CRUD con Conductor, aplicar  bono y añadir viaje al histprial
+ * Estructuras: ArrayList, swich, herencia
+ * 
+ * @author: Mateo Hechavarria, Juan Pablo Pineda, Miguel Angel Fonseca, Haison Urrutia
+ */
+
+
+
+
 package gestorAplicacion;
 
 import java.io.Serializable;
@@ -25,7 +35,7 @@ public class Conductor extends Empleado implements Serializable {
 
     // ----- M E T O D O S -----
 
-    public Conductor modificarCategoria(Categoria categoria) {
+    public Conductor modificarCategoria(Categoria categoria) { //no debe ir en conductor y scanner tampoco
         System.out.println("[1] B3 , [2] C1 , [3] C2, [4]");
         Scanner aux = new Scanner(System.in);
         int categoriaModificada = aux.nextInt();
@@ -42,10 +52,10 @@ public class Conductor extends Empleado implements Serializable {
         return this;
     }
 
-    //bonoSueldo() : void
+    
     @Override
     public void bonoSueldo() {
-    	sueldo += sueldo*0.15; //bono del 15% por ligadura dinï¿½mica
+    	sueldo += sueldo*0.15; //bono del 15% por ligadura dinamica
     	Conductor superConductor = null;
     	for (Conductor cadaConductor: Conductor.conductores) {
     		if (superConductor.equals(cadaConductor)) {

@@ -1,3 +1,11 @@
+/*
+ * Clase main de la cual se ejecuta el programa con su respectiva interfaz
+ * Estructuras: Scanner, ArrayList, LocalDate, swich
+ * 
+ * @author: Mateo Hechavarria, Juan Pablo Pineda, Miguel Angel Fonseca, Haison Urrutia
+ */
+
+
 package uiMain;
 
 import gestorAplicacion.*;

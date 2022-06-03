@@ -1,3 +1,11 @@
+/*
+ * Clase con las funciones de Tiquete  necesarias para determinar la ocupación de un viaje, generar estadisticas, asignar viaje a usuario
+ * Estructuras: ArrayList y sus funciones, LocalDate
+ * 
+ * @author: Mateo Hechavarria, Juan Pablo Pineda, Miguel Angel Fonseca, Haison Urrutia
+ */
+
+
 package gestorAplicacion;
 
 import java.io.Serializable;

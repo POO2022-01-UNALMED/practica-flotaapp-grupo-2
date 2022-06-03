@@ -1,3 +1,12 @@
+/*
+ * Clase con las funciones de Comprador  necesarias para almacenar la información del comprador y generar funciones 
+ * Estructuras: ArrayList y sus funciones, herencia
+ * 
+ * @author: Mateo Hechavarria, Juan Pablo Pineda, Miguel Angel Fonseca, Haison Urrutia
+ */
+
+
+
 package gestorAplicacion;
 
 import baseDatos.Deserializador;

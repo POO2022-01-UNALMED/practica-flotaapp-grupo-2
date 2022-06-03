@@ -1,3 +1,13 @@
+/*
+ * Clase con la funcionalidad para retornar un string con la ciudad con destino mas frecuente sobre su historial o ciudad mas visitada
+ * Estructuras: ArrayList, Scanner, HashMap
+ * 
+ * @author: Mateo Hechavarria, Juan Pablo Pineda, Miguel Angel Fonseca, Haison Urrutia
+ */
+
+
+
+
 package uiMain.funcionalidades;
 
 import gestorAplicacion.Comprador;
