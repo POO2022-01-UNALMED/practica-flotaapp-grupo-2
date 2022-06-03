@@ -24,7 +24,7 @@ public class Main {
 
     public static void main(String[] args) {
         Deserializador.deserializarTodo();
-        
+        /*
         Comprador u1 = new Comprador(1, "Mateo", "example@email.com", 3234567890L);
         Comprador u2 = new Comprador(2, "Marcos", "example2@email.com", 3087654321L);
         Comprador u3 = new Comprador(3, "Lucas", "example3@email.com", 3088890321L);
@@ -144,7 +144,7 @@ public class Main {
         Asignar.asignarVehiculo(ele1, v1); 
         
 
-        System.out.println(Recomendacion.getPromociones());
+        System.out.println(Recomendacion.getPromociones());*/
 
         Scanner in = new Scanner(System.in);
         showLogo();
@@ -152,17 +152,17 @@ public class Main {
 
         while(running) {
             showMenu();
-            while(election < 0 || election > 8) {
+            while(election < 0 || election > 9) {
                 try {
                     election = in.nextInt();
-                    if (election < 0 || election > 8) {
+                    if (election < 0 || election > 9) {
                         System.out.println("Opcion invalida..., probemos otra vez");
-                        System.out.println("Recuerda, elije una de las opciones [1] [2] [3] [4] [5] [6] [7]");
+                        System.out.println("Recuerda, elije una de las opciones [1] [2] [3] [4] [5] [6] [7] [8]");
                     }
                 } catch (Exception InputMismatchException) {
                     // TODO: handle exception
                     System.out.println("No te entiendo..., probemos otra vez");
-                    System.out.println("Recuerda, elije una de las opciones [1] [2] [3] [4] [5] [6] [7]");
+                    System.out.println("Recuerda, elije una de las opciones [1] [2] [3] [4] [5] [6] [7] [8]");
                 }
             }
             System.out.println("");
