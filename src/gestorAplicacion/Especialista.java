@@ -37,9 +37,10 @@ public class Especialista extends Empleado implements Serializable {
 	}
 	
 	public  String despedir(Especialista empleado){
-		System.out.println("ESPECIALISTA: " + empleado.getuNombre() +" DESPEDIDO");
+
 		String mesage = "";
 		if (this.especialidad.equals(especialidad.ADMINISTRADOR)) {
+			System.out.println("ESPECIALISTA: " + empleado.getuNombre() +" DESPEDIDO");
 			empleado.agregarSaldo(3000); //Comision de Despido
 	        Especialista.desvincularEmpleado(empleado);
 	        mesage = "Se ha despedido el especialista" + empleado.getuNombre();
@@ -52,9 +53,10 @@ public class Especialista extends Empleado implements Serializable {
     }
 
     public  String despedir(Conductor empleado){
-		System.out.println("CONDUCTOR: " + empleado.getuNombre() +" DESPEDIDO");
+
     	String mesage = "";
     	if (this.especialidad.equals(especialidad.ADMINISTRADOR)) {
+			System.out.println("CONDUCTOR: " + empleado.getuNombre() +" DESPEDIDO");
 			for(Viaje viaje : empleado.getHistoriaViajesRealizados()){
 				viaje.setConductor(null);
 			}
