@@ -19,6 +19,7 @@ public class Ciudad implements Serializable {
     private String nombre; 
     private String dirTerminal;
     private int numVisitantes;
+	public int promocion;
     private static  ArrayList<Ciudad> ciudades;
 	static {
 		ciudades = new ArrayList<Ciudad>();
@@ -28,11 +29,12 @@ public class Ciudad implements Serializable {
      * Desde el constructor se valida para agregar una nueva ciudad que no exista previamente y cuando esto pase no
      * se crea la instancia
      */
-	public Ciudad(){}
+	public Ciudad(){this.promocion = 0;}
 
     public Ciudad(int id, String nombre, String dirTerminal) { 
     	this.id = id;
     	this.nombre = nombre;
+		this.promocion = 0;
     	this.setDirTerminal(dirTerminal);
     	ciudades.add(this); 
     }
@@ -128,6 +130,14 @@ public class Ciudad implements Serializable {
 	}
 
 	public static ArrayList<Ciudad> getCiudades(){ return ciudades;	}
+
+	public int getPromocion() {
+		return promocion;
+	}
+
+	public void setPromocion(int promocion) {
+		this.promocion = promocion;
+	}
 
 	@Override
 	public String toString() {

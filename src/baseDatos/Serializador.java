@@ -47,29 +47,7 @@ public class Serializador {
             e.printStackTrace();
         }
     }
-
-    public static <E, V> void serializar(HashMap<E, Integer> dicc, String className) {
-        FileOutputStream fileOut;
-
-        try {
-            String path = System.getProperty("user.dir") + "/src/baseDatos/temp/" + className + ".txt";
-            // Se crea un fileoutputstream para saber donde serializar los archivos
-            fileOut = new FileOutputStream(path);
-            // Se crea un objeto output stream para poder escribir en el archivo
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            // Guardamos la lista de objetos
-            out.writeObject(dicc);
-            out.close();
-            fileOut.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
-
-    /**
+     /**
      * Serializamos todas las clases que necesitamos
      */
     public static void serializarTodo() {
@@ -82,6 +60,5 @@ public class Serializador {
         Serializador.serializar(Vehiculo.getVehiculos(), "vehiculos");
         Serializador.serializar(Tiquete.getTiquetes(), "tiquetes");
         Serializador.serializar(Silla.getSillas(), "sillas");
-        Serializador.serializar(Recomendacion.getPromociones(), "promociones");
     }
 }

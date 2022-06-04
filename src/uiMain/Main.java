@@ -104,11 +104,11 @@ public class Main {
         Viaje viaje4 = new Viaje(2, 30000, 1100, 17000, Medellin, Cartagena, 7, v1, fin);
 
         // PROMOCIONES
-        Recomendacion.promociones.put(Pasto, 25);
-        Recomendacion.promociones.put(Cali, 10);
-        Recomendacion.promociones.put(Bello, 15);
-        Recomendacion.promociones.put(Medellin, 20);
-        Recomendacion.promociones.put(Manizales, 35);
+        Pasto.setPromocion(25);
+        Cali.setPromocion(10);
+        Bello.setPromocion(15);
+        Medellin.setPromocion(20);
+        Manizales.setPromocion(35);
 
 
         //EMPLEADOS
@@ -141,10 +141,7 @@ public class Main {
         Asignar.asignarVehiculo(con2, viaje3);
 
         Asignar.asignarVehiculo(mec1, v1);
-        Asignar.asignarVehiculo(ele1, v1); 
-        
-
-        System.out.println(Recomendacion.getPromociones());*/
+        Asignar.asignarVehiculo(ele1, v1); */
 
         Scanner in = new Scanner(System.in);
         showLogo();
@@ -228,7 +225,7 @@ public class Main {
                 System.out.println("Recomendar Viaje - CC: ");
                 Scanner aux7 = new Scanner(System.in);
                 int cc8 = aux7.nextInt();
-                System.out.println(Recomendacion.recomendarViaje(cc8));
+                Recomendacion.recomendarViaje(cc8);
                 break;
             case 7:
                 AdminViaje.rentabilidad();

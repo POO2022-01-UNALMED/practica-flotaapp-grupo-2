@@ -21,14 +21,13 @@ import java.util.ArrayList;
 
 public class Recomendacion{
 
-	public static HashMap<Ciudad, Integer> promociones = new HashMap<>();
 	private static HashMap<Ciudad,Integer> visitadas = new HashMap<>();
 	
 	
 	
 	// validar historico de viajes por usuario
 	
-	public static String recomendarViaje(int cc) {        
+	public static void recomendarViaje(int cc) {
 		System.out.println("----- R E C O M E N D A R   V I A J E -----" + "\n");		
 		Ciudad recomendadisima = new Ciudad();
 		Comprador aRecomendar = new Comprador();
@@ -56,42 +55,26 @@ public class Recomendacion{
 			Ciudad masVisitada = null;
 			int visitas = 0;
 			for (Ciudad cadaCiudad: visitadas.keySet()) {
-				if ((promociones.containsKey(cadaCiudad)) && ((visitadas.get(cadaCiudad)) > visitas)) {
+				if (((visitadas.get(cadaCiudad)) > visitas)) {
 					masVisitada = cadaCiudad;
 					visitas = visitadas.get(cadaCiudad);
-				}else {
-					continue;
 				}
 			}
 			recomendadisima = masVisitada;
-			
-			
 		}
-		
-		else { //Busca la ciudad con mas visitas y la devuelve como recomendacion
-			Ciudad masVisitada = null;
+		else { //Busca la ciudad con mas promocion y la devuelve como recomendacion
+			Ciudad masVisitada = Ciudad.getCiudades().get(0);
 			int visitas = 0;
 			for (Ciudad cadaCiudad: Ciudad.getCiudades()) {
-				if((cadaCiudad.getNumVisitantes() > visitas) && promociones.containsKey(cadaCiudad)) {
+				if((cadaCiudad.getNumVisitantes()*cadaCiudad.getPromocion() + cadaCiudad.getPromocion() > visitas)){
 					masVisitada = cadaCiudad;
-					visitas = cadaCiudad.getNumVisitantes();					
-				}else {
-					continue;
+					visitas = cadaCiudad.getNumVisitantes()*cadaCiudad.getPromocion() + cadaCiudad.getPromocion();
 				}
 		    }
-			
 			recomendadisima = masVisitada;
 		}
-		
-		String mesage = "Te recomendamos viajar a: \n" + recomendadisima.toString();
 
-		
-		return mesage;
-
-		
+		System.out.println("Te recomendamos viajar a: "+ recomendadisima.toString());
 	}
 
-	public static HashMap<Ciudad, Integer> getPromociones() {
-		return promociones;
-	}
 }
