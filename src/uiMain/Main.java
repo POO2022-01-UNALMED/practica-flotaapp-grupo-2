@@ -24,7 +24,7 @@ public class Main {
 
     public static void main(String[] args) {
         Deserializador.deserializarTodo();
-        /*
+        //
         Comprador u1 = new Comprador(1, "Mateo", "example@email.com", 3234567890L);
         Comprador u2 = new Comprador(2, "Marcos", "example2@email.com", 3087654321L);
         Comprador u3 = new Comprador(3, "Lucas", "example3@email.com", 3088890321L);
@@ -104,11 +104,13 @@ public class Main {
         Viaje viaje4 = new Viaje(2, 30000, 1100, 17000, Medellin, Cartagena, 7, v1, fin);
 
         // PROMOCIONES
+        /*
         Recomendacion.promociones.put(Pasto, 25);
         Recomendacion.promociones.put(Cali, 10);
         Recomendacion.promociones.put(Bello, 15);
         Recomendacion.promociones.put(Medellin, 20);
         Recomendacion.promociones.put(Manizales, 35);
+        */
         
         
         //PROMOCIONES INTERFACE
@@ -157,7 +159,7 @@ public class Main {
         
 
         System.out.println(Recomendacion.getPromociones());
-*/
+//
         Scanner in = new Scanner(System.in);
         showLogo();
         System.out.println("\n".repeat(2));

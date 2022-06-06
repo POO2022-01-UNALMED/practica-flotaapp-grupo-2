@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class Recomendacion implements Promocion {
 
-	public static HashMap<Ciudad, Integer> promociones = new HashMap<>();
+	//public static HashMap<Ciudad, Integer> promociones = new HashMap<>();
 	private static HashMap<Ciudad,Integer> visitadas = new HashMap<>();
 	
 	
