@@ -109,6 +109,18 @@ public class Main {
         Recomendacion.promociones.put(Bello, 15);
         Recomendacion.promociones.put(Medellin, 20);
         Recomendacion.promociones.put(Manizales, 35);
+        
+        
+        //PROMOCIONES INTERFACE
+         Promocion.promociones.put(Manizales, 15);
+         Promocion.promociones.put(Barranquilla, 10);
+         Promocion.promociones.put(Pasto, 30);
+         Promocion.promociones.put(Cartagena, 18);
+         Promocion.promociones.put(Monteria, 9);
+         Promocion.promociones.put(Cali, 10);
+         Promocion.promociones.put(Popayan, 15);
+         Promocion.promociones.put(Bello, 12);
+         Promocion.promociones.put(Medellin, 23);
 
 
         //EMPLEADOS
@@ -144,8 +156,8 @@ public class Main {
         Asignar.asignarVehiculo(ele1, v1); 
         
 
-        System.out.println(Recomendacion.getPromociones());*/
-
+        System.out.println(Recomendacion.getPromociones());
+*/
         Scanner in = new Scanner(System.in);
         showLogo();
         System.out.println("\n".repeat(2));

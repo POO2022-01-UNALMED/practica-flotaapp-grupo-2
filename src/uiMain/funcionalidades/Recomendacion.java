@@ -11,6 +11,7 @@
 package uiMain.funcionalidades;
 
 import gestorAplicacion.Comprador;
+import gestorAplicacion.Promocion;
 import gestorAplicacion.Ciudad;
 import gestorAplicacion.Tiquete;
 import uiMain.Main;
@@ -19,7 +20,7 @@ import java.util.HashMap;
 import java.util.ArrayList;
 
 
-public class Recomendacion{
+public class Recomendacion implements Promocion {
 
 	public static HashMap<Ciudad, Integer> promociones = new HashMap<>();
 	private static HashMap<Ciudad,Integer> visitadas = new HashMap<>();
@@ -31,6 +32,7 @@ public class Recomendacion{
 	public static String recomendarViaje(int cc) {        
 		System.out.println("----- R E C O M E N D A R   V I A J E -----" + "\n");		
 		Ciudad recomendadisima = new Ciudad();
+		//Promocion.promociones.put(recomendadisima, 4);
 		Comprador aRecomendar = new Comprador();
 		for(Comprador comprador : Comprador.getCompradores()){
 			if(comprador.getCc() == cc){ aRecomendar = comprador;}
@@ -56,7 +58,7 @@ public class Recomendacion{
 			Ciudad masVisitada = null;
 			int visitas = 0;
 			for (Ciudad cadaCiudad: visitadas.keySet()) {
-				if ((promociones.containsKey(cadaCiudad)) && ((visitadas.get(cadaCiudad)) > visitas)) {
+				if ((Promocion.promociones.containsKey(cadaCiudad)) && ((visitadas.get(cadaCiudad)) > visitas)) {
 					masVisitada = cadaCiudad;
 					visitas = visitadas.get(cadaCiudad);
 				}else {
@@ -72,7 +74,7 @@ public class Recomendacion{
 			Ciudad masVisitada = null;
 			int visitas = 0;
 			for (Ciudad cadaCiudad: Ciudad.getCiudades()) {
-				if((cadaCiudad.getNumVisitantes() > visitas) && promociones.containsKey(cadaCiudad)) {
+				if((cadaCiudad.getNumVisitantes() > visitas) && Promocion.promociones.containsKey(cadaCiudad)) {
 					masVisitada = cadaCiudad;
 					visitas = cadaCiudad.getNumVisitantes();					
 				}else {
