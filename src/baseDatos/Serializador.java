@@ -83,5 +83,8 @@ public class Serializador {
         Serializador.serializar(Tiquete.getTiquetes(), "tiquetes");
         Serializador.serializar(Silla.getSillas(), "sillas");
         Serializador.serializar(Recomendacion.getPromociones(), "promociones");
+        //Serializador.serializar(Promocion.promociones, "promociones"); //Intento serializar promociones en una interfaz
     }
+
+	
 }

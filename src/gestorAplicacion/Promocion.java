@@ -9,11 +9,13 @@ import uiMain.Main;
 
 import java.io.Serializable;
 
+//public interface Promocion {
 public interface Promocion {
-//public interface Promocion implements Serializable {
 	public final static HashMap<Ciudad, Integer> promociones = new HashMap<>();
-	//final static HashMap<Ciudad,Integer> visitadas = new HashMap<>();
-
 	
+	
+	
+	
+
 
 }

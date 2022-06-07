@@ -112,17 +112,16 @@ public class Main {
         Recomendacion.promociones.put(Manizales, 35);
         */
         
-        
         //PROMOCIONES INTERFACE
-         Promocion.promociones.put(Manizales, 15);
-         Promocion.promociones.put(Barranquilla, 10);
-         Promocion.promociones.put(Pasto, 30);
-         Promocion.promociones.put(Cartagena, 18);
-         Promocion.promociones.put(Monteria, 9);
-         Promocion.promociones.put(Cali, 10);
-         Promocion.promociones.put(Popayan, 15);
-         Promocion.promociones.put(Bello, 12);
-         Promocion.promociones.put(Medellin, 23);
+        Promocion.promociones.put(Manizales, 15);
+        Promocion.promociones.put(Barranquilla, 10);
+        Promocion.promociones.put(Pasto, 30);
+        Promocion.promociones.put(Cartagena, 18);
+        Promocion.promociones.put(Monteria, 9);
+        Promocion.promociones.put(Cali, 10);
+        Promocion.promociones.put(Popayan, 15);
+        Promocion.promociones.put(Bello, 12);
+        Promocion.promociones.put(Medellin, 23);
 
 
         //EMPLEADOS
