@@ -9,6 +9,8 @@
 
 package gestorAplicacion;
 
-public enum Especialidad {
+import java.io.Serializable;
+
+public enum Especialidad implements Serializable {
     ELECTRICO, MECANICO , SILLETERIA, ADMINISTRADOR
 }

@@ -23,6 +23,7 @@ public abstract class Usuario implements Serializable {
     protected String email;
     protected long movil;
     protected double billetera;
+    private static final long serialVersionUID = 8L;
 
     public Usuario(int cc, String uNombre, String email, long movil) {
         this(cc,uNombre,email,movil,0);

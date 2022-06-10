@@ -26,6 +26,7 @@ public class Viaje implements Serializable {
 	private LocalDate fechaViaje;
 	private Vehiculo vehiculo;
 	private boolean disponibilidad;
+	private static final long serialVersionUID = 109L;
 	private static ArrayList<Viaje> viajes;
 	static {
 		viajes = new ArrayList<Viaje>();

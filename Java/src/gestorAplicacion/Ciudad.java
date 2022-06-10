@@ -20,6 +20,7 @@ public class Ciudad implements Serializable {
     private String dirTerminal;
     private int numVisitantes;
 	public int promocion;
+	private static final long serialVersionUID = 1L;
     private static  ArrayList<Ciudad> ciudades;
 	static {
 		ciudades = new ArrayList<Ciudad>();
