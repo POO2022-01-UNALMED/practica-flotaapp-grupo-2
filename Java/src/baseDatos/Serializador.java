@@ -31,7 +31,7 @@ public class Serializador {
         FileOutputStream fileOut;
 
         try {
-            String path = System.getProperty("user.dir") + "/src/baseDatos/temp/" + className + ".txt";
+            String path = System.getProperty("user.dir") + "/baseDatos/temp/" + className + ".txt";//Se borra /src ya que estaba quedando duplicado en la ruta
             // se crea un fileoutputstream para saber donde serializar los archivos
             fileOut = new FileOutputStream(path);
             // Se crea un objeto output stream para poder escribir en el archivo

@@ -9,6 +9,8 @@
 package gestorAplicacion;
 
 public abstract class Empleado extends Usuario {
+	
+	private static final long serialVersionUID = 4L;
 
 	protected int sueldo;
 	

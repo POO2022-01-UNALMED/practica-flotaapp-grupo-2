@@ -8,6 +8,8 @@
 
 package gestorAplicacion;
 
-public enum Ubicacion {
+import java.io.Serializable;
+
+public enum Ubicacion implements Serializable {
     VENTANA, PASILLO, INTERMEDIO
 }

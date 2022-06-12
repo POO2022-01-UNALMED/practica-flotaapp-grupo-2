@@ -16,7 +16,7 @@ class Tiquete():                        #Comprador , Silla, Viaje
         Tiquete.__tiquetes.append(self)
     
     @property
-    def estado(self) -> bool:
+    def estado(self) -> bool: 
         return self._estado
     
     @estado.setter 

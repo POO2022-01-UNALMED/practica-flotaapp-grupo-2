@@ -13,6 +13,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Especialista extends Empleado implements Serializable {
+	
+	private static final long serialVersionUID = 5L;
 	private Especialidad especialidad;
 	private ArrayList<Vehiculo> historialVehiculosRevisados;
 	private static  ArrayList<Especialista> especialistas = new ArrayList<>();

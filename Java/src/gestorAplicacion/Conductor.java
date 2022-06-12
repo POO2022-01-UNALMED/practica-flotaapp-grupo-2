@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Conductor extends Empleado implements Serializable {
+	
+	private static final long serialVersionUID = 3L;
 
     private Categoria categoria;
     private ArrayList<Viaje> historiaViajesRealizados;
