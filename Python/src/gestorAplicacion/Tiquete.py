@@ -1,6 +1,5 @@
 from gestorAplicacion.Viaje import Viaje
 import datetime
-from typing import List
 
 class Tiquete():                        #Comprador , Silla, Viaje
     '''

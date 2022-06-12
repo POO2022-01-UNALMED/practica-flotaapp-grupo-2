@@ -15,8 +15,8 @@ class Viaje():
         - Visualizar Estadisticas : Aumentar o disminuir frecuencia
     '''
     __viajes = []
-    def __init__(self, idViaje : int = 0, costo : int = 0, precioEstandar : int = 0, precioPremium : int = 0, origen = None, destino = None, frecuencia : int = 0, fechaViaje : datetime = None, vehiculo : Vehiculo = None) -> None:
-        from Tiquete import Tiquete
+    def __init__(self, idViaje : int = 0, costo : int = 0, precioEstandar : int = 0, precioPremium : int = 0, origen = None, destino = None, frecuencia : int = 0, vehiculo : Vehiculo = None, fechaViaje : datetime = None) -> None:
+        from gestorAplicacion.Tiquete import Tiquete
         self._idViaje = idViaje
         self._costo = costo
         self._conductor = None
@@ -28,7 +28,7 @@ class Viaje():
         self._fechaViaje = fechaViaje
         self._vehiculo = vehiculo
         self._allTiquetes = []
-        self.allTiquetes = [Tiquete(silla.getNumeroSilla(), None, silla, self, self.precioPremium, None) for silla in self.vehiculo.getSillas() if silla.getTipo()] + [Tiquete(silla.getNumeroSilla(), None, silla, self, self.precioEstandar, None) for silla in self.vehiculo.getSillas() if silla.getTipo() == False]
+        self.allTiquetes = [Tiquete(silla.getNumeroSilla(), None, silla, self, self._precioPremium, None) for silla in self.getVehiculo().getSillas() if silla.getTipo()] + [Tiquete(silla.getNumeroSilla(), None, silla, self, self._precioEstandar, None) for silla in self.getVehiculo().getSillas() if silla.getTipo() == False]
         Viaje.__viajes.append(self)
         
     def tiquetesDisponibles(self):
