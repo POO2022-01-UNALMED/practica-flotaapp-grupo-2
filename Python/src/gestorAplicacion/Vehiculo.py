@@ -1,5 +1,3 @@
-from src import*
-
 class Vehiculo():
     _vehiculos = []
 

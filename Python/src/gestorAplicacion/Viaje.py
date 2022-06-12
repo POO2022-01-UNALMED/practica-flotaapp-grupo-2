@@ -1,9 +1,6 @@
 import datetime
-from gestorAplicacion import Tiquete
+from Vehiculo import Vehiculo
 from typing import List
-
-from Python.src.gestorAplicacion.Tiquete import Tiquete
-
 
 class Viaje():
     '''
@@ -19,7 +16,8 @@ class Viaje():
         - Visualizar Estadisticas : Aumentar o disminuir frecuencia
     '''
     __viajes = []
-    def __init__(self, idViaje : int = 0, costo : int = 0, precioEstandar : int = 0, precioPremium : int = 0, origen = None, destino = None, frecuencia : int = 0, fechaViaje : datetime = datetime.now(), vehiculo = None) -> None:
+    def __init__(self, idViaje : int = 0, costo : int = 0, precioEstandar : int = 0, precioPremium : int = 0, origen = None, destino = None, frecuencia : int = 0, fechaViaje : datetime = None, vehiculo : Vehiculo = None) -> None:
+        from Tiquete import Tiquete
         self._idViaje = idViaje
         self._costo = costo
         self._conductor = None
@@ -34,7 +32,7 @@ class Viaje():
         self.allTiquetes = [Tiquete(silla.getNumeroSilla(), None, silla, self, self.precioPremium, None) for silla in self.vehiculo.getSillas() if silla.getTipo()] + [Tiquete(silla.getNumeroSilla(), None, silla, self, self.precioEstandar, None) for silla in self.vehiculo.getSillas() if silla.getTipo() == False]
         Viaje.__viajes.append(self)
         
-    def tiquetesDisponibles(self) -> List(Tiquete):
+    def tiquetesDisponibles(self):
         return [tiquete for tiquete in self._allTiquetes if tiquete.getEstado() == False]
     
     def eliminarViaje(self):
@@ -59,7 +57,7 @@ class Viaje():
     def setConductor(self, conductor):
         self._conductor = conductor
 
-    def getAllTiquetes(self) -> List(Tiquete):
+    def getAllTiquetes(self):
         return self._allTiquetes
 
     def getPrecioEstandar(self) -> int :
@@ -71,7 +69,7 @@ class Viaje():
     def getFechaViaje(self) -> datetime :
         return self._fechaViaje
 
-    def getVehiculo(self):
+    def getVehiculo(self) -> Vehiculo:
         return self._vehiculo
     
     def getOrigen(self):

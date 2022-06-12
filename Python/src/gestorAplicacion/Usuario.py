@@ -1,9 +1,6 @@
-import string
-from src import *
-
 class Usuario():
 
-    def __init__(self, cc: int = 0, uNombre : string = None, email : string = None, movil: int = 0, billetera: int = 0):
+    def __init__(self, cc: int = 0, uNombre : str = None, email : str = None, movil: int = 0, billetera: int = 0):
         self.cc = cc
         self.uNombre = uNombre
         self.email = email

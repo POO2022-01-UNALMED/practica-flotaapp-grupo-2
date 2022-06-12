@@ -1,5 +1,3 @@
-from src import*
-
 class Silla():
     _sillas = []
     
@@ -22,7 +20,6 @@ class Silla():
         return self._ubicacion
     
     @classmethod
-
     def getSillas(cls):
         return Silla._sillas
 
