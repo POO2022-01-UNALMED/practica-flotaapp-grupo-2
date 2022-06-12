@@ -1,7 +1,14 @@
-from src import *
+from Viaje import *
 from typing import List
 
 class Tiquete():                        #Comprador , Silla, Viaje
+    '''
+    Tiquete : Contiene la informacion de: 
+        - Viaje
+        - Comprador
+        - Valor
+    Su funcionalidad sera de servir como evidencia de la reserva (compra) de una silla en un viaje
+    '''
     __tiquetes = []
 
     def __init__(self, idTiquete : int = 0, comprador = None, sillaTiquete =None, viaje = None, valor : int = 0, fechaCompra : datetime = None):

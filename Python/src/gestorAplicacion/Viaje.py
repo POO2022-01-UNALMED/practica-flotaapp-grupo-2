@@ -1,5 +1,5 @@
 import datetime
-from src import *
+from gestorAplicacion import Tiquete
 from typing import List
 
 from Python.src.gestorAplicacion.Tiquete import Tiquete
@@ -31,7 +31,7 @@ class Viaje():
         self._fechaViaje = fechaViaje
         self._vehiculo = vehiculo
         self._allTiquetes = []
-        #self.allTiquetes = [Tiquete(i.getId(), None, silla, self, self.precioPremium, None) for silla in self.vehiculo.getSillas() if silla.getTipo()] + [Tiquete(i.getId(), None, silla, self, self.precioEstandar, None) for silla in self.vehiculo.getSillas() if !silla.getTipo()]
+        self.allTiquetes = [Tiquete(silla.getNumeroSilla(), None, silla, self, self.precioPremium, None) for silla in self.vehiculo.getSillas() if silla.getTipo()] + [Tiquete(silla.getNumeroSilla(), None, silla, self, self.precioEstandar, None) for silla in self.vehiculo.getSillas() if silla.getTipo() == False]
         Viaje.__viajes.append(self)
         
     def tiquetesDisponibles(self) -> List(Tiquete):
@@ -47,48 +47,37 @@ class Viaje():
         self._frecuencia += disminucion
 
 
-    @property
-    def idViaje(self) -> int:
+    def getIdViaje(self) -> int:
         return self._idViaje
     
-    @property
-    def costo(self) -> int :
+    def getCosto(self) -> int :
         return self._costo
 
-    @property
-    def conductor(self) -> int:
+    def getConductor(self) -> int:
         return self._conductor
     
-    @conductor.setter
-    def conductor(self, conductor):
+    def setConductor(self, conductor):
         self._conductor = conductor
-    
-    @property
-    def allTiquetes(self) -> List(Tiquete):
+
+    def getAllTiquetes(self) -> List(Tiquete):
         return self._allTiquetes
-    
-    @property
-    def precioEstandar(self) -> int :
+
+    def getPrecioEstandar(self) -> int :
         return self._precioEstandar
-    
-    @property
-    def precioPremium(self) -> int :
+
+    def getPrecioPremium(self) -> int :
         return self._precioPremium
-    
-    @property
-    def fechaViaje(self) -> datetime :
+
+    def getFechaViaje(self) -> datetime :
         return self._fechaViaje
 
-    @property
-    def vehiculo(self):
+    def getVehiculo(self):
         return self._vehiculo
     
-    @property
-    def origen(self):
+    def getOrigen(self):
         return self._origen
 
-    @property
-    def destino(self):
+    def getDestino(self):
         return self._destino
     
     @classmethod
