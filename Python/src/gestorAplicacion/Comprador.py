@@ -1,4 +1,4 @@
-from Usuario import Usuario
+from gestorAplicacion.Usuario import Usuario
 
 class Comprador(Usuario):
     _compradores = []

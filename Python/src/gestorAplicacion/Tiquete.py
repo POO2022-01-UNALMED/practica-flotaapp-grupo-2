@@ -1,4 +1,4 @@
-import Viaje
+from gestorAplicacion.Viaje import Viaje
 import datetime
 from typing import List
 
@@ -48,7 +48,7 @@ class Tiquete():                        #Comprador , Silla, Viaje
         self._fechaCompra = fechaCompra
 
     @classmethod
-    def tiquetes(cls) -> List(Tiquete):
+    def tiquetes(cls):
         return Tiquete.__tiquetes
 
     def __str__(self) -> str:

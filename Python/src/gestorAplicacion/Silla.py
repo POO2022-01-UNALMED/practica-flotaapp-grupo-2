@@ -1,7 +1,17 @@
+from enum import Enum
+
+class Ubicacion(Enum):
+
+    VENTANA = "VENTANA"
+
+    PASILLO = "PASILLO"
+
+    INTERMEDIO = "INTERMEDIO"
+
 class Silla():
     _sillas = []
     
-    def __init__(self,numeroSilla: int =  0, tipo: bool =  False, ubicacion = None):
+    def __init__(self,numeroSilla: int =  0, tipo: bool =  False, ubicacion : Ubicacion = None):
         self._numeroSilla =numeroSilla
         self._tipo = tipo
         self._ubicacion = ubicacion
@@ -25,6 +35,4 @@ class Silla():
 
 
     def __str__(self) -> str:
-        return f"Silla (numeroSilla: {self._numeroSilla} - tipo: {self._tipo} - ubicacion: {self._ubicacion})"
-
-        
+        return f"Silla (numeroSilla: {self._numeroSilla} - tipo: {self._tipo} - ubicacion: {self._ubicacion})"       

@@ -1,6 +1,5 @@
 import datetime
-from Vehiculo import Vehiculo
-from typing import List
+from gestorAplicacion.Vehiculo import Vehiculo
 
 class Viaje():
     '''
