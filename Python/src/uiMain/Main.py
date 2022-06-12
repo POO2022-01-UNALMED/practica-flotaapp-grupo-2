@@ -1,3 +1,6 @@
+import sys
+sys.path.append("../practica-flotaapp-grupo-2/Python/src")
+
 from gestorAplicacion.Comprador import Comprador
 from gestorAplicacion.Ciudad import Ciudad
 from gestorAplicacion.Vehiculo import Vehiculo
