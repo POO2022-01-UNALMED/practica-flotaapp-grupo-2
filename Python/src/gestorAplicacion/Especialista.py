@@ -57,5 +57,5 @@ class Especialista(Empleado):
     def getEspecialistas(cls):
         return cls.__especialistas
     
-    def __str__(self) -> str: 
-        return "Nombre: {}  \n Sueldo: {} \n Especialidad: {}".format( self._uNombre, self._sueldo, self._especialidad)
+    def __str__(self) : 
+        return "Nombre: {}  \n Sueldo: {} \n Especialidad: {}".format(self._uNombre, self._sueldo, self._especialidad)
