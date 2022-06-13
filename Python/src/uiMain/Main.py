@@ -8,6 +8,7 @@ from gestorAplicacion.Silla import Silla, Ubicacion
 from gestorAplicacion.Viaje import Viaje
 from gestorAplicacion.Conductor import Conductor, Categoria
 from gestorAplicacion.Especialista import Especialidad, Especialista
+from Funcionalidades.Gestionar import Gestionar
 
 from datetime import datetime
 from datetime import timedelta
@@ -52,8 +53,6 @@ sp1v2 =   Silla(1, True, Ubicacion.VENTANA)
 sp2v2 =   Silla(2, True, Ubicacion.PASILLO)
 sillasv2 =  [se1v2, se2v2, sp1v2, sp2v2]
 
-
-
 se1v3 =   Silla(3, False, Ubicacion.VENTANA)
 se2v3 =   Silla(4, False, Ubicacion.PASILLO)
 sp1v3 =   Silla(1, True, Ubicacion.VENTANA)
@@ -97,8 +96,4 @@ con3 =   Conductor(30, "Dona Marta", "DonaMarta@example.com", 3004589696, 4200, 
 
 
 if __name__ == '__main__':
-    print(comprador1, comprador1.getHistocioViaje())
-    print(comprador2, comprador2.getHistocioViaje())
-    print(comprador3, comprador3.getHistocioViaje())
-    print(comprador4, comprador4.getHistocioViaje())
-    print(comprador5, comprador5.getHistocioViaje())
+    Gestionar.gestionarEspecialistas()
