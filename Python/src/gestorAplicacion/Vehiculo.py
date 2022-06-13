@@ -1,4 +1,3 @@
-from src import*
 
 class Vehiculo():
     _vehiculos = []
@@ -20,7 +19,3 @@ class Vehiculo():
     @classmethod
     def getVehiculos(cls):
         return Vehiculo._vehiculos
-
-    @classmethod
-    def getVehiculoRevisar(cls):
-        return Vehiculo.getVehiculos().get(0)

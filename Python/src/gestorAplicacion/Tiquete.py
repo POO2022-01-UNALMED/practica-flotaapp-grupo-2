@@ -1,10 +1,17 @@
-from src import *
-from typing import List
+from gestorAplicacion.Viaje import Viaje
+import datetime
 
 class Tiquete():                        #Comprador , Silla, Viaje
+    '''
+    Tiquete : Contiene la informacion de: 
+        - Viaje
+        - Comprador
+        - Valor
+    Su funcionalidad sera de servir como evidencia de la reserva (compra) de una silla en un viaje
+    '''
     __tiquetes = []
 
-    def __init__(self, idTiquete : int = 0, comprador = None, sillaTiquete =None, viaje = None, valor : int = 0, fechaCompra : datetime = None):
+    def __init__(self, idTiquete : int = 0, comprador = None, sillaTiquete =None, viaje : Viaje = None, valor : int = 0, fechaCompra : datetime = None):
 
         self._idTiquete = idTiquete
         self._comprador = comprador
@@ -15,40 +22,32 @@ class Tiquete():                        #Comprador , Silla, Viaje
         self._fechaCompra = fechaCompra
         Tiquete.__tiquetes.append(self)
     
-    @property
-    def estado(self) -> bool:
+    def getEstado(self) -> bool:
         return self._estado
     
-    @estado.setter 
-    def estado(self, estado : bool):
+    def setEstado(self, estado : bool):
         self._estado = estado
     
-    @property
-    def sillaTiquete(self):
+    def getSillaTiquete(self):
         return self._sillaTiquete
 
-    @property
-    def viaje(self):
+    def getViaje(self) -> Viaje:
         return self._viaje
 
-    @property
-    def comprador(self):
+    def getComprador(self):
         return self._comprador
 
-    @comprador.setter 
-    def comprador(self, comprador):
+    def setComprador(self, comprador):
         self._comprador = comprador
 
-    @property
-    def valor(self) -> int:
+    def getValor(self) -> int:
         return self._valor
     
-    @fechaCompra.setter
-    def fechaCompra(self, fechaCompra : datetime):
+    def setFechaCompra(self, fechaCompra : datetime):
         self._fechaCompra = fechaCompra
 
     @classmethod
-    def tiquetes(cls) -> List(Tiquete):
+    def tiquetes(cls):
         return Tiquete.__tiquetes
 
     def __str__(self) -> str:

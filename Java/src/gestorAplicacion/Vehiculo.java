@@ -11,7 +11,6 @@ package gestorAplicacion;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Vehiculo implements Serializable {
     private String placa;
