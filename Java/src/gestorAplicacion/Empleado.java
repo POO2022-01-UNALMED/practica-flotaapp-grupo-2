@@ -11,6 +11,7 @@ package gestorAplicacion;
 public abstract class Empleado extends Usuario {
 
 	protected int sueldo;
+	private static final long serialVersionUID = 4L;
 	
 	public Empleado(int cc, String uNombre, String email, long movil, int sueldo) {
 

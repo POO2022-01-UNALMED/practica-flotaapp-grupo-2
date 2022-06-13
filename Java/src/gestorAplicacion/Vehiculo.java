@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class Vehiculo implements Serializable {
     private String placa;
     private ArrayList<Silla> sillas;
+    private static final long serialVersionUID = 9L;
     private static  ArrayList<Vehiculo> vehiculos = new ArrayList<>();
     static {
         vehiculos = new ArrayList<Vehiculo>();

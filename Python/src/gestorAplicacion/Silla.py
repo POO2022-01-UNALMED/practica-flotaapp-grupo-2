@@ -10,7 +10,7 @@ class Ubicacion(Enum):
 
 class Silla():
     _sillas = []
-    
+   
     def __init__(self,numeroSilla: int =  0, tipo: bool =  False, ubicacion : Ubicacion = None):
         self._numeroSilla =numeroSilla
         self._tipo = tipo
@@ -26,9 +26,15 @@ class Silla():
     def setNumeroSillas(self, numeroSilla):
         self._numeroSilla = numeroSilla
 
+    def setTipo(self, tipo):
+        self._tipo = tipo
+
     def getUbicacion(self):
         return self._ubicacion
     
+    def setUbicacion(self,ubicacion):
+        self._ubicacion = ubicacion
+
     @classmethod
     def getSillas(cls):
         return Silla._sillas

@@ -14,4 +14,3 @@ class Comprador(Usuario):
 
     def getHistocioViaje(self):
         return self._historicoViajes
-

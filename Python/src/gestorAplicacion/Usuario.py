@@ -1,6 +1,8 @@
+
 class Usuario():
 
     def __init__(self, cc: int = 0, uNombre : str = None, email : str = None, movil: int = 0, billetera: int = 0):
+
         self.cc = cc
         self.uNombre = uNombre
         self.email = email
@@ -9,8 +11,8 @@ class Usuario():
 
     #def agregarSaldo(self):
 
-
     # GETTER Y SETTER 
+
 
     def getCc(self):
         return self.cc
