@@ -17,7 +17,7 @@ class Especialista(Empleado):
 
     __especialistas = []
 
-    def __init__(self, cc = 0, uNombre = "ESPECIALISTA NO REGISTRADO", email = "", movil = 666, billetera = 0, especialidad : Especialidad = Especialidad.ADMINISTRADOR, historialVehiculosRevisados = []): #Se está casteando bien los enumeradores?
+    def __init__(self, cc = 0, uNombre = "ESPECIALISTA NO REGISTRADO", email = "", movil = 666, billetera = 0, especialidad : Especialidad = Especialidad.ADMINISTRADOR, historialVehiculosRevisados = None): #Se está casteando bien los enumeradores?
         super().__init__(cc, uNombre, email, movil, billetera)
         self._historialiVehiculosRevisados = historialVehiculosRevisados
         self._especialidad = especialidad

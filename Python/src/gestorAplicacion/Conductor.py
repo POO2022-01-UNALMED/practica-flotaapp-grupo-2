@@ -16,7 +16,7 @@ class Conductor(Empleado):
 
     __conductores = []
 
-    def __init__(self, cc = 0, uNombre: str = None, email: str = None, movil: int = None, sueldo=0, categoria: Categoria = None, historiaViajesRealizados = []): # categoria = Categoria(categoria)
+    def __init__(self, cc = 0, uNombre: str = None, email: str = None, movil: int = None, sueldo=0, categoria: Categoria = None, historiaViajesRealizados = None): # categoria = Categoria(categoria)
         super().__init__(cc, uNombre, email, movil, sueldo)
         self._categoria = categoria
         self._historiaViajesRealizados = historiaViajesRealizados
