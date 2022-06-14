@@ -17,10 +17,13 @@ class Gestionar():
         if especialista.getuNombre() == "ESPECIALISTA NO REGISTRADO" :
             print(especialista.getuNombre())
             return 
-        
+                
         print("[4] Visualizar Historial de viajes Asignados \n[5] Asignar un Viaje \n[6] Despedir")
         aux2 = int(input())
         if aux2 == 4:
+            if especialista.getHistorialVehiculosRevisados() == None: 
+                return
+
             for vehiculo in especialista.getHistorialVehiculosRevisados():
                 print(vehiculo.getPlaca())
         elif aux2 == 5:
@@ -34,14 +37,17 @@ class Gestionar():
     def visualizarEspecialista(especialista):
         print(" ")
         print(f'{especialista.getEspecialidad()} -  CC: {especialista.getCc()} - Nombre: {especialista.getuNombre()}');
-        print(f"Cantidad de vehiculos revisados: {len(especialista.getHistorialVehiculosRevisados())}")
+        if especialista.getHistorialVehiculosRevisados() == None :
+            print(f"Cantidad de vehiculos revisados: 0")
+        else:   
+            print(f"Cantidad de vehiculos revisados: {len(especialista.getHistorialVehiculosRevisados())}")
 
     @classmethod
     def gestionarEspecialistas(cls):
         print("----- G E S T I O N A R   E S P E C I A L I S T A S -----")
         print(" ")
         print("[1] Electrico, [2] Mecanico, [3] Silleteria")
-        especialidades = [Especialidad.ELECTRICO, Especialidad.MECANICO, Especialidad.ADMINISTRADOR]
+        especialidades = [Especialidad.ELECTRICO, Especialidad.MECANICO, Especialidad.SILLETERIA]
         aux = int(input())
         for especialista in Especialista.getEspecialistas():
             if especialista.getEspecialidad() == especialidades[aux-1]:

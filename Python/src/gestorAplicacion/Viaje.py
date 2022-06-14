@@ -1,5 +1,6 @@
 import datetime
 from gestorAplicacion.Vehiculo import Vehiculo
+from gestorAplicacion.Ciudad import Ciudad
 
 class Viaje():
     '''
@@ -15,7 +16,7 @@ class Viaje():
         - Visualizar Estadisticas : Aumentar o disminuir frecuencia
     '''
     __viajes = []
-    def __init__(self, idViaje : int = 0, costo : int = 0, precioEstandar : int = 0, precioPremium : int = 0, origen = None, destino = None, frecuencia : int = 0, vehiculo : Vehiculo = None, fechaViaje : datetime = None) -> None:
+    def __init__(self, idViaje : int = 0, costo : int = 0, precioEstandar : int = 0, precioPremium : int = 0, origen : Ciudad = None, destino : Ciudad = None, frecuencia : int = 0, vehiculo : Vehiculo = None, fechaViaje : datetime = None) -> None:
         from gestorAplicacion.Tiquete import Tiquete
         self._idViaje = idViaje
         self._costo = costo
@@ -34,6 +35,11 @@ class Viaje():
     def tiquetesDisponibles(self):
         return [tiquete for tiquete in self._allTiquetes if tiquete.getEstado() == False]
     
+    def tiqueteDisponible(self, presupuesto : int):
+        for tiquete in self._allTiquetes:
+            if tiquete.getValor() <= presupuesto and tiquete.getEstado() == False:
+                return tiquete
+
     def eliminarViaje(self):
         Viaje.__viajes.remove(self)
 

@@ -9,6 +9,7 @@ from gestorAplicacion.Viaje import Viaje
 from gestorAplicacion.Conductor import Conductor, Categoria
 from gestorAplicacion.Especialista import Especialidad, Especialista
 from Funcionalidades.Gestionar import Gestionar
+from Funcionalidades.Asignar import Asignar
 
 from datetime import datetime
 from datetime import timedelta
@@ -81,17 +82,36 @@ Manizales.setPromocion(35)
 #EMPLEADOS
 mec1 =   Especialista(27, "Jose", "emailMecanico1@example.com", 3224568585, 3500, Especialidad.MECANICO)
 ele1 =   Especialista(78, "Maria", "emailElectrico1@example.com", 3224567585, 4000, Especialidad.ELECTRICO)
-ele2 =   Especialista(88, "Maria", "emailElectrico2@example.com", 3228867585, 4000, Especialidad.ELECTRICO)
-ele3 =   Especialista(98, "Maria", "emailElectrico3@example.com", 3229967585, 4000, Especialidad.ELECTRICO)
+ele2 =   Especialista(88, "Joselipa", "emailElectrico2@example.com", 3228867585, 4000, Especialidad.ELECTRICO)
+ele3 =   Especialista(98, "Carlos", "emailElectrico3@example.com", 3229967585, 4000, Especialidad.ELECTRICO)
 mec3 =   Especialista(32, "Pablo", "emailMecanico3@example.com", 3224538585, 3700, Especialidad.MECANICO)
 si1 =   Especialista(12, "Edgar", "emailSillas1@example.com", 3224588485, 3000, Especialidad.SILLETERIA)
-si2 =   Especialista(102, "Edgar", "emailSillas2@example.com", 3224599485, 3000, Especialidad.SILLETERIA)
-si3 =   Especialista(120, "Edgar", "emailSillas3@example.com", 3224500485, 3000, Especialidad.SILLETERIA)
+si2 =   Especialista(102, "Ramon", "emailSillas2@example.com", 3224599485, 3000, Especialidad.SILLETERIA)
+si3 =   Especialista(120, "Angelica", "emailSillas3@example.com", 3224500485, 3000, Especialidad.SILLETERIA)
 
 #CONDUCTORES
 con1 =   Conductor(28, "Don Javie", "DonJavier@example.com", 3004569696, 4000, Categoria.B3)
 con2 =   Conductor(29, "Don Hernan", "DonHernan@example.com", 3007569696, 4100, Categoria.C1)
 con3 =   Conductor(30, "Dona Marta", "DonaMarta@example.com", 3004589696, 4200, Categoria.C2)
+
+
+#funcionamiento de comprarTiquete
+comprador1.comprarTiquete(Bello, Cali, 80000)
+comprador2.comprarTiquete(Monteria, Pasto, 50000)
+comprador4.comprarTiquete(Monteria, Pasto, 90000)
+comprador3.comprarTiquete(Bello, Cali, 90000)
+comprador3.comprarTiquete(Monteria, Pasto, 100000)
+comprador5.comprarTiquete(Medellin, Cartagena, 100000)
+
+
+#funcionalidad Asignar Viaje
+Asignar.asignarVehiculoConductor(con1, viaje1)
+Asignar.asignarVehiculoConductor(con2, viaje3)
+
+Asignar.asignarVehiculoEspecialista(mec1, v1)
+Asignar.asignarVehiculoEspecialista(si1, v2)
+Asignar.asignarVehiculoEspecialista(si2, v1)
+Asignar.asignarVehiculoEspecialista(ele1, v2)
 
 
 

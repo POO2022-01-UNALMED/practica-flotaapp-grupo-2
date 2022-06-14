@@ -1,4 +1,9 @@
+from datetime import datetime
+from typing import List
+from gestorAplicacion.Viaje import Viaje
 from gestorAplicacion.Usuario import Usuario
+from gestorAplicacion.Tiquete import Tiquete
+from gestorAplicacion.Ciudad import Ciudad
 
 class Comprador(Usuario):
     '''
@@ -19,9 +24,17 @@ class Comprador(Usuario):
         self._historicoViajes = historicoViajes # -historicoViajes: List(Tiquetes)
         Comprador._compradores.append(self)
 
+    def anadirTiqueteHistoria(self, tiquete : Tiquete):
+        self._historicoViajes.append(tiquete)
+
     #def buscarTiquete(self):
 
-    #def comprarTiquete(self):
+    def comprarTiquete(self, origen : Ciudad, destino : Ciudad, presupuesto : int):
+        for viaje in Viaje.getViajes():
+            if viaje.getDestino() == destino and viaje.getOrigen() == origen and viaje.getFechaViaje() > datetime.now():
+                tiqueteFinal = viaje.tiqueteDisponible(presupuesto)
+                if tiqueteFinal != None:
+                    return tiqueteFinal
 
     def getHistocioViaje(self):
         return self._historicoViajes

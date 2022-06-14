@@ -1,5 +1,6 @@
 import random
 from enum import Enum
+from types import NoneType
 from gestorAplicacion.Empleado import Empleado
 from gestorAplicacion.Vehiculo import Vehiculo
 
@@ -43,10 +44,10 @@ class Especialista(Empleado):
         return mesage    
 
     def revisionVehiculo(self, vehiculoE : Vehiculo):
-        mesage = "El vehiculo " + vehiculoE.getPlaca() +" esta en buenas condiciones"
+        mesage = f"El vehiculo {vehiculoE.getPlaca()} esta en buenas condiciones"
         random_int = random.randint(1, 10)#   * 100000  Por que se multiplica por 100000 ????
         if (random_int == 7):
-            mesage = "Al vehiculo " + vehiculoE.getPlaca + " se le necesitan hacer reparaciones"
+            mesage = f"Al vehiculo {vehiculoE.getPlaca} se le necesitan hacer reparaciones"
 
         return mesage
 
@@ -67,8 +68,12 @@ class Especialista(Empleado):
         return Especialista.__especialistas
 
 
-    def anadirVehiculoHistoria(self, vehiculoE: Vehiculo = None):
-        self._historialiVehiculosRevisados.append(vehiculoE)
+    def anadirVehiculoHistoria(self, vehiculoE: Vehiculo):
+        if self.getHistorialVehiculosRevisados() == None:
+            self._historialiVehiculosRevisados = [vehiculoE]
+        else:
+            self._historialiVehiculosRevisados.append(vehiculoE)
+
 
     def __str__(self) : 
         return "Nombre: {}  \n Sueldo: {} \n Especialidad: {}".format(self._uNombre, self._sueldo, self._especialidad) 
