@@ -21,6 +21,7 @@ public class Conductor extends Empleado implements Serializable {
     private Categoria categoria;
     private ArrayList<Viaje> historiaViajesRealizados;
     private static ArrayList<Conductor> conductores = new ArrayList<>();
+    private static final long serialVersionUID = 3L;
     
 
     public Conductor(){super(0, "CONDUCTOR NO REGISTRADO", "noemail@error.exe", 666, 0);this.historiaViajesRealizados = new ArrayList<>();}

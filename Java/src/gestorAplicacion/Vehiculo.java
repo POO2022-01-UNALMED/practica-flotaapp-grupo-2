@@ -11,13 +11,13 @@ package gestorAplicacion;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Vehiculo implements Serializable {
 	
 	private static final long serialVersionUID = 9L;
     private String placa;
     private ArrayList<Silla> sillas;
+    private static final long serialVersionUID = 9L;
     private static  ArrayList<Vehiculo> vehiculos = new ArrayList<>();
     static {
         vehiculos = new ArrayList<Vehiculo>();

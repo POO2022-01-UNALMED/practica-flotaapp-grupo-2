@@ -1,5 +1,5 @@
 /*
- * Clase con los enumeradores de ubicación de silla
+ * Clase con los enumeradores de ubicaciï¿½n de silla
  * Estructuras: enum
  * 
  * @author: Mateo Hechavarria, Juan Pablo Pineda, Miguel Angel Fonseca, Haison Urrutia

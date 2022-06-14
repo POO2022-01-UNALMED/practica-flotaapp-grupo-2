@@ -29,6 +29,7 @@ public class Comprador extends Usuario implements Serializable{
 
     private ArrayList<Tiquete> historicoViajes;
     private static ArrayList<Comprador> compradores;
+    private static final long serialVersionUID = 2L;
     static {
         compradores = new ArrayList<Comprador>();
     }

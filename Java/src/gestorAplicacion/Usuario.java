@@ -1,5 +1,5 @@
 /*
- * Clase con las funciones de Usuario  necesarias almacenar la información de usuario y ser super clase de especialista, Comprador y Conductor
+ * Clase con las funciones de Usuario  necesarias almacenar la informaciï¿½n de usuario y ser super clase de especialista, Comprador y Conductor
  * Estructuras: funciones
  * 
  * @author: Mateo Hechavarria, Juan Pablo Pineda, Miguel Angel Fonseca, Haison Urrutia
@@ -23,6 +23,7 @@ public abstract class Usuario implements Serializable {
     protected String email;
     protected long movil;
     protected double billetera;
+    private static final long serialVersionUID = 8L;
 
     public Usuario(int cc, String uNombre, String email, long movil) {
         this(cc,uNombre,email,movil,0);

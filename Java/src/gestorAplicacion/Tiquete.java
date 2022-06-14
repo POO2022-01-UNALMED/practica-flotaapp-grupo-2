@@ -23,6 +23,7 @@ public class Tiquete implements Serializable {
 		protected LocalDate fechaCompra;
 		private boolean estado;
 		private static ArrayList<Tiquete> tiquetes;
+		private static final long serialVersionUID = 7L;
 		static {
 			tiquetes = new ArrayList<Tiquete>();
 		}
