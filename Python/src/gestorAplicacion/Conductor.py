@@ -1,3 +1,4 @@
+from time import sleep
 from gestorAplicacion.Empleado import Empleado
 from gestorAplicacion.Viaje import Viaje
 from enum import Enum
@@ -35,7 +36,10 @@ class Conductor(Empleado):
         Conductor.__conductores.append(self)
 
     def anadirViajeHistoria(self, viaje : Viaje):
-        self._historiaViajesRealizados.append(viaje)
+        if self._historiaViajesRealizados == None:
+            self._historiaViajesRealizados = [viaje]
+        else:
+            self._historiaViajesRealizados.append(viaje)
 
     ## M E T O D O S ##
     def bonoSueldo(self):
@@ -66,7 +70,10 @@ class Conductor(Empleado):
         return Conductor.__conductores
 
     def getHistoricoViajesRealizados(self):
-        return self._historiaViajesRealizados
+        if self._historiaViajesRealizados == None:
+            return []
+        else:
+            return self._historiaViajesRealizados 
 
     def __str__(self): 
         return "CC: {} \n Nombre {} \n Sueldo: {} \n Categoria : {} \n Viajes realizado : {}".format(self._cc, self._uNombre, self._sueldo, self._categoria,self._historiaViajesRealizados) 
