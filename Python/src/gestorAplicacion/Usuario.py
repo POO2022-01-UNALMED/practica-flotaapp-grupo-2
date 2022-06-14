@@ -3,11 +3,11 @@ class Usuario():
 
     def __init__(self, cc: int = 0, uNombre : str = None, email : str = None, movil: int = 0, billetera: int = 0):
 
-        self.cc = cc
-        self.uNombre = uNombre
-        self.email = email
-        self.movil = movil
-        self.billetera = billetera
+        self._cc = cc
+        self._uNombre = uNombre
+        self._email = email
+        self._movil = movil
+        self._billetera = billetera
 
     #def agregarSaldo(self):
 
@@ -15,23 +15,23 @@ class Usuario():
 
 
     def getCc(self):
-        return self.cc
+        return self._cc
 
     def getuNombre(self):
-        return self.uNombre
+        return self._uNombre
 
     def getEmail(self):
-        return self.email
+        return self._email
 
     def getMovil(self):
-        return self.movil
+        return self._movil
 
     def setBilletera(self,billetera):
-        self.billetera = billetera
+        self._billetera = billetera
 
 
     def getBilletera(self):
-        return self.billetera
+        return self._billetera
 
 
 

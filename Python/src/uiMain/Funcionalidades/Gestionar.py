@@ -28,8 +28,7 @@ class Gestionar():
             #Asignar.asignarVehiculoEmpleados(especialista);
         elif aux2 == 6:
             administrador = Especialista()
-            administrador.despedir(especialista); 
-            print("EMPLEADO DESPEDIDO");
+            print(administrador.despedir(especialista))
 
     @staticmethod
     def visualizarEspecialista(especialista):
