@@ -13,6 +13,18 @@ class Categoria(Enum):
     C2 = "C2"
 
 class Conductor(Empleado):
+    '''
+    Comprador : Contiene la informacion de: 
+        - ID : int
+        - Nombre : String
+        - email : String
+        - movil : int
+        - Sueldo : int
+        - Categoria : Categoria(Enum)
+        - Historico de Viajes Realizados : List(Viaje)
+    Su funcionalidad sera de servir como objeto de referencia para un Usuario de tipo Conductor. 
+    A este se le asignara un Viaje. 
+    '''
 
     __conductores = []
 
@@ -23,7 +35,7 @@ class Conductor(Empleado):
         Conductor.__conductores.append(self)
 
     def anadirViajeHistoria(self, viaje : Viaje):
-        self.__historiaViajesRealizados.append(viaje)
+        self._historiaViajesRealizados.append(viaje)
 
     ## M E T O D O S ##
     def bonoSueldo(self):
@@ -32,7 +44,7 @@ class Conductor(Empleado):
         for  cadaConductor in Conductor.__conductores:
              if superConductor == None:
                     superConductor = cadaConductor
-             elif len(cadaConductor.__historiaViajesRealizados) > len(superConductor.__historiaViajesRealizados):
+             elif len(cadaConductor._historiaViajesRealizados) > len(superConductor._historiaViajesRealizados):
                  superConductor = cadaConductor
              else:
                  continue
@@ -54,7 +66,7 @@ class Conductor(Empleado):
         return Conductor.__conductores
 
     def getHistoricoViajesRealizados(self):
-        return self.__historiaViajesRealizados
+        return self._historiaViajesRealizados
 
     def __str__(self): 
-        return "CC: {} \n Nombre {} \n Sueldo: {} \n Categoria : {} \n Viajes realizado : {}".format(self._cc, self._uNombre, self._sueldo, self._categoria,self.__historiaViajesRealizados) 
+        return "CC: {} \n Nombre {} \n Sueldo: {} \n Categoria : {} \n Viajes realizado : {}".format(self._cc, self._uNombre, self._sueldo, self._categoria,self._historiaViajesRealizados) 
