@@ -69,12 +69,12 @@ v2 =   Vehiculo("ZZZ999", sillasv2)
 v3 =   Vehiculo("ABC123", sillasv3)
 
 #VIAJES
-viaje2 =   Viaje(4, 40000, 10000, 15000, Monteria, Pasto, 12, v2, intermedio)
-viaje3 =   Viaje(3, 35000, 12000, 18000, Medellin, Manizales, 24, v3, fin)
-viaje1 =   Viaje(1, 30000, 15000, 22000, Bello, Cali, 24, v1, intermedio)
-viaje4 =   Viaje(2, 30000, 11000, 17000, Medellin, Cartagena, 12, v1, fin)
-viaje5 =   Viaje(10, 30000, 15000, 20000, Medellin, Barranquilla, 32, v2, inicio)
-viaje6 =   Viaje(22, 30000, 11500, 13500, Medellin, Popayan, 48, v3, fin + timedelta(days=2))
+viaje2 =   Viaje(4, 40000, 17000, 25000, Monteria, Pasto, 12, v2, intermedio)
+viaje3 =   Viaje(3, 35000, 15000, 22000, Medellin, Manizales, 24, v3, fin)
+viaje1 =   Viaje(1, 50000, 35000, 42000, Bello, Cali, 24, v1, intermedio)
+viaje4 =   Viaje(2, 40000, 35000, 45000, Medellin, Cartagena, 12, v1, fin)
+viaje5 =   Viaje(10, 30000, 26000, 34000, Medellin, Barranquilla, 32, v2, inicio)
+viaje6 =   Viaje(22, 30000, 27000, 35000, Medellin, Popayan, 48, v3, fin + timedelta(days=2))
 
 # PROMOCIONES
 Pasto.setPromocion(25)
@@ -115,17 +115,13 @@ comprador1.comprarTiquete(Medellin, Popayan, 100000)
 
 #funcionalidad Asignar Viaje
 Asignar.asignarVehiculoConductor(con1, viaje1)
-Asignar.asignarVehiculoConductor(con2, viaje3)
+Asignar.asignarVehiculoConductor(con2, viaje2)
 
 Asignar.asignarVehiculoEspecialista(mec1, v1)
 Asignar.asignarVehiculoEspecialista(si1, v2)
 Asignar.asignarVehiculoEspecialista(si2, v1)
 Asignar.asignarVehiculoEspecialista(ele1, v2)
 
-
-
 if __name__ == '__main__':
-    
     VisualizarEstadisticas.visualizarEstadisticas()
     Gestionar.gestionarEspecialistas()
-    

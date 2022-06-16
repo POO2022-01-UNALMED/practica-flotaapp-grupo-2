@@ -2,20 +2,15 @@ from matplotlib import pyplot as plt
 import sys
 sys.path.append("../practica-flotaapp-grupo-2/Python/src")
 
-from gestorAplicacion.Comprador import Comprador
-from gestorAplicacion.Tiquete import Tiquete
-from gestorAplicacion.Vehiculo import Vehiculo
 from gestorAplicacion.Viaje import Viaje
 from gestorAplicacion.Ciudad import Ciudad
-from gestorAplicacion.Conductor import Conductor
-from gestorAplicacion.Especialista import Especialista
 
 class VisualizarEstadisticas():
 
     @staticmethod
     def visualizarEstadisticas():
         print("----- V I S U A L I Z A R   E S T A D I S T I C A S -----")
-        print("[1] Ciudades , [2] Viajes , [3] Conductores , [4] Especialistas")
+        print("[1] Ciudades , [2] Viajes")
         aux = int(input())
         if aux == 1:
             nombresCiudades= [str(ciudad.getNombre()) for ciudad in Ciudad.getCiudades()]
@@ -36,4 +31,11 @@ class VisualizarEstadisticas():
             plt.xlabel("Cantidad de Tiquetes")
             plt.title("Visualozar Estadisticas Viajes")
             plt.show()
+
+            gananciasGeneradas = [ viaje.gananciasGeneradas() for viaje in Viaje.getViajes()]
+            plt.barh(nombreViaje, gananciasGeneradas, color = "c")
+            plt.ylabel("Viaje : Origen - Destino")
+            plt.xlabel("Ganancias Generadas")
+            plt.title("Visualizar Estadisticas Conductores")
+            plt.show()         
             
