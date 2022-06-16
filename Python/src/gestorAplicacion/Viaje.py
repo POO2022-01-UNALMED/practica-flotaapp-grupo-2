@@ -90,4 +90,6 @@ class Viaje():
         return viajesin
         #return [viaje for viaje in Viaje.getViajes() if viaje.getConductor == None]
         #Corregí el metodo porque siempre devolvia una lista vacia
-        
+    
+    def __str__(self):
+        return "\n IdViaje: {} \n Origen {} \n Destino {} \n Fecha Viaje {}".format(self.getIdViaje(),self.getOrigen(), self.getDestino(), self.getFechaViaje())
