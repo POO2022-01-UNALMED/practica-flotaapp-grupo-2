@@ -28,15 +28,14 @@ class Viaje():
         self._frecuencia = frecuencia
         self._fechaViaje = fechaViaje
         self._vehiculo = vehiculo
-        self._allTiquetes = []
-        self.allTiquetes = [Tiquete(silla.getNumeroSilla(), None, silla, self, self._precioPremium, None) for silla in self.getVehiculo().getSillas() if silla.getTipo()] + [Tiquete(silla.getNumeroSilla(), None, silla, self, self._precioEstandar, None) for silla in self.getVehiculo().getSillas() if silla.getTipo() == False]
+        self._allTiquetes = [Tiquete(silla.getNumeroSilla(), None, silla, self, self._precioPremium, None) for silla in self.getVehiculo().getSillas() if silla.getTipo()] + [Tiquete(silla.getNumeroSilla(), None, silla, self, self._precioEstandar, None) for silla in self.getVehiculo().getSillas() if silla.getTipo() == False]
         Viaje.__viajes.append(self)
         
     def tiquetesDisponibles(self):
         return [tiquete for tiquete in self._allTiquetes if tiquete.getEstado() == False]
     
     def tiqueteDisponible(self, presupuesto : int):
-        for tiquete in self._allTiquetes:
+        for tiquete in self.getAllTiquetes():
             if tiquete.getValor() <= presupuesto and tiquete.getEstado() == False:
                 return tiquete
 
@@ -55,6 +54,9 @@ class Viaje():
     
     def getCosto(self) -> int :
         return self._costo
+
+    def getFechaViaje(self):
+        return self._fechaViaje
 
     def getConductor(self) -> int:
         return self._conductor

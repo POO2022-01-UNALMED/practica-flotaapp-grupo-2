@@ -1,5 +1,8 @@
 from datetime import datetime
-from typing import List
+import sys
+sys.path.append("../practica-flotaapp-grupo-2/Python/src")
+
+
 from gestorAplicacion.Viaje import Viaje
 from gestorAplicacion.Usuario import Usuario
 from gestorAplicacion.Tiquete import Tiquete
@@ -25,7 +28,10 @@ class Comprador(Usuario):
         Comprador._compradores.append(self)
 
     def anadirTiqueteHistoria(self, tiquete : Tiquete):
-        self._historicoViajes.append(tiquete)
+        if self._historicoViajes == None:
+            self._historicoViajes = [tiquete]
+        else:
+            self._historicoViajes.append(tiquete)
 
     #def buscarTiquete(self):
 
@@ -34,6 +40,8 @@ class Comprador(Usuario):
             if viaje.getDestino() == destino and viaje.getOrigen() == origen and viaje.getFechaViaje() > datetime.now():
                 tiqueteFinal = viaje.tiqueteDisponible(presupuesto)
                 if tiqueteFinal != None:
+                    from uiMain.Funcionalidades.Asignar import Asignar
+                    Asignar.asignarTiquete(self, tiqueteFinal)
                     return tiqueteFinal
 
     def getHistocioViaje(self):

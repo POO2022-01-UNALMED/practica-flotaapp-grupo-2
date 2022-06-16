@@ -9,6 +9,7 @@ from gestorAplicacion.Viaje import Viaje
 from gestorAplicacion.Conductor import Conductor, Categoria
 from gestorAplicacion.Especialista import Especialidad, Especialista
 from Funcionalidades.Gestionar import Gestionar
+from Funcionalidades.VisualizarEstadisticas import VisualizarEstadisticas
 from Funcionalidades.Asignar import Asignar
 
 from datetime import datetime
@@ -49,10 +50,12 @@ sp6v1 =   Silla(6, True, Ubicacion.PASILLO)
 sillasv1 = [se1v1, se2v1, sp1v1, sp2v1, sp3v1, sp4v1, sp5v1, sp6v1]
 
 se1v2 =   Silla(3, False, Ubicacion.VENTANA)
-se2v2 =   Silla(4, False, Ubicacion.PASILLO)
-sp1v2 =   Silla(1, True, Ubicacion.VENTANA)
+se2v2 =   Silla(5, False, Ubicacion.PASILLO)
+se3v2 =   Silla(4, False, Ubicacion.PASILLO)
+sp1v2 =   Silla(6, True, Ubicacion.VENTANA)
+sp3v2 =   Silla(1, True, Ubicacion.VENTANA)
 sp2v2 =   Silla(2, True, Ubicacion.PASILLO)
-sillasv2 =  [se1v2, se2v2, sp1v2, sp2v2]
+sillasv2 =  [se1v2, se2v2, sp1v2, sp2v2, sp3v2, se3v2]
 
 se1v3 =   Silla(3, False, Ubicacion.VENTANA)
 se2v3 =   Silla(4, False, Ubicacion.PASILLO)
@@ -66,10 +69,12 @@ v2 =   Vehiculo("ZZZ999", sillasv2)
 v3 =   Vehiculo("ABC123", sillasv3)
 
 #VIAJES
-viaje2 =   Viaje(4, 40000, 10000, 15000, Monteria, Pasto, 7, v2, intermedio)
-viaje3 =   Viaje(3, 35000, 12000, 18000, Medellin, Manizales, 7, v3, fin)
-viaje1 =   Viaje(1, 30000, 15000, 22000, Bello, Cali, 7, v1, intermedio)
-viaje4 =   Viaje(2, 30000, 1100, 17000, Medellin, Cartagena, 7, v1, fin)
+viaje2 =   Viaje(4, 40000, 10000, 15000, Monteria, Pasto, 12, v2, intermedio)
+viaje3 =   Viaje(3, 35000, 12000, 18000, Medellin, Manizales, 24, v3, fin)
+viaje1 =   Viaje(1, 30000, 15000, 22000, Bello, Cali, 24, v1, intermedio)
+viaje4 =   Viaje(2, 30000, 11000, 17000, Medellin, Cartagena, 12, v1, fin)
+viaje5 =   Viaje(10, 30000, 15000, 20000, Medellin, Barranquilla, 32, v2, inicio)
+viaje6 =   Viaje(22, 30000, 11500, 13500, Medellin, Popayan, 48, v3, fin + timedelta(days=2))
 
 # PROMOCIONES
 Pasto.setPromocion(25)
@@ -100,8 +105,12 @@ comprador1.comprarTiquete(Bello, Cali, 80000)
 comprador2.comprarTiquete(Monteria, Pasto, 50000)
 comprador4.comprarTiquete(Monteria, Pasto, 90000)
 comprador3.comprarTiquete(Bello, Cali, 90000)
+comprador3.comprarTiquete(Bello, Cali, 90000)
 comprador3.comprarTiquete(Monteria, Pasto, 100000)
 comprador5.comprarTiquete(Medellin, Cartagena, 100000)
+comprador5.comprarTiquete(Medellin, Cartagena, 100000)
+comprador5.comprarTiquete(Medellin, Barranquilla, 100000)
+comprador1.comprarTiquete(Medellin, Popayan, 100000)
 
 
 #funcionalidad Asignar Viaje
@@ -116,4 +125,7 @@ Asignar.asignarVehiculoEspecialista(ele1, v2)
 
 
 if __name__ == '__main__':
+    
+    VisualizarEstadisticas.visualizarEstadisticas()
     Gestionar.gestionarEspecialistas()
+    
