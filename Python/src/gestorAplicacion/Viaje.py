@@ -83,4 +83,11 @@ class Viaje():
     
     @classmethod
     def viajeSinConductor(cls):
-        return [viaje for viaje in Viaje.getViajes() if viaje.conductor == None]
+        viajesin = []
+        for viaje in Viaje.getViajes():
+            if(viaje.getConductor() == None):
+                viajesin.append(viaje)
+        return viajesin
+        #return [viaje for viaje in Viaje.getViajes() if viaje.getConductor == None]
+        #Corregí el metodo porque siempre devolvia una lista vacia
+        
