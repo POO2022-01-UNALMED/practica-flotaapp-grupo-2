@@ -17,7 +17,7 @@ class Asignar():
         tiquete.setComprador(comprador)
         tiquete.setFechaCompra(datetime.now())
         tiquete.setEstado(True)
-        comprador.añadirTiqueteHistoria(tiquete)
+        comprador.anadirTiqueteHistoria(tiquete)
         tiquete.getViaje().getDestino().anadirVisitantes(1)
     
     @staticmethod
