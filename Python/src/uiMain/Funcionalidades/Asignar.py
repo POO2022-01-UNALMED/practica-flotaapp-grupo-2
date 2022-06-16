@@ -28,4 +28,3 @@ class Asignar():
     @staticmethod
     def asignarVehiculoEspecialista(especialista : Especialista, vehiculo : Vehiculo):
         especialista.anadirVehiculoHistoria(vehiculo)
-        especialista.revisionVehiculo(vehiculo)

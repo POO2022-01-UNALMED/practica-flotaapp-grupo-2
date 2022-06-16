@@ -8,6 +8,7 @@ from gestorAplicacion.Silla import Silla, Ubicacion
 from gestorAplicacion.Viaje import Viaje
 from gestorAplicacion.Conductor import Conductor, Categoria
 from gestorAplicacion.Especialista import Especialidad, Especialista
+from Funcionalidades.Asignar import Asignar
 
 
 class Gestionar():
@@ -18,17 +19,21 @@ class Gestionar():
             print(especialista.getuNombre())
             return 
                 
-        print("[4] Visualizar Historial de viajes Asignados \n[5] Asignar un Viaje \n[6] Despedir")
+        print("[4] Visualizar Historial de vehiculos Asignados \n[5] Asignar un Vehiculo \n[6] Despedir")
         aux2 = int(input())
         if aux2 == 4:
             if especialista.getHistorialVehiculosRevisados() == None: 
                 return
 
             for vehiculo in especialista.getHistorialVehiculosRevisados():
-                print(vehiculo.getPlaca())
+                print(f'PLACA VEHICULO : {vehiculo.getPlaca()}')
         elif aux2 == 5:
             print(f"Tipo Revision: {especialista.getEspecialidad()}");
-            #Asignar.asignarVehiculoEmpleados(especialista);
+            for i in range(len(Vehiculo.getVehiculos())):
+                print(f'[{i}] : {Vehiculo.getVehiculos()[i].getPlaca()}')
+            idVehiculo = int(input("Vehiculo a asignar: "))
+            Asignar.asignarVehiculoEspecialista(especialista,Vehiculo.getVehiculos()[idVehiculo])
+            especialista.revisionVehiculo(Vehiculo.getVehiculos()[idVehiculo])
         elif aux2 == 6:
             administrador = Especialista()
             print(administrador.despedir(especialista))
