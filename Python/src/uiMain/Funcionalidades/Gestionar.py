@@ -8,7 +8,10 @@ from gestorAplicacion.Silla import Silla, Ubicacion
 from gestorAplicacion.Viaje import Viaje
 from gestorAplicacion.Conductor import Conductor, Categoria
 from gestorAplicacion.Especialista import Especialidad, Especialista
+from uiMain.Funcionalidades.Asignar import Asignar
 
+from datetime import datetime
+from datetime import timedelta
 
 class Gestionar():
 
@@ -56,3 +59,65 @@ class Gestionar():
             if especialista1.getCc() == espe:
                 especialistaAux = especialista1
         Gestionar.desicionEspecialista(especialistaAux)
+
+    @classmethod
+    def gestionarConductores(cls):
+        for conductor in Conductor.getConductores():
+            print(" ")
+            print("CC:" + str(conductor.getCc()) + " - Nombre: " + conductor.getuNombre())
+            print("Cantidad de Viajes asigandos: " + str(len(conductor.getHistoricoViajesRealizados())))
+
+        print(" ")
+        print("Dime la CC del conductor que deseas gestionar : ")
+        cond = int(input())
+        conductor = Conductor()
+        for conductor1 in Conductor.getConductores():
+            if(conductor1.getCc() == cond):
+                conductor = conductor1
+        
+        Gestionar.desicionConductor(conductor)
+
+    @staticmethod
+    def desicionConductor(conductor):
+        if(conductor.getuNombre() == "CONDUCTOR NO REGISTRADO"):
+            print(conductor.getuNombre())
+            pass
+        print("[4] Visualizar Historial de viajes Asignados \n[5] Asignar un Viaje \n[6] Despedir")
+        aux = int(input())
+        while True:
+            if(aux == 4):
+                print("--- HISTORIAL VIAJES REALIZADOS ---")
+                for viaje in conductor.getHistoricoViajesRealizados():
+                    print(viaje)
+                break
+                
+            elif(aux == 5):
+                if(len(Viaje.viajeSinConductor()) == 0):
+                    print("Actualmente todos los viajes tienen Conductor")
+                    break
+                else:
+                    for i in range(len(Viaje.viajeSinConductor())):
+                        print(" ")
+                        print("id : [" + str(i) +"] =" + Viaje.viajeSinConductor()[i].__str__())
+                
+                print(" ")
+                des = int(input())
+                viajesDisponibles = Viaje.viajeSinConductor()
+                for viaje in conductor.getHistoricoViajesRealizados():
+                    if(viaje.getFechaViaje().strftime("%Y") == viajesDisponibles[des].getFechaViaje().strftime("%Y") and viaje.getFechaViaje().strftime("%m") == viajesDisponibles[des].getFechaViaje().strftime("%m") and viaje.getFechaViaje().strftime("%d") == viajesDisponibles[des].getFechaViaje().strftime("%d")):
+                        print("Lo siento este conductor ya tiene un viaje para esta fecha")
+                    break   
+                Asignar.asignarVehiculoConductor(conductor, viajesDisponibles[des])
+                print("VIAJE: " + viajesDisponibles[des].__str__())
+                break
+
+            elif(aux == 6):
+                administrador = Especialista()
+                administrador.despedir(conductor)
+                print("EMPLEADO DESPEDIDO")
+                break
+
+            else:
+                break
+
+
