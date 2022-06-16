@@ -8,6 +8,6 @@ class Empleado(Usuario):
 
     def renunciar(claseR):
         claseR.renunciar()
-    
+        
     def bonoSueldo(self):
         self._billetera += self._billetera * 0.1

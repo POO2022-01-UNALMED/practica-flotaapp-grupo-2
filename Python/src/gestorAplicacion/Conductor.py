@@ -49,6 +49,10 @@ class Conductor(Empleado):
     def getHistoricoViajesRealizados(self):
         return self.__historiaViajesRealizados
     
+    @classmethod()
+    def desvincularEmpleado(cls, conductorE: Conductor = None):
+        Conductor.__conductores.remove(conductorE)
+    
     def __str__(self): 
         return "CC: {} \n Nombre {} \n Sueldo: {} \n Categoria : {} \n Viajes realizado : {}".format(self._cc, self._uNombre, self._sueldo, self._categoria,self.__historiaViajesRealizados) 
                

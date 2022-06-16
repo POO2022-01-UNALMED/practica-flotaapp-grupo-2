@@ -1,6 +1,7 @@
 import random
 from enum import Enum
 from gestorAplicacion.Empleado import Empleado
+from gestorAplicacion.Conductor import Conductor
 
 class Especialidad(Enum):
 
@@ -39,12 +40,19 @@ class Especialista(Empleado):
         
         return mesage
     
-    def despedir(self, especialistaE: Especialista = None):
+    def despedir(self, empleadoE: Empleado = None):
         mesage = ""
-        if (especialistaE.especialidad == Especialidad.ADMINISTRADOR.value):
-                mesage = "Empleado " + especialistaE._uNombre + " despedido."
-                especialistaE._billetera += 3000
-                Especialista.desvincularEmpleado(especialistaE)
+        if (empleadoE.especialidad == Especialidad.ADMINISTRADOR.value):
+                if empleadoE in Especialista.__especialistas:                  
+                    mesage = "Especialista " + empleadoE._uNombre + " despedido."
+                    empleadoE._billetera += 3000
+                    Especialista.desvincularEmpleado(empleadoE)
+                elif empleadoE in Conductor.getConductores():
+                    mesage = "Conductor " + empleadoE.uNombre + " despedido"
+                    empleadoE._billetera += 3000
+                    Conductor.desvincularEmpleado(empleadoE)
+                else:
+                    mesage = "El empleado " + empleadoE.uNombre + " no está en nuestra base de datos"
         else:
             mesage = "Solo los ADMINISTRADORES pueden despedir usuarios"
         
