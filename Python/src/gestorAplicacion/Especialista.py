@@ -1,4 +1,5 @@
 import random
+import time
 from enum import Enum
 from types import NoneType
 from gestorAplicacion.Empleado import Empleado
@@ -44,12 +45,14 @@ class Especialista(Empleado):
         return mesage    
 
     def revisionVehiculo(self, vehiculoE : Vehiculo):
-        mesage = f"El vehiculo {vehiculoE.getPlaca()} esta en buenas condiciones"
-        random_int = random.randint(1, 10)#   * 100000  Por que se multiplica por 100000 ????
+        print(f"El vehiculo {vehiculoE.getPlaca()} esta siendo revisado...")
+        time.sleep(5)
+        random_int = random.randint(1, 10)
         if (random_int == 7):
-            mesage = f"Al vehiculo {vehiculoE.getPlaca} se le necesitan hacer reparaciones"
+            print(f"EL VEHICULO NECESITA REPARACIONES")
+        else:
+            print("EL VEHICULO ESTA EN PERFECTO ESTADO")
 
-        return mesage
 
     ## G E T   AND S E T ##
 
