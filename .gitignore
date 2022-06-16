@@ -1,0 +1,9 @@
+build/
+.gradle/
+/bin/
+.classpath
+.project
+.settings
+.idea/
+*__pycache__*
+/.metadata/

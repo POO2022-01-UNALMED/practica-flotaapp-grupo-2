@@ -33,11 +33,24 @@ class Viaje():
         
     def tiquetesDisponibles(self):
         return [tiquete for tiquete in self._allTiquetes if tiquete.getEstado() == False]
+
+    def tiquetesComprador(self):
+        return [tiquete for tiquete in self._allTiquetes if tiquete.getEstado() == True]
     
     def tiqueteDisponible(self, presupuesto : int):
         for tiquete in self.getAllTiquetes():
             if tiquete.getValor() <= presupuesto and tiquete.getEstado() == False:
                 return tiquete
+
+    def gananciasGeneradas(self):
+        costos = self._costo
+        compras = 0
+        for tiquete in self.tiquetesComprador():
+            compras += tiquete.getValor()
+        if costos >= compras:
+            return 0
+        else: 
+            return compras - costos
 
     def eliminarViaje(self):
         Viaje.__viajes.remove(self)

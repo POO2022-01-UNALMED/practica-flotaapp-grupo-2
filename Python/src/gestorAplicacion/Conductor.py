@@ -56,7 +56,6 @@ class Conductor(Empleado):
         if superConductor != None:
             sueldo += sueldo * 0.1    # 10% mas de bono si es el conductor con mas viajes realizados     
 
-
     def renunciar(self):
         Conductor.__conductores.remove(self)
 
