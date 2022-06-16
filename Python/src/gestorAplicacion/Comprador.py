@@ -1,8 +1,4 @@
 from datetime import datetime
-import sys
-sys.path.append("../practica-flotaapp-grupo-2/Python/src")
-
-
 from gestorAplicacion.Viaje import Viaje
 from gestorAplicacion.Usuario import Usuario
 from gestorAplicacion.Tiquete import Tiquete
@@ -42,7 +38,6 @@ class Comprador(Usuario):
                 if tiqueteFinal != None:
                     from uiMain.Funcionalidades.Asignar import Asignar
                     Asignar.asignarTiquete(self, tiqueteFinal)
-                    return tiqueteFinal
 
     def getHistocioViaje(self):
         return self._historicoViajes

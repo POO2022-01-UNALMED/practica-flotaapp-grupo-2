@@ -68,9 +68,6 @@ class Viaje():
     def getCosto(self) -> int :
         return self._costo
 
-    def getFechaViaje(self):
-        return self._fechaViaje
-
     def getConductor(self) -> int:
         return self._conductor
     
@@ -79,6 +76,10 @@ class Viaje():
 
     def getAllTiquetes(self):
         return self._allTiquetes
+    
+    def getFechaViaje(self):
+        return self._fechaViaje
+
 
     def getPrecioEstandar(self) -> int :
         return self._precioEstandar

@@ -2,13 +2,8 @@ from matplotlib import pyplot as plt
 import sys
 sys.path.append("../practica-flotaapp-grupo-2/Python/src")
 
-from gestorAplicacion.Comprador import Comprador
-from gestorAplicacion.Tiquete import Tiquete
-from gestorAplicacion.Vehiculo import Vehiculo
 from gestorAplicacion.Viaje import Viaje
 from gestorAplicacion.Ciudad import Ciudad
-from gestorAplicacion.Conductor import Conductor
-from gestorAplicacion.Especialista import Especialista
 
 class VisualizarEstadisticas():
 

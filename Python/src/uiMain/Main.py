@@ -123,7 +123,5 @@ Asignar.asignarVehiculoEspecialista(si2, v1)
 Asignar.asignarVehiculoEspecialista(ele1, v2)
 
 if __name__ == '__main__':
-    
     VisualizarEstadisticas.visualizarEstadisticas()
     Gestionar.gestionarEspecialistas()
-    
