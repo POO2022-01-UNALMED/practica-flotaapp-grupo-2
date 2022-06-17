@@ -128,7 +128,7 @@ class Gestionar():
         finalTiquete = Tiquete()
         for viaje in Viaje.getViajes():
             #No esta entrando en este if de aquí abajo, en el main, me pide el id, pero no me muestra los tiquetes disponibles
-            #El problema está en la comprarción de los destinos desafortunadamente no lo supe solucionar! :(
+            #El problema está en la comparación de los destinos desafortunadamente no lo supe solucionar! :(
             if (viaje.getDestino().getNombre() == nombreCiudad and viaje.getOrigen().getNombre() == "MEDELLIN" and viaje.getFechaViaje() > datetime.now()):
                 for i in range(len(Viaje.tiquetesDisponibles())):
                     print("id : [" +  str(i)  + "] = " +  viaje.tiquetesDisponibles()[i].__str__())
