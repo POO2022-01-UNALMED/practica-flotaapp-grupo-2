@@ -2,6 +2,7 @@ import sys
 sys.path.append("../practica-flotaapp-grupo-2/Python/src")
 
 from gestorAplicacion.Comprador import Comprador
+from gestorAplicacion.Tiquete import Tiquete
 from gestorAplicacion.Ciudad import Ciudad
 from gestorAplicacion.Vehiculo import Vehiculo
 from gestorAplicacion.Silla import Silla, Ubicacion
@@ -120,4 +121,29 @@ class Gestionar():
             else:
                 break
 
+    @staticmethod
+    def comprarTiqueteTerminal():
+        compradorBase = Comprador(0, "FLOTAAPPCOMPRADOR", "FLOTA@app.com", 999)
+        nombreCiudad = input("Ciudad a la que desea viajar: ")
+        finalTiquete = Tiquete()
+        for viaje in Viaje.getViajes():
+            #No esta entrando en este if de aquí abajo, en el main, me pide el id, pero no me muestra los tiquetes disponibles
+            #El problema está en la comprarción de los destinos desafortunadamente no lo supe solucionar! :(
+            if (viaje.getDestino().getNombre() == nombreCiudad and viaje.getOrigen().getNombre() == "MEDELLIN" and viaje.getFechaViaje() > datetime.now()):
+                for i in range(len(Viaje.tiquetesDisponibles())):
+                    print("id : [" +  str(i)  + "] = " +  viaje.tiquetesDisponibles()[i].__str__())
+
+            cambio = int(input("ingrese el id: "))
+            if(cambio >= len(viaje.tiquetesDisponibles())):
+                print("ID NO VALIDO")
+                return finalTiquete
+
+            else:
+                tiquete = viaje.tiquetesDisponibles()[cambio]
+                Asignar.asignarTiquete(compradorBase, tiquete)
+                print(tiquete)
+                return tiquete
+
+        print("NO HAY TIQUETES DISPONIBLES PARA EL VIAJE QUE DESEAS");
+        return finalTiquete
 
