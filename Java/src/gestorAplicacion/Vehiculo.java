@@ -13,6 +13,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Vehiculo implements Serializable {
+	
+	private static final long serialVersionUID = 9L;
     private String placa;
     private ArrayList<Silla> sillas;
     private static final long serialVersionUID = 9L;

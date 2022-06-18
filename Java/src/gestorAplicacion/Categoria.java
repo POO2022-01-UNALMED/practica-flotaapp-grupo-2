@@ -10,6 +10,6 @@ package gestorAplicacion;
 
 import java.io.Serializable;
 
-public enum Categoria implements Serializable  {
+public enum Categoria  implements Serializable{
     B2, B3, C1, C2, C3
 }

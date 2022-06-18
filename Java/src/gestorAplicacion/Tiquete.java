@@ -13,6 +13,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Tiquete implements Serializable {
+		
+		private static final long serialVersionUID = 7L;
 		private int idTiquete;
 		protected Comprador comprador;
 		protected Silla sillaTiquete;

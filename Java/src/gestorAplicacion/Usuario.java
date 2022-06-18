@@ -17,7 +17,7 @@ import java.io.Serializable;
 
 
 public abstract class Usuario implements Serializable {
-
+	private static final long serialVersionUID = 8L;
     protected int cc;
     protected String uNombre;
     protected String email;

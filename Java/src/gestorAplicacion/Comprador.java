@@ -24,6 +24,8 @@ import java.util.stream.Collectors;
 import java.util.LinkedHashMap;
 
 public class Comprador extends Usuario implements Serializable{
+	
+	private static final long serialVersionUID = 2L;
 
     private ArrayList<Tiquete> historicoViajes;
     private static ArrayList<Comprador> compradores;

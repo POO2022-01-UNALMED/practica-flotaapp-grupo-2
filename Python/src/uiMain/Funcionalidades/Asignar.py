@@ -9,8 +9,6 @@ from gestorAplicacion.Viaje import Viaje
 from gestorAplicacion.Conductor import Conductor
 from gestorAplicacion.Especialista import Especialista
 
-
-
 class Asignar():
     @staticmethod
     def asignarTiquete(comprador : Comprador, tiquete : Tiquete):

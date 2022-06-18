@@ -1,6 +1,6 @@
 
 class Usuario():
-
+    
     def __init__(self, cc: int = 0, uNombre : str = None, email : str = None, movil: int = 0, billetera: int = 0):
 
         self._cc = cc
@@ -32,7 +32,3 @@ class Usuario():
 
     def getBilletera(self):
         return self._billetera
-
-
-
-

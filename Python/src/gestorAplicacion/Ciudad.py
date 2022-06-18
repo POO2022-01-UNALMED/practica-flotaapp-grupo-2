@@ -12,7 +12,7 @@ class Ciudad():
     '''
     __ciudades = []
 
-    def __init__(self, id : int, nombre : str, dirTerminal : str):
+    def __init__(self, id : int = 0, nombre : str = None, dirTerminal : str = None):
         self._id = id
         self._nombre = nombre
         self._promocion = 0
@@ -30,7 +30,7 @@ class Ciudad():
         return self._numVisitantes
 
     def anadirVisitantes(self, numVisitantes : int):
-	    self._numVisitantes += numVisitantes
+	    self._numVisitantes += self._numVisitantes
     
     def getPromocion(self):
         return self._promocion
@@ -49,4 +49,7 @@ class Ciudad():
     @classmethod
     def getCiudades(self):
         return Ciudad.__ciudades
+
+    def __str__(self):
+        return self.getNombre()
 
