@@ -20,7 +20,7 @@ class Comprador(Usuario):
     Su funcionalidad sera de servir como objeto de referencia para un Usuario de tipo Comprador 
     el cual podra acceder a los servicios de Comprar un Tiquete y sus derivados.
     '''
-    _compradores = []
+    __compradores = []
 
     def __init__(self,cc: int = 0, uNombre : str = None, email : str = None, movil: int = 0, billetera: int = 0, historicoViajes = None):
 
@@ -45,11 +45,11 @@ class Comprador(Usuario):
                     Asignar.asignarTiquete(self, tiqueteFinal)
                     return tiqueteFinal
 
-    def getHistocioViaje(self):
+    def getHistorioViaje(self):
         return self._historicoViajes
     
-    @classmethod()
-    def getComprador():
+    @classmethod
+    def getCompradores(cls):
         return Comprador.__compradores
     
     def getCC(self):

@@ -22,8 +22,7 @@ class Tiquete():                        #Comprador , Silla, Viaje
         self._fechaCompra = fechaCompra
         Tiquete.__tiquetes.append(self)
     
-    @property
-    def estado(self) -> bool: 
+    def getEstado(self) -> bool: 
         return self._estado
     
     def setEstado(self, estado : bool):

@@ -30,8 +30,12 @@ class Ciudad():
         return self._numVisitantes
 
     def anadirVisitantes(self, numVisitantes : int):
-	    self._numVisitantes += self._numVisitantes
+	    self._numVisitantes += numVisitantes
     
+    def getPuntaje(self):
+        puntaje = self.getPromocion()*0.7 + self.getNumVisitantes()*0.3
+        return puntaje    
+  
     def getPromocion(self):
         return self._promocion
     
