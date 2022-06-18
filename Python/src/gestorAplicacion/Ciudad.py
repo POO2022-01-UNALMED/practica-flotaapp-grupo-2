@@ -19,7 +19,7 @@ class Ciudad():
         return self._numVisitantes
 
     def anadirVisitantes(self, numVisitantes : int):
-	    self._numVisitantes += numVisitantes
+	    self._numVisitantes += self._numVisitantes
     
     def getPromocion(self):
         return self._promocion
@@ -38,4 +38,7 @@ class Ciudad():
     @classmethod
     def getCiudades(self):
         return Ciudad.__ciudades
+
+    def __str__(self):
+        return self.getNombre()
 

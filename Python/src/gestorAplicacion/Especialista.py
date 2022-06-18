@@ -2,6 +2,7 @@ import random
 from enum import Enum
 from gestorAplicacion.Empleado import Empleado
 from gestorAplicacion.Conductor import Conductor
+from gestorAplicacion.Vehiculo import Vehiculo
 
 class Especialidad(Enum):
 
@@ -27,13 +28,14 @@ class Especialista(Empleado):
         Especialista.__especialistas.remove(self)
         
     @classmethod
-    def desvincularEmpleado(cls, especialistaC: Especialista=None):
+    def desvincularEmpleado(cls, especialistaC):
+        especialistaC = Especialista()
         Especialista.__especialistas.remove(especialistaC)
      
     ## ---- M E T O D O S ---- ##
     
     def revisionVehiculo(self, vehiculoE: Vehiculo = None):
-        mesage = "El vehiculo " + VehiculoE.getPlaca() +" esta en buenas condiciones"
+        mesage = "El vehiculo " + vehiculoE.getPlaca() +" esta en buenas condiciones"
         random_int = random.randint(1, 10)#   * 100000  Por que se multiplica por 100000 ????
         if (random_int == 7):
             mesage = "Al vehiculo " + vehiculoE.getPlaca + " se le necesitan hacer reparaciones"
@@ -42,7 +44,7 @@ class Especialista(Empleado):
     
     def despedir(self, empleadoE: Empleado = None):
         mesage = ""
-        if (empleadoE.especialidad == Especialidad.ADMINISTRADOR.value):
+        if (empleadoE.getEspecialidad == Especialidad.ADMINISTRADOR.value):
                 if empleadoE in Especialista.__especialistas:                  
                     mesage = "Especialista " + empleadoE._uNombre + " despedido."
                     empleadoE._billetera += 3000
@@ -69,7 +71,7 @@ class Especialista(Empleado):
     def getHistoricoVehiculosRevisados(self):
         return self.__historialiVehiculosRevisados
     
-    @staticmethod()
+    @staticmethod
     def getEspecialistas(cls):
         return cls.__especialistas
     
