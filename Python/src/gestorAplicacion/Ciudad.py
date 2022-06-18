@@ -1,7 +1,7 @@
 class Ciudad():
     __ciudades = []
 
-    def __init__(self, id : int, nombre : str, dirTerminal : str):
+    def __init__(self, id : int = 0, nombre : str = None, dirTerminal : str = None):
         self._id = id
         self._nombre = nombre
         self._promocion = 0

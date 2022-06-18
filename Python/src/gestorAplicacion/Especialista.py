@@ -58,7 +58,7 @@ class Especialista(Empleado):
         
         return mesage     
     
-    ## G E T   AND S E T ##
+    ## G E T   A N D  S E T ##
     
     def anadirVehiculoHistoria(self, vehiculoE: Vehiculo = None):
         self.__historialiVehiculosRevisados.append(vehiculoE)
