@@ -46,10 +46,10 @@ class Gestionar():
     def visualizarEspecialista(especialista):
         print(" ")
         print(f'{especialista.getEspecialidad()} -  CC: {especialista.getCc()} - Nombre: {especialista.getuNombre()}');
-        if especialista.getHistorialVehiculosRevisados() == None :
+        if especialista.getHistoricoVehiculosRevisados() == None :
             print(f"Cantidad de vehiculos revisados: 0")
         else:   
-            print(f"Cantidad de vehiculos revisados: {len(especialista.getHistorialVehiculosRevisados())}")
+            print(f"Cantidad de vehiculos revisados: {len(especialista.getHistoricoVehiculosRevisados())}")
 
     @classmethod
     def gestionarEspecialistas(cls):
