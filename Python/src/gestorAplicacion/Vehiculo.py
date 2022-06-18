@@ -1,5 +1,13 @@
 
 class Vehiculo():
+    '''
+    Vehiculo : Contiene la informacion de: 
+        - Placa : str
+        - Sillas : List(Silla)
+    Su funcionalidad sera de servir como medio para saber cuales son las sillas disponibles
+    y con base a esto crear la cantidad de tiquetes justa para un viaje.
+    De igual forma como objeto que se le asigna a un Empleado para una revision.
+    '''
     _vehiculos = []
 
     def __init__(self, placa, sillas):

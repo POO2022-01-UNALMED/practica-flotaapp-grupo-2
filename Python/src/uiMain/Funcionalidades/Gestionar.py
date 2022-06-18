@@ -9,7 +9,8 @@ from gestorAplicacion.Silla import Silla, Ubicacion
 from gestorAplicacion.Viaje import Viaje
 from gestorAplicacion.Conductor import Conductor, Categoria
 from gestorAplicacion.Especialista import Especialidad, Especialista
-from uiMain.Funcionalidades.Asignar import Asignar
+from Funcionalidades.Asignar import Asignar
+
 
 from datetime import datetime
 from datetime import timedelta
@@ -21,32 +22,41 @@ class Gestionar():
         if especialista.getuNombre() == "ESPECIALISTA NO REGISTRADO" :
             print(especialista.getuNombre())
             return 
-        
-        print("[4] Visualizar Historial de viajes Asignados \n[5] Asignar un Viaje \n[6] Despedir")
+                
+        print("[4] Visualizar Historial de vehiculos Asignados \n[5] Asignar un Vehiculo \n[6] Despedir")
         aux2 = int(input())
         if aux2 == 4:
+            if especialista.getHistorialVehiculosRevisados() == None: 
+                return
+
             for vehiculo in especialista.getHistorialVehiculosRevisados():
-                print(vehiculo.getPlaca())
+                print(f'PLACA VEHICULO : {vehiculo.getPlaca()}')
         elif aux2 == 5:
             print(f"Tipo Revision: {especialista.getEspecialidad()}");
-            #Asignar.asignarVehiculoEmpleados(especialista);
+            for i in range(len(Vehiculo.getVehiculos())):
+                print(f'[{i}] : {Vehiculo.getVehiculos()[i].getPlaca()}')
+            idVehiculo = int(input("Vehiculo a asignar: "))
+            Asignar.asignarVehiculoEspecialista(especialista,Vehiculo.getVehiculos()[idVehiculo])
+            especialista.revisionVehiculo(Vehiculo.getVehiculos()[idVehiculo])
         elif aux2 == 6:
             administrador = Especialista()
-            administrador.despedir(especialista); 
-            print("EMPLEADO DESPEDIDO");
+            print(administrador.despedir(especialista))
 
     @staticmethod
     def visualizarEspecialista(especialista):
         print(" ")
         print(f'{especialista.getEspecialidad()} -  CC: {especialista.getCc()} - Nombre: {especialista.getuNombre()}');
-        print(f"Cantidad de vehiculos revisados: {len(especialista.getHistorialVehiculosRevisados())}")
+        if especialista.getHistorialVehiculosRevisados() == None :
+            print(f"Cantidad de vehiculos revisados: 0")
+        else:   
+            print(f"Cantidad de vehiculos revisados: {len(especialista.getHistorialVehiculosRevisados())}")
 
     @classmethod
     def gestionarEspecialistas(cls):
         print("----- G E S T I O N A R   E S P E C I A L I S T A S -----")
         print(" ")
         print("[1] Electrico, [2] Mecanico, [3] Silleteria")
-        especialidades = [Especialidad.ELECTRICO, Especialidad.MECANICO, Especialidad.ADMINISTRADOR]
+        especialidades = [Especialidad.ELECTRICO, Especialidad.MECANICO, Especialidad.SILLETERIA]
         aux = int(input())
         for especialista in Especialista.getEspecialistas():
             if especialista.getEspecialidad() == especialidades[aux-1]:

@@ -9,6 +9,14 @@ class Ubicacion(Enum):
     INTERMEDIO = "INTERMEDIO"
 
 class Silla():
+    '''
+    Comprador : Contiene la informacion de: 
+        - Numero Silla : int
+        - Tipo : bool
+        - Ubicacion : Ubicacion(Enum)
+    Esta sirve como medio para saber cuantas sillas se crean en un viaje y de igual manera
+    contiene información de las sillas de un bus.
+    '''
     _sillas = []
    
     def __init__(self,numeroSilla: int =  0, tipo: bool =  False, ubicacion : Ubicacion = None):

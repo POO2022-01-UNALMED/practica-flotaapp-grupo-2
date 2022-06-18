@@ -13,15 +13,22 @@ class Especialidad(Enum):
  #Superclase Empleado
 
 class Empleado(Usuario):
-    def __init__(self, cc, uNombre, email, movil, billetera):
-        super(). __init__(cc, uNombre, email, movil, billetera)
-        self._sueldo = 0
+    '''
+    Comprador : Contiene la informacion de: 
+        - ID : int
+        - Nombre : String
+        - email : String
+        - movil : int
+        - Sueldo : int
+    Es una clase abstracta con la cual se hara referencia en Especialista y Conductor.
+    '''
 
-    def renunciar(claseR):
-        claseR.renunciar()
-        
-    def bonoSueldo(self):
-        self._billetera += self._billetera * 0.1
+    def __init__(self, cc: int=0, uNombre: str=None, email: str=None, movil: int = 0, sueldo: int = 0):
+        super(). __init__(cc, uNombre, email, movil)
+        self._sueldo = sueldo
 
-    def getEspecialidad(self):
-        return Especialidad
+    def renunciar(self):
+        self.renunciar()
+
+    def bonoSueldo(self): # Polimorfismo
+        self.bonoSueldo()

@@ -32,8 +32,3 @@ class Usuario():
 
     def getBilletera(self):
         return self._billetera
-
-
-
-
-

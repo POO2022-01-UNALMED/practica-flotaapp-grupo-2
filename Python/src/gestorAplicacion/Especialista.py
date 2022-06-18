@@ -1,5 +1,7 @@
 import random
+import time
 from enum import Enum
+from types import NoneType
 from gestorAplicacion.Empleado import Empleado
 from gestorAplicacion.Conductor import Conductor
 from gestorAplicacion.Vehiculo import Vehiculo
@@ -18,9 +20,9 @@ class Especialista(Empleado):
 
     __especialistas = []
 
-    def __init__(self, cc = 0, uNombre = "ESPECIALISTA NO REGISTRADO", email = "", movil = 666, billetera = 0, especialidad : Especialidad = Especialidad.ADMINISTRADOR, historialVehiculosRevisados = []): #Se está casteando bien los enumeradores?
+    def __init__(self, cc = 0, uNombre = "ESPECIALISTA NO REGISTRADO", email = "", movil = 666, billetera = 0, especialidad : Especialidad = Especialidad.ADMINISTRADOR, historialVehiculosRevisados = None): #Se está casteando bien los enumeradores?
         super().__init__(cc, uNombre, email, movil, billetera)
-        self.__historialiVehiculosRevisados = historialVehiculosRevisados
+        self._historialiVehiculosRevisados = historialVehiculosRevisados
         self._especialidad = especialidad
         Especialista.__especialistas.append(self)
 
@@ -33,15 +35,16 @@ class Especialista(Empleado):
         Especialista.__especialistas.remove(especialistaC)
      
     ## ---- M E T O D O S ---- ##
-    
-    def revisionVehiculo(self, vehiculoE: Vehiculo = None):
-        mesage = "El vehiculo " + vehiculoE.getPlaca() +" esta en buenas condiciones"
-        random_int = random.randint(1, 10)#   * 100000  Por que se multiplica por 100000 ????
+
+    def revisionVehiculo(self, vehiculoE : Vehiculo):
+        print(f"El vehiculo {vehiculoE.getPlaca()} esta siendo revisado...")
+        time.sleep(5)
+        random_int = random.randint(1, 10)
         if (random_int == 7):
-            mesage = "Al vehiculo " + vehiculoE.getPlaca + " se le necesitan hacer reparaciones"
-        
-        return mesage
-    
+            print(f"EL VEHICULO NECESITA REPARACIONES")
+        else:
+            print("EL VEHICULO ESTA EN PERFECTO ESTADO")
+
     def despedir(self, empleadoE: Empleado = None):
         mesage = ""
         if (empleadoE.getEspecialidad == Especialidad.ADMINISTRADOR.value):
@@ -61,10 +64,10 @@ class Especialista(Empleado):
         return mesage     
     
     ## G E T   A N D  S E T ##
-    
-    def anadirVehiculoHistoria(self, vehiculoE: Vehiculo = None):
-        self.__historialiVehiculosRevisados.append(vehiculoE)
-    
+
+    def getuNombre(self):
+        return super().getuNombre()
+
     def getEspecialidad(self):
         return self._especialidad
     
@@ -73,7 +76,14 @@ class Especialista(Empleado):
     
     @staticmethod
     def getEspecialistas(cls):
-        return cls.__especialistas
-    
+        return Especialista.__especialistas
+
+    def anadirVehiculoHistoria(self, vehiculoE: Vehiculo):
+        if self.getHistorialVehiculosRevisados() == None:
+            self._historialiVehiculosRevisados = [vehiculoE]
+        else:
+            self._historialiVehiculosRevisados.append(vehiculoE)
+
     def __str__(self) : 
-        return "Nombre: {}  \n Sueldo: {} \n Especialidad: {}".format(self._uNombre, self._sueldo, self._especialidad)
+        return "Nombre: {}  \n Sueldo: {} \n Especialidad: {}".format(self._uNombre, self._sueldo, self._especialidad) 
+
