@@ -1,13 +1,10 @@
 from datetime import datetime
-import sys
-sys.path.append("../practica-flotaapp-grupo-2/Python/src")
-
-from gestorAplicacion.Comprador import Comprador
-from gestorAplicacion.Tiquete import Tiquete
-from gestorAplicacion.Vehiculo import Vehiculo
-from gestorAplicacion.Viaje import Viaje
-from gestorAplicacion.Conductor import Conductor
-from gestorAplicacion.Especialista import Especialista
+from gestorAplicacion.personas.Comprador import Comprador
+from gestorAplicacion.viajes.Tiquete import Tiquete
+from gestorAplicacion.viajes.Vehiculo import Vehiculo
+from gestorAplicacion.viajes.Viaje import Viaje
+from gestorAplicacion.personas.Conductor import Conductor
+from gestorAplicacion.personas.Especialista import Especialista
 
 class Asignar():
     @staticmethod

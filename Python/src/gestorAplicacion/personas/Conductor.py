@@ -1,5 +1,5 @@
-from gestorAplicacion.Empleado import Empleado
-from gestorAplicacion.Viaje import Viaje
+from gestorAplicacion.personas.Empleado import Empleado
+from gestorAplicacion.viajes.Viaje import Viaje
 from enum import Enum
 
 class Categoria(Enum):

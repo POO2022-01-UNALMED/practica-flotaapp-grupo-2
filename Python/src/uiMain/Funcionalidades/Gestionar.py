@@ -1,9 +1,9 @@
-from gestorAplicacion.Comprador import Comprador
-from gestorAplicacion.Tiquete import Tiquete
-from gestorAplicacion.Vehiculo import Vehiculo
-from gestorAplicacion.Viaje import Viaje
-from gestorAplicacion.Conductor import Conductor
-from gestorAplicacion.Especialista import Especialidad, Especialista
+from gestorAplicacion.personas.Comprador import Comprador
+from gestorAplicacion.viajes.Tiquete import Tiquete
+from gestorAplicacion.viajes.Vehiculo import Vehiculo
+from gestorAplicacion.viajes.Viaje import Viaje
+from gestorAplicacion.personas.Conductor import Conductor
+from gestorAplicacion.personas.Especialista import Especialidad, Especialista
 from uiMain.Funcionalidades.Asignar import Asignar
 
 

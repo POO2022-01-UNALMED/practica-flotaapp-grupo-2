@@ -1,6 +1,6 @@
 import datetime
-from gestorAplicacion.Vehiculo import Vehiculo
-from gestorAplicacion.Ciudad import Ciudad
+from gestorAplicacion.viajes.Vehiculo import Vehiculo
+from gestorAplicacion.viajes.Ciudad import Ciudad
 
 class Viaje():
     '''
@@ -17,7 +17,7 @@ class Viaje():
     '''
     __viajes = []
     def __init__(self, idViaje : int = 0, costo : int = 0, precioEstandar : int = 0, precioPremium : int = 0, origen : Ciudad = None, destino : Ciudad = None, frecuencia : int = 0, vehiculo : Vehiculo = None, fechaViaje : datetime = None) -> None:
-        from gestorAplicacion.Tiquete import Tiquete
+        from gestorAplicacion.viajes.Tiquete import Tiquete
         self._idViaje = idViaje
         self._costo = costo
         self._conductor = None

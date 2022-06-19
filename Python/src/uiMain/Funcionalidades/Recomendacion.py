@@ -1,11 +1,11 @@
 """
 Recomendacion de viajes a Usuarios
 """
-from gestorAplicacion.Ciudad import Ciudad
-from gestorAplicacion.Comprador import Comprador
-from gestorAplicacion.Usuario import Usuario
-from gestorAplicacion.Viaje import Viaje
-from gestorAplicacion.Tiquete import Tiquete
+from gestorAplicacion.viajes.Ciudad import Ciudad
+from gestorAplicacion.personas.Comprador import Comprador
+from gestorAplicacion.personas.Usuario import Usuario
+from gestorAplicacion.viajes.Viaje import Viaje
+from gestorAplicacion.viajes.Tiquete import Tiquete
 
 
 

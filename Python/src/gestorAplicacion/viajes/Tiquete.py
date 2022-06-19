@@ -1,4 +1,4 @@
-from gestorAplicacion.Viaje import Viaje
+from gestorAplicacion.viajes.Viaje import Viaje
 import datetime
 
 class Tiquete():                        #Comprador , Silla, Viaje

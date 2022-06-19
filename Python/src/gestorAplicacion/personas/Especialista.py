@@ -1,9 +1,9 @@
 import random
 import time
 from enum import Enum
-from gestorAplicacion.Empleado import Empleado
-from gestorAplicacion.Conductor import Conductor
-from gestorAplicacion.Vehiculo import Vehiculo
+from gestorAplicacion.personas.Empleado import Empleado
+from gestorAplicacion.personas.Conductor import Conductor
+from gestorAplicacion.viajes.Vehiculo import Vehiculo
 
 class Especialidad(Enum):
 
