@@ -131,22 +131,20 @@ class Gestionar():
         nombreCiudad = input("Ciudad a la que desea viajar: ")
         finalTiquete = Tiquete()
         for viaje in Viaje.getViajes():
-            #No esta entrando en este if de aquí abajo, en el main, me pide el id, pero no me muestra los tiquetes disponibles
-            #El problema está en la comparación de los destinos desafortunadamente no lo supe solucionar! :(
-            if (viaje.getDestino().getNombre() == nombreCiudad and viaje.getOrigen().getNombre() == "MEDELLIN" and viaje.getFechaViaje() > datetime.now()):
-                for i in range(len(Viaje.tiquetesDisponibles())):
+            if viaje.getDestino().getNombre() == nombreCiudad and viaje.getOrigen().getNombre() == "MEDELLIN" and viaje.getFechaViaje() > datetime.now():
+                for i in range(len(viaje.tiquetesDisponibles())):
                     print("id : [" +  str(i)  + "] = " +  viaje.tiquetesDisponibles()[i].__str__())
 
-            cambio = int(input("ingrese el id: "))
-            if(cambio >= len(viaje.tiquetesDisponibles())):
-                print("ID NO VALIDO")
-                return finalTiquete
+                cambio = int(input("ingrese el id: "))
+                if(cambio >= len(viaje.tiquetesDisponibles())):
+                    print("ID NO VALIDO")
+                    return finalTiquete
 
-            else:
-                tiquete = viaje.tiquetesDisponibles()[cambio]
-                Asignar.asignarTiquete(compradorBase, tiquete)
-                print(tiquete)
-                return tiquete
+                else:
+                    tiquete = viaje.tiquetesDisponibles()[cambio]
+                    Asignar.asignarTiquete(compradorBase, tiquete)
+                    print(tiquete)
+                    return tiquete
 
         print("NO HAY TIQUETES DISPONIBLES PARA EL VIAJE QUE DESEAS");
         return finalTiquete

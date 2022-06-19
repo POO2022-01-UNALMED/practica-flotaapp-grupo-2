@@ -134,5 +134,5 @@ if __name__ == '__main__':
 #    Recomendacion.recomendarViaje(6)
 #    VisualizarEstadisticas.visualizarEstadisticas()
 #    Gestionar.gestionarEspecialistas()
-    Gestionar.gestionarConductores()
-    #Gestionar.comprarTiqueteTerminal()
+    #Gestionar.gestionarConductores()
+    Gestionar.comprarTiqueteTerminal()
