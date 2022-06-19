@@ -1,9 +1,6 @@
 from matplotlib import pyplot as plt
-import sys
-sys.path.append("../practica-flotaapp-grupo-2/Python/src")
-
-from gestorAplicacion.Viaje import Viaje
-from gestorAplicacion.Ciudad import Ciudad
+from gestorAplicacion.viajes.Viaje import Viaje
+from gestorAplicacion.viajes.Ciudad import Ciudad
 
 class VisualizarEstadisticas():
 

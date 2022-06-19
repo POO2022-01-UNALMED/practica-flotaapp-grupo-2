@@ -1,17 +1,14 @@
-import sys
-sys.path.append("../practica-flotaapp-grupo-2/Python/src")
-
-from gestorAplicacion.Comprador import Comprador
-from gestorAplicacion.Ciudad import Ciudad
-from gestorAplicacion.Vehiculo import Vehiculo
-from gestorAplicacion.Silla import Silla, Ubicacion
-from gestorAplicacion.Viaje import Viaje
-from gestorAplicacion.Conductor import Conductor, Categoria
-from gestorAplicacion.Especialista import Especialidad, Especialista
-from Funcionalidades.Gestionar import Gestionar
-from Funcionalidades.VisualizarEstadisticas import VisualizarEstadisticas
-from Funcionalidades.Asignar import Asignar
-
+from gestorAplicacion.personas.Comprador import Comprador
+from gestorAplicacion.viajes.Ciudad import Ciudad
+from gestorAplicacion.viajes.Vehiculo import Vehiculo
+from gestorAplicacion.viajes.Silla import Silla, Ubicacion
+from gestorAplicacion.viajes.Viaje import Viaje
+from gestorAplicacion.personas.Conductor import Conductor, Categoria
+from gestorAplicacion.personas.Especialista import Especialidad, Especialista
+from uiMain.Funcionalidades.Gestionar import Gestionar
+from uiMain.Funcionalidades.Recomendacion import Recomendacion
+from uiMain.Funcionalidades.VisualizarEstadisticas import VisualizarEstadisticas
+from uiMain.Funcionalidades.Asignar import Asignar
 from datetime import datetime
 from datetime import timedelta
 
@@ -77,11 +74,12 @@ viaje5 =   Viaje(10, 30000, 26000, 34000, Medellin, Barranquilla, 32, v2, inicio
 viaje6 =   Viaje(22, 30000, 27000, 35000, Medellin, Popayan, 48, v3, fin + timedelta(days=2))
 
 # PROMOCIONES
-Pasto.setPromocion(25)
-Cali.setPromocion(10)
-Bello.setPromocion(15)
-Medellin.setPromocion(20)
 Manizales.setPromocion(35)
+Pasto.setPromocion(20)
+Cali.setPromocion(15)
+Cartagena.setPromocion(15)
+Barranquilla.setPromocion(20)
+
 
 
 #EMPLEADOS
@@ -102,15 +100,21 @@ con3 =   Conductor(30, "Dona Marta", "DonaMarta@example.com", 3004589696, 4200, 
 
 #funcionamiento de comprarTiquete
 comprador1.comprarTiquete(Bello, Cali, 80000)
-comprador2.comprarTiquete(Monteria, Pasto, 50000)
-comprador4.comprarTiquete(Monteria, Pasto, 90000)
-comprador3.comprarTiquete(Bello, Cali, 90000)
-comprador3.comprarTiquete(Bello, Cali, 90000)
-comprador3.comprarTiquete(Monteria, Pasto, 100000)
-comprador5.comprarTiquete(Medellin, Cartagena, 100000)
-comprador5.comprarTiquete(Medellin, Cartagena, 100000)
-comprador5.comprarTiquete(Medellin, Barranquilla, 100000)
 comprador1.comprarTiquete(Medellin, Popayan, 100000)
+
+comprador2.comprarTiquete(Monteria, Pasto, 50000)
+
+comprador3.comprarTiquete(Bello, Cali, 90000)
+comprador3.comprarTiquete(Medellin, Barranquilla, 100000)
+comprador3.comprarTiquete(Medellin, Barranquilla, 100000)
+
+comprador4.comprarTiquete(Monteria, Pasto, 90000)
+
+comprador5.comprarTiquete(Monteria, Pasto, 100000)
+comprador5.comprarTiquete(Medellin, Cartagena, 100000)
+comprador5.comprarTiquete(Medellin, Cartagena, 100000)
+
+
 
 
 #funcionalidad Asignar Viaje
@@ -123,5 +127,11 @@ Asignar.asignarVehiculoEspecialista(si2, v1)
 Asignar.asignarVehiculoEspecialista(ele1, v2)
 
 if __name__ == '__main__':
+    Recomendacion.recomendarViaje(1)
+    Recomendacion.recomendarViaje(2)
+    Recomendacion.recomendarViaje(3)
+    Recomendacion.recomendarViaje(4)
+    Recomendacion.recomendarViaje(5)
+    Recomendacion.recomendarViaje(6)
     VisualizarEstadisticas.visualizarEstadisticas()
     Gestionar.gestionarEspecialistas()

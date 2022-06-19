@@ -1,4 +1,4 @@
-from gestorAplicacion.Usuario import Usuario
+from gestorAplicacion.personas.Usuario import Usuario
 from enum import Enum
 
 class Especialidad(Enum):

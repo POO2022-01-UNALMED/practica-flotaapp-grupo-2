@@ -1,19 +1,13 @@
-import sys
-sys.path.append("../practica-flotaapp-grupo-2/Python/src")
-
-from gestorAplicacion.Comprador import Comprador
-from gestorAplicacion.Tiquete import Tiquete
-from gestorAplicacion.Ciudad import Ciudad
-from gestorAplicacion.Vehiculo import Vehiculo
-from gestorAplicacion.Silla import Silla, Ubicacion
-from gestorAplicacion.Viaje import Viaje
-from gestorAplicacion.Conductor import Conductor, Categoria
-from gestorAplicacion.Especialista import Especialidad, Especialista
-from Funcionalidades.Asignar import Asignar
+from gestorAplicacion.personas.Comprador import Comprador
+from gestorAplicacion.viajes.Tiquete import Tiquete
+from gestorAplicacion.viajes.Vehiculo import Vehiculo
+from gestorAplicacion.viajes.Viaje import Viaje
+from gestorAplicacion.personas.Conductor import Conductor
+from gestorAplicacion.personas.Especialista import Especialidad, Especialista
+from uiMain.Funcionalidades.Asignar import Asignar
 
 
 from datetime import datetime
-from datetime import timedelta
 
 class Gestionar():
 
@@ -26,10 +20,10 @@ class Gestionar():
         print("[4] Visualizar Historial de vehiculos Asignados \n[5] Asignar un Vehiculo \n[6] Despedir")
         aux2 = int(input())
         if aux2 == 4:
-            if especialista.getHistorialVehiculosRevisados() == None: 
+            if especialista.getHistoricoVehiculosRevisados() == None: 
                 return
 
-            for vehiculo in especialista.getHistorialVehiculosRevisados():
+            for vehiculo in especialista.getHistoricoVehiculosRevisados():
                 print(f'PLACA VEHICULO : {vehiculo.getPlaca()}')
         elif aux2 == 5:
             print(f"Tipo Revision: {especialista.getEspecialidad()}");
@@ -46,10 +40,10 @@ class Gestionar():
     def visualizarEspecialista(especialista):
         print(" ")
         print(f'{especialista.getEspecialidad()} -  CC: {especialista.getCc()} - Nombre: {especialista.getuNombre()}');
-        if especialista.getHistorialVehiculosRevisados() == None :
+        if especialista.getHistoricoVehiculosRevisados() == None :
             print(f"Cantidad de vehiculos revisados: 0")
         else:   
-            print(f"Cantidad de vehiculos revisados: {len(especialista.getHistorialVehiculosRevisados())}")
+            print(f"Cantidad de vehiculos revisados: {len(especialista.getHistoricoVehiculosRevisados())}")
 
     @classmethod
     def gestionarEspecialistas(cls):
