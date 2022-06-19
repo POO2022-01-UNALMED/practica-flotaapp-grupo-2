@@ -86,7 +86,7 @@ class Gestionar():
     def desicionConductor(conductor):
         if(conductor.getuNombre() == "CONDUCTOR NO REGISTRADO"):
             print(conductor.getuNombre())
-            pass
+            return 
         print("[4] Visualizar Historial de viajes Asignados \n[5] Asignar un Viaje \n[6] Despedir")
         aux = int(input())
         while True:
@@ -111,7 +111,7 @@ class Gestionar():
                 for viaje in conductor.getHistoricoViajesRealizados():
                     if(viaje.getFechaViaje().strftime("%Y") == viajesDisponibles[des].getFechaViaje().strftime("%Y") and viaje.getFechaViaje().strftime("%m") == viajesDisponibles[des].getFechaViaje().strftime("%m") and viaje.getFechaViaje().strftime("%d") == viajesDisponibles[des].getFechaViaje().strftime("%d")):
                         print("Lo siento este conductor ya tiene un viaje para esta fecha")
-                    break   
+                        return 
                 Asignar.asignarVehiculoConductor(conductor, viajesDisponibles[des])
                 print("VIAJE: " + viajesDisponibles[des].__str__())
                 break

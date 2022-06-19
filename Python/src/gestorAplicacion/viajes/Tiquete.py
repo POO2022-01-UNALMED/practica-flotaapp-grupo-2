@@ -51,4 +51,4 @@ class Tiquete():                        #Comprador , Silla, Viaje
         return Tiquete.__tiquetes
 
     def __str__(self) -> str:
-        return f"Tiquete = ID : {self.idTiquete} - SILLA : {self.sillaTiquete} \n VIAJE = {self.viaje} - valor : {self.valor} - fechaCompra : {self.fechaCompra}"
+        return f"Tiquete = ID : {self._idTiquete} - SILLA : {self._sillaTiquete} \n VIAJE = {self._viaje} - valor : {self._valor} - fechaCompra : {self._fechaCompra}"

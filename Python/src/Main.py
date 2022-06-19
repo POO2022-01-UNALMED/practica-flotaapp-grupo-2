@@ -118,7 +118,7 @@ comprador5.comprarTiquete(Medellin, Cartagena, 100000)
 
 
 #funcionalidad Asignar Viaje
-Asignar.asignarVehiculoConductor(con1, viaje1)
+Asignar.asignarVehiculoConductor(con1, viaje3)
 Asignar.asignarVehiculoConductor(con2, viaje2)
 
 Asignar.asignarVehiculoEspecialista(mec1, v1)
@@ -127,11 +127,12 @@ Asignar.asignarVehiculoEspecialista(si2, v1)
 Asignar.asignarVehiculoEspecialista(ele1, v2)
 
 if __name__ == '__main__':
-    Recomendacion.recomendarViaje(1)
-    Recomendacion.recomendarViaje(2)
-    Recomendacion.recomendarViaje(3)
-    Recomendacion.recomendarViaje(4)
-    Recomendacion.recomendarViaje(5)
-    Recomendacion.recomendarViaje(6)
-    VisualizarEstadisticas.visualizarEstadisticas()
-    Gestionar.gestionarEspecialistas()
+#   Recomendacion.recomendarViaje(2)
+#    Recomendacion.recomendarViaje(3)
+#    Recomendacion.recomendarViaje(4)
+#    Recomendacion.recomendarViaje(5)
+#    Recomendacion.recomendarViaje(6)
+#    VisualizarEstadisticas.visualizarEstadisticas()
+#    Gestionar.gestionarEspecialistas()
+    Gestionar.gestionarConductores()
+    #Gestionar.comprarTiqueteTerminal()

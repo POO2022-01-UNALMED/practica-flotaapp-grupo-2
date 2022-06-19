@@ -28,7 +28,7 @@ class Conductor(Empleado):
 
     __conductores = []
 
-    def __init__(self, cc = 0, uNombre: str = None, email: str = None, movil: int = None, sueldo=0, categoria: Categoria = None, historiaViajesRealizados = None): # categoria = Categoria(categoria)
+    def __init__(self, cc = 0, uNombre: str = "CONDUCTOR NO REGISTRADO", email: str = "", movil: int = 666, sueldo=0, categoria: Categoria = None, historiaViajesRealizados = None): # categoria = Categoria(categoria)
         super().__init__(cc, uNombre, email, movil, sueldo)
         self._categoria = categoria
         self._historiaViajesRealizados = historiaViajesRealizados
@@ -75,4 +75,4 @@ class Conductor(Empleado):
             return self._historiaViajesRealizados 
 
     def __str__(self): 
-        return "CC: {} \n Nombre {} \n Sueldo: {} \n Categoria : {} \n Viajes realizado : {}".format(self._cc, self._uNombre, self._sueldo, self._categoria,self._historiaViajesRealizados) 
+        return "CC: {} - Nombre {} - Sueldo: {} - Categoria : {} - Viajes realizado : {}".format(self._cc, self._uNombre, self._sueldo, self._categoria,self._historiaViajesRealizados) 

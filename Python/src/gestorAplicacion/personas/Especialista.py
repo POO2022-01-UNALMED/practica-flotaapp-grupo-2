@@ -46,8 +46,8 @@ class Especialista(Empleado):
 
     def despedir(self, empleadoE: Empleado = None):
         mesage = ""
-        if (empleadoE.getEspecialidad == Especialidad.ADMINISTRADOR.value):
-                if empleadoE in Especialista.__especialistas:                  
+        if (empleadoE.getEspecialidad() == Especialidad.ADMINISTRADOR):
+                if empleadoE in Especialista.getEspecialistas():                  
                     mesage = "Especialista " + empleadoE._uNombre + " despedido."
                     empleadoE._billetera += 3000
                     Especialista.desvincularEmpleado(empleadoE)
@@ -84,5 +84,5 @@ class Especialista(Empleado):
             self._historialiVehiculosRevisados.append(vehiculoE)
 
     def __str__(self) : 
-        return "Nombre: {}  \n Sueldo: {} \n Especialidad: {}".format(self._uNombre, self._sueldo, self._especialidad) 
+        return "Nombre: {} - Sueldo: {} - Especialidad: {}".format(self._uNombre, self._sueldo, self._especialidad) 
 
