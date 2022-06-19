@@ -1,6 +1,3 @@
-import sys
-sys.path.append("../practica-flotaapp-grupo-2/Python/src")
-
 from gestorAplicacion.Comprador import Comprador
 from gestorAplicacion.Ciudad import Ciudad
 from gestorAplicacion.Vehiculo import Vehiculo
@@ -8,10 +5,10 @@ from gestorAplicacion.Silla import Silla, Ubicacion
 from gestorAplicacion.Viaje import Viaje
 from gestorAplicacion.Conductor import Conductor, Categoria
 from gestorAplicacion.Especialista import Especialidad, Especialista
-from Funcionalidades.Gestionar import Gestionar
-from Funcionalidades.Recomendacion import Recomendacion
-from Funcionalidades.VisualizarEstadisticas import VisualizarEstadisticas
-from Funcionalidades.Asignar import Asignar
+from uiMain.Funcionalidades.Gestionar import Gestionar
+from uiMain.Funcionalidades.Recomendacion import Recomendacion
+from uiMain.Funcionalidades.VisualizarEstadisticas import VisualizarEstadisticas
+from uiMain.Funcionalidades.Asignar import Asignar
 
 from datetime import datetime
 from datetime import timedelta

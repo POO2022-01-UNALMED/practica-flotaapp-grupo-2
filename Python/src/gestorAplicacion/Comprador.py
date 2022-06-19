@@ -1,8 +1,4 @@
 from datetime import datetime
-import sys
-sys.path.append("../practica-flotaapp-grupo-2/Python/src")
-
-
 from gestorAplicacion.Viaje import Viaje
 from gestorAplicacion.Usuario import Usuario
 from gestorAplicacion.Tiquete import Tiquete

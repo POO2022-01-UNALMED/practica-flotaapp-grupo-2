@@ -1,7 +1,6 @@
 import random
 import time
 from enum import Enum
-from types import NoneType
 from gestorAplicacion.Empleado import Empleado
 from gestorAplicacion.Conductor import Conductor
 from gestorAplicacion.Vehiculo import Vehiculo

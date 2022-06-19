@@ -1,4 +1,3 @@
-from time import sleep
 from gestorAplicacion.Empleado import Empleado
 from gestorAplicacion.Viaje import Viaje
 from enum import Enum
