@@ -32,7 +32,8 @@ class Conductor(Empleado):
         super().__init__(cc, uNombre, email, movil, sueldo)
         self._categoria = categoria
         self._historiaViajesRealizados = historiaViajesRealizados
-        Conductor.__conductores.append(self)
+        if uNombre != "CONDUCTOR NO REGISTRADO":
+            Conductor.__conductores.append(self)
 
     def anadirViajeHistoria(self, viaje : Viaje):
         if self._historiaViajesRealizados == None:
@@ -63,10 +64,18 @@ class Conductor(Empleado):
 
     def setCategoria(self, categoria: Categoria = None):
         self._categoria = categoria
+    
+    @classmethod
+    def desvincularConductor(cls, conductor):
+        cls.__conductores.remove(conductor)
 
     @classmethod
     def getConductores(cls):
-        return Conductor.__conductores
+        return cls.__conductores
+    
+    @classmethod
+    def setConductores(cls, conductores):
+        cls.__conductores = conductores
 
     def getHistoricoViajesRealizados(self):
         if self._historiaViajesRealizados == None:

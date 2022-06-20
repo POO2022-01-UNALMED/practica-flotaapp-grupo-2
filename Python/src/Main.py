@@ -9,9 +9,11 @@ from uiMain.Funcionalidades.Gestionar import Gestionar
 from uiMain.Funcionalidades.Recomendacion import Recomendacion
 from uiMain.Funcionalidades.VisualizarEstadisticas import VisualizarEstadisticas
 from uiMain.Funcionalidades.Asignar import Asignar
+from baseDatos.deserializador import Deserializador
+from baseDatos.serializador import Serializador
 from datetime import datetime
 from datetime import timedelta
-
+"""
 # COMPRADORES
 comprador1 = Comprador(1, "Mateo", "example@email.com", 3234567890)
 comprador2 = Comprador(2, "Marcos", "example2@email.com", 3087654321)
@@ -124,15 +126,17 @@ Asignar.asignarVehiculoConductor(con2, viaje2)
 Asignar.asignarVehiculoEspecialista(mec1, v1)
 Asignar.asignarVehiculoEspecialista(si1, v2)
 Asignar.asignarVehiculoEspecialista(si2, v1)
-Asignar.asignarVehiculoEspecialista(ele1, v2)
+Asignar.asignarVehiculoEspecialista(ele1, v2)"""
 
 if __name__ == '__main__':
-#   Recomendacion.recomendarViaje(2)
-#    Recomendacion.recomendarViaje(3)
-#    Recomendacion.recomendarViaje(4)
-#    Recomendacion.recomendarViaje(5)
-#    Recomendacion.recomendarViaje(6)
-#    VisualizarEstadisticas.visualizarEstadisticas()
-#    Gestionar.gestionarEspecialistas()
-    #Gestionar.gestionarConductores()
+    Deserializador.deserializar()
+    Recomendacion.recomendarViaje(2)
+    Recomendacion.recomendarViaje(3)
+    Recomendacion.recomendarViaje(4)
+    Recomendacion.recomendarViaje(5)
+    Recomendacion.recomendarViaje(6)
+    VisualizarEstadisticas.visualizarEstadisticas()
+    Gestionar.gestionarEspecialistas()
+    Gestionar.gestionarConductores()
     Gestionar.comprarTiqueteTerminal()
+    Serializador.serializar()

@@ -100,12 +100,16 @@ class Viaje():
     
     @classmethod
     def getViajes(cls):
-        return Viaje.__viajes
+        return cls.__viajes
+    
+    @classmethod
+    def setViajes(cls, viajes):
+        cls.__viajes = viajes
     
     @classmethod
     def viajeSinConductor(cls):
         viajesin = []
-        for viaje in Viaje.getViajes():
+        for viaje in cls.getViajes():
             if(viaje.getConductor() == None):
                 viajesin.append(viaje)
         return viajesin

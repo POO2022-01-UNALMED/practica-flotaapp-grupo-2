@@ -26,4 +26,8 @@ class Vehiculo():
 
     @classmethod
     def getVehiculos(cls):
-        return Vehiculo._vehiculos
+        return cls._vehiculos
+    
+    @classmethod
+    def setVehiculos(cls, vehiculos):
+        cls._vehiculos = vehiculos
