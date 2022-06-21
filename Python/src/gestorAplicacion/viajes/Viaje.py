@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 from gestorAplicacion.viajes.Vehiculo import Vehiculo
 from gestorAplicacion.viajes.Ciudad import Ciudad
 

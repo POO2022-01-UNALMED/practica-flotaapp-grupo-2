@@ -150,4 +150,31 @@ class Gestionar():
 
         print("NO HAY TIQUETES DISPONIBLES PARA EL VIAJE QUE DESEAS");
         return finalTiquete
+    
+    @staticmethod()
+    def gestionarViajes(cc: int=0):
+        print("----- G E S T I O N A R   V I A J E S -----")
+        comprador = Comprador()
+        for comprador1 in Comprador.getCompradores:
+            if comprador1.getCC == cc:
+                comprador = comprador1
+        
+        print("CC: "+ comprador.getCC + " Nombre: " + comprador.getuNombre)
+        viajesActivos = []
+        for tiquete in comprador.getHistorioViaje:
+            if tiquete.getViaje.getFechaViaje < datetime.now():
+                viajesActivos.append(tiquete)
+        
+        for i in range(0, len(viajesActivos)-1):
+            print(f"id : {i} = {viajesActivos[i].__str__()} \n")
+        
+        print("Dime el ID del viaje que deseas gestionar :  ")
+        tiqueteID = int(input())
+        
+        if tiqueteID >= len(viajesActivos) or tiqueteID < 0:
+            print("VIAJE NO REGISTRADO")
+        else:
+            gestionarTiquete(viajesActivos[tiqueteID]) #Falta método gestionarTiquete
+        
+          
 
