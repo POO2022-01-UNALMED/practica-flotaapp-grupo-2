@@ -79,51 +79,42 @@ class Gestionar():
         for conductor1 in Conductor.getConductores():
             if(conductor1.getCc() == cond):
                 conductor = conductor1
-        
         Gestionar.desicionConductor(conductor)
 
     @staticmethod
     def desicionConductor(conductor):
         if(conductor.getuNombre() == "CONDUCTOR NO REGISTRADO"):
             print(conductor.getuNombre())
-            pass
+            return 
         print("[4] Visualizar Historial de viajes Asignados \n[5] Asignar un Viaje \n[6] Despedir")
         aux = int(input())
-        while True:
-            if(aux == 4):
-                print("--- HISTORIAL VIAJES REALIZADOS ---")
-                for viaje in conductor.getHistoricoViajesRealizados():
-                    print(viaje)
-                break
-                
-            elif(aux == 5):
-                if(len(Viaje.viajeSinConductor()) == 0):
-                    print("Actualmente todos los viajes tienen Conductor")
-                    break
-                else:
-                    for i in range(len(Viaje.viajeSinConductor())):
-                        print(" ")
-                        print("id : [" + str(i) +"] =" + Viaje.viajeSinConductor()[i].__str__())
-                
-                print(" ")
-                des = int(input())
-                viajesDisponibles = Viaje.viajeSinConductor()
-                for viaje in conductor.getHistoricoViajesRealizados():
-                    if(viaje.getFechaViaje().strftime("%Y") == viajesDisponibles[des].getFechaViaje().strftime("%Y") and viaje.getFechaViaje().strftime("%m") == viajesDisponibles[des].getFechaViaje().strftime("%m") and viaje.getFechaViaje().strftime("%d") == viajesDisponibles[des].getFechaViaje().strftime("%d")):
-                        print("Lo siento este conductor ya tiene un viaje para esta fecha")
-                    break   
-                Asignar.asignarVehiculoConductor(conductor, viajesDisponibles[des])
-                print("VIAJE: " + viajesDisponibles[des].__str__())
-                break
-
-            elif(aux == 6):
-                administrador = Especialista()
-                administrador.despedir(conductor)
-                print("EMPLEADO DESPEDIDO")
-                break
-
+        if(aux == 4):
+            print("--- HISTORIAL VIAJES REALIZADOS ---")
+            for viaje in conductor.getHistoricoViajesRealizados():
+                print(viaje)
+            
+        elif(aux == 5):
+            if(len(Viaje.viajeSinConductor()) == 0):
+                print("Actualmente todos los viajes tienen Conductor")
             else:
-                break
+                for i in range(len(Viaje.viajeSinConductor())):
+                    print(" ")
+                    print("id : [" + str(i) +"] =" + Viaje.viajeSinConductor()[i].__str__())
+            
+            print(" ")
+            des = int(input())
+            viajesDisponibles = Viaje.viajeSinConductor()
+            for viaje in conductor.getHistoricoViajesRealizados():
+                if(viaje.getFechaViaje().strftime("%Y") == viajesDisponibles[des].getFechaViaje().strftime("%Y") and viaje.getFechaViaje().strftime("%m") == viajesDisponibles[des].getFechaViaje().strftime("%m") and viaje.getFechaViaje().strftime("%d") == viajesDisponibles[des].getFechaViaje().strftime("%d")):
+                    print("Lo siento este conductor ya tiene un viaje para esta fecha")
+                    return 
+            Asignar.asignarVehiculoConductor(conductor, viajesDisponibles[des])
+            print("VIAJE: " + viajesDisponibles[des].__str__())
+
+        elif(aux == 6):
+            administrador = Especialista()
+            administrador.despedir(conductor)
+            print("EMPLEADO DESPEDIDO")
 
     @staticmethod
     def comprarTiqueteTerminal():
@@ -131,24 +122,22 @@ class Gestionar():
         nombreCiudad = input("Ciudad a la que desea viajar: ")
         finalTiquete = Tiquete()
         for viaje in Viaje.getViajes():
-            #No esta entrando en este if de aquí abajo, en el main, me pide el id, pero no me muestra los tiquetes disponibles
-            #El problema está en la comparación de los destinos desafortunadamente no lo supe solucionar! :(
-            if (viaje.getDestino().getNombre() == nombreCiudad and viaje.getOrigen().getNombre() == "MEDELLIN" and viaje.getFechaViaje() > datetime.now()):
-                for i in range(len(Viaje.tiquetesDisponibles())):
+            if viaje.getDestino().getNombre() == nombreCiudad and viaje.getOrigen().getNombre() == "MEDELLIN" and viaje.getFechaViaje() > datetime.now():
+                for i in range(len(viaje.tiquetesDisponibles())):
                     print("id : [" +  str(i)  + "] = " +  viaje.tiquetesDisponibles()[i].__str__())
 
-            cambio = int(input("ingrese el id: "))
-            if(cambio >= len(viaje.tiquetesDisponibles())):
-                print("ID NO VALIDO")
-                return finalTiquete
+                cambio = int(input("ingrese el id: "))
+                if(cambio >= len(viaje.tiquetesDisponibles())):
+                    print("ID NO VALIDO")
+                    return finalTiquete
 
-            else:
-                tiquete = viaje.tiquetesDisponibles()[cambio]
-                Asignar.asignarTiquete(compradorBase, tiquete)
-                print(tiquete)
-                return tiquete
+                else:
+                    tiquete = viaje.tiquetesDisponibles()[cambio]
+                    Asignar.asignarTiquete(compradorBase, tiquete)
+                    print(tiquete)
+                    return tiquete
 
-        print("NO HAY TIQUETES DISPONIBLES PARA EL VIAJE QUE DESEAS");
+        print("NO HAY TIQUETES DISPONIBLES PARA EL VIAJE QUE DESEAS")
         return finalTiquete
     
     @staticmethod()

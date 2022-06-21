@@ -46,7 +46,11 @@ class Comprador(Usuario):
     
     @classmethod
     def getCompradores(cls):
-        return Comprador.__compradores
+        return cls.__compradores
     
+    @classmethod
+    def setCompradores(cls, compradores):
+        cls.__compradores = compradores
+
     def getCC(self):
         return self.cc

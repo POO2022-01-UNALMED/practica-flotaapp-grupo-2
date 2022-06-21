@@ -13,7 +13,7 @@ class Asignar():
         tiquete.setFechaCompra(datetime.now())
         tiquete.setEstado(True)
         comprador.anadirTiqueteHistoria(tiquete)
-        tiquete.getViaje().getDestino().anadirVisitantes(1)
+        tiquete.getViaje().getDestino().setNumVisitantes(1)
     
     @staticmethod
     def asignarVehiculoConductor(conductor : Conductor, viaje : Viaje):

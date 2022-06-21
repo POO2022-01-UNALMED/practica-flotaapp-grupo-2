@@ -100,12 +100,16 @@ class Viaje():
     
     @classmethod
     def getViajes(cls):
-        return Viaje.__viajes
+        return cls.__viajes
+    
+    @classmethod
+    def setViajes(cls, viajes):
+        cls.__viajes = viajes
     
     @classmethod
     def viajeSinConductor(cls):
         viajesin = []
-        for viaje in Viaje.getViajes():
+        for viaje in cls.getViajes():
             if(viaje.getConductor() == None):
                 viajesin.append(viaje)
         return viajesin
@@ -113,4 +117,4 @@ class Viaje():
         #Corregí el metodo porque siempre devolvia una lista vacia
     
     def __str__(self):
-        return "\n IdViaje: {} \n Origen {} \n Destino {} \n Fecha Viaje {}".format(self.getIdViaje(),self.getOrigen(), self.getDestino(), self.getFechaViaje())
+        return "IdViaje: {} - Origen {} - Destino {} - Fecha Viaje {}".format(self.getIdViaje(),self.getOrigen(), self.getDestino(), self.getFechaViaje())
