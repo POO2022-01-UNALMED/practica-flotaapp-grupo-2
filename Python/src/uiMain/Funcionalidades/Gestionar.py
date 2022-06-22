@@ -8,6 +8,7 @@ from uiMain.Funcionalidades.Asignar import Asignar
 
 
 from datetime import datetime
+from datetime import timedelta
 
 class Gestionar():
 
@@ -124,7 +125,7 @@ class Gestionar():
         for viaje in Viaje.getViajes():
             if viaje.getDestino().getNombre() == nombreCiudad and viaje.getOrigen().getNombre() == "MEDELLIN" and viaje.getFechaViaje() > datetime.now():
                 for i in range(len(viaje.tiquetesDisponibles())):
-                    print("id : [" +  str(i)  + "] = " +  viaje.tiquetesDisponibles()[i].__str__())
+                    print("id : [" +  str(i)  + "] = {viaje.tiquetesDisponibles()[i].__str__()}")
 
                 cambio = int(input("ingrese el id: "))
                 if(cambio >= len(viaje.tiquetesDisponibles())):
@@ -139,19 +140,59 @@ class Gestionar():
 
         print("NO HAY TIQUETES DISPONIBLES PARA EL VIAJE QUE DESEAS")
         return finalTiquete
-    
+
     @staticmethod()
-    def gestionarViajes(cc: int=0):
+    def gestionarTiquete(tiquete: Tiquete = None):
+        print("1] Cambiar Tiquete, [2] Cancelar Tiquete")
+        aux = int(input())
+        if aux == 1:
+            tiquetesDisponibles = []
+            for viaje in Viaje.getViajes():
+                for tiqueteViaje in viaje.getAllTiquetes():
+                    if tiqueteViaje.getViaje().getDestino().getNombre() == tiquete.getViaje().getDestino().getNombre() and tiqueteViaje.getViaje().getOrigen().getNombre() == tiquete.getViaje().getOrigen().getNombre() and  not tiqueteViaje.getEstado():
+                        tiquetesDisponibles.append(tiqueteViaje)
+            
+            for i in range(0, len(tiquetesDisponibles)-1):
+                print(f"id : {i} = {tiquetesDisponibles[i].__str__}")
+                
+                if tiquetesDisponibles is None:
+                    print("Lo siento, no hay Tiquetes disponibles para esa fecha - valor - origen - destino")
+                else:
+                    print("Escoge un tiquete por el cual cambiarlo")
+                    auxnum = int(input())
+                    Asignar().asignarTiquete(tiquete.getComprador(), tiquetesDisponibles[auxnum])
+                    tiquete.getComprador().eliminarTiqueteHistoria(tiquete)
+                    tiquete.setEstado(False)
+                    tiquete.setComprador(None)
+                    print(tiquetesDisponibles[auxnum])
+        elif aux == 2:
+            if (tiquete.getViaje().getFechaViaje() + timedelta(days=7)) >  datetime().now(): 
+                print("El tiquete a sido cancelado y su dinero devuelto")
+                tiquete.getComprador().agregarSaldo(tiquete.getValor())
+                tiquete.getComprador().eliminarTiqueteHistoria(tiquete)
+                tiquete.setEstado(False)
+                tiquete.setComprador(None)
+            elif tiquete.getViaje().getFechaViaje() > datetime().now() and tiquete.getViaje().getFechaViaje() < (tiquete.getViaje().getFechaViaje() + timedelta(days=7)): 
+                print("La fecha del viaje es muy cercana, por lo que solo podremos devolverle el 30% del valor de su Tiquete")
+                tiquete.getComprador().agregarSaldo(tiquete.getValor()*0.3)
+                tiquete.getComprador().eliminarTiqueteHistoria(tiquete)
+                tiquete.setEstado(False)
+                tiquete.setComprador(None)
+            else:
+                print("El viaje ya se a realizado, no se puede hacer devuelta de su dinero")
+   
+    @staticmethod()
+    def gestionarViajes(cc: int=0): #Se deja los print para cambiarlos por return posteriormente
         print("----- G E S T I O N A R   V I A J E S -----")
         comprador = Comprador()
-        for comprador1 in Comprador.getCompradores:
-            if comprador1.getCC == cc:
+        for comprador1 in Comprador.getCompradores():
+            if comprador1.getCC() == cc:
                 comprador = comprador1
         
-        print("CC: "+ comprador.getCC + " Nombre: " + comprador.getuNombre)
+        print("CC: "+ comprador.getCC + " Nombre: " + comprador.getuNombre())
         viajesActivos = []
-        for tiquete in comprador.getHistorioViaje:
-            if tiquete.getViaje.getFechaViaje < datetime.now():
+        for tiquete in comprador.getHistorioViaje():
+            if tiquete.getViaje().getFechaViaje() < datetime.now():
                 viajesActivos.append(tiquete)
         
         for i in range(0, len(viajesActivos)-1):
@@ -163,7 +204,12 @@ class Gestionar():
         if tiqueteID >= len(viajesActivos) or tiqueteID < 0:
             print("VIAJE NO REGISTRADO")
         else:
-            gestionarTiquete(viajesActivos[tiqueteID]) #Falta método gestionarTiquete
+            gestionarTiquete(viajesActivos[tiqueteID]) 
         
-          
+    
+
+                
+                    
+                    
+    
 
