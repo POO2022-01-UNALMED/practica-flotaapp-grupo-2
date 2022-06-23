@@ -18,7 +18,7 @@ class Comprador(Usuario):
     '''
     __compradores = []
 
-    def __init__(self,cc: int = 0, uNombre : str = None, email : str = None, movil: int = 0, billetera: int = 0, historicoViajes: list(Tiquete()) = None):
+    def __init__(self,cc: int = 0, uNombre : str = None, email : str = None, movil: int = 0, billetera: int = 0, historicoViajes = None):
 
         super().__init__(cc, uNombre, email, movil, billetera)
         self._historicoViajes = historicoViajes # -historicoViajes: List(Tiquetes)
