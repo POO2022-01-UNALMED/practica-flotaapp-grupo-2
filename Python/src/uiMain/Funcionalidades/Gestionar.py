@@ -141,7 +141,7 @@ class Gestionar():
         print("NO HAY TIQUETES DISPONIBLES PARA EL VIAJE QUE DESEAS")
         return finalTiquete
 
-    @staticmethod()
+    @staticmethod
     def gestionarTiquete(tiquete: Tiquete = None):
         print("1] Cambiar Tiquete, [2] Cancelar Tiquete")
         aux = int(input())
@@ -181,7 +181,7 @@ class Gestionar():
             else:
                 print("El viaje ya se a realizado, no se puede hacer devuelta de su dinero")
    
-    @staticmethod()
+    @staticmethod
     def gestionarViajes(cc: int=0): #Se deja los print para cambiarlos por return posteriormente
         print("----- G E S T I O N A R   V I A J E S -----")
         comprador = Comprador()

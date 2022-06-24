@@ -28,7 +28,7 @@ def outPut(string, text):
 def iniciar_ventana_usuario():
     #Ventana principal
     window = Tk()
-    window.geometry("680x420")
+    window.geometry("680x440")
     window.title("Flota-APP")
     window.option_add("*tearOff",  FALSE)
 
@@ -71,8 +71,6 @@ def iniciar_ventana_usuario():
         top.title("Aplicación")
         Label(top, text= textonimo , font=('Times 12')).pack(fill=BOTH, expand=True)
     textonimo = "Flota-APP es una empresa............."
-
-
 
 
     #----------------------------------------------------------------------------------

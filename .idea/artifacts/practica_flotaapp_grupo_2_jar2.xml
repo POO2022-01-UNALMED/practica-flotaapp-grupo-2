@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="practica-flotaapp-grupo-2:jar2">
+    <output-path>$PROJECT_DIR$/out/artifacts/practica_flotaapp_grupo_2_jar2</output-path>
+    <root id="archive" name="practica-flotaapp-grupo-2.jar">
+      <element id="module-output" name="practica-flotaapp-grupo-2" />
+    </root>
+  </artifact>
+</component>

@@ -137,4 +137,4 @@ if __name__ == '__main__':
     Deserializador.deserializar()
     ventana = VentanaInicio()
     ventana.mainloop()
-    Serializador.serializar()
+    
