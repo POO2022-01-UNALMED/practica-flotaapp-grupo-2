@@ -32,6 +32,9 @@ class Ciudad():
     def getNumVisitantes(self):
         return self._numVisitantes
     
+    def getDireccion(self):
+        return self._dirTerminal
+    
     def getPuntaje(self):
         puntaje = self.getPromocion()*0.7 + self.getNumVisitantes()*0.3
         return puntaje    

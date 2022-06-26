@@ -1,5 +1,6 @@
-from uiMain.ventanas.VentanaUsuario import iniciar_ventana_usuario
+from uiMain.ventanas.VentanaUsuario import VentanaUsuario
 from tkinter import Label, Entry, Button, PhotoImage, Frame, INSERT, scrolledtext, DISABLED
+from PIL import Image, ImageTk
 import os
 import pathlib
 
@@ -18,7 +19,7 @@ class Bienvenida(Frame):
         self._pantallazos = []
         for i in range(0, 5):
             path = os.path.join(pathlib.Path(__file__).parent.parent.parent.absolute(),'assets/pantallazo_{0}.png'.format(i))
-            pantallazo = PhotoImage(file=path)
+            pantallazo = ImageTk.PhotoImage(Image.open(path).resize((600, 400)))
             self._pantallazos.append(pantallazo)
 
         self._label = Label(self._p4, image=self._pantallazos[0], height=500, width=750)
@@ -44,4 +45,4 @@ class Bienvenida(Frame):
     # Carga la ventana principal del admin y cierra la ventana actual
     def abrir_ventana_principal(self):
         self._window.destroy()
-        iniciar_ventana_usuario()
+        VentanaUsuario()

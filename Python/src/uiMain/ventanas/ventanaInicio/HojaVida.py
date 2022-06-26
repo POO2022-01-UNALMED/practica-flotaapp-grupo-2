@@ -1,5 +1,6 @@
 from tkinter import Label, Entry, Button, Text, PhotoImage, Frame, INSERT
 import os
+from PIL import Image, ImageTk
 import pathlib
 
 class HojaVida(Frame):
@@ -39,7 +40,7 @@ class HojaVida(Frame):
     # Carga el component imagen que sirve para mostrar las fotos
     def cargar_hv_imagen(self, hv_num, numero):
         path = os.path.join(pathlib.Path(__file__).parent.parent.parent.absolute(),'assets\hv_{0}_{1}.png'.format(hv_num, numero))
-        photo = PhotoImage(file=path)
+        photo = ImageTk.PhotoImage(Image.open(path).resize((280, 200)))
         self._labels[numero].configure(image=photo)
         self._labels[numero].image = photo
 

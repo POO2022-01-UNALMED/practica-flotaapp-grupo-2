@@ -95,7 +95,7 @@ class Viaje():
     def getOrigen(self):
         return self._origen
 
-    def getDestino(self):
+    def getDestino(self) -> Ciudad:
         return self._destino
     
     @classmethod

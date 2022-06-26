@@ -18,3 +18,4 @@ class VentanaInicio(Tk):
         self.bienvenida = Bienvenida(self)
         self.hoja_vida.grid(row=0, column=1)
         self.bienvenida.grid(row=0, column=0)
+        self.mainloop()
