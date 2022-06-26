@@ -47,8 +47,11 @@ class Tiquete():                        #Comprador , Silla, Viaje
         self._fechaCompra = fechaCompra
 
     @classmethod
-    def tiquetes(cls):
-        return Tiquete.__tiquetes
+    def getTiquetes(cls):
+        return cls.__tiquetes
 
+    @classmethod
+    def setTiquetes(cls, tiquetes):
+        cls.__tiquetes = tiquetes
     def __str__(self) -> str:
-        return f"Tiquete = ID : {self.idTiquete} - SILLA : {self.sillaTiquete} \n VIAJE = {self.viaje} - valor : {self.valor} - fechaCompra : {self.fechaCompra}"
+        return f"Tiquete = ID : {self._idTiquete} - SILLA : {self._sillaTiquete} \n VIAJE = {self._viaje} - valor : {self._valor} - fechaCompra : {self._fechaCompra}"

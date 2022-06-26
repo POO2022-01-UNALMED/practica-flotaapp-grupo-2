@@ -20,6 +20,9 @@ class Ciudad():
         self._dirTerminal = dirTerminal
         Ciudad.__ciudades.append(self)
     
+    def setNumVisitantes(self, num : int):
+        self._numVisitantes += num
+        
     def getId(self):
         return self._id
 
@@ -28,9 +31,9 @@ class Ciudad():
 
     def getNumVisitantes(self):
         return self._numVisitantes
-
-    def anadirVisitantes(self, numVisitantes : int):
-	    self._numVisitantes += numVisitantes
+    
+    def getDireccion(self):
+        return self._dirTerminal
     
     def getPuntaje(self):
         puntaje = self.getPromocion()*0.7 + self.getNumVisitantes()*0.3
@@ -51,8 +54,12 @@ class Ciudad():
                     Ciudad.__ciudades.remove(ciudad)
     
     @classmethod
-    def getCiudades(self):
-        return Ciudad.__ciudades
+    def getCiudades(cls):
+        return cls.__ciudades
+    
+    @classmethod
+    def setCiudades(cls, ciudades):
+        cls.__ciudades = ciudades
 
     def __str__(self):
         return self.getNombre()

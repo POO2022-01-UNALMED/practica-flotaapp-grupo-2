@@ -29,6 +29,9 @@ class Comprador(Usuario):
             self._historicoViajes = [tiquete]
         else:
             self._historicoViajes.append(tiquete)
+    
+    def eliminarTiqueteHistoria(self, tiquete):
+        self.getHistorioViaje().remove(tiquete)
 
     #def buscarTiquete(self):
 
@@ -46,7 +49,11 @@ class Comprador(Usuario):
     
     @classmethod
     def getCompradores(cls):
-        return Comprador.__compradores
+        return cls.__compradores
     
+    @classmethod
+    def setCompradores(cls, compradores):
+        cls.__compradores = compradores
+
     def getCC(self):
         return self.cc

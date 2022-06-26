@@ -23,15 +23,15 @@ class Especialista(Empleado):
         super().__init__(cc, uNombre, email, movil, billetera)
         self._historialiVehiculosRevisados = historialVehiculosRevisados
         self._especialidad = especialidad
-        Especialista.__especialistas.append(self)
+        if uNombre != "ESPECIALISTA NO REGISTRADO":
+            Especialista.__especialistas.append(self)
 
     def renunciar(self):
         Especialista.__especialistas.remove(self)
         
     @classmethod
     def desvincularEmpleado(cls, especialistaC):
-        especialistaC = Especialista()
-        Especialista.__especialistas.remove(especialistaC)
+        cls.__especialistas.remove(especialistaC)
      
     ## ---- M E T O D O S ---- ##
 
@@ -46,17 +46,17 @@ class Especialista(Empleado):
 
     def despedir(self, empleadoE: Empleado = None):
         mesage = ""
-        if (empleadoE.getEspecialidad == Especialidad.ADMINISTRADOR.value):
-                if empleadoE in Especialista.__especialistas:                  
-                    mesage = "Especialista " + empleadoE._uNombre + " despedido."
+        if (self.getEspecialidad() == Especialidad.ADMINISTRADOR):
+                if empleadoE in Especialista.getEspecialistas():                  
+                    mesage = "Especialista " + empleadoE.getuNombre() + " despedido."
                     empleadoE._billetera += 3000
                     Especialista.desvincularEmpleado(empleadoE)
                 elif empleadoE in Conductor.getConductores():
-                    mesage = "Conductor " + empleadoE.uNombre + " despedido"
+                    mesage = "Conductor " + empleadoE.getuNombre() + " despedido"
                     empleadoE._billetera += 3000
-                    Conductor.desvincularEmpleado(empleadoE)
+                    Conductor.desvincularConductor(empleadoE)
                 else:
-                    mesage = "El empleado " + empleadoE.uNombre + " no está en nuestra base de datos"
+                    mesage = "El empleado " + empleadoE.getuNombre() + " no está en nuestra base de datos"
         else:
             mesage = "Solo los ADMINISTRADORES pueden despedir usuarios"
         
@@ -73,9 +73,13 @@ class Especialista(Empleado):
     def getHistoricoVehiculosRevisados(self):
         return self._historialiVehiculosRevisados
     
-    @staticmethod
-    def getEspecialistas():
-        return Especialista.__especialistas
+    @classmethod
+    def getEspecialistas(cls):
+        return cls.__especialistas
+    
+    @classmethod
+    def setEspecialistas(cls, especialistas):
+        cls.__especialistas = especialistas
 
     def anadirVehiculoHistoria(self, vehiculoE: Vehiculo):
         if self.getHistoricoVehiculosRevisados() == None:
@@ -84,5 +88,5 @@ class Especialista(Empleado):
             self._historialiVehiculosRevisados.append(vehiculoE)
 
     def __str__(self) : 
-        return "Nombre: {}  \n Sueldo: {} \n Especialidad: {}".format(self._uNombre, self._sueldo, self._especialidad) 
+        return "Nombre: {} - Sueldo: {} - Especialidad: {}".format(self._uNombre, self._sueldo, self._especialidad) 
 

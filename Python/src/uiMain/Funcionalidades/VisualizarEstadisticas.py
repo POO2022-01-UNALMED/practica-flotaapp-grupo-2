@@ -11,8 +11,8 @@ class VisualizarEstadisticas():
         aux = int(input())
         if aux == 1:
             nombresCiudades= [str(ciudad.getNombre()) for ciudad in Ciudad.getCiudades()]
-            numVisitantes = [int(ciudad.getNumVisitantes()) for ciudad in Ciudad.getCiudades()]
-            plt.bar(nombresCiudades, numVisitantes)
+            numeroVisitantes = [ciudad.getNumVisitantes() for ciudad in Ciudad.getCiudades()]
+            plt.bar(nombresCiudades, numeroVisitantes)
             plt.ylabel("Numero de Visitantes")
             plt.xlabel("Nombre de Ciudades")
             plt.title("Visualozar Estadisticas Ciudades")

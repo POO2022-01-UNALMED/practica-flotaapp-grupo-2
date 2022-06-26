@@ -32,3 +32,6 @@ class Usuario():
 
     def getBilletera(self):
         return self._billetera
+    
+    def agregarSaldo(self, dinero):
+        self._billetera += dinero
