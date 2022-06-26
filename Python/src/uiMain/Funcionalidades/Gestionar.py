@@ -11,6 +11,26 @@ from datetime import datetime
 from datetime import timedelta
 
 class Gestionar():
+    
+    @classmethod
+    def gestionarEspecialistas(cls):
+        print("----- G E S T I O N A R   E S P E C I A L I S T A S -----")
+        print(" ")
+        print("[1] Electrico, [2] Mecanico, [3] Silleteria")
+        especialidades = [Especialidad.ELECTRICO, Especialidad.MECANICO, Especialidad.SILLETERIA]
+        aux = int(input())
+        for especialista in Especialista.getEspecialistas():
+            if especialista.getEspecialidad() == especialidades[aux-1]:
+                Gestionar.visualizarEspecialista(especialista)
+
+
+        print("\n Dime la CC del especialista que deseas gestionar : ");
+        espe = int(input())
+        especialistaAux = Especialista()
+        for especialista1 in Especialista.getEspecialistas():
+            if especialista1.getCc() == espe:
+                especialistaAux = especialista1
+        Gestionar.desicionEspecialista(especialistaAux)
 
     @staticmethod
     def desicionEspecialista(especialista):
@@ -45,27 +65,7 @@ class Gestionar():
             print(f"Cantidad de vehiculos revisados: 0")
         else:   
             print(f"Cantidad de vehiculos revisados: {len(especialista.getHistoricoVehiculosRevisados())}")
-
-    @classmethod
-    def gestionarEspecialistas(cls):
-        print("----- G E S T I O N A R   E S P E C I A L I S T A S -----")
-        print(" ")
-        print("[1] Electrico, [2] Mecanico, [3] Silleteria")
-        especialidades = [Especialidad.ELECTRICO, Especialidad.MECANICO, Especialidad.SILLETERIA]
-        aux = int(input())
-        for especialista in Especialista.getEspecialistas():
-            if especialista.getEspecialidad() == especialidades[aux-1]:
-                Gestionar.visualizarEspecialista(especialista)
-
-
-        print("\n Dime la CC del especialista que deseas gestionar : ");
-        espe = int(input())
-        especialistaAux = Especialista()
-        for especialista1 in Especialista.getEspecialistas():
-            if especialista1.getCc() == espe:
-                especialistaAux = especialista1
-        Gestionar.desicionEspecialista(especialistaAux)
-
+            
     @classmethod
     def gestionarConductores(cls):
         for conductor in Conductor.getConductores():
