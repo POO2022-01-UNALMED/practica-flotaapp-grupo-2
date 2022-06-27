@@ -34,7 +34,7 @@ class VisualizarEstadistica(tk.Frame):
         self.pack(side="top")
 
     def visualizarCiudades(self):
-        os.remove("visEstadisticaCiudad.png")
+
         self._window.geometry("780x620")
         self._fEstadistica.destroy()
         self._fEstadistica = tk.Frame(self)
@@ -49,10 +49,11 @@ class VisualizarEstadistica(tk.Frame):
         img = ImageTk.PhotoImage(Image.open('visEstadisticaCiudad.png').resize((600, 400)))
         tk.Label(self._fEstadistica, width=600, height=400, image= img).pack()
         self._fEstadistica.place(relx=0.1, rely=0.25, relwidth=0.8, relheight=0.65)
+
+        os.remove("visEstadisticaCiudad.png")
             
     def visualizarViajes(self):
-        os.remove("visEstadisticaViaje.png")
-        os.remove("visEstadisticaViaje2.png")
+
         self._window.geometry("1100x500")
         self._fEstadistica.destroy()
         self._fEstadistica = tk.Frame(self)
@@ -80,5 +81,8 @@ class VisualizarEstadistica(tk.Frame):
         img2 = ImageTk.PhotoImage(Image.open('visEstadisticaViaje2.png').resize((480, 300)))
         tk.Label(self._fEstadistica, width=480, height=300, image= img2).place(relx=0.50, rely=0.05, relwidth=0.5, relheight=0.9)
         self._fEstadistica.place(relx=0, rely=0.25, relwidth=1, relheight=0.65)
+
+        os.remove("visEstadisticaViaje.png")
+        os.remove("visEstadisticaViaje2.png")
               
             

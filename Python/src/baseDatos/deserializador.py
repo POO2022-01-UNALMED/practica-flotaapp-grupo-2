@@ -7,15 +7,6 @@ from gestorAplicacion.personas.Conductor import Conductor
 from gestorAplicacion.personas.Especialista import Especialista
 import pathlib
 import os
-""""
-/**
- * Clase para deserializar los objetos que se crearon en ejecucion
- * @author Erik Gonzalez
- * @author Felipe Miranda
- * @author Esteban Garcia
- * @author Emilio Porras 
- */"""
-
 
 class Deserializador():
     

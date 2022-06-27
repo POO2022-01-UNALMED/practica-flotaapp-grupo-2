@@ -1,13 +1,13 @@
 from baseDatos.deserializador import Deserializador
 from baseDatos.serializador import Serializador
 from uiMain.ventanas.ventanaInicio.Inicio import VentanaInicio
-
+from gestorAplicacion.viajes.Viaje import Viaje
 """
 from gestorAplicacion.personas.Comprador import Comprador
 from gestorAplicacion.viajes.Ciudad import Ciudad
 from gestorAplicacion.viajes.Vehiculo import Vehiculo
 from gestorAplicacion.viajes.Silla import Silla, Ubicacion
-from gestorAplicacion.viajes.Viaje import Viaje
+
 from gestorAplicacion.personas.Conductor import Conductor, Categoria
 from gestorAplicacion.personas.Especialista import Especialidad, Especialista
 from uiMain.Funcionalidades.Gestionar import Gestionar
@@ -33,14 +33,14 @@ intermedio = datetime.now() + timedelta(days=10)
 
 # CIUDADES
 Medellin =  Ciudad(1, "MEDELLIN", "calle X - 95")
-Bello =  Ciudad(12, "BELLO", "calle Y - 72")
-Popayan =  Ciudad(7, "POPAYAN", "calle X - 37")
-Cali =  Ciudad(8, "CALI", "calle F - 13")
+Bello =  Ciudad(2, "BELLO", "calle Y - 72")
+Popayan =  Ciudad(3, "POPAYAN", "calle X - 37")
+Cali =  Ciudad(4, "CALI", "calle F - 13")
 Monteria =  Ciudad(5, "MONTERIA", "circular 4 # 1 - 44")
-Cartagena =  Ciudad(4, "CARTAGENA", "calle G - 14")
-Pasto =  Ciudad(6, "PASTO", "Carrera 24 # 4 - 22")
-Barranquilla =  Ciudad(9, "BARRANQUILLA", "calle siempre viva # 123")
-Manizales =  Ciudad(3, "MANIZALES", "avenida 24 # 3-23")
+Cartagena =  Ciudad(6, "CARTAGENA", "calle G - 14")
+Pasto =  Ciudad(7, "PASTO", "Carrera 24 # 4 - 22")
+Barranquilla =  Ciudad(8, "BARRANQUILLA", "calle siempre viva # 123")
+Manizales =  Ciudad(9, "MANIZALES", "avenida 24 # 3-23")
 
 ## SILLAS
 se1v1 =   Silla(7, False, Ubicacion.VENTANA)
@@ -73,12 +73,12 @@ v2 =   Vehiculo("ZZZ999", sillasv2)
 v3 =   Vehiculo("ABC123", sillasv3)
 
 #VIAJES
-viaje2 =   Viaje(4, 40000, 17000, 25000, Monteria, Pasto, 12, v2, intermedio)
-viaje3 =   Viaje(3, 35000, 15000, 22000, Medellin, Manizales, 24, v3, fin)
+viaje2 =   Viaje(3, 40000, 17000, 25000, Monteria, Pasto, 12, v2, intermedio)
+viaje3 =   Viaje(2, 35000, 15000, 22000, Medellin, Manizales, 24, v3, fin)
 viaje1 =   Viaje(1, 50000, 35000, 42000, Bello, Cali, 24, v1, intermedio)
-viaje4 =   Viaje(2, 40000, 35000, 45000, Medellin, Cartagena, 12, v1, fin)
-viaje5 =   Viaje(10, 30000, 26000, 34000, Medellin, Barranquilla, 32, v2, inicio)
-viaje6 =   Viaje(22, 30000, 27000, 35000, Medellin, Popayan, 48, v3, fin + timedelta(days=2))
+viaje4 =   Viaje(4, 40000, 35000, 45000, Medellin, Cartagena, 12, v1, fin)
+viaje5 =   Viaje(5, 30000, 26000, 34000, Medellin, Barranquilla, 32, v2, inicio)
+viaje6 =   Viaje(6, 30000, 27000, 35000, Medellin, Popayan, 48, v3, fin + timedelta(days=2))
 
 # PROMOCIONES
 Manizales.setPromocion(35)
