@@ -1,13 +1,16 @@
 from uiMain.ventanas.field_frame import FieldFrame
 from uiMain.ventanas.Inicio import Inicio
 from uiMain.ventanas.VisualizarEstadistica import VisualizarEstadistica
+from uiMain.ventanas.GestionarEspecialistas import GestionarEspecialistas
 from baseDatos.serializador import Serializador
 from gestorAplicacion.personas.Especialista import Especialista, Especialidad
 from gestorAplicacion.personas.Comprador import Comprador
+
 from ctypes import resize
 from tkinter import *
 from numpy import diag
 from random import choice, random, randint
+from tkinter import messagebox, ttk
 
 from uiMain.ventanas.ManejoErrores import ErrorAplicacion, ExceptionPopUp, ClientIncorrectoException
 
@@ -51,7 +54,7 @@ def iniciar_ventana_usuario():
         matarloTodo(vEstadistica)
     
     def gestionarEspecialistas():
-        vEspecialista = gestionarEspecialistas(window)
+        vEspecialista = GestionarEspecialistas(window)
         vEspecialista.pack()
         matarloTodo(vEspecialista)
         
