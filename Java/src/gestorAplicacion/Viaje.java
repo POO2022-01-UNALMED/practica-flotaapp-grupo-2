@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import java.io.Serializable;
 
 public class Viaje implements Serializable {
+	private static final long serialVersionUID = 109L;
 	private int id;
 	private int costo;
 	private  int precioEstandar;
@@ -26,6 +27,7 @@ public class Viaje implements Serializable {
 	private LocalDate fechaViaje;
 	private Vehiculo vehiculo;
 	private boolean disponibilidad;
+	private static final long serialVersionUID = 109L;
 	private static ArrayList<Viaje> viajes;
 	static {
 		viajes = new ArrayList<Viaje>();

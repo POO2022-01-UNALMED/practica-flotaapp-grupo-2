@@ -15,17 +15,20 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Conductor extends Empleado implements Serializable {
+	
+	private static final long serialVersionUID = 3L;
 
     private Categoria categoria;
     private ArrayList<Viaje> historiaViajesRealizados;
     private static ArrayList<Conductor> conductores = new ArrayList<>();
+    private static final long serialVersionUID = 3L;
     
 
     public Conductor(){super(0, "CONDUCTOR NO REGISTRADO", "noemail@error.exe", 666, 0);this.historiaViajesRealizados = new ArrayList<>();}
 
-    public Conductor(int cc, String uNombre, String email, long movil,int salario, Categoria categoria) {
+    public Conductor(int cc, String uNombre, String email, long movil,int sueldo, Categoria categoria) {
 
-        super(cc, uNombre, email, movil, salario);
+        super(cc, uNombre, email, movil, sueldo);
         this.categoria = categoria;
         this.historiaViajesRealizados = new ArrayList<Viaje>();
         Conductor.conductores.add(this);

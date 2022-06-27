@@ -13,8 +13,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Silla implements Serializable {
+	
+	private static final long serialVersionUID = 6L;
 	private enum ubicacion {PASILLO, VENTANA, INTERMEDIO}
-
+	private static final long serialVersionUID = 6L;
     private int numeroSilla;
     private boolean tipo; //0 - Estandar , 1 - Premium
     private Ubicacion ubicacion; //0 - V , 1 - P

@@ -60,3 +60,4 @@ class Comprador(Usuario):
 
     def __str__(self):
         return " Cedula: {} \n Nombre: {} \n Correo: {} \n Celular: {}".format(self.getCc(), self.getuNombre(), self.getEmail(), self.getMovil())
+
