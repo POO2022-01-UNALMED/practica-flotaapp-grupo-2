@@ -33,6 +33,7 @@ class GestionarCiudades(Frame):
                 ciudad = i
         
         self._frameViaje = Frame(self._frame)
+        
         idsViajes = []
         for i in range(len(Viaje.getViajes())):
             viaje = Viaje.getViajes()[i]    
@@ -67,9 +68,6 @@ class GestionarCiudades(Frame):
         viaje.eliminarViaje()
         self._frameViaje.destroy()
         self.ventanaGestionar()
-
-        
-        
 
 
     def MatarTodo(self, frameUsado):
