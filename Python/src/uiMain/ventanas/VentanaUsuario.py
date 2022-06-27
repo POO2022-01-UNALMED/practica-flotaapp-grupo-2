@@ -50,6 +50,12 @@ def iniciar_ventana_usuario():
         vEstadistica.pack()
         matarloTodo(vEstadistica)
     
+    def gestionarEspecialistas():
+        vEspecialista = gestionarEspecialistas(window)
+        vEspecialista.pack()
+        matarloTodo(vEspecialista)
+        
+    
 
     #Abre la pestana de dialogo con los nombres de los integrantes del equipo
     def open_popup():
@@ -114,6 +120,9 @@ def iniciar_ventana_usuario():
 
 
     menuprocesos.add_command(label = "Visualizar Estadisticas", command = visualizarEstadisticas)
+    ####
+    menuprocesos.add_command(label = "Gestionar Especialistas", command = gestionarEspecialistas)
+    menuprocesos.add_command(label = "Gestionar Conductores", command = visualizarEstadisticas)
 
     menuayuda.add_command(label = "Acerca de", command = open_popup)
 
