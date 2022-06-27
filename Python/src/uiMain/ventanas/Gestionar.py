@@ -1,5 +1,5 @@
 from tkinter import *
-from tkinter import messagebox, ttk
+from tkinter import messagebox, ttk, simpledialog 
 
 from gestorAplicacion.viajes.Ciudad import Ciudad
 from gestorAplicacion.viajes.Viaje import Viaje
@@ -33,7 +33,7 @@ class GestionarCiudades(Frame):
                 ciudad = i
         
         self._frameViaje = Frame(self._frame)
-        
+
         idsViajes = []
         for i in range(len(Viaje.getViajes())):
             viaje = Viaje.getViajes()[i]    
@@ -49,7 +49,7 @@ class GestionarCiudades(Frame):
         
         self.valorDefectoViaje = StringVar(value="Seleccione Viaje")
         self.comboViaje = ttk.Combobox(self, state="readonly",  values= idsViajes, textvariable=self.valorDefectoViaje)
-        Bpromocion = Button(self._frame, text="Promocionar", cursor="hand2", bg="white")
+        Bpromocion = Button(self._frame, text="Evaluar", cursor="hand2", bg="white", command= self.EvaluarViaje)
         BEliminar = Button(self._frame, text="Eliminar", cursor="hand2", bg="white", command= self.ElimarViaje)
         
         Bpromocion.bind("<Enter>", lambda event: color(event, "pale green"))
@@ -68,6 +68,41 @@ class GestionarCiudades(Frame):
         viaje.eliminarViaje()
         self._frameViaje.destroy()
         self.ventanaGestionar()
+    
+    def EvaluarViaje(self):
+        try:
+            promocionar = Viaje.getViajes()[int(self.comboViaje.get())]
+        except:
+            ExceptionPopUp("Ingrese un ID valido para un viaje")
+
+        
+        porcentaje = ((len(promocionar.getVehiculo().getSillas()) - len(promocionar.tiquetesDisponibles()))*100)/len(promocionar.getVehiculo().getSillas())
+        message = f"Porcentaje Ocupacion = {porcentaje}\nNo se a podido promocionar el Viaje"
+        if (porcentaje >= 85):
+            promocionar.aumentarFrecuencia(1)
+            message = f"Porcentaje Ocupacion = {porcentaje}\nLa frecuencia del viaje se a aumentado en una hora"
+            messagebox.showinfo(title = "Promocion de Viaje", message = message)
+        
+        elif porcentaje <85 and porcentaje >= 45:
+            message = f"Porcentaje Ocupacion = {porcentaje}\n¿Desea promocionar este viaje?"
+            des = messagebox.askyesno(title = "Promocion de Viaje", message = message)
+            if des == True:
+                res = simpledialog.askstring('Promocion', 'Dime la promocion')
+                promocionar.getDestino().setPromocion(int(res))
+                messagebox.showinfo(title = "Promocion de Viaje", message = "El viaje a sido promocionado")
+
+        elif (porcentaje >= 20 and porcentaje < 45):
+            promocionar.disminuirFrecuencia(2)
+            message = f"Porcentaje Ocupacion = {porcentaje}\nLa frecuencia del viaje se a disminuido en dos hora"
+            messagebox.showinfo(title = "Promocion de Viaje", message = message)
+        
+        elif(porcentaje < 20):
+            message = f"Porcentaje Ocupacion = {porcentaje}\n¿Desea Eliminar el viaje?"
+            des = messagebox.askyesno(title = "Promocion de Viaje", message = message)
+            if des == True:
+                self.ElimarViaje()
+
+        
 
 
     def MatarTodo(self, frameUsado):
