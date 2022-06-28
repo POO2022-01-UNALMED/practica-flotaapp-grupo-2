@@ -73,26 +73,25 @@ class ComprarTiquete(tk.Frame):
                 error = messagebox.showerror("Error", "Seleccione una fecha mayor a la de hoy")
             else:
                 obtenerFecha()
-
+                boton = tk.Button(self._vTop, text="Buscar Viajes", command=viaje).grid(row=2, column=2, padx=10, pady=10)
 
             
 
         def popUp():
             comprador = Comprador(self.entrada4.get(), self.entrada_4.get(),self.entrada_5.get(),self.entrada5.get())
-            v = messagebox.askquestion("Confrimar Información", str(comprador))
+            v = messagebox.askquestion("Confirmar Información", str(comprador))
             print(v)
             if v == "yes":
                 enviarInfo()
             else:
                 ventana3()
-
             
         title = tk.Label(self._vTop, text="C O M P R A R   T I Q U E T E").grid(row=0, column=2,padx=1, pady=10)
         inst = tk.Label(self._vTop, text=" Señor usuario primero seleccione la fecha haciendo click en el boton 'Establecer Fecha'\n luego dar click al boton 'Buscar Viajes'").grid(row=1, column=2, padx=10, pady=10)
         fechita = tk.Label(self._vTop, text=" Fecha ").grid(row=2,column=0, pady=10)
         cal = DateEntry(self._vTop,selectmode="day",date_pattern="yyyy-MM-dd",textvariable=self.entrada_2).grid(row=2, column=1, padx=10, pady=10)
         fecha1= tk.Button(self._vTop, text="Establecer Fecha", command=popUp1).grid(row=3, column=1, padx=10, pady=10)
-        boton = tk.Button(self._vTop, text="Buscar Viajes", command=viaje).grid(row=2, column=2, padx=10, pady=10)
+        #boton = tk.Button(self._vTop, text="Buscar Viajes", command=viaje).grid(row=2, column=2, padx=10, pady=10)
         listaTotal = []
         listaInfo = [viaje.getDestino().getNombre() for viaje in Viaje.getViajes()]
 

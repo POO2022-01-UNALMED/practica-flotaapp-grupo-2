@@ -1,6 +1,6 @@
 from tkinter import *
 from uiMain.ventanas.ComprarTiquete import ComprarTiquete
-from uiMain.ventanas.Gestionar import GestionarCiudades, GestionarViajes
+from uiMain.ventanas.Gestionar import GestionarCiudades
 from uiMain.ventanas.VisualizarEstadistica import VisualizarEstadistica
 from baseDatos.serializador import Serializador
 
