@@ -54,4 +54,4 @@ class Tiquete():                        #Comprador , Silla, Viaje
     def setTiquetes(cls, tiquetes):
         cls.__tiquetes = tiquetes
     def __str__(self) -> str:
-        return f"Tiquete = ID : {self._idTiquete} - SILLA : {self._sillaTiquete} \n VIAJE = {self._viaje} - valor : {self._valor} - fechaCompra : {self._fechaCompra}"
+        return f"Tiquete = ID : {self._idTiquete} \n SILLA : {self._sillaTiquete} \n VIAJE = {self._viaje} - valor : {self._valor} \n fechaCompra : {self._fechaCompra}"
