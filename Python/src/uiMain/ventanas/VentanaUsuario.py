@@ -2,6 +2,7 @@ from tkinter import *
 from uiMain.ventanas.Gestionar import GestionarCiudades, GestionarViajes
 from uiMain.ventanas.Inicio import Inicio
 from uiMain.ventanas.VisualizarEstadistica import VisualizarEstadistica
+from uiMain.ventanas.VisualizacionLista import VisualizarCompradores, VisualizarConductores, VisualizarEspecialistas
 from uiMain.ventanas.ComprarTiquete import ComprarTiquete
 from baseDatos.serializador import Serializador
 
@@ -62,8 +63,14 @@ facilitar y mejorar la calidad del tedioso proceso de organizar un viaje."""
 
         menuarchivo.add_command(label = "Aplicacion", command = aplicacion_popup)
         menuarchivo.add_command(label = "Guardar y salir", command = salir)
+        
+        menuprocesos.add_cascade(label = "Visualizaciones", menu = submenu)
 
-        menuprocesos.add_command(label = "Visualizar Estadisticas", command = self.visualizarEstadisticas)
+        submenu.add_command(label = "Visualizar Estadisticas", command = self.visualizarEstadisticas)
+        submenu.add_command(label = "Visualizar Compradores", command = self.visualizarCompradores)
+        submenu.add_command(label = "Visualizar Conductores", command = self.visualizarConductores)
+        submenu.add_command(label = "Visualizar Especialistas", command = self.visualizarEspecialistas)
+
         menuprocesos.add_command(label = "Gestionar Ciudades", command = self.gestionarCiudades)
         menuprocesos.add_command(label = "Gestionar Viajes", command = self.gestionarViajes)
         menuprocesos.add_command(label = "Comprar Tiquete", command = self.comprarTiquete)
@@ -78,6 +85,18 @@ facilitar y mejorar la calidad del tedioso proceso de organizar un viaje."""
 
     def visualizarEstadisticas(self):
         vsE = VisualizarEstadistica(self)
+        self.MatarTodo(vsE)
+    
+    def visualizarCompradores(self):
+        vsC = VisualizarCompradores(self)
+        self.MatarTodo(vsC)
+    
+    def visualizarConductores(self):
+        vsC = VisualizarConductores(self)
+        self.MatarTodo(vsC)
+    
+    def visualizarEspecialistas(self):
+        vsE = VisualizarEspecialistas(self)
         self.MatarTodo(vsE)
     
     def comprarTiquete(self):
