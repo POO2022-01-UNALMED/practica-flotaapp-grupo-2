@@ -55,7 +55,7 @@ class Tiquete():                        #Comprador , Silla, Viaje
     @staticmethod
     def buscarTiquete(id):
         for tiquete in Tiquete.getTiquetes():
-            if tiquete.getId() == id and tiquete.getComprador() != None:
+            if tiquete.getId() == id:
                 return tiquete
         return Tiquete()
 

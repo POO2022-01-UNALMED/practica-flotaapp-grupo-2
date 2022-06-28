@@ -141,10 +141,12 @@ class GestionarViajes(Frame):
         listaTiquete = []
         compradorTiquete = Comprador()
         for comprador in Comprador.getCompradores():
-            print(comprador.getuNombre(), comprador.getHistorioViaje())
             if comprador.getCc() == valor:
-                listaTiquete = [f"{t.getId()} - {t.getViaje()} - {t.getSillaTiquete()}" for t in comprador.getHistorioViaje()]
+                if comprador.getHistorioViaje() != []:
+                    listaTiquete = Tiquete.buscarTiquete(comprador.getHistorioViaje()[0].getId()).getComprador().getHistorioViaje()
+                    listaTiquete = [f"{t.getId()} - {t.getViaje()} - {t.getSillaTiquete()}" for t in listaTiquete]
                 compradorTiquete = comprador
+                
 
         Label(self._vTop, text= f"CC: {compradorTiquete.getCc()} - Nombre : {compradorTiquete.getuNombre()}").place(relx=0.05, rely=0.05, relwidth=0.9, relheight=0.08)
         self.valorDefectoTiquete = Variable(value="Seleccione Viaje")
@@ -172,7 +174,6 @@ class GestionarViajes(Frame):
         def cancelarTiquete():
             self.tiquete.getComprador().eliminarTiqueteHistoria(self.tiquete)
             self.tiquete.setEstado(False)
-            self.tiquete.setComprador(None)
             aux = messagebox.showinfo(title = "Gestionar Viaje", message = "Viaje Cancelado")   
             if aux:
                 self.FrameComprador()
@@ -200,8 +201,8 @@ class GestionarViajes(Frame):
             self.tiquete.getComprador().anadirTiqueteHistoria(tiqueteCambio)
             self.tiquete.getComprador().eliminarTiqueteHistoria(self.tiquete)
             self.tiquete.setEstado(False)
-            self.tiquete.setComprador(None)
             self.CambioTiquete.destroy()
+            self.FrameComprador()
 
         self.CambioTiquete = Toplevel(self)
         self.CambioTiquete.geometry("550x600")
