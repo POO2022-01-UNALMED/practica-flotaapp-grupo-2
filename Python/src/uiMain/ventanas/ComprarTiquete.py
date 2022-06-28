@@ -1,4 +1,5 @@
 from calendar import calendar, month
+from email import message
 from fractions import Fraction
 import imp
 import tkinter as tk
@@ -68,9 +69,7 @@ class ComprarTiquete(tk.Frame):
                 #ventana1()
 
         def obtenerFecha():
-            mostrarFecha = tk.Label(self._vTop,text="La fecha seleccionada es: " + self.entrada_2.get()).grid(row=2, column=3, padx=10, pady=10)
-            print(self.entrada_2.get())
-            
+            mostrarFecha = tk.Label(self._vTop,text="La fecha seleccionada es: " + self.entrada_2.get()).grid(row=2, column=3, padx=10, pady=10)            
             
         def popUp1():
             fechaTo = datetime.strptime(self.entrada_2.get(),"%Y-%m-%d")
@@ -84,7 +83,8 @@ class ComprarTiquete(tk.Frame):
 
         def popUp():
             comprador = Comprador(self.entrada4.get(), self.entrada_4.get(),self.entrada_5.get(),self.entrada5.get())
-            v = messagebox.askquestion("Confirmar Información", comprador)
+            message = f"{comprador.getCc()} - {comprador.getuNombre()} - {comprador.getEmail()} - {comprador.getMovil()}"
+            v = messagebox.askquestion("Confirmar Información", message)
             if v == "yes":
                 enviarInfo()
             else:
@@ -180,7 +180,8 @@ class ComprarTiquete(tk.Frame):
             title5 = tk.Label(self._vTop5, text="I N F O R M A C I O N   T I Q U E T E").grid(row=0, column=1,pady=10)
             comprador = Comprador(self.entrada4.get(), self.entrada_4.get(),self.entrada_5.get(),self.entrada5.get())
             Asignar.asignarTiquete(comprador, listaTotal[self.entrada3.get()-1])
-            mas = tk.Label(self._vTop5, text=comprador.__str__()).grid(row=1, column=1, padx=10, pady=10)
+            message = f"{comprador.getCc()} - {comprador.getuNombre()} - {comprador.getEmail()} - {comprador.getMovil()}"
+            mas = tk.Label(self._vTop5, text= message).grid(row=1, column=1, padx=10, pady=10)
             mas1 = tk.Label(self._vTop5, text=listaTotal[self.entrada3.get()-1].__str__()).grid(row=2, column=1, padx=10, pady=10)
             mas2 = tk.Label(self._vTop5, text="Gracias por viajar con nosotros \n FLOTA-APP").grid(row=3, column=1, padx=10, pady=10)
 
