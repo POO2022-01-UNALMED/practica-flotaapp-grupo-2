@@ -49,4 +49,7 @@ class Silla():
 
 
     def __str__(self) -> str:
-        return f"Silla (numeroSilla: {self._numeroSilla} - tipo: {self._tipo} - ubicacion: {self._ubicacion})"       
+        if self._tipo == True:
+            return f"Silla {self._numeroSilla} PREMIUM"   
+        else:    
+            return f"Silla {self._numeroSilla} ESTANDAR"   

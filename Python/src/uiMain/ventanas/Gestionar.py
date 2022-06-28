@@ -1,14 +1,21 @@
+from cProfile import label
+from pickle import FRAME
 from tkinter import *
+from tkinter import messagebox, ttk, simpledialog
+
+from matplotlib.pyplot import text 
 
 from gestorAplicacion.viajes.Ciudad import Ciudad
 from gestorAplicacion.viajes.Viaje import Viaje
+from gestorAplicacion.personas.Comprador import Comprador
+from gestorAplicacion.viajes.Tiquete import Tiquete
+from gestorAplicacion.viajes.Viaje import Viaje
 from uiMain.ventanas.ManejoErrores import ExceptionPopUp
 
-def verde(evento):
-    evento.widget.config(bg="pale green")
+def color(evento, color):
+    evento.widget.config(bg= color)
 
-def blanco(evento):
-    evento.widget.config(bg="white")
+
 
 class GestionarCiudades(Frame):
     def __init__(self, window):
@@ -18,51 +25,198 @@ class GestionarCiudades(Frame):
         self.MatarTodo(self._frame)
         self.option_add("*tearOff",  FALSE)
 
+        self.valorDefecto = StringVar(value="Seleccione Ciudad")
+        self.combo = ttk.Combobox(self, state="readonly",  values=[ ciudad.getNombre() for ciudad in Ciudad.getCiudades()], textvariable=self.valorDefecto)
+        boton1 = Button(self._frame, text="Gestionar", cursor="hand2", bg="white", command= self.ventanaGestionar)
+        boton1.bind("<Enter>", lambda event: color(event, "pale green"))
+        boton1.bind("<Leave>", lambda event: color(event, "white"))   
 
-        rowInt= 0
-        colInt= -1
-        for i in range(len(Ciudad.getCiudades())):  
-            if 1 == colInt :
-                rowInt +=1
-                colInt = 0
-            else:
-                colInt += 1
-            f = Frame(self._frame)
-            Label(f, text=f"[{i+1}]  -  {Ciudad.getCiudades()[i].getNombre()} - Numero Visitantes : {Ciudad.getCiudades()[i].getNumVisitantes()}").grid(row=0, column=0)
-            f.place(relx=0.05+colInt*0.45, rely=0.2+0.11*rowInt, relwidth=0.5, relheight=0.1)
-
-        ciudadGestionar = Entry(self._frame, textvariable= StringVar(self._frame, "ID"))
-        boton1 = Button(self._frame, text="Gestionar", cursor="hand2", bg="white", command= lambda : self.ventanaGestionar(ciudadGestionar.get()))
-        boton1.bind("<Enter>", verde)
-        boton1.bind("<Leave>", blanco)   
-        ciudadGestionar.place(relx=0.05, rely=0.05, relwidth=0.1, relheight=0.1)
-        boton1.place(relx=0.15, rely=0.05, relwidth=0.1, relheight=0.1)
+        self.combo.place(relx=0.05, rely=0.05, relwidth=0.5, relheight=0.08)
+        boton1.place(relx=0.6, rely=0.05, relwidth=0.1, relheight=0.08)
 
         self._frame.place(relx=0, rely=0, relwidth=1, relheight=1)
     
-    def ventanaGestionar(self, IdCiudad):
-        try: 
-            ciudad = Ciudad.getCiudades()[int(IdCiudad)-1]                
-        except ValueError:
-            raise ExceptionPopUp("Ingrese un valor Numerico")
-        except IndexError:
-            raise ExceptionPopUp(f"Ingrese un numero entre 1 - {len(Ciudad.getCiudades())}")
+    def ventanaGestionar(self):     
+        for i in Ciudad.getCiudades():
+            if i.getNombre() == self.combo.get():
+                ciudad = i
         
-        top = Toplevel(self._frame)
-        top.geometry("580x320")
-        top.resizable(False,False)
-        top.title("Aplicación") 
-        Label(top, text= f"{ciudad.getNombre()}" , font=('Times 12')).place(relx=0, rely=0.05, relwidth=1, relheight=0.1)
-        Label(top, text= f"Promocion Actual : {ciudad.getPromocion()}        Direccion : {ciudad.getDireccion()}" , font=('Times 12')).pack()
-        Label(top, text= f"Puntaje   Actual : {ciudad.getPuntaje()}          Numero Visitantes : {ciudad.getNumVisitantes()}" , font=('Times 12')).pack()
+        self._frameViaje = Frame(self._frame)
 
+        idsViajes = []
         for i in range(len(Viaje.getViajes())):
-            viaje = Viaje.getViajes()[i]
-            if viaje.getDestino().getId() == ciudad.getId():
-                Label(top, text=f"[{i+1}]  -  Viaje : {viaje}").pack()
+            viaje = Viaje.getViajes()[i]    
+            if viaje.getDestino().getNombre() == self.combo.get() or viaje.getOrigen().getNombre() == self.combo.get():
+                Label(self._frameViaje, text=f"[{i}]  -  Viaje : {viaje}").pack()
+                idsViajes.append(i)
+            
+        self._frameViaje.place(relx=0.05, rely=0.45, relwidth=0.9, relheight=0.5)
+
+
+        Label(self._frame, text= f"Promocion Actual : {ciudad.getPromocion()}        Direccion : {ciudad.getDireccion()}" , font=('Times 12')).place(relx=0.05, rely=0.25, relwidth=0.9, relheight=0.1)
+        Label(self._frame, text= f"Puntaje   Actual : {ciudad.getPuntaje()}          Numero Visitantes : {ciudad.getNumVisitantes()}" , font=('Times 12')).place(relx=0.05, rely=0.35, relwidth=0.9, relheight=0.1)
+        
+        self.valorDefectoViaje = StringVar(value="Seleccione Viaje")
+        self.comboViaje = ttk.Combobox(self, state="readonly",  values= idsViajes, textvariable=self.valorDefectoViaje)
+        Bpromocion = Button(self._frame, text="Evaluar", cursor="hand2", bg="white", command= self.EvaluarViaje)
+        BEliminar = Button(self._frame, text="Eliminar", cursor="hand2", bg="white", command= self.ElimarViaje)
+        
+        Bpromocion.bind("<Enter>", lambda event: color(event, "pale green"))
+        Bpromocion.bind("<Leave>", lambda event: color(event, "white"))   
+
+        BEliminar.bind("<Enter>", lambda event: color(event, "red"))
+        BEliminar.bind("<Leave>", lambda event: color(event, "white"))   
+
+        self.comboViaje.place(relx=0.05, rely=0.15, relwidth=0.1, relheight=0.05)
+        Bpromocion.place(relx=0.15, rely=0.15, relwidth=0.15, relheight=0.05)
+        BEliminar.place(relx=0.3, rely=0.15, relwidth=0.1, relheight=0.05)
+
+
+    def ElimarViaje(self):
+        viaje = Viaje.getViajes()[int(self.comboViaje.get())]
+        viaje.eliminarViaje()
+        self._frameViaje.destroy()
+        self.ventanaGestionar()
     
+    def EvaluarViaje(self):
+        try:
+            promocionar = Viaje.getViajes()[int(self.comboViaje.get())]
+        except:
+            ExceptionPopUp("Ingrese un ID valido para un viaje")
+
+        
+        porcentaje = ((len(promocionar.getVehiculo().getSillas()) - len(promocionar.tiquetesDisponibles()))*100)/len(promocionar.getVehiculo().getSillas())
+        message = f"Porcentaje Ocupacion = {porcentaje}\nNo se a podido promocionar el Viaje"
+        if (porcentaje >= 85):
+            promocionar.aumentarFrecuencia(1)
+            message = f"Porcentaje Ocupacion = {porcentaje}\nLa frecuencia del viaje se a aumentado en una hora"
+            messagebox.showinfo(title = "Promocion de Viaje", message = message)
+        
+        elif porcentaje <85 and porcentaje >= 45:
+            message = f"Porcentaje Ocupacion = {porcentaje}\n¿Desea promocionar este viaje?"
+            des = messagebox.askyesno(title = "Promocion de Viaje", message = message)
+            if des == True:
+                res = simpledialog.askstring('Promocion', 'Dime la promocion')
+                promocionar.getDestino().setPromocion(int(res))
+                messagebox.showinfo(title = "Promocion de Viaje", message = "El viaje a sido promocionado")
+
+        elif (porcentaje >= 20 and porcentaje < 45):
+            promocionar.disminuirFrecuencia(2)
+            message = f"Porcentaje Ocupacion = {porcentaje}\nLa frecuencia del viaje se a disminuido en dos hora"
+            messagebox.showinfo(title = "Promocion de Viaje", message = message)
+        
+        elif(porcentaje < 20):
+            message = f"Porcentaje Ocupacion = {porcentaje}\n¿Desea Eliminar el viaje?"
+            des = messagebox.askyesno(title = "Promocion de Viaje", message = message)
+            if des == True:
+                self.ElimarViaje()
+
+        
+
+
     def MatarTodo(self, frameUsado):
         for frame in self.winfo_children():
             frame.pack_forget()
         frameUsado.pack(fill=BOTH,expand=True)
 
+
+class GestionarViajes(Frame):
+
+    def __init__(self, window):
+        super().__init__(window)
+        self._vTop = Frame(self)
+        self.entrada = StringVar(value=1)
+
+        title = Label(self, text="G E S T I O N A R   V I A J E S").place(relx=0.05, rely=0.05, relwidth=0.9, relheight=0.08) 
+        viaje = Label(self, text="Gestionar viaje con la cédula: ").place(relx=0.05, rely=0.15, relwidth=0.3, relheight=0.08) 
+        info = Entry(self, borderwidth=2, textvariable = self.entrada).place(relx=0.32, rely=0.15, relwidth=0.45, relheight=0.08) 
+        buscar = Button(self, text="Buscar", command= self.FrameComprador ).place(relx=0.75, rely=0.15, relwidth=0.15, relheight=0.08) 
+
+
+    def FrameComprador(self):
+        valor = int(self.entrada.get())
+        self._vTop.destroy()
+        self._vTop = Frame(self)
+
+        listaTiquete = []
+        compradorTiquete = Comprador()
+        for comprador in Comprador.getCompradores():
+            if comprador.getCc() == valor:
+                if comprador.getHistorioViaje() != []:
+                    listaTiquete = Tiquete.buscarTiquete(comprador.getHistorioViaje()[0].getId()).getComprador().getHistorioViaje()
+                    listaTiquete = [f"{t.getId()} - {t.getViaje()} - {t.getSillaTiquete()}" for t in listaTiquete]
+                compradorTiquete = comprador
+                
+
+        Label(self._vTop, text= f"CC: {compradorTiquete.getCc()} - Nombre : {compradorTiquete.getuNombre()}").place(relx=0.05, rely=0.05, relwidth=0.9, relheight=0.08)
+        self.valorDefectoTiquete = Variable(value="Seleccione Viaje")
+        self.comboTiquete = ttk.Combobox(self._vTop, state="readonly",  values= listaTiquete, textvariable=self.valorDefectoTiquete, width=15)
+        self.comboTiquete.place(relx=0.05, rely=0.15, relwidth=0.7, relheight=0.08)
+        buscarTiquetes = Button(self._vTop, text="Gestionar", command= self.FrameTiquete)
+        buscarTiquetes.place(relx=0.75, rely=0.15, relwidth=0.2, relheight=0.08)    
+
+        self._vTop.place(relx=0.05, rely=0.25, relwidth=0.9, relheight=0.7) 
+
+        self._frameInfoTiquete = Frame(self._vTop)
+
+
+    def FrameTiquete(self):
+        
+        self._frameInfoTiquete.destroy()
+        self._frameInfoTiquete = Frame(self._vTop)
+        self.tiquete = Tiquete.buscarTiquete(int(self.comboTiquete.get()[:2]))
+        Label(self._frameInfoTiquete,  text= f"Silla = {self.tiquete.getSillaTiquete()}").pack()
+        Label(self._frameInfoTiquete,  text= f"Viaje = {self.tiquete.getViaje()}").pack()
+        Label(self._frameInfoTiquete,  text= f"Valor = {self.tiquete.getValor()} Fecha = {self.tiquete.getFechaCompra()}").pack()
+
+        self._frameInfoTiquete.place(relx=0.05, rely=0.25, relwidth=0.9, relheight=0.20) 
+        
+        def cancelarTiquete():
+            self.tiquete.getComprador().eliminarTiqueteHistoria(self.tiquete)
+            self.tiquete.setEstado(False)
+            aux = messagebox.showinfo(title = "Gestionar Viaje", message = "Viaje Cancelado")   
+            if aux:
+                self.FrameComprador()
+
+
+        BCambiar = Button(self._vTop, text="Cambiar Tiquete", command= self.CambiarTiquete) 
+        BCancelar = Button(self._vTop, text="Cancelar Tiquete", command= cancelarTiquete)
+        
+        BCambiar.bind("<Enter>", lambda event: color(event, "pale green"))
+        BCambiar.bind("<Leave>", lambda event: color(event, "white"))   
+
+        BCancelar.bind("<Enter>", lambda event: color(event, "red"))
+        BCancelar.bind("<Leave>", lambda event: color(event, "white"))   
+
+        BCambiar.place(relx=0.05, rely=0.45, relwidth=0.45, relheight=0.08)   
+        BCancelar.place(relx=0.5, rely=0.45, relwidth=0.45, relheight=0.08)    
+
+        self._vTop.place(relx=0.05, rely=0.25, relwidth=0.9, relheight=0.7) 
+
+
+    def CambiarTiquete(self):
+
+        def cambiarTiquete():
+            tiqueteCambio = self.listaDisponibles[int(self.tiqueteCambiado.get())]
+            self.tiquete.getComprador().anadirTiqueteHistoria(tiqueteCambio)
+            self.tiquete.getComprador().eliminarTiqueteHistoria(self.tiquete)
+            self.tiquete.setEstado(False)
+            self.CambioTiquete.destroy()
+            self.FrameComprador()
+
+        self.CambioTiquete = Toplevel(self)
+        self.CambioTiquete.geometry("550x600")
+        self.tiqueteCambiado = StringVar()
+        Label(self.CambioTiquete, text="C A M B I A R   T I Q U E T E").place(relx=0.05, rely=0.05, relwidth=0.9, relheight=0.08)   
+        Label(self.CambioTiquete, text="Escoge un tiquete por el cual cambiarlo ").place(relx=0.05, rely=0.15, relwidth=0.9, relheight=0.08)   
+        cambiar = Button(self.CambioTiquete, text="Cambiar Tiquete", command= cambiarTiquete).place(relx=0.05, rely=0.25, relwidth=0.9, relheight=0.08)   
+
+        self.listaDisponibles = [t for t in Tiquete.getTiquetes() if t.getViaje().getDestino() == self.tiquete.getViaje().getDestino() and t.getViaje().getOrigen() == self.tiquete.getViaje().getOrigen() and t.getViaje().getFechaViaje() >= self.tiquete.getViaje().getFechaViaje()]
+        contador2 = 0
+        frameCambio = Frame(self.CambioTiquete)
+        for x in range(len(self.listaDisponibles)):
+            mostar = Radiobutton(frameCambio, text= self.listaDisponibles[x], variable=self.tiqueteCambiado, value=contador2).pack()  
+            contador2 +=1 
+        
+        frameCambio.place(relx=0.05, rely=0.35, relwidth=0.9, relheight=0.6)   
+    

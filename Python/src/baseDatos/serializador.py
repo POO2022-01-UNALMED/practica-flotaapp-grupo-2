@@ -1,4 +1,5 @@
 import pickle
+from gestorAplicacion.viajes.Tiquete import Tiquete
 from gestorAplicacion.personas.Comprador import Comprador
 from gestorAplicacion.viajes.Ciudad import Ciudad
 from gestorAplicacion.viajes.Vehiculo import Vehiculo
@@ -7,14 +8,7 @@ from gestorAplicacion.personas.Conductor import Conductor
 from gestorAplicacion.personas.Especialista import Especialista
 import pathlib
 import os
-""""
- * Se utiliza para serializar todos los objetos creados durante la ejecucion
- * del proyecto
- * @author Erik Gonzalez
- * @author Felipe Miranda
- * @author Esteban Garcia
- * @author Emilio Porras
- */"""
+
 class Serializador():
     
     def serializar():
@@ -28,6 +22,7 @@ class Serializador():
                 "viajes" : Viaje.getViajes(),
                 "conductores" : Conductor.getConductores(),
                 "especialistas" : Especialista.getEspecialistas(),
+                "tiquetes" : Tiquete.getTiquetes(),
                 }
 
         for archivo, dato in datos.items():
