@@ -1,3 +1,4 @@
+from gestorAplicacion.viajes.Tiquete import Tiquete
 from baseDatos.deserializador import Deserializador
 from baseDatos.serializador import Serializador
 from uiMain.ventanas.ventanaInicio.Inicio import VentanaInicio
@@ -134,6 +135,7 @@ Asignar.asignarVehiculoEspecialista(si2, v1)
 Asignar.asignarVehiculoEspecialista(ele1, v2)"""
 
 if __name__ == '__main__':
+    
     Deserializador.deserializar()
     ventana = VentanaInicio()
     ventana.mainloop()

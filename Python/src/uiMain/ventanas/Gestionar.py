@@ -1,7 +1,13 @@
+from cProfile import label
 from tkinter import *
-from tkinter import messagebox, ttk, simpledialog 
+from tkinter import messagebox, ttk, simpledialog
+
+from matplotlib.pyplot import text 
 
 from gestorAplicacion.viajes.Ciudad import Ciudad
+from gestorAplicacion.viajes.Viaje import Viaje
+from gestorAplicacion.personas.Comprador import Comprador
+from gestorAplicacion.viajes.Tiquete import Tiquete
 from gestorAplicacion.viajes.Viaje import Viaje
 from uiMain.ventanas.ManejoErrores import ExceptionPopUp
 
@@ -110,3 +116,79 @@ class GestionarCiudades(Frame):
             frame.pack_forget()
         frameUsado.pack(fill=BOTH,expand=True)
 
+
+class GestionarViajes(Frame):
+
+    def __init__(self, window):
+        super().__init__(window)
+        self._vTop = Frame(self)
+        self.entrada = StringVar(value=1)
+
+        title = Label(self, text="G E S T I O N A R   V I A J E S").place(relx=0.05, rely=0.05, relwidth=0.9, relheight=0.08) 
+        viaje = Label(self, text="Gestionar viaje con la cédula: ").place(relx=0.05, rely=0.15, relwidth=0.3, relheight=0.08) 
+        info = Entry(self, borderwidth=2, textvariable = self.entrada).place(relx=0.32, rely=0.15, relwidth=0.45, relheight=0.08) 
+        buscar = Button(self, text="Buscar", command= self.FrameComprador ).place(relx=0.75, rely=0.15, relwidth=0.15, relheight=0.08) 
+
+
+    def FrameComprador(self):
+        valor = int(self.entrada.get())
+        self._vTop.destroy()
+        self._vTop = Frame(self)
+
+        listaTiquete = []
+        compradorTiquete = Comprador()
+        for comprador in Comprador.getCompradores():
+            if comprador.getCc() == valor:
+                compradorTiquete = comprador
+                listaTiquete = [f"{t.getId()} - {t.getViaje()} - {t.getSillaTiquete()}" for t in comprador.getHistorioViaje()]
+
+        Label(self._vTop, text= f"CC: {comprador.getCc()} - Nombre : {compradorTiquete.getuNombre()}").place(relx=0.05, rely=0.05, relwidth=0.9, relheight=0.08)
+        self.valorDefectoTiquete = StringVar(value="Seleccione Viaje")
+        self.comboTiquete = ttk.Combobox(self._vTop, state="readonly",  values= listaTiquete, textvariable=self.valorDefectoTiquete, width=15)
+        self.comboTiquete.place(relx=0.05, rely=0.15, relwidth=0.7, relheight=0.08)
+        buscarTiquetes = Button(self._vTop, text="Gestionar", command= self.FrameTiquete)
+        buscarTiquetes.place(relx=0.75, rely=0.15, relwidth=0.2, relheight=0.08)    
+
+        self._vTop.place(relx=0.05, rely=0.25, relwidth=0.9, relheight=0.7) 
+
+        self._frameInfoTiquete = Frame(self._vTop)
+
+
+    def FrameTiquete(self):
+        
+        def cancelarTiquete():
+            Label(self._vTop, text="Tu tiquete ha sido cancelado").place(relx=0.05, rely=0.55, relwidth=0.9, relheight=0.08)    
+
+        self._frameInfoTiquete.destroy()
+        self._frameInfoTiquete = Frame(self._vTop)
+        tiquete = Tiquete.buscarTiquete(int(self.comboTiquete.get()[:3]))
+        print(tiquete)
+        Label(self._frameInfoTiquete,  text= f"Silla = {tiquete.getSillaTiquete()}").pack()
+        Label(self._frameInfoTiquete,  text= f"Viaje = {tiquete.getViaje()}").pack()
+        Label(self._frameInfoTiquete,  text= f"Valor = {tiquete.getValor()} Fecha = {tiquete.getFechaCompra()}").pack()
+
+        self._frameInfoTiquete.place(relx=0.05, rely=0.25, relwidth=0.9, relheight=0.20) 
+         
+
+        BCambiar = Button(self._vTop, text="Cambiar Tiquete", command= self.CambiarTiquete) 
+        BCancelar = Button(self._vTop, text="Cancelar Tiquete", command= cancelarTiquete)
+        
+        BCambiar.bind("<Enter>", lambda event: color(event, "pale green"))
+        BCambiar.bind("<Leave>", lambda event: color(event, "white"))   
+
+        BCancelar.bind("<Enter>", lambda event: color(event, "red"))
+        BCancelar.bind("<Leave>", lambda event: color(event, "white"))   
+
+        BCambiar.place(relx=0.05, rely=0.45, relwidth=0.45, relheight=0.08)   
+        BCancelar.place(relx=0.5, rely=0.45, relwidth=0.45, relheight=0.08)    
+
+        self._vTop.place(relx=0.05, rely=0.25, relwidth=0.9, relheight=0.7) 
+
+
+    def CambiarTiquete(self):
+
+        self.CambioTiquete = Toplevel(self)
+        self.CambioTiquete.geometry("450x500")
+        title3 = Label(self.CambioTiquete, text="C A M B I A R   T I Q U E T E").place(relx=0.05, rely=0.05, relwidth=0.9, relheight=0.08)   
+        viaje3 = Label(self.CambioTiquete, text="Escoge un tiquete por el cual cambiarlo ").place(relx=0.05, rely=0.15, relwidth=0.9, relheight=0.08)   
+        buscar3 = Button(self.CambioTiquete, text="Volver a pantalla gestionar viajes").place(relx=0.05, rely=0.25, relwidth=0.9, relheight=0.08)   

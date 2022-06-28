@@ -16,6 +16,7 @@ class Viaje():
         - Visualizar Estadisticas : Aumentar o disminuir frecuencia
     '''
     __viajes = []
+    __tiquetesTotales = 0
     def __init__(self, idViaje : int = 0, costo : int = 0, precioEstandar : int = 0, precioPremium : int = 0, origen : Ciudad = None, destino : Ciudad = None, frecuencia : int = 0, vehiculo : Vehiculo = None, fechaViaje : datetime = None) -> None:
         from gestorAplicacion.viajes.Tiquete import Tiquete
         self._idViaje = idViaje
@@ -28,7 +29,8 @@ class Viaje():
         self._frecuencia = frecuencia
         self._fechaViaje = fechaViaje
         self._vehiculo = vehiculo
-        self._allTiquetes = [Tiquete(silla.getNumeroSilla(), None, silla, self, self._precioPremium, None) for silla in self.getVehiculo().getSillas() if silla.getTipo()] + [Tiquete(silla.getNumeroSilla(), None, silla, self, self._precioEstandar, None) for silla in self.getVehiculo().getSillas() if silla.getTipo() == False]
+        self._allTiquetes = [Tiquete(silla.getNumeroSilla()+self.__tiquetesTotales, None, silla, self, self._precioPremium, None) for silla in self.getVehiculo().getSillas() if silla.getTipo()] + [Tiquete(silla.getNumeroSilla(), None, silla, self, self._precioEstandar, None) for silla in self.getVehiculo().getSillas() if silla.getTipo() == False]
+        Viaje.__tiquetesTotales += len(self._allTiquetes)
         Viaje.__viajes.append(self)
         
     def tiquetesDisponibles(self):
@@ -117,4 +119,4 @@ class Viaje():
         #Corregí el metodo porque siempre devolvia una lista vacia
     
     def __str__(self):
-        return "IdViaje: {} - Origen {} - Destino {}".format(self.getIdViaje(),self.getOrigen(), self.getDestino())
+        return "Origen {} - Destino {}".format(self.getOrigen(), self.getDestino())

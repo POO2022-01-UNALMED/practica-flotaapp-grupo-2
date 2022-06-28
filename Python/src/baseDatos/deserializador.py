@@ -1,4 +1,5 @@
 import pickle
+from gestorAplicacion.viajes.Tiquete import Tiquete
 from gestorAplicacion.personas.Comprador import Comprador
 from gestorAplicacion.viajes.Ciudad import Ciudad
 from gestorAplicacion.viajes.Vehiculo import Vehiculo
@@ -21,6 +22,7 @@ class Deserializador():
                 "viajes" : lambda x : Viaje.setViajes(x),
                 "conductores" : lambda x : Conductor.setConductores(x),             
                 "especialistas" : lambda x : Especialista.setEspecialistas(x),
+                "tiquetes" : lambda x : Tiquete.setTiquetes(x),
                 }
 
         for archivo, set in datos.items():

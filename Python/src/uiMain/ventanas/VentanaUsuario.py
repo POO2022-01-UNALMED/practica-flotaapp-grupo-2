@@ -1,5 +1,5 @@
 from tkinter import *
-from uiMain.ventanas.Gestionar import GestionarCiudades
+from uiMain.ventanas.Gestionar import GestionarCiudades, GestionarViajes
 from uiMain.ventanas.VisualizarEstadistica import VisualizarEstadistica
 from baseDatos.serializador import Serializador
 
@@ -56,6 +56,7 @@ class VentanaUsuario(Tk):
 
         menuprocesos.add_command(label = "Visualizar Estadisticas", command = self.visualizarEstadisticas)
         menuprocesos.add_command(label = "Gestionar Ciudades", command = self.gestionarCiudades)
+        menuprocesos.add_command(label = "Gestionar Viajes", command = self.gestionarViajes)
 
         menuayuda.add_command(label = "Acerca de", command = open_popup)
 
@@ -70,6 +71,10 @@ class VentanaUsuario(Tk):
     def gestionarCiudades(self):
         gesC = GestionarCiudades(self)
         self.MatarTodo(gesC)
+    
+    def gestionarViajes(self):
+        gesV = GestionarViajes(self)
+        self.MatarTodo(gesV)
     
     def MatarTodo(self, frameUsado):
         for frame in self.winfo_children():

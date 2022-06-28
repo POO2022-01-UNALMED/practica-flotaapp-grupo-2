@@ -18,11 +18,13 @@ class Comprador(Usuario):
     '''
     __compradores = []
 
-    def __init__(self,cc: int = 0, uNombre : str = None, email : str = None, movil: int = 0, billetera: int = 0, historicoViajes = None):
+    def __init__(self,cc: int = 0, uNombre : str = "COMPRADOR NO REGISTRADO", email : str = None, movil: int = 0, billetera: int = 0, historicoViajes = None):
 
         super().__init__(cc, uNombre, email, movil, billetera)
         self._historicoViajes = historicoViajes # -historicoViajes: List(Tiquetes)
-        Comprador.__compradores.append(self)
+        if uNombre != "COMPRADOR NO REGISTRAD":
+            Comprador.__compradores.append(self)
+        
 
     def anadirTiqueteHistoria(self, tiquete : Tiquete):
         if self._historicoViajes == None:

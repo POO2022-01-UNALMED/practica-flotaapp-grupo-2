@@ -1,4 +1,5 @@
 import pickle
+from gestorAplicacion.viajes.Tiquete import Tiquete
 from gestorAplicacion.personas.Comprador import Comprador
 from gestorAplicacion.viajes.Ciudad import Ciudad
 from gestorAplicacion.viajes.Vehiculo import Vehiculo
@@ -21,6 +22,7 @@ class Serializador():
                 "viajes" : Viaje.getViajes(),
                 "conductores" : Conductor.getConductores(),
                 "especialistas" : Especialista.getEspecialistas(),
+                "tiquetes" : Tiquete.getTiquetes(),
                 }
 
         for archivo, dato in datos.items():
