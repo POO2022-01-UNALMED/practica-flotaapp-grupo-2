@@ -19,7 +19,7 @@ class Especialista(Empleado):
 
     __especialistas = []
 
-    def __init__(self, cc = 0, uNombre = "ESPECIALISTA NO REGISTRADO", email = "", movil = 666, billetera = 0, especialidad : Especialidad = Especialidad.ADMINISTRADOR, historialVehiculosRevisados = None): #Se está casteando bien los enumeradores?
+    def __init__(self, cc = 0, uNombre = "ESPECIALISTA NO REGISTRADO", email = "", movil = 666, billetera = 0, especialidad : Especialidad = Especialidad.ADMINISTRADOR, historialVehiculosRevisados = None): 
         super().__init__(cc, uNombre, email, movil, billetera)
         self._historialiVehiculosRevisados = historialVehiculosRevisados
         self._especialidad = especialidad
@@ -80,6 +80,9 @@ class Especialista(Empleado):
     @classmethod
     def setEspecialistas(cls, especialistas):
         cls.__especialistas = especialistas
+    
+    def getCc(self):
+        return self._cc
 
     def anadirVehiculoHistoria(self, vehiculoE: Vehiculo):
         if self.getHistoricoVehiculosRevisados() == None:
@@ -88,5 +91,5 @@ class Especialista(Empleado):
             self._historialiVehiculosRevisados.append(vehiculoE)
 
     def __str__(self) : 
-        return "Nombre: {} - Sueldo: {} - Especialidad: {}".format(self._uNombre, self._sueldo, self._especialidad) 
+        return " CC: ({}) - Nombre: {} - Sueldo: {} - Especialidad: {}".format(self.getCc(),self._uNombre, self._sueldo, self._especialidad) 
 

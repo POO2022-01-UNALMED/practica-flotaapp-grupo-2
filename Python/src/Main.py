@@ -14,7 +14,7 @@ from uiMain.Funcionalidades.Gestionar import Gestionar
 from uiMain.Funcionalidades.Recomendacion import Recomendacion
 from uiMain.Funcionalidades.VisualizarEstadisticas import VisualizarEstadisticas
 from uiMain.Funcionalidades.Asignar import Asignar
-
+ 
 from datetime import datetime
 from datetime import timedelta
 
