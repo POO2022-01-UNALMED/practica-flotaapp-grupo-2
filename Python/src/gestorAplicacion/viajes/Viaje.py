@@ -117,4 +117,4 @@ class Viaje():
         #Corregí el metodo porque siempre devolvia una lista vacia
     
     def __str__(self):
-        return "IdViaje: {} - Origen {} - Destino {} - Fecha Viaje {}".format(self.getIdViaje(),self.getOrigen(), self.getDestino(), self.getFechaViaje())
+        return "IdViaje: {} \n Origen: {} \n Destino: {} \n Fecha Viaje: {}".format(self.getIdViaje(),self.getOrigen(), self.getDestino(), self.getFechaViaje())
