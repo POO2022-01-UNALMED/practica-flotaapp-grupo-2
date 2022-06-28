@@ -14,7 +14,14 @@ class Bienvenida(Frame):
         saludo = Label(self._p3, width=100, text="Bienvenido al software de Flota-APP")
         self.saludo2 = scrolledtext.ScrolledText(self._p3, height=5)
         self.saludo2.tag_configure("center", justify="center")
-        self.saludo2.insert(INSERT, "Aquí hira la descripcion de Flota-APP.")
+        self.saludo2.insert(INSERT, """Estimado usuario, bienvenido a FlotaAPP. 
+Somos una APP que gestiona los diferentes servicios de una flota 
+de autobuses con diferentes funcionalidades como:  automatizar la 
+compra de tiquetes, la ocupación y disponibilidad de viajes, 
+guardar registros de sus viajes e implementar recomendaciones 
+personalizadas en cada usuario y desarrollar las distintas 
+estadísticas por ciudad y por viaje. Todo esto, con el objetivo de 
+facilitar y mejorar la calidad del tedioso proceso de organizar un viaje.""")
         self.saludo2.config(state = DISABLED)
         self._pantallazos = []
         for i in range(0, 5):

@@ -1,6 +1,8 @@
 from tkinter import *
 from uiMain.ventanas.Gestionar import GestionarCiudades, GestionarViajes
+from uiMain.ventanas.Inicio import Inicio
 from uiMain.ventanas.VisualizarEstadistica import VisualizarEstadistica
+from uiMain.ventanas.ComprarTiquete import ComprarTiquete
 from baseDatos.serializador import Serializador
 
 class VentanaUsuario(Tk):
@@ -17,7 +19,7 @@ class VentanaUsuario(Tk):
             top.geometry("450x250")
             top.resizable(False,False)
             top.title("Ayuda")
-            Label(top, text= "AUTORES:\nMateo Echavarria Sierra", font=('Times 18 bold')).pack(fill=BOTH, expand=True)
+            Label(top, text= "AUTORES:\nMateo Echavarria Sierra\nMiguel Angel Fonseca Aldana\nJuan Pablo Pineda Lopera\nHaison Urrutia Manyoma", font=('Times 18 bold')).pack(fill=BOTH, expand=True)
 
         def aplicacion_popup():
             top= Toplevel(self)
@@ -25,7 +27,14 @@ class VentanaUsuario(Tk):
             top.resizable(False,False)
             top.title("Aplicación")
             Label(top, text= textonimo , font=('Times 12')).pack(fill=BOTH, expand=True)
-        textonimo = "Flota-APP es una empresa............."
+        textonimo = """Estimado usuario, bienvenido a FlotaAPP. 
+Somos una APP que gestiona los diferentes servicios de una flota 
+de autobuses con diferentes funcionalidades como:  automatizar la 
+compra de tiquetes, la ocupación y disponibilidad de viajes, 
+guardar registros de sus viajes e implementar recomendaciones 
+personalizadas en cada usuario y desarrollar las distintas 
+estadísticas por ciudad y por viaje. Todo esto, con el objetivo de 
+facilitar y mejorar la calidad del tedioso proceso de organizar un viaje."""
 
         def salir():
             Serializador.serializar()
@@ -57,16 +66,23 @@ class VentanaUsuario(Tk):
         menuprocesos.add_command(label = "Visualizar Estadisticas", command = self.visualizarEstadisticas)
         menuprocesos.add_command(label = "Gestionar Ciudades", command = self.gestionarCiudades)
         menuprocesos.add_command(label = "Gestionar Viajes", command = self.gestionarViajes)
+        menuprocesos.add_command(label = "Comprar Tiquete", command = self.comprarTiquete)
 
         menuayuda.add_command(label = "Acerca de", command = open_popup)
 
         frameUso = Frame(self)
+        interfazInicio = Inicio(self)
+        interfazInicio.pack()
 
         self['menu'] = menubar
 
     def visualizarEstadisticas(self):
         vsE = VisualizarEstadistica(self)
         self.MatarTodo(vsE)
+    
+    def comprarTiquete(self):
+        coT = ComprarTiquete(self)
+        self.MatarTodo(coT)
     
     def gestionarCiudades(self):
         gesC = GestionarCiudades(self)
