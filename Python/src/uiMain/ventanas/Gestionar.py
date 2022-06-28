@@ -1,4 +1,5 @@
 from cProfile import label
+from pickle import FRAME
 from tkinter import *
 from tkinter import messagebox, ttk, simpledialog
 
@@ -13,6 +14,8 @@ from uiMain.ventanas.ManejoErrores import ExceptionPopUp
 
 def color(evento, color):
     evento.widget.config(bg= color)
+
+
 
 class GestionarCiudades(Frame):
     def __init__(self, window):
@@ -138,12 +141,13 @@ class GestionarViajes(Frame):
         listaTiquete = []
         compradorTiquete = Comprador()
         for comprador in Comprador.getCompradores():
+            print(comprador.getuNombre(), comprador.getHistorioViaje())
             if comprador.getCc() == valor:
-                compradorTiquete = comprador
                 listaTiquete = [f"{t.getId()} - {t.getViaje()} - {t.getSillaTiquete()}" for t in comprador.getHistorioViaje()]
+                compradorTiquete = comprador
 
-        Label(self._vTop, text= f"CC: {comprador.getCc()} - Nombre : {compradorTiquete.getuNombre()}").place(relx=0.05, rely=0.05, relwidth=0.9, relheight=0.08)
-        self.valorDefectoTiquete = StringVar(value="Seleccione Viaje")
+        Label(self._vTop, text= f"CC: {compradorTiquete.getCc()} - Nombre : {compradorTiquete.getuNombre()}").place(relx=0.05, rely=0.05, relwidth=0.9, relheight=0.08)
+        self.valorDefectoTiquete = Variable(value="Seleccione Viaje")
         self.comboTiquete = ttk.Combobox(self._vTop, state="readonly",  values= listaTiquete, textvariable=self.valorDefectoTiquete, width=15)
         self.comboTiquete.place(relx=0.05, rely=0.15, relwidth=0.7, relheight=0.08)
         buscarTiquetes = Button(self._vTop, text="Gestionar", command= self.FrameTiquete)
@@ -156,19 +160,23 @@ class GestionarViajes(Frame):
 
     def FrameTiquete(self):
         
-        def cancelarTiquete():
-            Label(self._vTop, text="Tu tiquete ha sido cancelado").place(relx=0.05, rely=0.55, relwidth=0.9, relheight=0.08)    
-
         self._frameInfoTiquete.destroy()
         self._frameInfoTiquete = Frame(self._vTop)
-        tiquete = Tiquete.buscarTiquete(int(self.comboTiquete.get()[:3]))
-        print(tiquete)
-        Label(self._frameInfoTiquete,  text= f"Silla = {tiquete.getSillaTiquete()}").pack()
-        Label(self._frameInfoTiquete,  text= f"Viaje = {tiquete.getViaje()}").pack()
-        Label(self._frameInfoTiquete,  text= f"Valor = {tiquete.getValor()} Fecha = {tiquete.getFechaCompra()}").pack()
+        self.tiquete = Tiquete.buscarTiquete(int(self.comboTiquete.get()[:2]))
+        Label(self._frameInfoTiquete,  text= f"Silla = {self.tiquete.getSillaTiquete()}").pack()
+        Label(self._frameInfoTiquete,  text= f"Viaje = {self.tiquete.getViaje()}").pack()
+        Label(self._frameInfoTiquete,  text= f"Valor = {self.tiquete.getValor()} Fecha = {self.tiquete.getFechaCompra()}").pack()
 
         self._frameInfoTiquete.place(relx=0.05, rely=0.25, relwidth=0.9, relheight=0.20) 
-         
+        
+        def cancelarTiquete():
+            self.tiquete.getComprador().eliminarTiqueteHistoria(self.tiquete)
+            self.tiquete.setEstado(False)
+            self.tiquete.setComprador(None)
+            aux = messagebox.showinfo(title = "Gestionar Viaje", message = "Viaje Cancelado")   
+            if aux:
+                self.FrameComprador()
+
 
         BCambiar = Button(self._vTop, text="Cambiar Tiquete", command= self.CambiarTiquete) 
         BCancelar = Button(self._vTop, text="Cancelar Tiquete", command= cancelarTiquete)
@@ -187,8 +195,27 @@ class GestionarViajes(Frame):
 
     def CambiarTiquete(self):
 
+        def cambiarTiquete():
+            tiqueteCambio = self.listaDisponibles[int(self.tiqueteCambiado.get())]
+            self.tiquete.getComprador().anadirTiqueteHistoria(tiqueteCambio)
+            self.tiquete.getComprador().eliminarTiqueteHistoria(self.tiquete)
+            self.tiquete.setEstado(False)
+            self.tiquete.setComprador(None)
+            self.CambioTiquete.destroy()
+
         self.CambioTiquete = Toplevel(self)
-        self.CambioTiquete.geometry("450x500")
-        title3 = Label(self.CambioTiquete, text="C A M B I A R   T I Q U E T E").place(relx=0.05, rely=0.05, relwidth=0.9, relheight=0.08)   
-        viaje3 = Label(self.CambioTiquete, text="Escoge un tiquete por el cual cambiarlo ").place(relx=0.05, rely=0.15, relwidth=0.9, relheight=0.08)   
-        buscar3 = Button(self.CambioTiquete, text="Volver a pantalla gestionar viajes").place(relx=0.05, rely=0.25, relwidth=0.9, relheight=0.08)   
+        self.CambioTiquete.geometry("550x600")
+        self.tiqueteCambiado = StringVar()
+        Label(self.CambioTiquete, text="C A M B I A R   T I Q U E T E").place(relx=0.05, rely=0.05, relwidth=0.9, relheight=0.08)   
+        Label(self.CambioTiquete, text="Escoge un tiquete por el cual cambiarlo ").place(relx=0.05, rely=0.15, relwidth=0.9, relheight=0.08)   
+        cambiar = Button(self.CambioTiquete, text="Cambiar Tiquete", command= cambiarTiquete).place(relx=0.05, rely=0.25, relwidth=0.9, relheight=0.08)   
+
+        self.listaDisponibles = [t for t in Tiquete.getTiquetes() if t.getViaje().getDestino() == self.tiquete.getViaje().getDestino() and t.getViaje().getOrigen() == self.tiquete.getViaje().getOrigen() and t.getViaje().getFechaViaje() >= self.tiquete.getViaje().getFechaViaje()]
+        contador2 = 0
+        frameCambio = Frame(self.CambioTiquete)
+        for x in range(len(self.listaDisponibles)):
+            mostar = Radiobutton(frameCambio, text= self.listaDisponibles[x], variable=self.tiqueteCambiado, value=contador2).pack()  
+            contador2 +=1 
+        
+        frameCambio.place(relx=0.05, rely=0.35, relwidth=0.9, relheight=0.6)   
+    

@@ -1,3 +1,4 @@
+from gestorAplicacion.personas.Comprador import Comprador
 from gestorAplicacion.viajes.Tiquete import Tiquete
 from baseDatos.deserializador import Deserializador
 from baseDatos.serializador import Serializador

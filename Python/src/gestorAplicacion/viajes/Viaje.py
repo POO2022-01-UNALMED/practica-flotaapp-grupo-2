@@ -29,7 +29,7 @@ class Viaje():
         self._frecuencia = frecuencia
         self._fechaViaje = fechaViaje
         self._vehiculo = vehiculo
-        self._allTiquetes = [Tiquete(silla.getNumeroSilla()+self.__tiquetesTotales, None, silla, self, self._precioPremium, None) for silla in self.getVehiculo().getSillas() if silla.getTipo()] + [Tiquete(silla.getNumeroSilla(), None, silla, self, self._precioEstandar, None) for silla in self.getVehiculo().getSillas() if silla.getTipo() == False]
+        self._allTiquetes = [Tiquete(silla.getNumeroSilla()+self.__tiquetesTotales, None, silla, self, self._precioPremium, None) for silla in self.getVehiculo().getSillas() if silla.getTipo()] + [Tiquete(silla.getNumeroSilla()+self.__tiquetesTotales, None, silla, self, self._precioEstandar, None) for silla in self.getVehiculo().getSillas() if silla.getTipo() == False]
         Viaje.__tiquetesTotales += len(self._allTiquetes)
         Viaje.__viajes.append(self)
         

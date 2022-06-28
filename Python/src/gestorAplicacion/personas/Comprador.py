@@ -33,9 +33,9 @@ class Comprador(Usuario):
             self._historicoViajes.append(tiquete)
     
     def eliminarTiqueteHistoria(self, tiquete):
-        self.getHistorioViaje().remove(tiquete)
-
-    #def buscarTiquete(self):
+        print(self.getuNombre(), self.getHistorioViaje())
+        self._historicoViajes.remove(tiquete)
+        
 
     def comprarTiquete(self, origen : Ciudad, destino : Ciudad, presupuesto : int):
         for viaje in Viaje.getViajes():
