@@ -27,7 +27,7 @@ class VisualizarEstadistica(tk.Frame):
         self._vTop = tk.Frame(self._window)
         self._fEstadistica = tk.Frame(self._window)
         
-        title = tk.Label(self._vTop, text="V I S U A L I Z A R   E S T A D I S T I C A S ").grid(row=0, column=0 , columnspan=2)
+        title = tk.Label(self._vTop, text="V I S U A L I Z A R   E S T A D I S T I C A S").grid(row=0, column=0 , columnspan=2)
         bCiudad = tk.Button(self._vTop, text="Ciudades", command=self.visualizarCiudades).grid(row=1, column=0)
         bViajes = tk.Button(self._vTop, text="Viajes", command = self.visualizarViajes).grid(row=1, column=1)
 

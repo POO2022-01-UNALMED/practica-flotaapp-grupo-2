@@ -12,6 +12,8 @@ from gestorAplicacion.personas.Empleado import Empleado
 from gestorAplicacion.personas.Especialista import Especialista, Especialidad
 from gestorAplicacion.personas.Conductor import Conductor
 
+from uiMain.Funcionalidades.Asignar import Asignar
+
 from tkinter import messagebox, ttk
 from tkinter import *
 
@@ -38,15 +40,10 @@ class GestionarEspecialistas(Frame):
         self._vTop.place(relx=0, rely=0, relwidth=1, relheight=1)
         
         title = tk.Label(self._vTop, text="G E S T I O N A R     E S P E C I A L I S T A S").place(relx=0.25, rely=0.05, relwidth=0.5, relheight=0.1)
-        """
-        bElectrico = tk.Button(self._vTop, text="ELECTRICO", command=self.gestionarE).grid(row=4, column=0 , columnspan=2, pady=20, padx=10)
-        bMecanico = tk.Button(self._vTop, text="MECANICO", command=self.gestionarM).grid(row=4, column=1 , columnspan=2, pady=20, padx=10)
-        bSilleteria = tk.Button(self._vTop, text="SILLETERIA", command=self.gestionarS).grid(row=4, column=2 , columnspan=2, pady=20, padx=10)
-        
-        """
         
         
     def gestionarE(self):
+        self._window.geometry("640x480")
         self._frameE.destroy()
         self._frameE = Frame(self._vTop)
         ccEspecialistas = []
@@ -68,7 +65,6 @@ class GestionarEspecialistas(Frame):
             for espc in Especialista().getEspecialistas():
                 if espc.getEspecialidad() == Especialidad.ELECTRICO:
                     tk.Label(self._frameE, text={espc.__str__()}).pack()
-                    #tk.Button(self._frameE, text=f"Gestionar : {espc.getCc()}").pack()
                     ccEspecialistas.append(espc.getCc())
             
                     
@@ -97,14 +93,17 @@ class GestionarEspecialistas(Frame):
     def ventanaGestionar(self):
         ccAgestionar = self.comboEmp.get()
         print(ccAgestionar)
+        
         self.combo.destroy()
         self._window.geometry("640x480")
         self._vEspecialista.destroy()
         self._vTop.destroy()
         self._vEspecialista = tk.Frame(self._window)
-        historicoR = tk.Button(self._vEspecialista, text="Revisados", command=self.visualizarHistorialViajesAsignados(ccAgestionar)).pack(side="top") #mirar porque se ejecuta automatico
-        despedirE = tk.Button(self._vEspecialista, text="Despedir", command=self.despedir(int(ccAgestionar))).pack(side="top")
-        self._vEspecialista.pack(side="top")
+        self._vTop = tk.Frame(self._window)
+        historicoR = tk.Button(self._vEspecialista, text="Revisados", command=lambda:self.visualizarHistorialViajesAsignados(ccAgestionar)).pack() 
+        despedirE = tk.Button(self._vEspecialista, text="Despedir", command= lambda: self.despedir(int(ccAgestionar))).pack()
+        asignarV = tk.Button(self._vEspecialista, text="Asignar Viaje", command=lambda: self.asignarViaje(ccAgestionar)).pack()
+        self._vEspecialista.pack()
         
     
     def visualizarHistorialViajesAsignados(self, cc):
@@ -116,20 +115,40 @@ class GestionarEspecialistas(Frame):
                     print("entra en el for mas interno")
                     gHistoricoRevisados.append(vehi.getPlaca())
                 break
-        print(gHistoricoRevisados) #eliminar pront 
-        print("entra al historico")# eliminar print
+        tk.Label(self._vEspecialista, text=f"Vehiculos revisados: {gHistoricoRevisados}").pack()
+     
             
     def despedir(self, cc):
         for espC in Especialista.getEspecialistas():
-            print([ced.getCc() for ced in Especialista.getEspecialistas()])
             if int(cc) == int(espC.getCc()):
-                print("entra en el if")
                 Especialista.getEspecialistas().remove(espC)
-                pamir = [ced.getCc() for ced in Especialista.getEspecialistas()]
-                print(pamir)
+                messagebox.showinfo("Despedir", f"Especialista {espC.getuNombre()} despedido")
+                
             
+    def asignarViaje(self, cc):
+        for espC in Especialista.getEspecialistas():
+            if int(cc) == int(espC.getCc()):
+                indice = 0
+                for vehi in Vehiculo.getVehiculos():
+                    cadaV = tk.Label(self._vEspecialista, text=f"id: {indice} - Placa: {vehi.getPlaca()}").pack(side="top")
+                    indice+=1
+                
+                vAsignar = tk.Entry(self._vEspecialista).pack(side="top")
+                
+                aVasignarBot = tk.Button(self._vEspecialista, text="Asignar Vehiculo", command=lambda: print(vAsignar.get())).pack(side="top")#command=lambda: self.asignarVE(espC, int(vAsignar.get()))).pack(side="top")
+                # por que el vAsignar.get() no me trae la entrada
+    """
+    def asignarVE(self, espcialista, indxVehiculo):
+        
+        Asignar.asignarVehiculoEspecialista(espcialista, Vehiculo.getVehiculos[indxVehiculo])
+        espcialista.revisionVehiculo(Vehiculo.getVehiculos[indxVehiculo])
+        messagebox.showinfo("Confirmacion", "Se ha asignado  {Vehiculo.getVehiculos[indxVehiculo].getPlaca()} con exito")
+        """
+        
+    
         
         
+
     def MatarTodo(self, frameUsado):
         for frame in self.winfo_children():
             frame.pack_forget()

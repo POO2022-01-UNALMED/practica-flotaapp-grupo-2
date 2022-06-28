@@ -2,6 +2,7 @@ from uiMain.ventanas.field_frame import FieldFrame
 from uiMain.ventanas.Inicio import Inicio
 from uiMain.ventanas.VisualizarEstadistica import VisualizarEstadistica
 from uiMain.ventanas.GestionarEspecialistas import GestionarEspecialistas
+from uiMain.ventanas.GestionarConductores import GestionarConductor
 from baseDatos.serializador import Serializador
 from gestorAplicacion.personas.Especialista import Especialista, Especialidad
 from gestorAplicacion.personas.Comprador import Comprador
@@ -57,6 +58,11 @@ def iniciar_ventana_usuario():
         vEspecialista = GestionarEspecialistas(window)
         vEspecialista.pack()
         matarloTodo(vEspecialista)
+    
+    def gestionarConductor():
+        vConductor = gestionarConductor(window)
+        vConductor.pack()
+        matarloTodo(vConductor)
         
     
 
@@ -125,7 +131,7 @@ def iniciar_ventana_usuario():
     menuprocesos.add_command(label = "Visualizar Estadisticas", command = visualizarEstadisticas)
     ####
     menuprocesos.add_command(label = "Gestionar Especialistas", command = gestionarEspecialistas)
-    menuprocesos.add_command(label = "Gestionar Conductores", command = visualizarEstadisticas)
+    menuprocesos.add_command(label = "Gestionar Conductores", command = gestionarConductor)
 
     menuayuda.add_command(label = "Acerca de", command = open_popup)
 
