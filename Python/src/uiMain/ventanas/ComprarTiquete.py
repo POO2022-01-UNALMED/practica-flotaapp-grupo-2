@@ -17,8 +17,21 @@ from tkinter import messagebox
 
 from datetime import datetime
 
+"""
+ComprarTiquete : Contiene la informacion de: 
+        - ID : int
+        - Nombre : String
+        - email : String
+        - movil : int
+        - billetera : int
+        - Historico de Viajes : List(Tiquetes)
+    Su funcionalidad sera de servir como objeto de referencia para un Usuario de tipo Comprador 
+    el cual podra acceder a los servicios de Comprar un Tiquete y sus derivados.
+
+"""
 
 class ComprarTiquete(tk.Frame):
+
     def __init__(self, window):
         super().__init__(window)
         self._window = window

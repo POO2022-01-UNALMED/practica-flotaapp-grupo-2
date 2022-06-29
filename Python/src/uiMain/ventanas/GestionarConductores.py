@@ -17,6 +17,14 @@ from uiMain.Funcionalidades.Asignar import Asignar
 from tkinter import messagebox, ttk
 from tkinter import *
 
+"""
+GestionarConductor: Contiene informacion de:
+
+    Su funcionalidad consiste en poder mostrar los viajes asignados, despedir un conductor o asignar un viaje a los conductores 
+    disponibles
+
+"""
+
 class GestionarConductor(Frame):
     def __init__(self, window):
         super().__init__(window)

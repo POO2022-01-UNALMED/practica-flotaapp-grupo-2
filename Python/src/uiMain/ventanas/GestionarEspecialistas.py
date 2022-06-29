@@ -19,7 +19,11 @@ from tkinter import *
 
 
 
-
+""""
+GestionarConductor: Contiene informacion de:
+    Su funcionalidad consiste en poder mostrar los vehiculos  asignados, despedir un especialista  o asignar un vehiculo para revisión del especialista 
+    
+"""
 
 
 
