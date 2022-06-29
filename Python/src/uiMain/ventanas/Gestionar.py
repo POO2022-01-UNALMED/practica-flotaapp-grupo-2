@@ -13,7 +13,7 @@ from gestorAplicacion.personas.Especialista import Especialista, Especialidad
 from gestorAplicacion.viajes.Tiquete import Tiquete
 from gestorAplicacion.viajes.Viaje import Viaje
 from gestorAplicacion.viajes.Vehiculo import Vehiculo
-from uiMain.ventanas.ManejoErrores import ExceptionPopUp
+from uiMain.ventanas.ManejoErrores import ExceptionPopUp, ElecionException, NumericException
 from uiMain.Funcionalidades.Asignar import Asignar
 
 def color(evento, color):
@@ -22,6 +22,17 @@ def color(evento, color):
 
 
 class GestionarCiudades(Frame):
+    """"
+    GestionarCiudades: 
+
+    Contiene informacion de:
+    - Ciudades
+
+    Su funcionalidad consiste en mostrar las ciudades y sus viajes 
+    asignados, los cuales podemos evaluar segun  el  porcentaje de 
+    ocupacion o eliminarlos directamente
+
+    """
     def __init__(self, window):
         super().__init__(window)
         self._window = window
@@ -40,10 +51,12 @@ class GestionarCiudades(Frame):
 
         self._frame.place(relx=0, rely=0, relwidth=1, relheight=1)
     
-    def ventanaGestionar(self):     
+    def ventanaGestionar(self):   
+        ciudad = None
         for i in Ciudad.getCiudades():
             if i.getNombre() == self.combo.get():
                 ciudad = i
+
         
         self._frameViaje = Frame(self._frame)
 
@@ -56,10 +69,19 @@ class GestionarCiudades(Frame):
             
         self._frameViaje.place(relx=0.05, rely=0.45, relwidth=0.9, relheight=0.5)
 
-
-        Label(self._frame, text= f"Promocion Actual : {ciudad.getPromocion()}        Direccion : {ciudad.getDireccion()}" , font=('Times 12')).place(relx=0.05, rely=0.25, relwidth=0.9, relheight=0.1)
-        Label(self._frame, text= f"Puntaje   Actual : {ciudad.getPuntaje()}          Numero Visitantes : {ciudad.getNumVisitantes()}" , font=('Times 12')).place(relx=0.05, rely=0.35, relwidth=0.9, relheight=0.1)
+        try:
+            if ciudad == None:
+                raise ElecionException("No estas eligiendo una ciudad para Gestionar")
+            else:
+                Label(self._frame, text= f"Promocion Actual : {ciudad.getPromocion()}        Direccion : {ciudad.getDireccion()}" , font=('Times 12')).place(relx=0.05, rely=0.25, relwidth=0.9, relheight=0.1)
+                Label(self._frame, text= f"Puntaje   Actual : {ciudad.getPuntaje()}          Numero Visitantes : {ciudad.getNumVisitantes()}" , font=('Times 12')).place(relx=0.05, rely=0.35, relwidth=0.9, relheight=0.1)
         
+        except ElecionException as p:
+            ExceptionPopUp("Seleccione una Ciudad para Gestionar")
+            p.mostrarMensaje()
+
+            
+
         self.valorDefectoViaje = StringVar(value="Seleccione Viaje")
         self.comboViaje = ttk.Combobox(self, state="readonly",  values= idsViajes, textvariable=self.valorDefectoViaje)
         Bpromocion = Button(self._frame, text="Evaluar", cursor="hand2", bg="white", command= self.EvaluarViaje)
@@ -77,19 +99,32 @@ class GestionarCiudades(Frame):
 
 
     def ElimarViaje(self):
-        viaje = Viaje.getViajes()[int(self.comboViaje.get())]
-        viaje.eliminarViaje()
-        self._frameViaje.destroy()
-        self.ventanaGestionar()
+        try:
+            if self.comboViaje.get() == "Seleccione Viaje":
+                raise ElecionException("No estas eligiendo un Viaje para Eliminar")
+            else:
+                viaje = Viaje.getViajes()[int(self.comboViaje.get())]
+                viaje.eliminarViaje()
+                self._frameViaje.destroy()
+                self.ventanaGestionar()
+        except ElecionException as p:
+            ExceptionPopUp("Seleccione una Ciudad para Eliminar")
+            p.mostrarMensaje()
     
     def EvaluarViaje(self):
+        promocionar = None
+        porcentaje = -1
         try:
-            promocionar = Viaje.getViajes()[int(self.comboViaje.get())]
-        except:
-            ExceptionPopUp("Ingrese un ID valido para un viaje")
+            if self.comboViaje.get() == "Seleccione Viaje":
+                raise ElecionException("No estas eligiendo un Viaje para Evaluar")
+            else:
+                promocionar = Viaje.getViajes()[int(self.comboViaje.get())]
+                porcentaje = ((len(promocionar.getVehiculo().getSillas()) - len(promocionar.tiquetesDisponibles()))*100)/len(promocionar.getVehiculo().getSillas())
 
-        
-        porcentaje = ((len(promocionar.getVehiculo().getSillas()) - len(promocionar.tiquetesDisponibles()))*100)/len(promocionar.getVehiculo().getSillas())
+        except ElecionException as p:
+            ExceptionPopUp("Seleccione un Viaje para Evaluar")
+            p.mostrarMensaje()
+
         message = f"Porcentaje Ocupacion = {porcentaje}\nNo se a podido promocionar el Viaje"
         if (porcentaje >= 85):
             promocionar.aumentarFrecuencia(1)
@@ -101,16 +136,23 @@ class GestionarCiudades(Frame):
             des = messagebox.askyesno(title = "Promocion de Viaje", message = message)
             if des == True:
                 res = simpledialog.askstring('Promocion', 'Dime la promocion')
-                promocionar.getDestino().setPromocion(int(res))
-                promocionar.getOrigen().setPromocion(int(res))
-                messagebox.showinfo(title = "Promocion de Viaje", message = "El viaje a sido promocionado")
+                try:
+                    if res.isdigit():
+                        promocionar.getDestino().setPromocion(int(res))
+                        promocionar.getOrigen().setPromocion(int(res))
+                        messagebox.showinfo(title = "Promocion de Viaje", message = "El viaje a sido promocionado")
+                    else:
+                        raise NumericException()
+                except NumericException as p:
+                    ExceptionPopUp("Ingrese valores Numericos")
+                    p.mostrarMensaje()
 
         elif (porcentaje >= 20 and porcentaje < 45):
             promocionar.disminuirFrecuencia(2)
             message = f"Porcentaje Ocupacion = {porcentaje}\nLa frecuencia del viaje se a disminuido en dos hora"
             messagebox.showinfo(title = "Promocion de Viaje", message = message)
         
-        elif(porcentaje < 20):
+        elif(porcentaje < 20 and porcentaje >= 0):
             message = f"Porcentaje Ocupacion = {porcentaje}\n¿Desea Eliminar el viaje?"
             des = messagebox.askyesno(title = "Promocion de Viaje", message = message)
             if des == True:
@@ -125,6 +167,18 @@ class GestionarCiudades(Frame):
         frameUsado.pack(fill=BOTH,expand=True)
 
 class GestionarViajes(Frame):
+    """"
+    GestionarViajes: 
+
+    Contiene informacion de:
+    - Viajes
+    - Tiquetes
+    - Compradores
+
+    Su funcionalidad consiste en mostrar los viajes que el 
+    comprador tiene asignados y observar si quiere cambiarlo o cancelarlo
+
+    """
 
     def __init__(self, window):
         super().__init__(window)
@@ -225,6 +279,17 @@ class GestionarViajes(Frame):
         frameCambio.place(relx=0.05, rely=0.35, relwidth=0.9, relheight=0.6)   
 
 class GestionarConductor(Frame):
+    """
+    GestionarConductor: 
+    
+    Contiene informacion de:
+    - Conductores
+
+    Su funcionalidad consiste en poder mostrar los viajes asignados, 
+    despedir  un  conductor o  asignar un viaje  a  los  conductores 
+    disponibles
+
+    """
     def __init__(self, window):
         super().__init__(window)
         self._window = window
@@ -292,9 +357,19 @@ class GestionarConductor(Frame):
         for frame in self.winfo_children():
             frame.pack_forget()
         frameUsado.pack(fill=BOTH,expand=True)  
-        
-        
+             
 class GestionarEspecialistas(Frame):
+    """"
+    GestionarEspecialista: 
+
+    Contiene informacion de:
+    - Especialistas
+
+    Su funcionalidad consiste en poder mostrar los vehiculos
+    asignados,  despedir  un  especialista   o   asignar  un 
+    vehiculo para revisión del especialista 
+
+    """
     def __init__(self, window):
         super().__init__(window)
         self._window = window
