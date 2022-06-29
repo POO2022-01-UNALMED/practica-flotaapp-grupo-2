@@ -60,7 +60,7 @@ def iniciar_ventana_usuario():
         matarloTodo(vEspecialista)
     
     def gestionarConductor():
-        vConductor = gestionarConductor(window)
+        vConductor = GestionarConductor(window)
         vConductor.pack()
         matarloTodo(vConductor)
         

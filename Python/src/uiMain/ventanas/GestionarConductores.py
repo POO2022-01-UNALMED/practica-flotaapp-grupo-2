@@ -26,15 +26,25 @@ class GestionarConductor(Frame):
         self._frameE = Frame(self._vTop)
         self._vConductor = tk.Frame(self._window)
         
-        title = tk.Label(self._vTop, text="G E S T I O N A R   CONDUCTORES").grid(row=0, column=1,pady=10)
-        ccConductor = []
+        title = tk.Label(self._vTop, text="G E S T I O N A R   C O N D U C T O R E S").place(relx=0.35, rely=0.01)
+        
         for conduc in Conductor.getConductores():
-            tk.Label(self._vTop, text=f"{conduc.__str__()}").grid()
-            ccConductor.append(conduc.getCc())
+            tk.Label(self._vTop, text=f"{conduc.__str__()}").place(relx=0.4, rely=0.5)
+            
             
         self.valorDefecto = tk.StringVar(value="Seleccione Especialidad")
-        comboC = ttk.Combobox(self._vTop,  state="readonly", values=ccConductor, textvariable=self.valorDefecto).grid()
+        comboC = ttk.Combobox(self,  state="readonly", values=[conductor.getCc() for conductor in Conductor.getConductores()], textvariable=self.valorDefecto).place(relx=0.4, rely=0.25)
         
-        self._vTop.grid()        
+        self._vTop.place()
+    
+    
+    
+    
+    
+    def MatarTodo(self, frameUsado):
+        for frame in self.winfo_children():
+            frame.pack_forget()
+        frameUsado.pack(fill=BOTH,expand=True)
+            
 
 

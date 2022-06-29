@@ -18,6 +18,11 @@ from tkinter import messagebox, ttk
 from tkinter import *
 
 
+
+
+
+
+
 class GestionarEspecialistas(Frame):
     def __init__(self, window):
         super().__init__(window)
