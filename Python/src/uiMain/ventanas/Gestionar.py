@@ -13,7 +13,7 @@ from gestorAplicacion.personas.Especialista import Especialista, Especialidad
 from gestorAplicacion.viajes.Tiquete import Tiquete
 from gestorAplicacion.viajes.Viaje import Viaje
 from gestorAplicacion.viajes.Vehiculo import Vehiculo
-from uiMain.ventanas.ManejoErrores import ExceptionPopUp, ElecionException, NumericException
+from uiMain.ventanas.ManejoErrores import ExceptionPopUp, ElecionException, NumericException, IndexException
 from uiMain.Funcionalidades.Asignar import Asignar
 
 def color(evento, color):
@@ -323,59 +323,81 @@ class GestionarConductor(Frame):
         self._vCond = Frame(self)
         
         title = Label(self, text="G E S T I O N A R   C O N D U C T O R E S").place(relx=0.05, rely=0.05, relwidth=0.9, relheight=0.1)  
-        ccConductor = [ conduc.getCc() for conduc in Conductor.getConductores()]
+        self.ccConductor = [ conduc.getCc() for conduc in Conductor.getConductores()]
             
-        self.valorDefecto = IntVar(value= ccConductor[0])
-        comboC = ttk.Combobox(self,  state="readonly", values=ccConductor, textvariable=self.valorDefecto).place(relx=0.05, rely=0.15, relwidth=0.1, relheight=0.08)  
-        self.nombreConductor = Label(self, text = Conductor.buscarConductor(self.valorDefecto.get()).getuNombre() ).place(relx=0.15, rely=0.15, relwidth=0.5, relheight=0.1)  
+        self.valorDefecto = StringVar(value= Conductor.getConductores()[0].getCc())
+        self.comboC = ttk.Combobox(self,  state="readonly", values=self.ccConductor, textvariable=self.valorDefecto).place(relx=0.05, rely=0.15, relwidth=0.1, relheight=0.08)  
+        self.nombreConductor = Label(self, text = Conductor.buscarConductor(int(self.valorDefecto.get())).getuNombre() ).place(relx=0.15, rely=0.15, relwidth=0.5, relheight=0.1)  
         Button(self, text="Gestionar Conductor", command= self.botonesGestion).place(relx=0.65, rely=0.15, relwidth=0.3, relheight=0.08)  
         
     def infoConductor(self):
         self._vCond.destroy()
         self._vCond = Frame(self)
-        for viaje in Conductor.buscarConductor(self.valorDefecto.get()).getHistoricoViajesRealizados():
+        for viaje in Conductor.buscarConductor(int(self.valorDefecto.get())).getHistoricoViajesRealizados():
             Label(self._vCond, text= f" Viaje = {viaje}").pack()
         
         self._vCond.place(relx=0.05, rely=0.4, relwidth=0.9, relheight=0.65) 
 
     def botonesGestion(self):
-        self.nombreConductor = Label(self, text = Conductor.buscarConductor(self.valorDefecto.get()).getuNombre() ).place(relx=0.15, rely=0.15, relwidth=0.5, relheight=0.1)    
+        self.nombreConductor = Label(self, text = Conductor.buscarConductor(int(self.valorDefecto.get())).getuNombre() ).place(relx=0.15, rely=0.15, relwidth=0.5, relheight=0.1)    
         historicoR = Button(self, text="Viajes Asignados", command= self.infoConductor ).place(relx=0.05, rely=0.3, relwidth=0.3, relheight=0.08)
         despedirE = Button(self, text="Despedir", command= self.despedir).place(relx=0.35, rely=0.3, relwidth=0.3, relheight=0.08)
         asignarV = Button(self, text="Asignar Viaje", command= self.asignarViaje).place(relx=0.65, rely=0.3, relwidth=0.3, relheight=0.08)
 
     def despedir(self):
         for espC in Conductor.getConductores():
-            if self.valorDefecto.get() == int(espC.getCc()):
+            if int(self.valorDefecto.get()) == int(espC.getCc()):
                 Conductor.getConductores().remove(espC)
+                self.valorDefecto = StringVar(value= Conductor.getConductores()[0].getCc())
+                self.ccConductor = [ conduc.getCc() for conduc in Conductor.getConductores()]
+                self.comboC = ttk.Combobox(self,  state="readonly", values=self.ccConductor, textvariable=self.valorDefecto).place(relx=0.05, rely=0.15, relwidth=0.1, relheight=0.08)  
                 messagebox.showinfo("Despedir", f"Conductor {espC.getuNombre()} despedido")  
 
         for frame in self.winfo_children():
             frame.pack_forget()
-        GestionarConductor(self._window)
+        
             
     def asignarViaje(self):
         self.newViaje = Toplevel(self)
         self.newViaje.geometry("300x150")
-        for espC in Conductor.getConductores():
-            if self.valorDefecto.get() == int(espC.getCc()):
-                indice = 0
-                for vehi in Viaje.viajeSinConductor():
-                    cadaV = Label(self.newViaje, text=f"id: {indice} - Viaje: {vehi}").pack()
-                    indice+=1
-                
-                vAsignar = Entry(self.newViaje)
-                
-                aVasignarBot = Button(self.newViaje, text="Asignar Viaje", command=lambda: self.asignarVE(espC, int(vAsignar.get())))#command=lambda: self.asignarVE(espC, int(vAsignar.get()))).pack(side="top")
-                
-                vAsignar.pack()
-                aVasignarBot.pack()
+        try:
+            if self.valorDefecto.get().isdigit():
+                for espC in Conductor.getConductores():
+                    if int(self.valorDefecto.get()) == int(espC.getCc()):
+                        indice = 0
+                        for vehi in Viaje.viajeSinConductor():
+                            cadaV = Label(self.newViaje, text=f"id: {indice} - Viaje: {vehi}").pack()
+                            indice+=1
+                        
+                        self.vAsignar = Entry(self.newViaje)  
+                        aVasignarBot = Button(self.newViaje, text="Asignar Viaje", command=lambda: self.asignarVE(espC))#command=lambda: self.asignarVE(espC, int(vAsignar.get()))).pack(side="top")
+                        
+                        self.vAsignar .pack()
+                        aVasignarBot.pack()
+            else:
+                raise ElecionException
+        except ElecionException as p:
+            p.mostrarMensaje()
 
     
-    def asignarVE(self, espcialista, indxVehiculo):
-        
-        messagebox.showinfo("Confirmacion", f"Se ha asignado  {Viaje.viajeSinConductor()[indxVehiculo]} con exito")
-        Asignar.asignarVehiculoConductor(espcialista, Viaje.viajeSinConductor()[indxVehiculo])
+    def asignarVE(self, espcialista):
+        indxVehiculo = 0
+        try:
+            if self.vAsignar.get().isdigit():
+                if int(self.vAsignar.get()) < len(Viaje.viajeSinConductor()):
+                    messagebox.showinfo("Confirmacion", f"Se ha asignado  {Viaje.viajeSinConductor()[indxVehiculo]} con exito")
+                    Asignar.asignarVehiculoConductor(espcialista, Viaje.viajeSinConductor()[indxVehiculo])
+                    self.newViaje.destroy()
+                else:
+                    raise IndexException()
+            else:
+                raise NumericException()
+        except NumericException as p:
+            ExceptionPopUp("Ingrese valores Numericos")
+            p.mostrarMensaje()
+        except IndexException as p:
+            ExceptionPopUp("Ingrese un ID correcto")
+            p.mostrarMensaje()
 
         
     
