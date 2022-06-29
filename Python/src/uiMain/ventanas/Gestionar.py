@@ -425,9 +425,18 @@ class GestionarEspecialistas(Frame):
         self._frameE = Frame(self._vTop)
         especialistasSelect = []
         selection = str(self.combo.get())
-        for espc in Especialista().getEspecialistas():
-            if espc.getEspecialidad().value == selection:
-                especialistasSelect.append(f"{espc.getCc()} - {espc.getuNombre()}")                           
+        try:
+            if selection == "Seleccione Especialidad":
+                    raise ElecionException("No esta eligiendo una Especialidad") 
+            else: 
+                for espc in Especialista().getEspecialistas():
+                    if espc.getEspecialidad().value == selection:
+                        especialistasSelect.append(f"{espc.getCc()} - {espc.getuNombre()}") 
+        except   ElecionException as p:
+            p.mostrarMensaje()   
+
+
+
         
         self.valordefectoEmp = StringVar(value="CC")
         self.comboEmp = ttk.Combobox(self, state="readonly", values=especialistasSelect, textvariable=self.valordefectoEmp)
@@ -441,17 +450,32 @@ class GestionarEspecialistas(Frame):
      
             
     def ventanaGestionar(self):
-        ccAgestionar = self.comboEmp.get()
-        print(int(ccAgestionar[:2]))
+        try:
+            if self.comboEmp.get().isdigit():
+                ccAgestionar = self.comboEmp.get()
+            else:
+                raise ElecionException("No esta escogiendo un Especialista a gestionar")
+        except ElecionException as p:
+            p.mostrarMensaje() 
+        
         self._vTop = Frame(self._window)
 
-        historicoR = Button(self, text="Revisados", command=lambda:self.visualizarHistorialViajesAsignados(ccAgestionar[:2])).place(relx=0.05, rely=0.4, relwidth=0.3, relheight=0.08)
-        despedirE = Button(self, text="Despedir", command= lambda: self.despedir(int(ccAgestionar[:2]))).place(relx=0.35, rely=0.4, relwidth=0.3, relheight=0.08)
-        asignarV = Button(self, text="Asignar Viaje", command=lambda: self.asignarViaje(ccAgestionar[:2])).place(relx=0.65, rely=0.4, relwidth=0.3, relheight=0.08)
+        historicoR = Button(self, text="Revisados", command= self.visualizarHistorialViajesAsignados).place(relx=0.05, rely=0.4, relwidth=0.3, relheight=0.08)
+        despedirE = Button(self, text="Despedir", command=  self.despedir).place(relx=0.35, rely=0.4, relwidth=0.3, relheight=0.08)
+        asignarV = Button(self, text="Asignar Viaje", command=lambda: self.asignarViaje).place(relx=0.65, rely=0.4, relwidth=0.3, relheight=0.08)
                 
     
-    def visualizarHistorialViajesAsignados(self, cc):
+    def visualizarHistorialViajesAsignados(self):
         gHistoricoRevisados = [] 
+        cc = 0
+        try:
+            if self.comboEmp.get().isdigit():
+                cc = self.comboEmp.get()
+            else:
+                raise ElecionException("No esta escogiendo un Especialista para ver sus viajes")
+        except ElecionException as p:
+            p.mostrarMensaje() 
+
         for espC in Especialista.getEspecialistas(): # Se busca el especialista seleccionado en el combobox, y se itera la lista de vehiculos revisados para traer sus placas
             if int(cc) == int(espC.getCc()):
                 if  espC.getHistoricoVehiculosRevisados() != []:
@@ -461,7 +485,16 @@ class GestionarEspecialistas(Frame):
         Label(self, text=f"Vehiculos revisados: {gHistoricoRevisados}").place(relx=0.05, rely=0.5, relwidth=0.9, relheight=0.2)
      
             
-    def despedir(self, cc):
+    def despedir(self):
+        cc = 0
+        try:
+            if self.comboEmp.get().isdigit():
+                cc = self.comboEmp.get()
+            else:
+                raise ElecionException("No esta escogiendo un Especialista para Despedir")
+        except ElecionException as p:
+            p.mostrarMensaje() 
+
         for espC in Especialista.getEspecialistas():
             if int(cc) == int(espC.getCc()):
                 Especialista.getEspecialistas().remove(espC)
