@@ -71,6 +71,8 @@ class Especialista(Empleado):
         return self._especialidad
     
     def getHistoricoVehiculosRevisados(self):
+        if self._historialiVehiculosRevisados == None:
+            return []
         return self._historialiVehiculosRevisados
     
     @classmethod
@@ -85,7 +87,7 @@ class Especialista(Empleado):
         return self._cc
 
     def anadirVehiculoHistoria(self, vehiculoE: Vehiculo):
-        if self.getHistoricoVehiculosRevisados() == None:
+        if self._historialiVehiculosRevisados == None:
             self._historialiVehiculosRevisados = [vehiculoE]
         else:
             self._historialiVehiculosRevisados.append(vehiculoE)

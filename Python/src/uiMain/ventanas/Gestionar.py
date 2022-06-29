@@ -14,6 +14,7 @@ from gestorAplicacion.viajes.Tiquete import Tiquete
 from gestorAplicacion.viajes.Viaje import Viaje
 from gestorAplicacion.viajes.Vehiculo import Vehiculo
 from uiMain.ventanas.ManejoErrores import ExceptionPopUp
+from uiMain.Funcionalidades.Asignar import Asignar
 
 def color(evento, color):
     evento.widget.config(bg= color)
@@ -101,6 +102,7 @@ class GestionarCiudades(Frame):
             if des == True:
                 res = simpledialog.askstring('Promocion', 'Dime la promocion')
                 promocionar.getDestino().setPromocion(int(res))
+                promocionar.getOrigen().setPromocion(int(res))
                 messagebox.showinfo(title = "Promocion de Viaje", message = "El viaje a sido promocionado")
 
         elif (porcentaje >= 20 and porcentaje < 45):
@@ -235,17 +237,53 @@ class GestionarConductor(Frame):
         self.valorDefecto = IntVar(value= 28)
         comboC = ttk.Combobox(self,  state="readonly", values=ccConductor, textvariable=self.valorDefecto).place(relx=0.05, rely=0.15, relwidth=0.1, relheight=0.08)  
         self.nombreConductor = Label(self, text = Conductor.buscarConductor(self.valorDefecto.get()).getuNombre() ).place(relx=0.15, rely=0.15, relwidth=0.5, relheight=0.1)  
-        Button(self, text="Gestionar Conductor", command= self.infoConductor).place(relx=0.65, rely=0.15, relwidth=0.3, relheight=0.08)  
+        Button(self, text="Gestionar Conductor", command= self.botonesGestion).place(relx=0.65, rely=0.15, relwidth=0.3, relheight=0.08)  
         
     def infoConductor(self):
-        self.nombreConductor = Label(self, text = Conductor.buscarConductor(self.valorDefecto.get()).getuNombre() ).place(relx=0.15, rely=0.15, relwidth=0.5, relheight=0.1)  
         self._vCond.destroy()
         self._vCond = Frame(self)
         for viaje in Conductor.buscarConductor(self.valorDefecto.get()).getHistoricoViajesRealizados():
             Label(self._vCond, text= f" Viaje = {viaje}").pack()
-
+        
         self._vCond.place(relx=0.05, rely=0.4, relwidth=0.9, relheight=0.65) 
+
+    def botonesGestion(self):
+        self.nombreConductor = Label(self, text = Conductor.buscarConductor(self.valorDefecto.get()).getuNombre() ).place(relx=0.15, rely=0.15, relwidth=0.5, relheight=0.1)    
+        historicoR = Button(self, text="Viajes Asignados", command= self.infoConductor ).place(relx=0.05, rely=0.3, relwidth=0.3, relheight=0.08)
+        despedirE = Button(self, text="Despedir", command= self.despedir).place(relx=0.35, rely=0.3, relwidth=0.3, relheight=0.08)
+        asignarV = Button(self, text="Asignar Viaje", command= self.asignarViaje).place(relx=0.65, rely=0.3, relwidth=0.3, relheight=0.08)
+
+    def despedir(self):
+        for espC in Conductor.getConductores():
+            if self.valorDefecto.get() == int(espC.getCc()):
+                Conductor.getConductores().remove(espC)
+                messagebox.showinfo("Despedir", f"Conductor {espC.getuNombre()} despedido")                
+            
+    def asignarViaje(self):
+        self.newViaje = Toplevel(self)
+        self.newViaje.geometry("300x150")
+        for espC in Conductor.getConductores():
+            if self.valorDefecto.get() == int(espC.getCc()):
+                indice = 0
+                for vehi in Viaje.viajeSinConductor():
+                    cadaV = Label(self.newViaje, text=f"id: {indice} - Viaje: {vehi}").pack()
+                    indice+=1
+                
+                vAsignar = Entry(self.newViaje)
+                
+                aVasignarBot = Button(self.newViaje, text="Asignar Viaje", command=lambda: self.asignarVE(espC, int(vAsignar.get())))#command=lambda: self.asignarVE(espC, int(vAsignar.get()))).pack(side="top")
+                
+                vAsignar.pack()
+                aVasignarBot.pack()
     
+    def asignarVE(self, espcialista, indxVehiculo):
+        
+        messagebox.showinfo("Confirmacion", f"Se ha asignado  {Viaje.viajeSinConductor()[indxVehiculo]} con exito")
+        Asignar.asignarVehiculoConductor(espcialista, Viaje.viajeSinConductor()[indxVehiculo])
+
+        
+    
+
     def MatarTodo(self, frameUsado):
         for frame in self.winfo_children():
             frame.pack_forget()
@@ -309,13 +347,12 @@ class GestionarEspecialistas(Frame):
     def visualizarHistorialViajesAsignados(self, cc):
         gHistoricoRevisados = [] 
         for espC in Especialista.getEspecialistas(): # Se busca el especialista seleccionado en el combobox, y se itera la lista de vehiculos revisados para traer sus placas
-            print("entra en el for") #eliminar
             if int(cc) == int(espC.getCc()):
-                for vehi in espC.getHistoricoVehiculosRevisados():
-                    print("entra en el for mas interno")
-                    gHistoricoRevisados.append(vehi.getPlaca())
-                break
-        Label(self._vEspecialista, text=f"Vehiculos revisados: {gHistoricoRevisados}").pack()
+                if  espC.getHistoricoVehiculosRevisados() != []:
+                    for vehi in espC.getHistoricoVehiculosRevisados():
+                        gHistoricoRevisados.append(vehi.getPlaca())
+                
+        Label(self, text=f"Vehiculos revisados: {gHistoricoRevisados}").place(relx=0.05, rely=0.5, relwidth=0.9, relheight=0.2)
      
             
     def despedir(self, cc):
@@ -323,27 +360,34 @@ class GestionarEspecialistas(Frame):
             if int(cc) == int(espC.getCc()):
                 Especialista.getEspecialistas().remove(espC)
                 messagebox.showinfo("Despedir", f"Especialista {espC.getuNombre()} despedido")
+        self.gestionarE()
                 
             
     def asignarViaje(self, cc):
+        self.newViaje = Toplevel(self)
+        self.newViaje.geometry("300x150")
         for espC in Especialista.getEspecialistas():
             if int(cc) == int(espC.getCc()):
                 indice = 0
                 for vehi in Vehiculo.getVehiculos():
-                    cadaV = Label(self._vEspecialista, text=f"id: {indice} - Placa: {vehi.getPlaca()}").pack(side="top")
+                    cadaV = Label(self.newViaje, text=f"id: {indice} - Placa: {vehi.getPlaca()}").pack(side="top")
                     indice+=1
                 
-                vAsignar = Entry(self._vEspecialista).pack(side="top")
+                vAsignar = Entry(self.newViaje)
                 
-                aVasignarBot = Button(self._vEspecialista, text="Asignar Vehiculo", command=lambda: print(vAsignar.get())).pack(side="top")#command=lambda: self.asignarVE(espC, int(vAsignar.get()))).pack(side="top")
+                aVasignarBot = Button(self.newViaje, text="Asignar Vehiculo", command=lambda: self.asignarVE(espC, int(vAsignar.get())))#command=lambda: self.asignarVE(espC, int(vAsignar.get()))).pack(side="top")
+                
+                vAsignar.pack(side="top")
+                aVasignarBot.pack(side="top")
                 # por que el vAsignar.get() no me trae la entrada
-    """
+
+
     def asignarVE(self, espcialista, indxVehiculo):
         
-        Asignar.asignarVehiculoEspecialista(espcialista, Vehiculo.getVehiculos[indxVehiculo])
-        espcialista.revisionVehiculo(Vehiculo.getVehiculos[indxVehiculo])
-        messagebox.showinfo("Confirmacion", "Se ha asignado  {Vehiculo.getVehiculos[indxVehiculo].getPlaca()} con exito")
-        """
+        Asignar.asignarVehiculoEspecialista(espcialista, Vehiculo.getVehiculos()[indxVehiculo])
+        espcialista.revisionVehiculo(Vehiculo.getVehiculos()[indxVehiculo])
+        messagebox.showinfo("Confirmacion", f"Se ha asignado  {Vehiculo.getVehiculos()[indxVehiculo].getPlaca()} con exito")
+
         
 
     def MatarTodo(self, frameUsado):
