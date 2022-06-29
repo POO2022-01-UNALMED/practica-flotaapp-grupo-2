@@ -1,5 +1,5 @@
 from tkinter import *
-from uiMain.ventanas.Gestionar import GestionarCiudades, GestionarViajes
+from uiMain.ventanas.Gestionar import GestionarCiudades, GestionarViajes, GestionarEspecialistas, GestionarConductor
 from uiMain.ventanas.Inicio import Inicio
 from uiMain.ventanas.VisualizarEstadistica import VisualizarEstadistica
 from uiMain.ventanas.VisualizacionLista import VisualizarCompradores, VisualizarConductores, VisualizarEspecialistas
@@ -73,6 +73,8 @@ facilitar y mejorar la calidad del tedioso proceso de organizar un viaje."""
 
         menuprocesos.add_command(label = "Gestionar Ciudades", command = self.gestionarCiudades)
         menuprocesos.add_command(label = "Gestionar Viajes", command = self.gestionarViajes)
+        menuprocesos.add_command(label = "Gestionar Especialistas", command = self.gestionarEspecialistas)
+        menuprocesos.add_command(label = "Gestionar Conductores", command = self.gestionarConductores)
         menuprocesos.add_command(label = "Comprar Tiquete", command = self.comprarTiquete)
 
         menuayuda.add_command(label = "Acerca de", command = open_popup)
@@ -82,6 +84,14 @@ facilitar y mejorar la calidad del tedioso proceso de organizar un viaje."""
         interfazInicio.pack()
 
         self['menu'] = menubar
+
+    def gestionarConductores(self):
+        geC = GestionarConductor(self)
+        self.MatarTodo(geC)
+
+    def gestionarEspecialistas(self):
+        geE = GestionarEspecialistas(self)
+        self.MatarTodo(geE)
 
     def visualizarEstadisticas(self):
         vsE = VisualizarEstadistica(self)

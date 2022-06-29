@@ -8,8 +8,11 @@ from matplotlib.pyplot import text
 from gestorAplicacion.viajes.Ciudad import Ciudad
 from gestorAplicacion.viajes.Viaje import Viaje
 from gestorAplicacion.personas.Comprador import Comprador
+from gestorAplicacion.personas.Conductor import Conductor
+from gestorAplicacion.personas.Especialista import Especialista, Especialidad
 from gestorAplicacion.viajes.Tiquete import Tiquete
 from gestorAplicacion.viajes.Viaje import Viaje
+from gestorAplicacion.viajes.Vehiculo import Vehiculo
 from uiMain.ventanas.ManejoErrores import ExceptionPopUp
 
 def color(evento, color):
@@ -219,4 +222,131 @@ class GestionarViajes(Frame):
             contador2 +=1 
         
         frameCambio.place(relx=0.05, rely=0.35, relwidth=0.9, relheight=0.6)   
+
+class GestionarConductor(Frame):
+    def __init__(self, window):
+        super().__init__(window)
+        self._window = window
+        self._vCond = Frame(self)
+        
+        title = Label(self, text="G E S T I O N A R   C O N D U C T O R E S").place(relx=0.05, rely=0.05, relwidth=0.9, relheight=0.1)  
+        ccConductor = [ conduc.getCc() for conduc in Conductor.getConductores()]
+            
+        self.valorDefecto = IntVar(value= 28)
+        comboC = ttk.Combobox(self,  state="readonly", values=ccConductor, textvariable=self.valorDefecto).place(relx=0.05, rely=0.15, relwidth=0.1, relheight=0.08)  
+        self.nombreConductor = Label(self, text = Conductor.buscarConductor(self.valorDefecto.get()).getuNombre() ).place(relx=0.15, rely=0.15, relwidth=0.5, relheight=0.1)  
+        Button(self, text="Gestionar Conductor", command= self.infoConductor).place(relx=0.65, rely=0.15, relwidth=0.3, relheight=0.08)  
+        
+    def infoConductor(self):
+        self.nombreConductor = Label(self, text = Conductor.buscarConductor(self.valorDefecto.get()).getuNombre() ).place(relx=0.15, rely=0.15, relwidth=0.5, relheight=0.1)  
+        self._vCond.destroy()
+        self._vCond = Frame(self)
+        for viaje in Conductor.buscarConductor(self.valorDefecto.get()).getHistoricoViajesRealizados():
+            Label(self._vCond, text= f" Viaje = {viaje}").pack()
+
+        self._vCond.place(relx=0.05, rely=0.4, relwidth=0.9, relheight=0.65) 
     
+    def MatarTodo(self, frameUsado):
+        for frame in self.winfo_children():
+            frame.pack_forget()
+        frameUsado.pack(fill=BOTH,expand=True)  
+        
+        
+class GestionarEspecialistas(Frame):
+    def __init__(self, window):
+        super().__init__(window)
+        self._window = window
+        self._vTop = Frame(self)
+        self.MatarTodo(self._vTop)
+        
+        self._frameE = Frame(self._vTop)
+        
+        self._vEspecialista = Frame(self._window)
+        
+        self.valorDefecto = StringVar(value="Seleccione Especialidad")
+        self.combo = ttk.Combobox(self, state="readonly", values=["ELECTRICO", "MECANICO", "SILLETERIA"], textvariable=self.valorDefecto)
+        bGestionar = Button(self, text="Fijar", command= self.gestionarE)
+        
+
+        self.combo.place(relx=0.2, rely=0.2, relwidth=0.5, relheight=0.08)
+        bGestionar.place(relx=0.725, rely=0.2, relwidth=0.1, relheight=0.08)
+        
+        self._vTop.place(relx=0, rely=0, relwidth=1, relheight=1)
+        
+        title = Label(self, text="G E S T I O N A R     E S P E C I A L I S T A S").place(relx=0.25, rely=0.05, relwidth=0.5, relheight=0.1)
+        
+        
+    def gestionarE(self):
+        self._frameE.destroy()
+        self._frameE = Frame(self._vTop)
+        especialistasSelect = []
+        selection = str(self.combo.get())
+        for espc in Especialista().getEspecialistas():
+            if espc.getEspecialidad().value == selection:
+                especialistasSelect.append(f"{espc.getCc()} - {espc.getuNombre()}")                           
+        
+        self.valordefectoEmp = StringVar(value="CC")
+        self.comboEmp = ttk.Combobox(self, state="readonly", values=especialistasSelect, textvariable=self.valordefectoEmp)
+        self.gestCC = Button(self, text="Gestionar",command=self.ventanaGestionar)
+          
+        self.comboEmp.place(relx=0.2, rely=0.3, relwidth=0.5, relheight=0.08)
+        self.gestCC.place(relx=0.725, rely=0.3, relwidth=0.1, relheight=0.08)
+
+        self._frameE.place(relx=0.07, rely=0.35, relwidth=0.9, relheight=0.4)
+        
+     
+            
+    def ventanaGestionar(self):
+        ccAgestionar = self.comboEmp.get()
+        print(int(ccAgestionar[:2]))
+        self._vTop = Frame(self._window)
+
+        historicoR = Button(self, text="Revisados", command=lambda:self.visualizarHistorialViajesAsignados(ccAgestionar[:2])).place(relx=0.05, rely=0.4, relwidth=0.3, relheight=0.08)
+        despedirE = Button(self, text="Despedir", command= lambda: self.despedir(int(ccAgestionar[:2]))).place(relx=0.35, rely=0.4, relwidth=0.3, relheight=0.08)
+        asignarV = Button(self, text="Asignar Viaje", command=lambda: self.asignarViaje(ccAgestionar[:2])).place(relx=0.65, rely=0.4, relwidth=0.3, relheight=0.08)
+                
+    
+    def visualizarHistorialViajesAsignados(self, cc):
+        gHistoricoRevisados = [] 
+        for espC in Especialista.getEspecialistas(): # Se busca el especialista seleccionado en el combobox, y se itera la lista de vehiculos revisados para traer sus placas
+            print("entra en el for") #eliminar
+            if int(cc) == int(espC.getCc()):
+                for vehi in espC.getHistoricoVehiculosRevisados():
+                    print("entra en el for mas interno")
+                    gHistoricoRevisados.append(vehi.getPlaca())
+                break
+        Label(self._vEspecialista, text=f"Vehiculos revisados: {gHistoricoRevisados}").pack()
+     
+            
+    def despedir(self, cc):
+        for espC in Especialista.getEspecialistas():
+            if int(cc) == int(espC.getCc()):
+                Especialista.getEspecialistas().remove(espC)
+                messagebox.showinfo("Despedir", f"Especialista {espC.getuNombre()} despedido")
+                
+            
+    def asignarViaje(self, cc):
+        for espC in Especialista.getEspecialistas():
+            if int(cc) == int(espC.getCc()):
+                indice = 0
+                for vehi in Vehiculo.getVehiculos():
+                    cadaV = Label(self._vEspecialista, text=f"id: {indice} - Placa: {vehi.getPlaca()}").pack(side="top")
+                    indice+=1
+                
+                vAsignar = Entry(self._vEspecialista).pack(side="top")
+                
+                aVasignarBot = Button(self._vEspecialista, text="Asignar Vehiculo", command=lambda: print(vAsignar.get())).pack(side="top")#command=lambda: self.asignarVE(espC, int(vAsignar.get()))).pack(side="top")
+                # por que el vAsignar.get() no me trae la entrada
+    """
+    def asignarVE(self, espcialista, indxVehiculo):
+        
+        Asignar.asignarVehiculoEspecialista(espcialista, Vehiculo.getVehiculos[indxVehiculo])
+        espcialista.revisionVehiculo(Vehiculo.getVehiculos[indxVehiculo])
+        messagebox.showinfo("Confirmacion", "Se ha asignado  {Vehiculo.getVehiculos[indxVehiculo].getPlaca()} con exito")
+        """
+        
+
+    def MatarTodo(self, frameUsado):
+        for frame in self.winfo_children():
+            frame.pack_forget()
+        frameUsado.pack(fill=BOTH,expand=True)
