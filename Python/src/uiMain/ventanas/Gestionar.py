@@ -124,7 +124,6 @@ class GestionarCiudades(Frame):
             frame.pack_forget()
         frameUsado.pack(fill=BOTH,expand=True)
 
-
 class GestionarViajes(Frame):
 
     def __init__(self, window):
@@ -234,7 +233,7 @@ class GestionarConductor(Frame):
         title = Label(self, text="G E S T I O N A R   C O N D U C T O R E S").place(relx=0.05, rely=0.05, relwidth=0.9, relheight=0.1)  
         ccConductor = [ conduc.getCc() for conduc in Conductor.getConductores()]
             
-        self.valorDefecto = IntVar(value= 28)
+        self.valorDefecto = IntVar(value= ccConductor[0])
         comboC = ttk.Combobox(self,  state="readonly", values=ccConductor, textvariable=self.valorDefecto).place(relx=0.05, rely=0.15, relwidth=0.1, relheight=0.08)  
         self.nombreConductor = Label(self, text = Conductor.buscarConductor(self.valorDefecto.get()).getuNombre() ).place(relx=0.15, rely=0.15, relwidth=0.5, relheight=0.1)  
         Button(self, text="Gestionar Conductor", command= self.botonesGestion).place(relx=0.65, rely=0.15, relwidth=0.3, relheight=0.08)  
@@ -257,7 +256,11 @@ class GestionarConductor(Frame):
         for espC in Conductor.getConductores():
             if self.valorDefecto.get() == int(espC.getCc()):
                 Conductor.getConductores().remove(espC)
-                messagebox.showinfo("Despedir", f"Conductor {espC.getuNombre()} despedido")                
+                messagebox.showinfo("Despedir", f"Conductor {espC.getuNombre()} despedido")  
+
+        for frame in self.winfo_children():
+            frame.pack_forget()
+        GestionarConductor(self._window)
             
     def asignarViaje(self):
         self.newViaje = Toplevel(self)
@@ -275,6 +278,7 @@ class GestionarConductor(Frame):
                 
                 vAsignar.pack()
                 aVasignarBot.pack()
+
     
     def asignarVE(self, espcialista, indxVehiculo):
         
