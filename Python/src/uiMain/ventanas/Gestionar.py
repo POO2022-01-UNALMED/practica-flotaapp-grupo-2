@@ -183,7 +183,7 @@ class GestionarViajes(Frame):
     def __init__(self, window):
         super().__init__(window)
         self._vTop = Frame(self)
-        self.entrada = StringVar(value=1)
+        self.entrada = StringVar(value= Comprador.getCompradores()[0].getCc())
 
         title = Label(self, text="G E S T I O N A R   V I A J E S").place(relx=0.05, rely=0.05, relwidth=0.9, relheight=0.08) 
         viaje = Label(self, text="Gestionar viaje con la cédula: ").place(relx=0.05, rely=0.15, relwidth=0.3, relheight=0.08) 
@@ -192,7 +192,16 @@ class GestionarViajes(Frame):
 
 
     def FrameComprador(self):
-        valor = int(self.entrada.get())
+        valor = Comprador.getCompradores()[0].getCc()
+        try:
+            if self.entrada.get().isdigit() and self.entrada.get() != "0":
+                valor = int(self.entrada.get())
+            else:
+                raise NumericException()
+        except NumericException as p:
+            ExceptionPopUp("Ingrese un valor Numerico Valido")
+            p.mostrarMensaje()
+
         self._vTop.destroy()
         self._vTop = Frame(self)
 
@@ -207,7 +216,7 @@ class GestionarViajes(Frame):
                 
 
         Label(self._vTop, text= f"CC: {compradorTiquete.getCc()} - Nombre : {compradorTiquete.getuNombre()}").place(relx=0.05, rely=0.05, relwidth=0.9, relheight=0.08)
-        self.valorDefectoTiquete = Variable(value="Seleccione Viaje")
+        self.valorDefectoTiquete = StringVar(value="Seleccione Viaje")
         self.comboTiquete = ttk.Combobox(self._vTop, state="readonly",  values= listaTiquete, textvariable=self.valorDefectoTiquete, width=15)
         self.comboTiquete.place(relx=0.05, rely=0.15, relwidth=0.7, relheight=0.08)
         buscarTiquetes = Button(self._vTop, text="Gestionar", command= self.FrameTiquete)
@@ -222,7 +231,15 @@ class GestionarViajes(Frame):
         
         self._frameInfoTiquete.destroy()
         self._frameInfoTiquete = Frame(self._vTop)
-        self.tiquete = Tiquete.buscarTiquete(int(self.comboTiquete.get()[:2]))
+        try:
+            if self.comboTiquete.get()[:2].isdigit():
+                self.tiquete = Tiquete.buscarTiquete(int(self.comboTiquete.get()[:2]))
+            else:
+                raise ElecionException("No esta eligiendo un viabe a gestionar")
+        except ElecionException as p:
+            ExceptionPopUp("Seleccione un Viaje del Comprador para Gestionar")
+            p.mostrarMensaje()
+
         Label(self._frameInfoTiquete,  text= f"Silla = {self.tiquete.getSillaTiquete()}").pack()
         Label(self._frameInfoTiquete,  text= f"Viaje = {self.tiquete.getViaje()}").pack()
         Label(self._frameInfoTiquete,  text= f"Valor = {self.tiquete.getValor()} Fecha = {self.tiquete.getFechaCompra()}").pack()
@@ -253,9 +270,19 @@ class GestionarViajes(Frame):
 
 
     def CambiarTiquete(self):
-
+        
         def cambiarTiquete():
-            tiqueteCambio = self.listaDisponibles[int(self.tiqueteCambiado.get())]
+            try:
+                if self.tiqueteCambiado.get().isdigit():
+                    tiqueteCambio = self.listaDisponibles[int(self.tiqueteCambiado.get())]
+                else:
+                    tiqueteCambio = None
+                    ElecionException("No esta eligiendo un Tiquete para el Cambio")
+            except ElecionException as p:
+                ExceptionPopUp("Seleccione el una opcion para Cambiar su Tiquete")
+                p.mostrarMensaje()
+
+
             self.tiquete.getComprador().anadirTiqueteHistoria(tiqueteCambio)
             self.tiquete.getComprador().eliminarTiqueteHistoria(self.tiquete)
             self.tiquete.setEstado(False)
