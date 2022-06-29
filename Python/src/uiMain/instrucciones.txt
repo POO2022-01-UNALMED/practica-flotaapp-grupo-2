@@ -1,3 +1,61 @@
 Instrucciones de Uso:
 
-Aqui iran las instrucciones de Uso de cada una de las funcionalidades
+- Querido Usuario, a traves de esta aplicacion (FlotaAPP), que
+esta desarrollada bajo el paradigma de programacion orientada a objetos, se
+lleva a cabo la implementacion de diferentes funciones que permiten administrar
+una flota de autobuses (Compra de tiquetes, recomendacion de destinos, gestion
+de conductores, especialistas y viajes, visualizacion de estadisticas y
+calcular la rentabilidad de cada viaje). 
+A continuacion, se explica cada uno de estos servicios a los cuales
+puedes acceder:   
+
+
+- Visualizacion de estadisticas: Permite observar porcentaje
+de ocupacion por viaje y numero de visitas por ciudad. En este sentido,
+dependiendo del porcentaje de ocupacion de cada viaje se modifica la frecuencia
+(mayor al 85% aumenta la frecuencia en 1 hora, si esta entre el 40%-60%
+disminuira la frecuencia del viaje en 2 horas y si es menor al 10% brindara la opcion
+de eliminar o continuar con el viaje).
+
+
+- Gestion de conductores: Accede al registro de los
+conductores existentes y activos. Tambien se encuentran otro tipo de opciones
+como asignar una tarea, despedir al empleado y visualizar el historial de
+viajes asignados, entre otras.
+
+
+- Gestion de Especialistas: Muestra la lista de los
+especialistas existentes y activos, dependiendo de su particularidad. Tambien
+permite otro tipo de opciones como asignar un vehiculo para revisar, ver
+historial de vehiculos revisados y despedir al empleado.
+
+
+- Gestionar viaje: Con la ayuda del numero de cedula se accede
+a los tiquetes ya comprados o reservados y se puede realizar cambios especificos
+como: aplazar el tiquete para otra fecha, intercambiar numero de asientos y
+cancelar un tiquete.
+
+
+- Compra de tiquetes: El usuario puede comprar un tiquete, segun
+la disponibilidad de pasajes, de acuerdo con la ciudad origen y la ciudad
+destino deseada. 
+
+
+- Recomendacion de destino: El usuario recibira
+recomendaciones de un destino, de acuerdo con: 1) El historial de viajes
+existentes, puesto que, Flota APP tendra en cuenta la ciudad mas visitada,
+dependiendo de las diferentes promociones vigentes en esta, informacion que se
+puede encontrar en la lista de promociones. Y 2) Si el usuario es nuevo, se recomendara
+la ciudad destino mas visitada en general con los descuentos existentes,
+informacion que se encuentra en la lista de descuentos.
+
+
+- Calcular rentabilidad por viaje: Permite calcular el
+porcentaje de ocupacion del viaje seleccionado y, de la misma forma,
+cuantificar las ganancias y utilidades por cada destino y el promedio de
+ocupacion y las utilidades de la ruta.
+
+
+- Aplicar Bono Empleado: Se visualizan todos los empleados
+(Especialistas y conductores) con el fin de aplicar un bono. Con esta funcion,
+el sueldo del empleado aumenta.

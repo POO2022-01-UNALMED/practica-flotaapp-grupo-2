@@ -22,6 +22,9 @@ class Tiquete():                        #Comprador , Silla, Viaje
         self._fechaCompra = fechaCompra
         Tiquete.__tiquetes.append(self)
     
+    def getId(self) -> int:
+        return self._idTiquete
+    
     def getEstado(self) -> bool: 
         return self._estado
     
@@ -42,9 +45,19 @@ class Tiquete():                        #Comprador , Silla, Viaje
 
     def getValor(self) -> int:
         return self._valor
+
+    def getFechaCompra(self):
+        return self._fechaCompra
     
     def setFechaCompra(self, fechaCompra : datetime):
         self._fechaCompra = fechaCompra
+    
+    @staticmethod
+    def buscarTiquete(id):
+        for tiquete in Tiquete.getTiquetes():
+            if tiquete.getId() == id:
+                return tiquete
+        return Tiquete()
 
     @classmethod
     def getTiquetes(cls):
@@ -53,5 +66,6 @@ class Tiquete():                        #Comprador , Silla, Viaje
     @classmethod
     def setTiquetes(cls, tiquetes):
         cls.__tiquetes = tiquetes
+
     def __str__(self) -> str:
-        return f"Tiquete = ID : {self._idTiquete} - SILLA : {self._sillaTiquete} \n VIAJE = {self._viaje} - valor : {self._valor} - fechaCompra : {self._fechaCompra}"
+        return f"ID : {self._idTiquete} - SILLA : {self._sillaTiquete} \n {self._viaje} - valor : {self._valor} - fechaCompra : {self._fechaCompra}"

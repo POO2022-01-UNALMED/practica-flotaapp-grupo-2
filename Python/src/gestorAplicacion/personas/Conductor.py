@@ -65,6 +65,12 @@ class Conductor(Empleado):
     def setCategoria(self, categoria: Categoria = None):
         self._categoria = categoria
     
+    @staticmethod
+    def buscarConductor(id):
+        for i in Conductor.getConductores():
+            if i.getCc() == id:
+                return i
+    
     @classmethod
     def desvincularConductor(cls, conductor):
         cls.__conductores.remove(conductor)

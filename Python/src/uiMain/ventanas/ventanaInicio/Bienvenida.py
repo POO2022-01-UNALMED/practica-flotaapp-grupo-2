@@ -1,5 +1,6 @@
-from uiMain.ventanas.VentanaUsuario import iniciar_ventana_usuario
+from uiMain.ventanas.VentanaUsuario import VentanaUsuario
 from tkinter import Label, Entry, Button, PhotoImage, Frame, INSERT, scrolledtext, DISABLED
+from PIL import Image, ImageTk
 import os
 import pathlib
 
@@ -13,16 +14,19 @@ class Bienvenida(Frame):
         saludo = Label(self._p3, width=100, text="Bienvenido al software de Flota-APP")
         self.saludo2 = scrolledtext.ScrolledText(self._p3, height=5)
         self.saludo2.tag_configure("center", justify="center")
-        self.saludo2.insert(INSERT, """Somos una APP que gestiona los diferentes servicios de una flota de autobuses, 
-                            automatizando la compra de tiquetes, la ocupación y disponibilidad de viajes, guardando
-                            históricos de viajes y con esto implementar recomendaciones basados en cada usuario y así como también 
-                            mostrando las estadisticas por ciudad y por viaje.
-                            """)
+        self.saludo2.insert(INSERT, """Estimado usuario, bienvenido a FlotaAPP. 
+Somos una APP que gestiona los diferentes servicios de una flota 
+de autobuses con diferentes funcionalidades como:  automatizar la 
+compra de tiquetes, la ocupación y disponibilidad de viajes, 
+guardar registros de sus viajes e implementar recomendaciones 
+personalizadas en cada usuario y desarrollar las distintas 
+estadísticas por ciudad y por viaje. Todo esto, con el objetivo de 
+facilitar y mejorar la calidad del tedioso proceso de organizar un viaje.""")
         self.saludo2.config(state = DISABLED)
         self._pantallazos = []
         for i in range(0, 5):
             path = os.path.join(pathlib.Path(__file__).parent.parent.parent.absolute(),'assets/pantallazo_{0}.png'.format(i))
-            pantallazo = PhotoImage(file=path)
+            pantallazo = ImageTk.PhotoImage(Image.open(path).resize((600, 400)))
             self._pantallazos.append(pantallazo)
 
         self._label = Label(self._p4, image=self._pantallazos[0], height=500, width=750)
@@ -48,4 +52,4 @@ class Bienvenida(Frame):
     # Carga la ventana principal del admin y cierra la ventana actual
     def abrir_ventana_principal(self):
         self._window.destroy()
-        iniciar_ventana_usuario()
+        VentanaUsuario()

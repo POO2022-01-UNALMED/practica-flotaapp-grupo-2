@@ -1,148 +1,128 @@
-from uiMain.ventanas.field_frame import FieldFrame
+from tkinter import *
+from uiMain.ventanas.Gestionar import GestionarCiudades, GestionarViajes, GestionarEspecialistas, GestionarConductor
 from uiMain.ventanas.Inicio import Inicio
 from uiMain.ventanas.VisualizarEstadistica import VisualizarEstadistica
-from uiMain.ventanas.GestionarEspecialistas import GestionarEspecialistas
-from uiMain.ventanas.GestionarConductores import GestionarConductor
+from uiMain.ventanas.VisualizacionLista import VisualizarCompradores, VisualizarConductores, VisualizarEspecialistas
+from uiMain.ventanas.ComprarTiquete import ComprarTiquete
 from baseDatos.serializador import Serializador
-from gestorAplicacion.personas.Especialista import Especialista, Especialidad
-from gestorAplicacion.personas.Comprador import Comprador
 
-from ctypes import resize
-from tkinter import *
-from numpy import diag
-from random import choice, random, randint
-from tkinter import messagebox, ttk
-
-from uiMain.ventanas.ManejoErrores import ErrorAplicacion, ExceptionPopUp, ClientIncorrectoException
+class VentanaUsuario(Tk):
+    def __init__(self) :
+        super().__init__()
+        self.geometry("680x440")
+        self.title("Flota-APP")
+        self.option_add("*tearOff",  FALSE)
 
 
-if len(Especialista.getEspecialistas()) == 0:
-    dependiente = Especialista(7, "Mateo Echavarria Sierra", "maechavarrias@unal.edu.co", 0, 0, Especialidad.ADMINISTRADOR)
-    tecnico = Especialista(27, "Jose", "emailMecanico1@example.com", 3224568585, 3500, Especialidad.MECANICO)
-    tecnico2 = Especialista(78, "Maria", "emailElectrico1@example.com", 3224567585, 4000, Especialidad.ELECTRICO)
+        def open_popup():
+            top= Toplevel(self)
+            top.grid_rowconfigure(0, weight=1)
+            top.geometry("450x250")
+            top.resizable(False,False)
+            top.title("Ayuda")
+            Label(top, text= "AUTORES:\nMateo Echavarria Sierra\nMiguel Angel Fonseca Aldana\nJuan Pablo Pineda Lopera\nHaison Urrutia Manyoma", font=('Times 18 bold')).pack(fill=BOTH, expand=True)
+
+        def aplicacion_popup():
+            top= Toplevel(self)
+            top.geometry("580x320")
+            top.resizable(False,False)
+            top.title("Aplicación")
+            Label(top, text= textonimo , font=('Times 12')).pack(fill=BOTH, expand=True)
+        textonimo = """Estimado usuario, bienvenido a FlotaAPP. 
+Somos una APP que gestiona los diferentes servicios de una flota 
+de autobuses con diferentes funcionalidades como:  automatizar la 
+compra de tiquetes, la ocupación y disponibilidad de viajes, 
+guardar registros de sus viajes e implementar recomendaciones 
+personalizadas en cada usuario y desarrollar las distintas 
+estadísticas por ciudad y por viaje. Todo esto, con el objetivo de 
+facilitar y mejorar la calidad del tedioso proceso de organizar un viaje."""
+
+        def salir():
+            Serializador.serializar()
+            from uiMain.ventanas.ventanaInicio.Inicio import VentanaInicio
+            framesAMatar = []
+            self.destroy()
+            ventana = VentanaInicio()
+            ventana.mainloop()
+       
+        #Barra menu superior
+        menubar = Menu()
+        menuarchivo = Menu(self)
+        menuprocesos = Menu(self)
+        menuayuda = Menu(self)
         
+        menubar.add_cascade(menu = menuarchivo,
+                            label='Archivo')
+        menubar.add_cascade(menu = menuprocesos,
+                            label = 'Procesos y Consultas')
+        menubar.add_cascade(menu = menuayuda,
+                            label='Ayuda')
 
-def outPut(string, text):
-    text.delete("1.0", "end")
-    text.insert(INSERT, string)
-    text.pack(fill=X, expand=True)
+        #submenu de procesos y consultas
+        submenu = Menu(self)
 
+        menuarchivo.add_command(label = "Aplicacion", command = aplicacion_popup)
+        menuarchivo.add_command(label = "Guardar y salir", command = salir)
+        
+        menuprocesos.add_cascade(label = "Visualizaciones", menu = submenu)
 
+        submenu.add_command(label = "Visualizar Estadisticas", command = self.visualizarEstadisticas)
+        submenu.add_command(label = "Visualizar Compradores", command = self.visualizarCompradores)
+        submenu.add_command(label = "Visualizar Conductores", command = self.visualizarConductores)
+        submenu.add_command(label = "Visualizar Especialistas", command = self.visualizarEspecialistas)
 
-def iniciar_ventana_usuario():
-    #Ventana principal
-    window = Tk()
-    window.geometry("680x440")
-    window.title("Flota-APP")
-    window.option_add("*tearOff",  FALSE)
+        menuprocesos.add_command(label = "Gestionar Ciudades", command = self.gestionarCiudades)
+        menuprocesos.add_command(label = "Gestionar Viajes", command = self.gestionarViajes)
+        menuprocesos.add_command(label = "Gestionar Especialistas", command = self.gestionarEspecialistas)
+        menuprocesos.add_command(label = "Gestionar Conductores", command = self.gestionarConductores)
+        menuprocesos.add_command(label = "Comprar Tiquete", command = self.comprarTiquete)
 
+        menuayuda.add_command(label = "Acerca de", command = open_popup)
 
-    #Métodos sin argumentos para poder ejecutarlos-------------------------------------
+        frameUso = Frame(self)
+        interfazInicio = Inicio(self)
+        interfazInicio.pack()
 
+        self['menu'] = menubar
 
-    framesAMatar = []
+    def gestionarConductores(self):
+        geC = GestionarConductor(self)
+        self.MatarTodo(geC)
 
-    def matarloTodo(frameUtilizado):
+    def gestionarEspecialistas(self):
+        geE = GestionarEspecialistas(self)
+        self.MatarTodo(geE)
 
-        for frame in framesAMatar:
+    def visualizarEstadisticas(self):
+        vsE = VisualizarEstadistica(self)
+        self.MatarTodo(vsE)
+    
+    def visualizarCompradores(self):
+        vsC = VisualizarCompradores(self)
+        self.MatarTodo(vsC)
+    
+    def visualizarConductores(self):
+        vsC = VisualizarConductores(self)
+        self.MatarTodo(vsC)
+    
+    def visualizarEspecialistas(self):
+        vsE = VisualizarEspecialistas(self)
+        self.MatarTodo(vsE)
+    
+    def comprarTiquete(self):
+        coT = ComprarTiquete(self)
+        self.MatarTodo(coT)
+    
+    def gestionarCiudades(self):
+        gesC = GestionarCiudades(self)
+        self.MatarTodo(gesC)
+    
+    def gestionarViajes(self):
+        gesV = GestionarViajes(self)
+        self.MatarTodo(gesV)
+    
+    def MatarTodo(self, frameUsado):
+        for frame in self.winfo_children():
             frame.pack_forget()
-        frameUtilizado.pack(fill=BOTH,expand=True)
-
-    
-    def visualizarEstadisticas():
-        vEstadistica = VisualizarEstadistica(window)
-        vEstadistica.pack()
-        matarloTodo(vEstadistica)
-    
-    def gestionarEspecialistas():
-        vEspecialista = GestionarEspecialistas(window)
-        vEspecialista.pack()
-        matarloTodo(vEspecialista)
-    
-    def gestionarConductor():
-        vConductor = GestionarConductor(window)
-        vConductor.pack()
-        matarloTodo(vConductor)
-        
-    
-
-    #Abre la pestana de dialogo con los nombres de los integrantes del equipo
-    def open_popup():
-        top= Toplevel(window)
-        top.grid_rowconfigure(0, weight=1)
-        top.geometry("450x250")
-        top.resizable(False,False)
-        top.title("Ayuda")
-        Label(top, text= """AUTORES:
-        Mateo Echavarria Sierra
-
-""", font=('Times 18 bold')).pack(fill=BOTH, expand=True)
-
-    #Abre la pestana de dialogo con la informacion del programa y su funcionalidad. 
-    def aplicacion_popup():
-        top= Toplevel(window)
-        top.geometry("580x320")
-        top.resizable(False,False)
-        top.title("Aplicación")
-        Label(top, text= textonimo , font=('Times 12')).pack(fill=BOTH, expand=True)
-    textonimo = "Flota-APP es una empresa............."
-
-
-    #----------------------------------------------------------------------------------
-    def salir():
-        Serializador.serializar()
-        from uiMain.ventanas.ventanaInicio.Inicio import VentanaInicio
-        framesAMatar = []
-        window.destroy()
-        ventana = VentanaInicio()
-        ventana.mainloop()
-        
-    def evento():
-        pass
-
-    frame_a = Frame()#master = window
-    
-    frame_a.pack()
-    #Barra menu superior
-    menubar = Menu()
-
-    menuarchivo = Menu(window)
-    menuprocesos = Menu(window)
-    menuayuda = Menu(window)
-    
-
-    menubar.add_cascade(menu = menuarchivo,
-                        label='Archivo',
-                        command = evento)
-    menubar.add_cascade(menu = menuprocesos,
-                        label = 'Procesos y Consultas',
-                        command = evento)
-    menubar.add_cascade(menu = menuayuda,
-                        label='Ayuda',
-                        command = evento)
-
-    #submenu de procesos y consultas
-    submenu = Menu(window)
-
-    menuarchivo.add_command(label = "Aplicacion", command = aplicacion_popup)
-    menuarchivo.add_command(label = "Guardar y salir", command = salir)
-
-
-    menuprocesos.add_command(label = "Visualizar Estadisticas", command = visualizarEstadisticas)
-    ####
-    menuprocesos.add_command(label = "Gestionar Especialistas", command = gestionarEspecialistas)
-    menuprocesos.add_command(label = "Gestionar Conductores", command = gestionarConductor)
-
-    menuayuda.add_command(label = "Acerca de", command = open_popup)
-
-    window['menu'] = menubar
-
-
-    #Interfaz de inicio----------------------------------------------------------------
-    interfazInicio = Inicio(window)
-
-    framesAMatar.append(interfazInicio)
-    #----------------------------------------------------------------------------------
-
-
+        frameUsado.pack(fill=BOTH,expand=True)
     
