@@ -10,7 +10,7 @@ class Vehiculo():
     '''
     _vehiculos = []
 
-    def __init__(self, placa, sillas):
+    def __init__(self, placa: str = None, sillas=None): #Se inicializa en none 
         self._placa = placa
         self._sillas = sillas
         Vehiculo._vehiculos.append(self)

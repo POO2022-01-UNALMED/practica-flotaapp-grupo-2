@@ -6,6 +6,9 @@ from gestorAplicacion.personas.Conductor import Conductor
 from gestorAplicacion.viajes.Vehiculo import Vehiculo
 
 class Especialidad(Enum):
+    """
+    Especialidad almacena las distintas categorias de los Empleados
+    """
 
     ELECTRICO = "ELECTRICO"
 
@@ -16,10 +19,26 @@ class Especialidad(Enum):
     ADMINISTRADOR = "ADMINISTRADOR" 
 
 class Especialista(Empleado):
+    """
+    Especialista contiene informacion de: 
+        - ID : int
+        - Nombre : String
+        - email : String
+        - movil : int
+        - billetera : int
+        - especialidad : Especialidad
+        - historialVehiculosRevisados : list(Vehiculos)
+        
+    Este hereda de Empleado que a su vez hereda de Usuario. Su objetivo es referenciar Empleados 
+    con distintas Especialidades 
+        
+        
+        
+    """
 
     __especialistas = []
 
-    def __init__(self, cc = 0, uNombre = "ESPECIALISTA NO REGISTRADO", email = "", movil = 666, billetera = 0, especialidad : Especialidad = Especialidad.ADMINISTRADOR, historialVehiculosRevisados = None): #Se está casteando bien los enumeradores?
+    def __init__(self, cc = 0, uNombre = "ESPECIALISTA NO REGISTRADO", email = "", movil = 666, billetera = 0, especialidad : Especialidad = Especialidad.ADMINISTRADOR, historialVehiculosRevisados = None): 
         super().__init__(cc, uNombre, email, movil, billetera)
         self._historialiVehiculosRevisados = historialVehiculosRevisados
         self._especialidad = especialidad
@@ -37,8 +56,8 @@ class Especialista(Empleado):
 
     def revisionVehiculo(self, vehiculoE : Vehiculo):
         print(f"El vehiculo {vehiculoE.getPlaca()} esta siendo revisado...")
-        time.sleep(5)
-        random_int = random.randint(1, 10)
+        time.sleep(5) # Pausa la ejecusion 5 segundos para simular reision del vehiculo
+        random_int = random.randint(1, 10) # Selecciona 1 de cada 10 vehiculos para revision
         if (random_int == 7):
             print(f"EL VEHICULO NECESITA REPARACIONES")
         else:
@@ -49,7 +68,7 @@ class Especialista(Empleado):
         if (self.getEspecialidad() == Especialidad.ADMINISTRADOR):
                 if empleadoE in Especialista.getEspecialistas():                  
                     mesage = "Especialista " + empleadoE.getuNombre() + " despedido."
-                    empleadoE._billetera += 3000
+                    empleadoE._billetera += 3000 # Brinda una liquidacion de 3000 al despedirse el eEmpleado
                     Especialista.desvincularEmpleado(empleadoE)
                 elif empleadoE in Conductor.getConductores():
                     mesage = "Conductor " + empleadoE.getuNombre() + " despedido"
@@ -82,6 +101,9 @@ class Especialista(Empleado):
     @classmethod
     def setEspecialistas(cls, especialistas):
         cls.__especialistas = especialistas
+    
+    def getCc(self):
+        return self._cc
 
     def anadirVehiculoHistoria(self, vehiculoE: Vehiculo):
         if self._historialiVehiculosRevisados == None:
@@ -90,5 +112,5 @@ class Especialista(Empleado):
             self._historialiVehiculosRevisados.append(vehiculoE)
 
     def __str__(self) : 
-        return "Nombre: {} - Sueldo: {} - Especialidad: {}".format(self._uNombre, self._sueldo, self._especialidad) 
+        return " CC: ({}) - Nombre: {} - Sueldo: {} - Especialidad: {}".format(self.getCc(),self._uNombre, self._sueldo, self._especialidad) 
 
