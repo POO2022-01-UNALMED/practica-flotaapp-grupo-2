@@ -6,6 +6,9 @@ from gestorAplicacion.personas.Conductor import Conductor
 from gestorAplicacion.viajes.Vehiculo import Vehiculo
 
 class Especialidad(Enum):
+    """
+    Especialidad almacena las distintas categorias de los Empleados
+    """
 
     ELECTRICO = "ELECTRICO"
 
@@ -16,6 +19,22 @@ class Especialidad(Enum):
     ADMINISTRADOR = "ADMINISTRADOR" 
 
 class Especialista(Empleado):
+    """
+    Especialista contiene informacion de: 
+        - ID : int
+        - Nombre : String
+        - email : String
+        - movil : int
+        - billetera : int
+        - especialidad : Especialidad
+        - historialVehiculosRevisados : list(Vehiculos)
+        
+    Este hereda de Empleado que a su vez hereda de Usuario. Su objetivo es referenciar Empleados 
+    con distintas Especialidades 
+        
+        
+        
+    """
 
     __especialistas = []
 
@@ -37,8 +56,8 @@ class Especialista(Empleado):
 
     def revisionVehiculo(self, vehiculoE : Vehiculo):
         print(f"El vehiculo {vehiculoE.getPlaca()} esta siendo revisado...")
-        time.sleep(5)
-        random_int = random.randint(1, 10)
+        time.sleep(5) # Pausa la ejecusion 5 segundos para simular reision del vehiculo
+        random_int = random.randint(1, 10) # Selecciona 1 de cada 10 vehiculos para revision
         if (random_int == 7):
             print(f"EL VEHICULO NECESITA REPARACIONES")
         else:
@@ -49,7 +68,7 @@ class Especialista(Empleado):
         if (self.getEspecialidad() == Especialidad.ADMINISTRADOR):
                 if empleadoE in Especialista.getEspecialistas():                  
                     mesage = "Especialista " + empleadoE.getuNombre() + " despedido."
-                    empleadoE._billetera += 3000
+                    empleadoE._billetera += 3000 # Brinda una liquidacion de 3000 al despedirse el eEmpleado
                     Especialista.desvincularEmpleado(empleadoE)
                 elif empleadoE in Conductor.getConductores():
                     mesage = "Conductor " + empleadoE.getuNombre() + " despedido"

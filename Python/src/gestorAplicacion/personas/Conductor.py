@@ -3,6 +3,9 @@ from gestorAplicacion.viajes.Viaje import Viaje
 from enum import Enum
 
 class Categoria(Enum):
+    """
+    Categoria almacena el tipo de licencia de conducir para cada Conductor
+    """
 
     B2 = "B2"
 
@@ -43,7 +46,7 @@ class Conductor(Empleado):
 
     ## M E T O D O S ##
     def bonoSueldo(self):
-        sueldo += sueldo * 0.15
+        sueldo += sueldo * 0.15 # Bonifica al empleado en un 15% de su sueldo
         superConductor = None
         for  cadaConductor in Conductor.__conductores:
              if superConductor == None:
@@ -54,7 +57,7 @@ class Conductor(Empleado):
                  continue
 
         if superConductor != None:
-            sueldo += sueldo * 0.1    # 10% mas de bono si es el conductor con mas viajes realizados     
+            sueldo += sueldo * 0.1    # 10%  adicional al sueldo si es el conductor con mas viajes realizados     
 
 
     def renunciar(self):

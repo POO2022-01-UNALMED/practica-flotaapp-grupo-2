@@ -11,7 +11,7 @@ class Comprador(Usuario):
         - Nombre : String
         - email : String
         - movil : int
-        - Billetera : int
+        - billetera : int
         - Historico de Viajes : List(Tiquetes)
     Su funcionalidad sera de servir como objeto de referencia para un Usuario de tipo Comprador 
     el cual podra acceder a los servicios de Comprar un Tiquete y sus derivados.
