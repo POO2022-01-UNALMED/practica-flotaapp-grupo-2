@@ -17,6 +17,8 @@ from tkinter import messagebox
 
 from datetime import datetime
 
+from uiMain.ventanas.ManejoErrores import NumericException, ExceptionPopUp, EmptyException
+
 """
 ComprarTiquete : Contiene la informacion de: 
         - ID : int
@@ -50,8 +52,8 @@ class ComprarTiquete(tk.Frame):
         self.entrada1 = tk.IntVar()
         self.entrada2 = tk.IntVar()
         self.entrada3 = tk.IntVar()
-        self.entrada4 = tk.IntVar()
-        self.entrada5 = tk.IntVar()
+        self.entrada4 = tk.StringVar()
+        self.entrada5 = tk.StringVar()
         self.entrada6 = tk.IntVar()
         self.entrada7 = tk.IntVar()
 
@@ -93,15 +95,26 @@ class ComprarTiquete(tk.Frame):
                 boton = tk.Button(self._vTop, text="Buscar Viajes", command=viaje).grid(row=2, column=4, padx=10, pady=10)
 
             
-
         def popUp():
-            comprador = Comprador(self.entrada4.get(), self.entrada_4.get(),self.entrada_5.get(),self.entrada5.get())
-            message = f"{comprador.getCc()} - {comprador.getuNombre()} - {comprador.getEmail()} - {comprador.getMovil()}"
-            v = messagebox.askquestion("Confirmar Información", message)
-            if v == "yes":
-                enviarInfo()
-            else:
-                ventana3()
+            try:
+                if self.entrada4.get().isdigit() and self.entrada5.get().isdigit():
+                    comprador = Comprador(self.entrada4.get(), self.entrada_4.get(),self.entrada_5.get(),self.entrada5.get())
+                    message = f"{comprador.getCc()} - {comprador.getuNombre()} - {comprador.getEmail()} - {comprador.getMovil()}"
+                    v = messagebox.askquestion("Confirmar Información", message)
+                    if v == "yes":
+                        enviarInfo()
+                    else:
+                        ventana3()
+                elif self.entrada_4.get() == "" or self.entrada_5.get() == "" or self.entrada4.get() == "" or self.entrada5.get() == "":
+                    raise EmptyException
+                elif self.entrada4.get().isdigit() == False or self.entrada5.get().isdigit() == False:
+                    raise NumericException
+            except NumericException as p:
+                ExceptionPopUp("Ingreso de Valores Invalidos")
+                p.mostrarMensaje()
+            except EmptyException as p:
+                ExceptionPopUp("Aun hay formularios sin completar")
+                p.mostrarMensaje()
             
         title = tk.Label(self._vTop, text="C O M P R A R   T I Q U E T E").grid(row=0, column=0,padx=1, pady=10, columnspan=5)
         inst = tk.Label(self._vTop, text=" Señor usuario primero seleccione la fecha haciendo click en el boton 'Establecer Fecha'\n luego dar click al boton 'Buscar Viajes'").grid(row=1, column=0, padx=10, pady=10, columnspan=5)

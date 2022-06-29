@@ -26,6 +26,11 @@ class IndexException(ErrorAplicacion):
 class NumericException(ErrorAplicacion):
     def __init__(self, message="Estas usando valores no numericos"):
         super().__init__(message)
+
+class EmptyException(ErrorAplicacion):
+    def __init__(self, message="No estas ingresando valores - ESTADO VACIO!!!"):
+        super().__init__(message)
+    
     
 
 
