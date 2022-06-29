@@ -196,35 +196,36 @@ class GestionarViajes(Frame):
         try:
             if self.entrada.get().isdigit() and self.entrada.get() != "0":
                 valor = int(self.entrada.get())
+
+                self._vTop.destroy()
+                self._vTop = Frame(self)
+
+                listaTiquete = []
+                compradorTiquete = Comprador()
+                for comprador in Comprador.getCompradores():
+                    if comprador.getCc() == valor:
+                        if comprador.getHistorioViaje() != []:
+                            listaTiquete = Tiquete.buscarTiquete(comprador.getHistorioViaje()[0].getId()).getComprador().getHistorioViaje()
+                            listaTiquete = [f"{t.getId()} - {t.getViaje()} - {t.getSillaTiquete()}" for t in listaTiquete]
+                        compradorTiquete = comprador
+                        
+
+                Label(self._vTop, text= f"CC: {compradorTiquete.getCc()} - Nombre : {compradorTiquete.getuNombre()}").place(relx=0.05, rely=0.05, relwidth=0.9, relheight=0.08)
+                self.valorDefectoTiquete = StringVar(value="Seleccione Viaje")
+                self.comboTiquete = ttk.Combobox(self._vTop, state="readonly",  values= listaTiquete, textvariable=self.valorDefectoTiquete, width=15)
+                self.comboTiquete.place(relx=0.05, rely=0.15, relwidth=0.7, relheight=0.08)
+                buscarTiquetes = Button(self._vTop, text="Gestionar", command= self.FrameTiquete)
+                buscarTiquetes.place(relx=0.75, rely=0.15, relwidth=0.2, relheight=0.08)    
+
+                self._vTop.place(relx=0.05, rely=0.25, relwidth=0.9, relheight=0.7) 
+
+                self._frameInfoTiquete = Frame(self._vTop)
             else:
                 raise NumericException()
         except NumericException as p:
             ExceptionPopUp("Ingrese un valor Numerico Valido")
             p.mostrarMensaje()
 
-        self._vTop.destroy()
-        self._vTop = Frame(self)
-
-        listaTiquete = []
-        compradorTiquete = Comprador()
-        for comprador in Comprador.getCompradores():
-            if comprador.getCc() == valor:
-                if comprador.getHistorioViaje() != []:
-                    listaTiquete = Tiquete.buscarTiquete(comprador.getHistorioViaje()[0].getId()).getComprador().getHistorioViaje()
-                    listaTiquete = [f"{t.getId()} - {t.getViaje()} - {t.getSillaTiquete()}" for t in listaTiquete]
-                compradorTiquete = comprador
-                
-
-        Label(self._vTop, text= f"CC: {compradorTiquete.getCc()} - Nombre : {compradorTiquete.getuNombre()}").place(relx=0.05, rely=0.05, relwidth=0.9, relheight=0.08)
-        self.valorDefectoTiquete = StringVar(value="Seleccione Viaje")
-        self.comboTiquete = ttk.Combobox(self._vTop, state="readonly",  values= listaTiquete, textvariable=self.valorDefectoTiquete, width=15)
-        self.comboTiquete.place(relx=0.05, rely=0.15, relwidth=0.7, relheight=0.08)
-        buscarTiquetes = Button(self._vTop, text="Gestionar", command= self.FrameTiquete)
-        buscarTiquetes.place(relx=0.75, rely=0.15, relwidth=0.2, relheight=0.08)    
-
-        self._vTop.place(relx=0.05, rely=0.25, relwidth=0.9, relheight=0.7) 
-
-        self._frameInfoTiquete = Frame(self._vTop)
 
 
     def FrameTiquete(self):
