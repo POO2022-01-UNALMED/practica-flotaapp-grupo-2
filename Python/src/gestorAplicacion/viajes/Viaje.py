@@ -5,11 +5,11 @@ from gestorAplicacion.viajes.Ciudad import Ciudad
 class Viaje():
     '''
     Viaje : Contiene la informacion de: 
-        - Ciudad : Origen - Destino
-        - Vehiculo
-        - Conductor
-        - Fecha del Viaje
-        - Tiquetes : Ocupados y aun sin Ocupar
+        - Ciudad : Ciudad: Origen - Destino
+        - Vehiculo : Vehiculo
+        - Conductor : Conductor
+        - Fecha del Viaje : Datetime
+        - Tiquetes : Tiquete: Ocupados y aun sin Ocupar
     Su funcionalidad sera de servir como intermediario para realización de diferentes funcionalidades como lo son:
         - Compra de Tiquetes
         - Asignación de Viaje a un Conductor

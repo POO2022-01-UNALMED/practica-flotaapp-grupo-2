@@ -4,7 +4,8 @@ from enum import Enum
 
 class Categoria(Enum):
     """
-    Categoria almacena el tipo de licencia de conducir para cada Conductor
+    Categoria : enum
+        - almacena el tipo de licencia de conducir para cada Conductor
     """
 
     B2 = "B2"
@@ -25,13 +26,14 @@ class Conductor(Empleado):
         - Sueldo : int
         - Categoria : Categoria(Enum)
         - Historico de Viajes Realizados : List(Viaje)
-    Su funcionalidad sera de servir como objeto de referencia para un Usuario de tipo Conductor. 
-    A este se le asignara un Viaje. 
+        
+    Conductor hereda de Empleado que a su vez hereda de Usuario. Su objetivo es  
+    referenciar Empleados de tipo Conductor 
     '''
 
     __conductores = []
 
-    def __init__(self, cc = 0, uNombre: str = "CONDUCTOR NO REGISTRADO", email: str = "", movil: int = 666, sueldo=0, categoria: Categoria = None, historiaViajesRealizados = None): # categoria = Categoria(categoria)
+    def __init__(self, cc = 0, uNombre: str = "CONDUCTOR NO REGISTRADO", email: str = "", movil: int = 666, sueldo=0, categoria: Categoria = None, historiaViajesRealizados = None): 
         super().__init__(cc, uNombre, email, movil, sueldo)
         self._categoria = categoria
         self._historiaViajesRealizados = historiaViajesRealizados
@@ -46,7 +48,7 @@ class Conductor(Empleado):
 
     ## M E T O D O S ##
     def bonoSueldo(self):
-        sueldo += sueldo * 0.15 # Bonifica al empleado en un 15% de su sueldo
+        sueldo += sueldo * 0.15      # -Bonifica al empleado en un 15% mas a su sueldo
         superConductor = None
         for  cadaConductor in Conductor.__conductores:
              if superConductor == None:
@@ -57,7 +59,7 @@ class Conductor(Empleado):
                  continue
 
         if superConductor != None:
-            sueldo += sueldo * 0.1    # 10%  adicional al sueldo si es el conductor con mas viajes realizados     
+            sueldo += sueldo * 0.1    # -Incrementa 10%  adicional al sueldo si es el conductor con mas viajes realizados     
 
 
     def renunciar(self):

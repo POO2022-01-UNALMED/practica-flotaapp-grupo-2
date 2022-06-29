@@ -11,6 +11,16 @@ from datetime import datetime
 from datetime import timedelta
 
 class Gestionar():
+    '''
+    Gestionar : Contiene  informacion de: 
+    
+     Gestionar Especialista: 
+        implementa las funcionalidades renunciar, consulta de vehiculos asignados y asignar 
+        un nuevo vehiculo para revision  para cada Especialista registrado de acierdo a su Especialidadad
+     Gestionar Comprador:
+        Implementa las funcionalidades cambiar tiquete asignado y cancelar tiquete con penalidad de devolucion
+        de dinero si la fecha del viaje es muy cercana
+    '''
     
     @classmethod
     def gestionarEspecialistas(cls):
@@ -166,13 +176,13 @@ class Gestionar():
                     tiquete.setComprador(None)
                     print(tiquetesDisponibles[auxnum])
         elif aux == 2:
-            if (tiquete.getViaje().getFechaViaje() + timedelta(days=7)) >  datetime().now(): 
+            if (tiquete.getViaje().getFechaViaje() + timedelta(days=7)) >  datetime().now(): # Si el viaje es > a 7 dias se devuelve todo el dinero
                 print("El tiquete a sido cancelado y su dinero devuelto")
                 tiquete.getComprador().agregarSaldo(tiquete.getValor())
                 tiquete.getComprador().eliminarTiqueteHistoria(tiquete)
                 tiquete.setEstado(False)
                 tiquete.setComprador(None)
-            elif tiquete.getViaje().getFechaViaje() > datetime().now() and tiquete.getViaje().getFechaViaje() < (tiquete.getViaje().getFechaViaje() + timedelta(days=7)): 
+            elif tiquete.getViaje().getFechaViaje() > datetime().now() and tiquete.getViaje().getFechaViaje() < (tiquete.getViaje().getFechaViaje() + timedelta(days=7)): # Si es mayor al día actual pero menor a 7 dias se devuelve el 30%
                 print("La fecha del viaje es muy cercana, por lo que solo podremos devolverle el 30% del valor de su Tiquete")
                 tiquete.getComprador().agregarSaldo(tiquete.getValor()*0.3)
                 tiquete.getComprador().eliminarTiqueteHistoria(tiquete)
@@ -182,7 +192,7 @@ class Gestionar():
                 print("El viaje ya se a realizado, no se puede hacer devuelta de su dinero")
    
     @staticmethod
-    def gestionarViajes(cc: int=0): #Se deja los print para cambiarlos por return posteriormente
+    def gestionarViajes(cc: int=0): 
         print("----- G E S T I O N A R   V I A J E S -----")
         comprador = Comprador()
         for comprador1 in Comprador.getCompradores():

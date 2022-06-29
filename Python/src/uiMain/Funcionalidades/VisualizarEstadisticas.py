@@ -3,6 +3,13 @@ from gestorAplicacion.viajes.Viaje import Viaje
 from gestorAplicacion.viajes.Ciudad import Ciudad
 
 class VisualizarEstadisticas():
+    """
+    VisualizarEstadisticas : Contiene informacion de: 
+        Se puede visuaizar estadisticas por Ciudad y por Viaje, mostrando por medio de una grafica el porcentaje de visitas por cada ciudad
+        y calculando la utilidad de cada viaje teniendo en cuenta el valor generado por compra de tiquetes menos
+        el costo por cada viaje 
+    
+    """
 
     @staticmethod
     def visualizarEstadisticas():
@@ -15,7 +22,7 @@ class VisualizarEstadisticas():
             plt.bar(nombresCiudades, numeroVisitantes)
             plt.ylabel("Numero de Visitantes")
             plt.xlabel("Nombre de Ciudades")
-            plt.title("Visualozar Estadisticas Ciudades")
+            plt.title("Visualizar Estadisticas Ciudades")
             plt.show()
             
         elif aux == 2:
@@ -26,7 +33,7 @@ class VisualizarEstadisticas():
             plt.barh(nombreViaje, tiquetesComprador, color = "r")
             plt.ylabel("Viaje : Origen - Destino")
             plt.xlabel("Cantidad de Tiquetes")
-            plt.title("Visualozar Estadisticas Viajes")
+            plt.title("Visualizar Estadisticas Viajes")
             plt.show()
 
             gananciasGeneradas = [ viaje.gananciasGeneradas() for viaje in Viaje.getViajes()]

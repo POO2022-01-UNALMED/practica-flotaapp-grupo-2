@@ -1,20 +1,9 @@
 from gestorAplicacion.personas.Usuario import Usuario
 from enum import Enum
 
-class Especialidad(Enum):
-
-    ELECTRICO = "ELECTRICO"
-
-    MECANICO = "MECANICO"
-
-    SILLETERIA = "SILLETERIA"
-
-    ADMINISTRADOR = "ADMINISTRADOR"
- #Superclase Empleado
-
 class Empleado(Usuario):
     '''
-    Comprador : Contiene la informacion de: 
+    Empleado : Contiene la informacion de: 
         - ID : int
         - Nombre : String
         - email : String

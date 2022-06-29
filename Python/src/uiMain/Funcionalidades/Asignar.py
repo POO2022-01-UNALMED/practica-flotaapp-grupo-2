@@ -7,6 +7,13 @@ from gestorAplicacion.personas.Conductor import Conductor
 from gestorAplicacion.personas.Especialista import Especialista
 
 class Asignar():
+    '''
+    Asignar : Contiene la informacion de: 
+
+    Esta clase tiene como objetivo implementar los metodos se asignacion a Empleado y Comprador para ser llamado
+    desde las vemntanas o desde las  funcionalidades
+    '''
+    
     @staticmethod
     def asignarTiquete(comprador : Comprador, tiquete : Tiquete):
         tiquete.setComprador(comprador)
